@@ -1,0 +1,29 @@
+{
+  // Cloudflare Workers config — assets-only, the same shape colonel_kernel and
+  // bugarach use: no server script, Cloudflare serves ./site directly.
+  //
+  // There is no build step. ./site is three static files, committed as-is, so
+  // `wrangler deploy` uploads exactly what is in the repository and there is no
+  // generated artifact that can drift from source.
+  "name": "tonydefazio-com",
+  "compatibility_date": "2026-07-01",
+  "workers_dev": true,
+  "preview_urls": true,
+
+  // The apex, declared rather than clicked. On `wrangler deploy` Cloudflare
+  // creates the DNS record and the Worker binding for this hostname itself —
+  // nothing to do in the dashboard, nothing to do at Porkbun, which is only the
+  // registrar (tonydefazio.com's nameservers already delegate to Cloudflare).
+  //
+  // NOTE: as of 2026-08-25 the apex resolves to NOTHING — `dig tonydefazio.com`
+  // is empty, while the four subdomains all answer. So this deploy is creating
+  // the apex record, not replacing one. If that ever stops being true, look
+  // before you deploy: a custom_domain route takes the hostname over.
+  "routes": [
+    { "pattern": "tonydefazio.com", "custom_domain": true }
+  ],
+
+  "assets": {
+    "directory": "./site"
+  }
+}

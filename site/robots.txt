@@ -1,0 +1,5 @@
+# Search engines are welcome; this page exists to be found and to hand people off.
+User-agent: *
+Allow: /
+
+Sitemap: https://tonydefazio.com/sitemap.xml
