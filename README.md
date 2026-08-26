@@ -75,10 +75,14 @@ ctx = b.new_context(user_agent="Mozilla/5.0 (Macintosh; …) Chrome/140.0.0.0 Sa
 ctx.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined})")
 ```
 
-**The limit of that test:** reaching `/thanks` proves Web3Forms *accepted and relayed* the
-submission. It does not prove the message arrived in the inbox — the key→inbox mapping lives
-on Web3Forms' side and nothing here can read it. Confirming delivery means looking in the
-inbox.
+**Delivery confirmed 2026-08-25.** Reaching `/thanks` proves only that Web3Forms accepted
+and relayed the submission; the key→inbox mapping lives on their side and nothing here can
+read it. So the last step was done by eye: the test message arrived, which confirms the
+shared key really does deliver to Tony. The chain is verified end to end — page → Web3Forms
+→ inbox.
+
+Only one message arrived, not two. The first (unmasked headless) attempt died at the
+Turnstile challenge without submitting, so it never reached the relay.
 
 **Ordinary visitors are unaffected.** A normal browser passes Turnstile without seeing it;
 the interstitial above is an artifact of automation, not something a person hits.

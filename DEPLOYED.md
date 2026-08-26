@@ -33,6 +33,13 @@
 - All four subdomains still 200 — `custom_domain` routes claim only the exact hostname,
   so kernel / nopeak / bugarach / murderboard were untouched.
 
+## Contact form
+
+Verified end to end on **2026-08-25**: submitted from a real browser against the live page,
+reached `/thanks`, and **the message arrived in the inbox**. The shared Web3Forms key
+(`b8c22a4e-…`, also used by `no_peak`) delivers correctly. See README § *The contact form*
+for how to re-test — and for why `curl` cannot.
+
 ## Rolling back
 
 ```bash
