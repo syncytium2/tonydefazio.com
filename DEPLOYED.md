@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `f817121e-5b6c-4a3c-adf4-22322cc335b7` |
+| **Version ID** | `969202fa-7355-4b94-87fc-9b63f02e1840` |
 | **Deployed** | 2026-08-26 |
-| **Site version** | 1.1.0 |
+| **Site version** | 1.2.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -47,6 +47,16 @@ with `white-space: nowrap`. The 21 is the string's measured width in ems (18.09 
 in SF Pro) plus ~16% slack for wider non-Apple sans fallbacks. **Editing the wordmark text
 invalidates that constant** — a longer string will overflow, silently, because `body` sets
 `overflow-x: hidden`.
+
+## Card copy
+
+**1.2.0 cut each card to a single sentence** and removed the licence chips. What the cards
+say is paraphrase, not quotation — checked against the four live sites on 2026-08-26, none
+of the card sentences appears verbatim on the site it describes; only the short chips do.
+See README § *Keeping it honest* for which claims survive and which were retired.
+
+The page now names **no licence anywhere**. The footer defers to the repositories, which is
+deliberate: a licence can change upstream without this page becoming wrong.
 
 ## Contact form
 
