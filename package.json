@@ -1,7 +1,7 @@
 {
   "name": "tonydefazio-com",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Landing page for tonydefazio.com — routes visitors to the four project sites.",
   "scripts": {
     "serve": "python3 -m http.server 5099 --bind 127.0.0.1 --directory site",

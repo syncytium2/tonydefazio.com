@@ -158,24 +158,38 @@ curl -sI https://tonydefazio.com/ | head -1
 ## 3. Keeping it honest
 
 The page makes claims about the four projects. Each was checked against the source
-repository on 2026-08-25, not written from memory:
+repository on 2026-08-25, not written from memory.
 
-- **"eleven reviewer roles", "three gate scripts"** — `murderboard/README.md`; the three gates
-  are `murderboard_freshness.sh`, `murderboard_roster.sh`, `require_commit_before_message.sh`
-  (`fetch_paper.py` is the lit tool, not a gate).
-- **"Vendored into the three projects above"** — verified: `colonel_kernel`, `no_peak`, and
-  `bugarach` each carry `docs/doc_review_process.md`, both vendored gate scripts, and
-  `.claude/skills/murderboard/SKILL.md`.
-- **"roughly 40% of true pulses"** — `no_peak/index.html`: recovers 60.8% of 130 true pulses.
-- **"validated point-by-point against both Igor Pro and the original Fortran"** — 75/75 checks
-  vs Igor; exact reproduction of CLUST5 v6.01 at documented defaults.
-- **"Six coordination detectors lifted out of MATLAB"** — `bugarach/README.md`.
-- **"each repository carries an instruction file written for an agent"** — true of all four,
-  but the filename differs: `no_peak` uses `AGENTS.md`, the other three use `CLAUDE.md`. The
-  page states the category rather than the filename for exactly this reason.
-- Licences: colonel_kernel MIT · no_peak MIT · bugarach BSD-3-Clause · murderboard Apache-2.0.
+**In 1.2.0 each card was cut to a single sentence**, which retired most of those claims from
+the page. What the cards still assert:
 
-**If any of those change, the page is stale.** Nothing checks this automatically.
+- **"eleven reviewer roles" / the `11 roles` and `3 gate scripts` chips** — `murderboard/README.md`;
+  the three gates are `murderboard_freshness.sh`, `murderboard_roster.sh`,
+  `require_commit_before_message.sh` (`fetch_paper.py` is the lit tool, not a gate).
+- **The `six detectors` chip** — `bugarach/README.md`.
+- **The `Fortran + Igor implementations` chip** — 75/75 checks vs Igor; exact reproduction of
+  CLUST5 v6.01 at documented defaults. The chip now carries this on its own, since the
+  sentence that spelled it out is gone.
+- **"each repository carries an instruction file written for an agent"** — in §*What these have
+  in common*, which was not trimmed. True of all four, but the filename differs: `no_peak` uses
+  `AGENTS.md`, the other three use `CLAUDE.md`. The page states the category rather than the
+  filename for exactly this reason.
+
+Retired from the page in 1.2.0, and no longer this repo's problem to keep fresh: the 40%
+CLUSTER miss rate, "validated point-by-point against both Igor Pro and the original Fortran"
+as prose, "Six coordination detectors lifted out of MATLAB" as prose, "scored against planted
+events with known times", "Vendored into the three projects above", and **the per-project
+licence chips** (MIT / MIT / BSD-3 / Apache-2.0). The page no longer names a licence for any
+of the four; the footer defers to the repositories, which is the only place a licence can go
+stale without this page being wrong. For the record they were, on 2026-08-26: colonel_kernel
+MIT · no_peak MIT · bugarach BSD-3-Clause · murderboard Apache-2.0.
+
+**If any of the surviving claims change, the page is stale.** Nothing checks this automatically.
+
+The card sentences are **paraphrase, not quotation** — checked against the live sites on
+2026-08-26, none of them appears verbatim on the site it describes. Only the short chips do
+(`teaching demonstrator`, `browser raster viewer`, `11 roles`). Treat them as this page's
+words about those projects, not as those projects' own words.
 
 ## 4. Known gaps
 
