@@ -52,6 +52,37 @@ scriptless posture intact while degrading perfectly.
 - **After a send:** Web3Forms redirects to `https://tonydefazio.com/thanks`.
 - **Spam:** a `botcheck` honeypot field, hidden off-canvas — the same trick `no_peak` uses.
 
+#### Testing it — what does and does not work
+
+**Verified end to end on 2026-08-25**: a real submission from a real browser against the
+live page reached `/thanks`, which Web3Forms redirects to only on success.
+
+Getting there ruled out two dead ends worth writing down, because both look like a broken
+form and neither is:
+
+| How you test | What happens | Why |
+|---|---|---|
+| `curl` to the API | **403** — *"Use our API in client side"* | Web3Forms blocks server-side POSTs on the free plan. Adding an `Origin` header does not help. |
+| `curl` with browser headers | Cloudflare **"Just a moment…"** interstitial | The API sits behind Cloudflare bot protection. curl cannot pass it, ever. |
+| Headless browser, default | Stuck on Turnstile *"Verifying…"* | Cloudflare detects `navigator.webdriver`. |
+| Headless browser, flag masked | **Reaches `/thanks`** | Turnstile clears immediately. This is the test that works. |
+
+The working recipe, using `bugarach`'s Python Playwright:
+
+```python
+b = pw.chromium.launch(args=["--disable-blink-features=AutomationControlled"])
+ctx = b.new_context(user_agent="Mozilla/5.0 (Macintosh; …) Chrome/140.0.0.0 Safari/537.36")
+ctx.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined})")
+```
+
+**The limit of that test:** reaching `/thanks` proves Web3Forms *accepted and relayed* the
+submission. It does not prove the message arrived in the inbox — the key→inbox mapping lives
+on Web3Forms' side and nothing here can read it. Confirming delivery means looking in the
+inbox.
+
+**Ordinary visitors are unaffected.** A normal browser passes Turnstile without seeing it;
+the interstitial above is an artifact of automation, not something a person hits.
+
 > **Rotating the key breaks two sites.** If the Web3Forms key is ever regenerated, both this
 > page and `no_peak/src/Contact.tsx` need the new one. Nothing enforces that.
 
