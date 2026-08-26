@@ -19,7 +19,7 @@ Four static files in [`site/`](site/), committed as-is. **There is no build step
 drift from source.
 
 ```
-site/index.html     the page — self-contained, ~24 KB
+site/index.html     the page — self-contained, ~26 KB
 site/thanks.html    where the contact form lands after a send (noindex)
 site/robots.txt     allow-all + sitemap pointer
 site/sitemap.xml    one URL
@@ -34,6 +34,35 @@ air-gapped, or behind a captive portal.
 Web3Forms. That request happens *only* when a visitor presses Send — nothing is contacted on
 load — which is why the colophon reads "exactly one network request, and only if you send
 the form" rather than the flat "no network requests" it used to claim.
+
+### The development flag
+
+**None of the four projects is a finished product, and the page says so — five times, in
+five different places**, because a visitor who lands on a card and clicks through will only
+ever see one of them:
+
+| Where | What it is |
+|---|---|
+| `<meta name="description">` and `og:description` | so the flag survives into a search result or a link preview, where the page body never appears |
+| JSON-LD `subjectOf[]` | `"creativeWorkStatus": "Under development"` on all four entries |
+| `p.notice` under the masthead deck | the full statement: interfaces, defaults, quoted numbers and docs are all still moving, nothing is peer-reviewed, treat results as provisional |
+| `span.wip` in each card's eyebrow | *In development* — one chip per card, so the claim is attached to each destination rather than only to the page |
+| the "Under development" row in *What these have in common*, and the colophon | the two places a reader who skipped the masthead still passes |
+
+`thanks.html` carries a shorter version of the same notice.
+
+The chip is **deliberately neutral** (`--ink-faint` on `--surface-2`) rather than
+accent-coloured: the four accent hues exist to tell the cards apart, and this is the one
+statement that is identical on all four, so giving it a hue would read as a fifth
+destination.
+
+> **These two stylesheets are duplicates on purpose.** `index.html` and `thanks.html` each
+> inline the same CSS — there is no build step to share it. `.notice` and `.wip` were added
+> to both; anything else added to one belongs in the other.
+
+> **The four destination sites do not carry this flag.** This page states it on their behalf.
+> Putting it on each site is four separate repositories and four separate deploys, and is
+> tracked in §4 alongside the missing parent links.
 
 ### The contact form
 
@@ -186,6 +215,10 @@ repository on 2026-08-25, not written from memory:
   engines will care. Submitting `sitemap.xml` to Google and Bing is the other half.
 - **The four destinations do not link back here.** Adding a parent link to each site's footer
   would close the loop; that is four separate repositories and four separate deploys.
+- **The four destinations do not flag themselves as under development.** This page flags all
+  four (see §1), but a visitor arriving at `kernel.` or `nopeak.` directly — which is how the
+  subdomains were found before the apex existed — never passes it. The same four deploys that
+  would add the parent link should add the notice.
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 

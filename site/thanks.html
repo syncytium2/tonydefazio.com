@@ -131,6 +131,29 @@ strong { font-weight: 600; }
 }
 .deck b { color: var(--ink); font-weight: 600; }
 
+/* ---------- development notice ----------
+   Kept identical to index.html; these two stylesheets are duplicates on
+   purpose, so a change to one belongs in the other. */
+.notice {
+  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0; max-width: 64ch;
+  background: var(--surface);
+  border: 1px solid var(--rule); border-left: 3px solid var(--blood);
+  border-radius: 3px; padding: .85rem 1.05rem;
+  font-family: var(--f-mono); font-size: .74rem; line-height: 1.7;
+  color: var(--ink-soft);
+}
+.notice strong {
+  color: var(--ink); font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.wip {
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--ink-faint); font-weight: 400;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--surface-2); padding: .14rem .55rem;
+  white-space: nowrap;
+}
+
 /* ---------- the four cards ---------- */
 .shelf {
   padding-block: 0 clamp(2.5rem, 6vw, 4rem);
@@ -297,6 +320,12 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
     Thanks &mdash; it reached me. If it needs a reply you&rsquo;ll get one at the address you
     gave. <b>Nothing else was sent</b>: the form carries only what you typed into it.
   </p>
+
+  <p class="notice">
+    <strong>Under development.</strong> All four projects, and this site, are works in
+    progress rather than finished products &mdash; so bug reports are useful and expected.
+  </p>
+
   <p class="jumpback">
     <a href="/">&larr; Back to the four projects</a>
   </p>
