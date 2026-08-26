@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `04ea9355-e18e-45b9-af2c-65e486719184` |
+| **Version ID** | `45604348-6d66-4950-95b8-0d0d22df6259` |
 | **Deployed** | 2026-08-25 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
