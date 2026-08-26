@@ -1,12 +1,13 @@
 {
   "name": "tonydefazio-com",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Landing page for tonydefazio.com — routes visitors to the four project sites.",
   "scripts": {
     "serve": "python3 -m http.server 5099 --bind 127.0.0.1 --directory site",
-    "dry": "wrangler deploy --dry-run",
-    "deploy": "wrangler deploy"
+    "check": "node tools/check-version.mjs",
+    "dry": "npm run check && wrangler deploy --dry-run",
+    "deploy": "npm run check && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.20.0"

@@ -19,10 +19,12 @@ Four static files in [`site/`](site/), committed as-is. **There is no build step
 drift from source.
 
 ```
-site/index.html     the page — self-contained, ~24 KB
-site/thanks.html    where the contact form lands after a send (noindex)
-site/robots.txt     allow-all + sitemap pointer
-site/sitemap.xml    one URL
+site/index.html            the page — self-contained, ~27 KB
+site/thanks.html           where the contact form lands after a send (noindex)
+site/robots.txt            allow-all + sitemap pointer
+site/sitemap.xml           one URL
+tools/check-version.mjs    npm run check — holds the version stamp together
+CHANGELOG.md               what each version changed
 ```
 
 `index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, runs
@@ -34,6 +36,75 @@ air-gapped, or behind a captive portal.
 Web3Forms. That request happens *only* when a visitor presses Send — nothing is contacted on
 load — which is why the colophon reads "exactly one network request, and only if you send
 the form" rather than the flat "no network requests" it used to claim.
+
+### The development flag
+
+**None of the four projects is a finished product, and the page says so — five times, in
+five different places**, because a visitor who lands on a card and clicks through will only
+ever see one of them:
+
+| Where | What it is |
+|---|---|
+| `<meta name="description">` and `og:description` | so the flag survives into a search result or a link preview, where the page body never appears |
+| JSON-LD `subjectOf[]` | `"creativeWorkStatus": "Under development"` on all four entries |
+| `p.notice` under the masthead deck | the full statement: interfaces, defaults, quoted numbers and docs are all still moving, nothing is peer-reviewed, treat results as provisional |
+| `span.wip` in each card's eyebrow | *In development* — one chip per card, so the claim is attached to each destination rather than only to the page |
+| the "Under development" row in *What these have in common*, and the colophon | the two places a reader who skipped the masthead still passes |
+
+`thanks.html` carries a shorter version of the same notice.
+
+The chip is **deliberately neutral** (`--ink-faint` on `--surface-2`) rather than
+accent-coloured: the four accent hues exist to tell the cards apart, and this is the one
+statement that is identical on all four, so giving it a hue would read as a fifth
+destination.
+
+> **These two stylesheets are duplicates on purpose.** `index.html` and `thanks.html` each
+> inline the same CSS — there is no build step to share it. `.notice` and `.wip` were added
+> to both; anything else added to one belongs in the other.
+
+> **The four destination sites do not carry this flag.** This page states it on their behalf.
+> Putting it on each site is four separate repositories and four separate deploys, and is
+> tracked in §4 alongside the missing parent links.
+
+### The version stamp
+
+The footer of both pages carries three figures:
+
+```
+Version 1.1.0    Updated 26 August 2026    Online since 25 August 2026
+```
+
+- **Version** — semantic, applied to a page rather than an API: **major** replaces what the
+  page *is*, **minor** adds a section or a claim, **patch** is wording, styling and
+  corrections. What each one changed is in [`CHANGELOG.md`](CHANGELOG.md).
+- **Updated** — the version date. The day this version was written, not the day it deployed;
+  `DEPLOYED.md` is the record of what actually reached the edge.
+- **Online since** — the born-on date, **2026-08-25**, fixed forever. That is both the first
+  commit (`3341250`) and the first deploy, which happened the same day. It does not change
+  when the page does.
+
+Both the prose and the machine-readable form are written out, as `<time datetime="…">`, so a
+crawler and a reader see the same date.
+
+#### Bumping it
+
+There is no build step, so all eight copies are hand-edited. They live in:
+
+| File | What it holds |
+|---|---|
+| `package.json` | `version` |
+| `site/index.html` | JSON-LD `version`, `datePublished`, `dateModified` — on the `WebSite` node in the `@graph` |
+| `site/index.html` | the footer `<p class="version">` stamp |
+| `site/thanks.html` | the same footer stamp |
+| `site/sitemap.xml` | `<lastmod>`, which must equal the version date |
+
+Then add the entry to `CHANGELOG.md`.
+
+**`npm run check` verifies all of it** — one version, one version date, one born-on date, and
+the prose beside each `<time>` matching its `datetime` attribute, which is the drift a reader
+would notice and a crawler would not. It runs automatically before `npm run dry` and
+`npm run deploy`, so a half-bumped version cannot ship. This is the one invariant on this
+page that something *does* enforce; §3 and §4 are the ones that still don't.
 
 ### The contact form
 
@@ -121,9 +192,13 @@ An **assets-only Cloudflare Worker**, the same shape `colonel_kernel` and `bugar
 ```bash
 npm install         # once per clone — installs the pinned wrangler
 npx wrangler login  # once per machine — OAuth browser flow, cannot be scripted
-npm run dry         # everything except the upload
-npm run deploy      # upload
+npm run check       # version stamp is consistent across all four files
+npm run dry         # check, then everything except the upload
+npm run deploy      # check, then upload
 ```
+
+`dry` and `deploy` both run `check` first and stop on a failure, so **bump the version before
+you deploy** (see §1) — or the deploy will refuse until the stamp agrees with itself.
 
 `wrangler.jsonc` declares the apex as a `custom_domain` route, so **`wrangler deploy` creates
 the DNS record and the Worker binding itself.** There is nothing to click in the Cloudflare
@@ -186,6 +261,10 @@ repository on 2026-08-25, not written from memory:
   engines will care. Submitting `sitemap.xml` to Google and Bing is the other half.
 - **The four destinations do not link back here.** Adding a parent link to each site's footer
   would close the loop; that is four separate repositories and four separate deploys.
+- **The four destinations do not flag themselves as under development.** This page flags all
+  four (see §1), but a visitor arriving at `kernel.` or `nopeak.` directly — which is how the
+  subdomains were found before the apex existed — never passes it. The same four deploys that
+  would add the parent link should add the notice.
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 
