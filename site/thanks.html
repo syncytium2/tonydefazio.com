@@ -263,6 +263,17 @@ footer li:last-child { margin-bottom: 0; }
   color: var(--ink-faint); max-width: 74ch;
 }
 
+/* ---------- version stamp ----------
+   Same three figures as index.html; `npm run check` holds the two pages, the
+   JSON-LD, the sitemap and package.json to one number. */
+.version {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  font-family: var(--f-mono); font-size: .7rem; letter-spacing: .04em;
+  line-height: 1.7; color: var(--ink-faint);
+  display: flex; flex-wrap: wrap; gap: 0 1.4rem;
+}
+.version b { color: var(--ink); font-weight: 600; }
+
 /* ---------- contact ---------- */
 .contact-sec { border-top: 1px solid var(--rule); padding-block: clamp(2.5rem, 6vw, 4rem); }
 .contact-sec .eyebrow {
@@ -328,6 +339,12 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 
   <p class="jumpback">
     <a href="/">&larr; Back to the four projects</a>
+  </p>
+
+  <p class="version">
+    <span>Version <b>1.1.0</b></span>
+    <span>Updated <time datetime="2026-08-26">26 August 2026</time></span>
+    <span>Online since <time datetime="2026-08-25">25 August 2026</time></span>
   </p>
 </header>
 <style>

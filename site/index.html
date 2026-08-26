@@ -21,21 +21,37 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Richard Anthony DeFazio",
-  "alternateName": "Tony DeFazio",
-  "url": "https://tonydefazio.com/",
-  "description": "Neuroendocrinology and calcium imaging. Builds open-source, client-side instruments for measuring signals in neuroscience data.",
-  "knowsAbout": ["Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection"],
-  "sameAs": [
-    "https://github.com/syncytium2",
-    "https://orcid.org/0000-0001-7302-7528"
-  ],
-  "subjectOf": [
-    { "@type": "WebApplication", "name": "Colonel Kernel", "url": "https://kernel.tonydefazio.com/", "creativeWorkStatus": "Under development" },
-    { "@type": "WebApplication", "name": "no_peak", "url": "https://nopeak.tonydefazio.com/", "creativeWorkStatus": "Under development" },
-    { "@type": "WebApplication", "name": "bugarach", "url": "https://bugarach.tonydefazio.com/", "creativeWorkStatus": "Under development" },
-    { "@type": "WebSite", "name": "The Murderboard", "url": "https://murderboard.tonydefazio.com/", "creativeWorkStatus": "Under development" }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tonydefazio.com/#website",
+      "url": "https://tonydefazio.com/",
+      "name": "tonydefazio.com",
+      "version": "1.1.0",
+      "datePublished": "2026-08-25",
+      "dateModified": "2026-08-26",
+      "creativeWorkStatus": "Under development",
+      "author": { "@id": "https://tonydefazio.com/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://tonydefazio.com/#person",
+      "name": "Richard Anthony DeFazio",
+      "alternateName": "Tony DeFazio",
+      "url": "https://tonydefazio.com/",
+      "description": "Neuroendocrinology and calcium imaging. Builds open-source, client-side instruments for measuring signals in neuroscience data.",
+      "knowsAbout": ["Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection"],
+      "sameAs": [
+        "https://github.com/syncytium2",
+        "https://orcid.org/0000-0001-7302-7528"
+      ],
+      "subjectOf": [
+        { "@type": "WebApplication", "name": "Colonel Kernel", "url": "https://kernel.tonydefazio.com/", "creativeWorkStatus": "Under development" },
+        { "@type": "WebApplication", "name": "no_peak", "url": "https://nopeak.tonydefazio.com/", "creativeWorkStatus": "Under development" },
+        { "@type": "WebApplication", "name": "bugarach", "url": "https://bugarach.tonydefazio.com/", "creativeWorkStatus": "Under development" },
+        { "@type": "WebSite", "name": "The Murderboard", "url": "https://murderboard.tonydefazio.com/", "creativeWorkStatus": "Under development" }
+      ]
+    }
   ]
 }
 </script>
@@ -301,6 +317,19 @@ footer li:last-child { margin-bottom: 0; }
   font-family: var(--f-mono); font-size: .72rem; line-height: 1.7;
   color: var(--ink-faint); max-width: 74ch;
 }
+
+/* ---------- version stamp ----------
+   Which version of the page you are looking at, when it was written, and how
+   long it has existed. The same three figures appear in the JSON-LD above, in
+   sitemap.xml and in package.json; `npm run check` is what stops them
+   drifting apart. */
+.version {
+  margin-top: 1rem;
+  font-family: var(--f-mono); font-size: .7rem; letter-spacing: .04em;
+  line-height: 1.7; color: var(--ink-faint);
+  display: flex; flex-wrap: wrap; gap: 0 1.4rem;
+}
+.version b { color: var(--ink); font-weight: 600; }
 
 /* ---------- contact ---------- */
 .contact-sec { border-top: 1px solid var(--rule); padding-block: clamp(2.5rem, 6vw, 4rem); }
@@ -596,6 +625,12 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
     All four projects, and this page, are under active development and are not finished products.
     This page loads no fonts, runs no JavaScript, and sets no cookies; there is no analytics of
     any kind. It makes exactly one network request, and only if you send the form above.
+  </p>
+
+  <p class="version">
+    <span>Version <b>1.1.0</b></span>
+    <span>Updated <time datetime="2026-08-26">26 August 2026</time></span>
+    <span>Online since <time datetime="2026-08-25">25 August 2026</time></span>
   </p>
 </footer>
 
