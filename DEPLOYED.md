@@ -11,7 +11,11 @@
 ## Live
 
 - https://tonydefazio.com — **apex, custom domain**
-- https://www.tonydefazio.com — custom domain, same page
+- https://www.tonydefazio.com — custom domain, same page. **Took roughly an hour** to go
+  from `wrangler deploy` to serving 200; the apex was live within seconds. A first
+  custom-domain claim provisions its cert asynchronously, so a 000 on www right after a
+  deploy is expected, not a failure. Confirmed byte-identical to the apex, with the
+  canonical tag on both pointing at the bare apex.
 - https://tonydefazio-com.tonydefazio.workers.dev — workers.dev
 
 ## Verified at the edge on deploy day
