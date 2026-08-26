@@ -3,40 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tony DeFazio — instruments for neuroscience data</title>
-<meta name="description" content="Three open-source instruments for measuring things in neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection — and the review process that keeps their claims honest. The instruments run in your browser; nothing is uploaded.">
-<link rel="canonical" href="https://tonydefazio.com/">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tonydefazio.com/">
-<meta property="og:title" content="Tony DeFazio — instruments for neuroscience data">
-<meta property="og:description" content="Calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection, and an adversarial document-review process. Open source; the data never leaves your machine.">
-<meta name="twitter:card" content="summary">
-
-<!-- No external requests of any kind. Every font stack ends in a generic family and
-     every asset is inline, so this page renders identically from disk, air-gapped, or
-     behind a captive portal — the same posture the four sites it points at hold. -->
+<title>Message sent — Tony DeFazio</title>
+<meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231B1719'/%3E%3Cpath d='M7 20.5h4.2l2.1-8 2.6 11 2.6-14.5 2.3 11.5h4.2' fill='none' stroke='%23F3F2EF' stroke-width='2.1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Richard Anthony DeFazio",
-  "alternateName": "Tony DeFazio",
-  "url": "https://tonydefazio.com/",
-  "description": "Neuroendocrinology and calcium imaging. Builds open-source, client-side instruments for measuring signals in neuroscience data.",
-  "knowsAbout": ["Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection"],
-  "sameAs": ["https://github.com/syncytium2"],
-  "subjectOf": [
-    { "@type": "WebApplication", "name": "Colonel Kernel", "url": "https://kernel.tonydefazio.com/" },
-    { "@type": "WebApplication", "name": "no_peak", "url": "https://nopeak.tonydefazio.com/" },
-    { "@type": "WebApplication", "name": "bugarach", "url": "https://bugarach.tonydefazio.com/" },
-    { "@type": "WebSite", "name": "The Murderboard", "url": "https://murderboard.tonydefazio.com/" }
-  ]
-}
-</script>
-
 <style>
 /* ==========================================================================
    Palette and type inherited from murderboard.tonydefazio.com, which is the
@@ -321,230 +290,22 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 </style>
 </head>
 <body>
-
 <header class="masthead wrap">
-  <p class="kicker">
-    <span>Richard Anthony &ldquo;Tony&rdquo; DeFazio</span>
-    <span>Neuroendocrinology &amp; calcium imaging</span>
-    <span>Ann Arbor, Michigan</span>
-  </p>
-
-  <h1 class="wordmark">Three instruments and&nbsp;one <em>murderboard</em>.</h1>
-
+  <p class="kicker"><span>tonydefazio.com</span></p>
+  <h1 class="wordmark">Message <em>sent</em>.</h1>
   <p class="deck">
-    I build small, open-source tools for <b>measuring things in neuroscience data</b> —
-    and for finding out when the measurement doesn&rsquo;t hold. The three instruments run
-    <b>in your browser</b>, with no install and no account, and <b>nothing you load is ever
-    uploaded anywhere.</b> The fourth is the review process that keeps the other three
-    honest. Pick whichever is closest to your problem.
+    Thanks &mdash; it reached me. If it needs a reply you&rsquo;ll get one at the address you
+    gave. <b>Nothing else was sent</b>: the form carries only what you typed into it.
+  </p>
+  <p class="jumpback">
+    <a href="/">&larr; Back to the four projects</a>
   </p>
 </header>
-
-<main class="shelf wrap">
-
-  <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/">
-    <p class="eyebrow">Calcium imaging</p>
-    <h2>Colonel Kernel</h2>
-    <p class="what">
-      Recover the shape that links action potentials to a calcium signal — from
-      ground-truth spike times and a measured dF/F&#8320; trace.
-    </p>
-    <p class="why">
-      Hand a trace to a tool that assumes every calcium event came from a spike and it
-      will happily hand back a kernel, distorted by the events the spikes never caused.
-      This one <em>measures</em> the relationship instead, and says so when no single
-      shape fits.
-    </p>
-    <ul class="facts">
-      <li>convolution / deconvolution</li>
-      <li>teaching demonstrator</li>
-      <li>MIT</li>
-    </ul>
-    <p class="go"><span>kernel.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-  <a class="card" style="--c: var(--c-nopeak)" href="https://nopeak.tonydefazio.com/">
-    <p class="eyebrow">Endocrine time series</p>
-    <h2>no_peak</h2>
-    <p class="what">
-      CLUSTER pulse detection for hormone sampling data — LH, GnRH, GH, or any pulsatile
-      analyte. Peak and valley tables, and a publication-grade figure.
-    </p>
-    <p class="why">
-      A faithful port of Veldhuis &amp; Johnson&rsquo;s CLUSTER, validated point-by-point
-      against both Igor Pro and the original Fortran. It also reports what CLUSTER
-      misses, which is roughly 40% of true pulses — the page is honest about its own
-      detector.
-    </p>
-    <ul class="facts">
-      <li>Fortran + Igor implementations</li>
-      <li>batch CLI</li>
-      <li>MIT</li>
-    </ul>
-    <p class="go"><span>nopeak.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-  <a class="card" style="--c: var(--c-bugarach)" href="https://bugarach.tonydefazio.com/">
-    <p class="eyebrow">Coordinated activity</p>
-    <h2>bugarach</h2>
-    <p class="what">
-      Find the moments when many cells fire together — and measure how often you are wrong,
-      on a simulation built from your own recordings.
-    </p>
-    <p class="why">
-      Six coordination detectors lifted out of MATLAB, scored against planted events with
-      known times rather than against another detector&rsquo;s opinion. The raster viewer
-      draws a folder of event times in the browser with nothing installed.
-    </p>
-    <ul class="facts">
-      <li>six detectors</li>
-      <li>browser raster viewer</li>
-      <li>BSD-3</li>
-    </ul>
-    <p class="go"><span>bugarach.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-  <a class="card" style="--c: var(--c-murderboard)" href="https://murderboard.tonydefazio.com/">
-    <p class="eyebrow">Review process</p>
-    <h2>The Murderboard</h2>
-    <p class="what">
-      An adversarial review harness for document deliverables: eleven reviewer roles that
-      try to tear a draft apart before it ships.
-    </p>
-    <p class="why">
-      Every claim checked against a real source, every citation verified, every overreach
-      attacked — plus three scripts that make &ldquo;we ran all the roles&rdquo; something a
-      machine can confirm rather than something a report can merely assert. Vendored into
-      the three projects above.
-    </p>
-    <ul class="facts">
-      <li>11 roles</li>
-      <li>3 gate scripts</li>
-      <li>Apache-2.0</li>
-    </ul>
-    <p class="go"><span>murderboard.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-</main>
-
-<section class="thread wrap">
-  <p class="eyebrow">What these have in common</p>
-  <h2>A tool that flatters itself is worse than no tool.</h2>
-  <p>
-    All four grew out of the same working problem: an instrument will always return
-    <em>an answer</em>, and the answer is easiest to trust exactly when nobody has checked
-    what it cost. So each of these is built to report its own failure modes as loudly as its
-    results — and the fourth exists to hold the other three to it.
-  </p>
-  <ul class="points">
-    <li>
-      <span class="t">Nothing uploaded</span>
-      <span>No backend, no accounts, no analytics, no cookies &mdash; on all four sites. In
-      the three instruments the algorithm is compiled into the page and runs on your own
-      device, so a recording you analyse is never transmitted anywhere.</span>
-    </li>
-    <li>
-      <span class="t">Validated, not asserted</span>
-      <span>Ports are diffed point-by-point against the reference implementation they claim
-      to reproduce, and detectors are scored against data whose ground truth is known —
-      not against each other.</span>
-    </li>
-    <li>
-      <span class="t">Open source</span>
-      <span>All four repositories are public, with the caveats and the references in the
-      repository rather than only on the page.</span>
-    </li>
-    <li>
-      <span class="t">Readable without a browser</span>
-      <span>Each site carries a static, JavaScript-free account of what its tool does, and
-      each repository carries an instruction file written for an agent rather than a
-      person.</span>
-    </li>
-  </ul>
-</section>
-
-
-<section class="contact-sec wrap" id="contact">
-    <p class="eyebrow">Contact</p>
-    <div class="wrap-in">
-      <div>
-        <h2>Questions, bugs, and datasets.</h2>
-        <p>
-          Bug reports, a citation that needs fixing, a dataset you&rsquo;d like one of these
-          pointed at, or a method question &mdash; all welcome. <b>I read everything.</b>
-        </p>
-        <p>
-          If it&rsquo;s about one specific tool, its own site and repository are the faster
-          route: issues go to the repository, and each site&rsquo;s Methods page usually
-          answers the method questions before you have to ask them.
-        </p>
-      </div>
-
-      <div>
-        <form class="contact" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="b8c22a4e-b446-4d81-a4e1-b3ba4aaa3bc4">
-          <input type="hidden" name="subject" value="tonydefazio.com contact form">
-          <input type="hidden" name="from_name" value="tonydefazio.com">
-          <input type="hidden" name="redirect" value="https://tonydefazio.com/thanks">
-          <label>
-            Your email
-            <input type="email" name="email" required placeholder="you@lab.edu"
-                   autocomplete="email">
-          </label>
-          <label>
-            Message
-            <textarea name="message" required rows="5"
-                      placeholder="Bug report, dataset request, a citation that needs fixing&hellip;"></textarea>
-          </label>
-          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1"
-                 autocomplete="off" aria-hidden="true">
-          <button type="submit">Send message</button>
-        </form>
-        <p class="formnote">
-          This form is the one thing on this page that leaves your browser, and it sends only
-          what you type above. It posts to Web3Forms, which relays it to me &mdash; so the
-          address is never on the page for a scraper to take. Nothing is sent until you press
-          Send.
-        </p>
-      </div>
-    </div>
-</section>
-
-<footer class="wrap">
-  <div class="foot-grid">
-    <div>
-      <h3>The sites</h3>
-      <ul>
-        <li><a href="https://kernel.tonydefazio.com/">Colonel Kernel</a></li>
-        <li><a href="https://nopeak.tonydefazio.com/">no_peak</a></li>
-        <li><a href="https://bugarach.tonydefazio.com/">bugarach</a></li>
-        <li><a href="https://murderboard.tonydefazio.com/">The Murderboard</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>The source</h3>
-      <ul>
-        <li><a href="https://github.com/syncytium2">github.com/syncytium2</a></li>
-        <li><a href="https://github.com/syncytium2/colonel_kernel">colonel_kernel</a></li>
-        <li><a href="https://github.com/syncytium2/no_peak">no_peak</a></li>
-        <li><a href="https://github.com/syncytium2/bugarach">bugarach</a></li>
-        <li><a href="https://github.com/syncytium2/murderboard">murderboard</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Contact</h3>
-      <ul>
-        <li><a href="#contact">Send a message</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="colophon">
-    &copy; 2026 Richard Anthony DeFazio &middot; each project under its own licence, linked above.
-    This page loads no fonts, runs no JavaScript, and sets no cookies; there is no analytics of
-    any kind. It makes exactly one network request, and only if you send the form above.
-  </p>
-</footer>
-
+<style>
+  .jumpback { margin-top: clamp(2rem, 5vw, 3rem); font-family: var(--f-mono); font-size: .8rem; }
+  .jumpback a { text-decoration: none; border: 1px solid var(--rule); border-radius: 999px;
+    padding: .45rem .95rem; color: var(--ink-soft); background: var(--surface); }
+  .jumpback a:hover { color: var(--blood); border-color: var(--blood); }
+</style>
 </body>
 </html>

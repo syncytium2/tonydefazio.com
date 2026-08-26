@@ -26,7 +26,10 @@
   Cloudflare zone-setting change.)
 - `/sitemap.xml` 200
 - **No Cloudflare beacon injected** — 0 matches for `beacon.min.js` in the served HTML, so
-  the page's "no network requests" claim is true as served, not just as authored.
+  the page's privacy claim is true as served, not just as authored. Since the contact form
+  landed, that claim is "no fonts, no JavaScript, no cookies, no analytics; exactly one
+  network request, and only if you send the form" — the beacon check is what keeps the
+  *first* half honest.
 - All four subdomains still 200 — `custom_domain` routes claim only the exact hostname,
   so kernel / nopeak / bugarach / murderboard were untouched.
 

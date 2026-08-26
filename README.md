@@ -14,20 +14,52 @@ four project sites is closest to their problem, and gets them there.
 
 ## 1. What is here
 
-Three static files in [`site/`](site/), committed as-is. **There is no build step**, so
+Four static files in [`site/`](site/), committed as-is. **There is no build step**, so
 `wrangler deploy` uploads exactly what is in the repository and no generated artifact can
 drift from source.
 
 ```
-site/index.html     the page — self-contained, ~18 KB, zero network requests
+site/index.html     the page — self-contained, ~24 KB
+site/thanks.html    where the contact form lands after a send (noindex)
 site/robots.txt     allow-all + sitemap pointer
 site/sitemap.xml    one URL
 ```
 
-`index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, no
-scripts, no analytics, and sets no cookies** — the same posture the four destinations hold,
-which is also why the page renders identically from `file://`, air-gapped, or behind a
-captive portal.
+`index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, runs
+no JavaScript, sets no cookies, and carries no analytics** — the same posture the four
+destinations hold, which is also why the page renders identically from `file://`,
+air-gapped, or behind a captive portal.
+
+**One exception, and the page says so rather than burying it:** the contact form posts to
+Web3Forms. That request happens *only* when a visitor presses Send — nothing is contacted on
+load — which is why the colophon reads "exactly one network request, and only if you send
+the form" rather than the flat "no network requests" it used to claim.
+
+### The contact form
+
+A **plain HTML `POST`**, no JavaScript. `no_peak` solves the same problem with a `fetch` and
+React state; this page has no bundle to put that in, and a native form submit keeps the
+scriptless posture intact while degrading perfectly.
+
+- **Relay:** Web3Forms. The access key is `b8c22a4e-…`, **shared with `no_peak`** — it is
+  public by design (client-side keys only name a destination inbox and can read nothing
+  back). Submissions are tagged `subject: "tonydefazio.com contact form"` so the two sites
+  are distinguishable in the inbox.
+- **Destination:** the address registered with that key. **The address appears nowhere on
+  the page or in the source**, which is the point — a scraper has nothing to take. Delivery
+  lands at `tony@tonydefazio.com`, a Cloudflare Email Routing address on this zone (the
+  zone's MX records point at `route{1,2,3}.mx.cloudflare.net` with SPF configured).
+- **After a send:** Web3Forms redirects to `https://tonydefazio.com/thanks`.
+- **Spam:** a `botcheck` honeypot field, hidden off-canvas — the same trick `no_peak` uses.
+
+> **Rotating the key breaks two sites.** If the Web3Forms key is ever regenerated, both this
+> page and `no_peak/src/Contact.tsx` need the new one. Nothing enforces that.
+
+> **`/thanks` only resolves on Cloudflare.** `wrangler.jsonc` sets no `html_handling`, so the
+> assets Worker uses the default `auto-trailing-slash` and serves `thanks.html` at `/thanks`.
+> A local `python -m http.server` **404s** on `/thanks` and serves only `/thanks.html`. That
+> is a local-preview artifact, not a bug — but it means the redirect cannot be fully tested
+> from `npm run serve`.
 
 ### Design
 
