@@ -147,15 +147,31 @@ strong { font-weight: 600; }
 .kicker {
   font-family: var(--f-mono); font-size: .7rem; letter-spacing: .16em;
   text-transform: uppercase; color: var(--ink-faint);
-  margin: 0 0 clamp(1.5rem, 4vw, 2.4rem);
+  margin: 0 0 .9rem;
   display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: baseline;
 }
 
+/* Provenance strip. Sits directly above the wordmark so the first thing read is
+   how old this page is, which version it is, and when that version shipped. */
+.meta {
+  font-family: var(--f-mono); font-size: .69rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint);
+  margin: 0 0 clamp(1.2rem, 3vw, 1.8rem);
+  padding-top: .75rem; border-top: 1px solid var(--rule-soft);
+  display: flex; flex-wrap: wrap; gap: .3rem 1.6rem; align-items: baseline;
+}
+.meta .lbl { color: var(--ink-faint); }
+.meta .val { color: var(--ink); letter-spacing: .06em; }
+
+/* One row, always. The wordmark is 38 characters ~ 18.1em wide at weight 800,
+   so sizing it at content-width / 21 leaves about 16% of slack for the wider
+   sans fallbacks on non-Apple platforms and never wraps. The rem cap stops it
+   growing past a sensible headline size once the 1080px wrap maxes out. */
 .wordmark {
   font-family: var(--f-display); font-weight: 800;
-  font-size: clamp(2.6rem, 9.5vw, 5.6rem);
-  line-height: .95; letter-spacing: -.034em; margin: 0;
-  text-wrap: balance; max-width: 17ch;
+  font-size: min(2.7rem, calc((min(100vw, 1080px) - 2 * var(--pad)) / 21));
+  line-height: 1.1; letter-spacing: -.034em; margin: 0;
+  white-space: nowrap;
 }
 .wordmark em { font-style: normal; color: var(--blood); }
 
@@ -331,7 +347,13 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
     <span>Neuroendocrinology &amp; calcium imaging</span>
   </p>
 
-  <h1 class="wordmark">Three instruments and&nbsp;one <em>murderboard</em>.</h1>
+  <p class="meta">
+    <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
+    <span><span class="lbl">Version</span> <span class="val">1.1.0</span></span>
+    <span><span class="lbl">Version date</span> <time class="val" datetime="2026-08-26">2026-08-26</time></span>
+  </p>
+
+  <h1 class="wordmark">Three instruments and one <em>murderboard</em>.</h1>
 
   <p class="deck">
     I build small, open-source tools for <b>measuring things in neuroscience data</b> —

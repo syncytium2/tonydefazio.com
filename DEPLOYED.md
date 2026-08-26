@@ -3,8 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `115e5b0b-6481-4007-b775-3f8ed77e9e2a` |
-| **Deployed** | 2026-08-25 |
+| **Version ID** | `f817121e-5b6c-4a3c-adf4-22322cc335b7` |
+| **Deployed** | 2026-08-26 |
+| **Site version** | 1.1.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -32,6 +33,20 @@
   *first* half honest.
 - All four subdomains still 200 — `custom_domain` routes claim only the exact hostname,
   so kernel / nopeak / bugarach / murderboard were untouched.
+
+## Masthead provenance strip
+
+Since **1.1.0** the masthead carries `Born / Version / Version date` directly above the
+wordmark. `Born` is the first deploy (2026-08-25) and does not change; the other two track
+`package.json` and the deploy date. **They are hand-written in `site/index.html`** — there is
+no build step to interpolate them, so bumping the version means editing both the JSON and
+the `.meta` block, and the `<time datetime>` attributes alongside the visible text.
+
+The wordmark is sized to sit on one row at every viewport: `min(2.7rem, (content width)/21)`
+with `white-space: nowrap`. The 21 is the string's measured width in ems (18.09 at weight 800
+in SF Pro) plus ~16% slack for wider non-Apple sans fallbacks. **Editing the wordmark text
+invalidates that constant** — a longer string will overflow, silently, because `body` sets
+`overflow-x: hidden`.
 
 ## Contact form
 
