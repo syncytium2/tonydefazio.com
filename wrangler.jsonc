@@ -19,8 +19,13 @@
   // is empty, while the four subdomains all answer. So this deploy is creating
   // the apex record, not replacing one. If that ever stops being true, look
   // before you deploy: a custom_domain route takes the hostname over.
+  // Both hostnames serve the same page. www is here because it resolved to
+  // NOTHING alongside the apex (checked 2026-08-25) and people type it. The
+  // page's <link rel="canonical"> points at the bare apex, so search engines
+  // consolidate there rather than treating www as a duplicate site.
   "routes": [
-    { "pattern": "tonydefazio.com", "custom_domain": true }
+    { "pattern": "tonydefazio.com", "custom_domain": true },
+    { "pattern": "www.tonydefazio.com", "custom_domain": true }
   ],
 
   "assets": {
