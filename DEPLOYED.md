@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `969202fa-7355-4b94-87fc-9b63f02e1840` |
+| **Version ID** | `79368695-47ac-4683-b121-e83f827ca536` |
 | **Deployed** | 2026-08-26 |
-| **Site version** | 1.2.0 |
+| **Site version** | 1.4.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -57,6 +57,38 @@ See README § *Keeping it honest* for which claims survive and which were retire
 
 The page now names **no licence anywhere**. The footer defers to the repositories, which is
 deliberate: a licence can change upstream without this page becoming wrong.
+
+## Graphical abstracts
+
+**1.4.0 inlined a figure into each of the four cards.** They are inline `<svg>` carrying
+geometry only; every stroke and fill comes from the `graphical abstracts` block in the page
+stylesheet, via `currentColor` and each card's `--c`. That is what gives both themes and
+four accent colours from one copy of each figure — and it is why the SVGs are useless to
+look at outside the page.
+
+Source, generator and a viewer live in `~/Dropbox/darkroom/tonydefazio/figures/`, not in
+this repo. `make_figures.py` regenerates them; `FIGURES.html` displays them with captions.
+**The figures here are hand-inlined** — editing them means regenerating there and pasting
+back, and `figures/HOW-TO-VIEW.md` records why.
+
+The data in three of the four is **computed but simulated**. Nothing on this page comes from
+a real recording, deliberately, since the page is public. The fourth (murderboard) is a
+process diagram, not data.
+
+Two decisions that must not be quietly reverted, both taken 2026-08-26:
+
+- **Nothing marks the coordinated events** in the bugarach figure. Vertical bands (`.ev`)
+  and recoloured ticks (`.tk.hi`) both existed and were both removed. The events are found
+  by eye and by the rate trace, or the figure colours in the answer the detector is meant
+  to earn. Neither rule remains in the stylesheet.
+- **The kernel panel draws real action potentials** — peak +36 mV, half-width 0.41 ms, AHP
+  trough −73 mV — on an **expanded time base** (8 ms across). On the ΔF/F₀ axis those two
+  spikes are 500 ms apart and each would be a quarter of a pixel wide. The convolution is
+  over spike *times*; the waveform shows what a spike is, not its scale against the trace.
+  The `aria-label` says so; keep that if the figure changes.
+
+Page weight went 20 KB → 42 KB (13.4 KB gzipped on the wire). Still no fonts, no scripts,
+no cookies, and no network request unless the form is sent.
 
 ## Contact form
 

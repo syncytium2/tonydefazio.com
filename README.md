@@ -163,9 +163,26 @@ repository on 2026-08-25, not written from memory.
 **In 1.2.0 each card was cut to a single sentence**, which retired most of those claims from
 the page. What the cards still assert:
 
-- **"eleven reviewer roles" / the `11 roles` and `3 gate scripts` chips** — `murderboard/README.md`;
-  the three gates are `murderboard_freshness.sh`, `murderboard_roster.sh`,
-  `require_commit_before_message.sh` (`fetch_paper.py` is the lit tool, not a gate).
+- **The `11 roles` and `3 gate scripts` chips** — `murderboard/README.md`; the three gates are
+  `murderboard_freshness.sh`, `murderboard_roster.sh`, `require_commit_before_message.sh`
+  (`fetch_paper.py` is the lit tool, not a gate).
+- **"Draft, attack, repair, re-attack, deliver"** — the site's own section heading for the
+  process, quoted verbatim. Six steps, one of which loops.
+- **"a reviewer shown neither the findings nor the fixes"** — the site describes Verify as
+  "blind, then follow-up": "a reviewer who has not seen the findings reads it again, because
+  fixes break things."
+- **"stops after three rounds whether it converged or not" / the `≤3 rounds` chip** — the site
+  states "≤3 re-review rounds, then it stops, converged or not"; the return edge from Verify
+  to Review is labelled as capped at three.
+- **"one fixed report"** — "Eleven reviewer roles, three scripts, one fixed report format."
+- **"tied to no field", "not specific to the three above"** — "Free, tied to no field, the same
+  whether the reviewers are humans or AI." Note this is a claim about *scope*, not a denial of
+  the vendoring: murderboard **is** vendored into the other three repositories. The page no
+  longer says so, and should not be read as saying the opposite.
+- **"by being run against itself and by what people send back"** — the site records the full
+  panel running against its own page on 2026-08-25, catching among other things a false
+  self-contained claim and a fabricated quotation, with "most of the current wording"
+  post-dating that pass; and its Feedback section solicits unsupported-claim reports.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The `Fortran + Igor implementations` chip** — 75/75 checks vs Igor; exact reproduction of
   CLUST5 v6.01 at documented defaults. The chip now carries this on its own, since the
@@ -186,10 +203,12 @@ MIT · no_peak MIT · bugarach BSD-3-Clause · murderboard Apache-2.0.
 
 **If any of the surviving claims change, the page is stale.** Nothing checks this automatically.
 
-The card sentences are **paraphrase, not quotation** — checked against the live sites on
-2026-08-26, none of them appears verbatim on the site it describes. Only the short chips do
-(`teaching demonstrator`, `browser raster viewer`, `11 roles`). Treat them as this page's
-words about those projects, not as those projects' own words.
+The card sentences are **paraphrase, not quotation**, with one deliberate exception — checked
+against the live sites on 2026-08-26, none appears verbatim on the site it describes except
+the Murderboard's "Draft, attack, repair, re-attack, deliver", which is that site's own
+section heading and is quoted on purpose. The short chips also match (`teaching demonstrator`,
+`browser raster viewer`, `11 roles`). Otherwise treat the sentences as this page's words about
+those projects, not as those projects' own words.
 
 ## 4. Known gaps
 
