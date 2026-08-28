@@ -1,12 +1,13 @@
 # tonydefazio.com
 
 The apex landing page. It is a **router**: one screen that tells a visitor which of the
-four project sites is closest to their problem, and gets them there.
+five destination sites is closest to their problem, and gets them there.
 
 **Live:** https://tonydefazio.com — *not yet deployed, see §2.*
 
 | Destination | What it is |
 |---|---|
+| [lookedright.tonydefazio.com](https://lookedright.tonydefazio.com) | It Looked Right — four challenges in working with coding agents, for researchers. **Added 2026-08-28, carries the NEW sticker** |
 | [kernel.tonydefazio.com](https://kernel.tonydefazio.com) | Colonel Kernel — calcium-imaging convolution / deconvolution |
 | [nopeak.tonydefazio.com](https://nopeak.tonydefazio.com) | no_peak — CLUSTER hormone pulse detection |
 | [bugarach.tonydefazio.com](https://bugarach.tonydefazio.com) | bugarach — coordinated-event detection + raster viewer |
@@ -99,8 +100,8 @@ the interstitial above is an artifact of automation, not something a person hits
 ### Design
 
 The palette, the Charter body face, and the mono kickers are inherited from
-`murderboard.tonydefazio.com`, which is the most fully designed of the four destinations.
-This page is deliberately the **parent** of that language rather than a fifth dialect. What
+`murderboard.tonydefazio.com`, which is the most fully designed of the destinations.
+This page is deliberately the **parent** of that language rather than another dialect. What
 it adds is **one accent hue per destination**, taken from that site's own accent where it
 had one, so a card is recognisable before its title is read:
 
@@ -217,8 +218,8 @@ those projects, not as those projects' own words.
   *internal* half — the four sites now have a common parent — but the apex itself still needs
   an inbound link from somewhere real (a UMich page, a GitHub profile README) before search
   engines will care. Submitting `sitemap.xml` to Google and Bing is the other half.
-- **The four destinations do not link back here.** Adding a parent link to each site's footer
-  would close the loop; that is four separate repositories and four separate deploys.
+- **The destinations do not link back here.** Adding a parent link to each site's footer
+  would close the loop; that is five separate repositories and five separate deploys.
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 
