@@ -5,7 +5,7 @@
 | **Worker** | `tonydefazio-com` |
 | **Version ID** | `bf7e605c-a678-45c1-806b-56451fcaee62` |
 | **Deployed** | 2026-08-31 |
-| **Site version** | 1.5.0 |
+| **Site version** | 1.5.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -82,6 +82,16 @@ this repo. `make_figures.py` regenerates them; `FIGURES.html` displays them with
 **The figures here are hand-inlined** — editing them means regenerating there and pasting
 back, and `figures/HOW-TO-VIEW.md` records why.
 
+The AP panel was redrawn in 1.5.1. Two defects, one visual and one real: the spikes had a
+fast upstroke and a long ski-slope repolarisation, nothing like the published record; and the
+AHP, at `AHP_TD = 4.0 ms`, took **10.56 ms to recover inside an 8 ms panel**, so it never came
+back and the trace simply ended below rest. The AHP onset is now raised to a power (`AHP_P`)
+so it no longer bites the peak, and `PEAK_MV` / `AHP_AMP` were re-solved so the measured peak
+(+35.8 mV) and trough (−72.7 mV) are held **exactly** — both numbers are unchanged from 1.4.0.
+Recovery is 5.1 ms. Sampling density was picked by measurement: at 0.040 ms the drawn peak sits
+0.028 px below the true one against a 1.5 px stroke, where the first attempt used 0.012 ms and
+spent 4 KB of path on 0.027 px nobody can see.
+
 The data in three of the five is **computed but simulated**. Nothing on this page comes from
 a real recording, deliberately, since the page is public. The other two (murderboard, It
 Looked Right) are process diagrams, not data.
@@ -92,11 +102,14 @@ Two decisions that must not be quietly reverted, both taken 2026-08-26:
   and recoloured ticks (`.tk.hi`) both existed and were both removed. The events are found
   by eye and by the rate trace, or the figure colours in the answer the detector is meant
   to earn. Neither rule remains in the stylesheet.
-- **The kernel panel draws real action potentials** — peak +36 mV, half-width 0.41 ms, AHP
-  trough −73 mV — on an **expanded time base** (8 ms across). On the ΔF/F₀ axis those two
-  spikes are 500 ms apart and each would be a quarter of a pixel wide. The convolution is
-  over spike *times*; the waveform shows what a spike is, not its scale against the trace.
-  The `aria-label` says so; keep that if the figure changes.
+- **The kernel panel draws real action potentials** — peak +36 mV, half-width 0.42 ms, AHP
+  trough −73 mV. **The 8 ms expanded time base was retired in 1.5.1, deliberately and at
+  Tony's call**, in favour of the 40 ms base the 1996 paper's Fig. A2 uses. The old rule read
+  "the waveform shows what a spike is, not its scale against the trace"; the new one gives up
+  morphology on purpose — at 40 ms the half-width is 0.8 px, so the panel shows *that* it
+  spiked, which is what the convolution is over. **What survives unchanged is the requirement
+  that the `aria-label` state the base**, and it does: "on a 40 ms base". If the figure changes
+  again, keep that.
 
 Page weight went 20 KB → 42 KB (13.4 KB gzipped on the wire). Still no fonts, no scripts,
 no cookies, and no network request unless the form is sent.
