@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `bf7e605c-a678-45c1-806b-56451fcaee62` |
+| **Version ID** | `82289c9e-f852-4f7c-a4f7-809789a02461` |
 | **Deployed** | 2026-08-31 |
 | **Site version** | 1.5.1 |
 | **Commit** | see `git log` for the commit this file lands in |
