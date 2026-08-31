@@ -7,7 +7,7 @@ five destination sites is closest to their problem, and gets them there.
 
 | Destination | What it is |
 |---|---|
-| [lookedright.tonydefazio.com](https://lookedright.tonydefazio.com) | It Looked Right — four challenges in working with coding agents, for researchers. **Added 2026-08-28, carries the NEW sticker** |
+| [lookedright.tonydefazio.com](https://lookedright.tonydefazio.com) | It Looked Right — four challenges in working with coding agents, for researchers. Ships out of [`short-course`](https://github.com/syncytium2/short-course). **Added 2026-08-28, carries the NEW sticker** |
 | [kernel.tonydefazio.com](https://kernel.tonydefazio.com) | Colonel Kernel — calcium-imaging convolution / deconvolution |
 | [nopeak.tonydefazio.com](https://nopeak.tonydefazio.com) | no_peak — CLUSTER hormone pulse detection |
 | [bugarach.tonydefazio.com](https://bugarach.tonydefazio.com) | bugarach — coordinated-event detection + raster viewer |
@@ -27,7 +27,7 @@ site/sitemap.xml    one URL
 ```
 
 `index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, runs
-no JavaScript, sets no cookies, and carries no analytics** — the same posture the four
+no JavaScript, sets no cookies, and carries no analytics** — the same posture the five
 destinations hold, which is also why the page renders identically from `file://`,
 air-gapped, or behind a captive portal.
 
@@ -144,8 +144,8 @@ npm run serve       # http://127.0.0.1:5099
 ```
 
 Then click **every card and every footer link** — the page is made almost entirely of links,
-so a dead one is the whole failure mode. All nine outbound links were verified 200 on
-2026-08-25.
+so a dead one is the whole failure mode. All **thirteen** outbound links were verified 200 on
+2026-08-31 (five destinations, five repositories, the GitHub profile, ORCID, the bibliography).
 
 What a local server cannot tell you, the same caveat `bugarach/docs/deploy.md` records: the
 edge serves HTTPS and adds Cloudflare's own headers, and `robots.txt` may be host-injected
@@ -158,8 +158,8 @@ curl -sI https://tonydefazio.com/ | head -1
 
 ## 3. Keeping it honest
 
-The page makes claims about the four projects. Each was checked against the source
-repository on 2026-08-25, not written from memory.
+The page makes claims about the five projects. Each was checked against the source
+repository on 2026-08-25 — the fifth on 2026-08-31 — not written from memory.
 
 **In 1.2.0 each card was cut to a single sentence**, which retired most of those claims from
 the page. What the cards still assert:
@@ -176,31 +176,45 @@ the page. What the cards still assert:
   states "≤3 re-review rounds, then it stops, converged or not"; the return edge from Verify
   to Review is labelled as capped at three.
 - **"one fixed report"** — "Eleven reviewer roles, three scripts, one fixed report format."
-- **"tied to no field", "not specific to the three above"** — "Free, tied to no field, the same
-  whether the reviewers are humans or AI." Note this is a claim about *scope*, not a denial of
-  the vendoring: murderboard **is** vendored into the other three repositories. The page no
-  longer says so, and should not be read as saying the opposite.
+- **"tied to no field"** — "Free, tied to no field, the same whether the reviewers are humans
+  or AI." Note this is a claim about *scope*, not a denial of the vendoring: murderboard **is**
+  vendored into the three research-tool repositories. The page no longer says so, and should
+  not be read as saying the opposite.
 - **"by being run against itself and by what people send back"** — the site records the full
   panel running against its own page on 2026-08-25, catching among other things a false
   self-contained claim and a fabricated quotation, with "most of the current wording"
   post-dating that pass; and its Feedback section solicits unsupported-claim reports.
+- **The It Looked Right card and its `4 challenges` / `3 reading depths` chips** — checked
+  against the live site on 2026-08-31: "Coding is no longer the barrier. Four challenges
+  remain", enumerated as Communication / Idiosyncrasies / Validation / The forever asymptotes;
+  the depth control offers *Headlines*, *+ incidents*, *+ sources*. **The `19 worked failures`
+  chip is the one unverified number on this page.** The live page carries 26 `<details>`
+  blocks, not all of which are incidents, and the count is not stated anywhere in the source —
+  so 19 is neither confirmed nor refuted here. It also tracks a page that moves: lookedright
+  was at version 0.1.57 on 2026-08-31, three days after first publication. Recount it or drop
+  the chip.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The `Fortran + Igor implementations` chip** — 75/75 checks vs Igor; exact reproduction of
   CLUST5 v6.01 at documented defaults. The chip now carries this on its own, since the
   sentence that spelled it out is gone.
-- **"each repository carries an instruction file written for an agent"** — in §*What these have
-  in common*, which was not trimmed. True of all four, but the filename differs: `no_peak` uses
-  `AGENTS.md`, the other three use `CLAUDE.md`. The page states the category rather than the
-  filename for exactly this reason.
+- **"each research-tool repository carries an instruction file written for an agent"** — in
+  §*What these have in common*, which was not trimmed. The filename differs: `no_peak` uses
+  `AGENTS.md`, `colonel_kernel` / `bugarach` / `murderboard` use `CLAUDE.md`. The page states
+  the category rather than the filename for exactly this reason.
+  **Narrowed on 2026-08-31.** It used to read "each repository", which the fifth destination
+  falsified: `short-course` carries `.claude/` (hooks + `settings.json`) and a `HANDOFF.md`,
+  but **no `CLAUDE.md` or `AGENTS.md`**. A handoff note is not an instruction file, so the
+  claim was narrowed rather than stretched to cover it. If `short-course` ever gains one,
+  the word "research-tool" can come back out.
 
 Retired from the page in 1.2.0, and no longer this repo's problem to keep fresh: the 40%
 CLUSTER miss rate, "validated point-by-point against both Igor Pro and the original Fortran"
 as prose, "Six coordination detectors lifted out of MATLAB" as prose, "scored against planted
 events with known times", "Vendored into the three projects above", and **the per-project
 licence chips** (MIT / MIT / BSD-3 / Apache-2.0). The page no longer names a licence for any
-of the four; the footer defers to the repositories, which is the only place a licence can go
-stale without this page being wrong. For the record they were, on 2026-08-26: colonel_kernel
-MIT · no_peak MIT · bugarach BSD-3-Clause · murderboard Apache-2.0.
+of the five; the footer defers to the repositories, which is the only place a licence can go
+stale without this page being wrong. For the record they were, on 2026-08-31: colonel_kernel
+MIT · no_peak MIT · bugarach BSD-3-Clause · murderboard Apache-2.0 · short-course Apache-2.0.
 
 **If any of the surviving claims change, the page is stale.** Nothing checks this automatically.
 
@@ -215,11 +229,14 @@ those projects, not as those projects' own words.
 
 - **No inbound links.** The single biggest reason `kernel.tonydefazio.com` was never indexed
   (`colonel_kernel/docs/archive/NEXT_SESSION-history-2026-08-24.md`). This page fixes the
-  *internal* half — the four sites now have a common parent — but the apex itself still needs
+  *internal* half — the five sites now have a common parent — but the apex itself still needs
   an inbound link from somewhere real (a UMich page, a GitHub profile README) before search
   engines will care. Submitting `sitemap.xml` to Google and Bing is the other half.
 - **The destinations do not link back here.** Adding a parent link to each site's footer
-  would close the loop; that is five separate repositories and five separate deploys.
+  would close the loop; that is five separate repositories and five separate deploys —
+  `short-course`, `colonel_kernel`, `no_peak`, `bugarach`, `murderboard`. (It was already
+  "five" when there were four destinations, which was wrong then and is right now by
+  accident. Recount it if a sixth lands.)
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 
