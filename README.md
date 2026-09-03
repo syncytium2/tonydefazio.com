@@ -346,10 +346,23 @@ those projects, not as those projects' own words.
   accident. Recount it if a sixth lands.)
 - **DEPLOY GATE: `draughtsman` is a private repository.** The card links to
   `github.com/syncytium2/draughtsman` and the colophon says "All six repositories are public".
-  Both are false until Tony flips it. **Deploying before the flip ships a 404 and a false
-  claim** — this is the "went false rather than stale" class from `DEPLOYED.md` §1.5.0, caught
-  before shipping this time rather than after. Verify with
-  `gh repo view syncytium2/draughtsman --json visibility` and deploy only on `PUBLIC`.
+  Both were false until the repo was flipped. **CLEARED 2026-09-03** — measured, not assumed.
+  This is the "went false rather than stale" class from `DEPLOYED.md` §1.5.0, caught before
+  shipping rather than after.
+
+  **Check it the way a visitor would, not the way an owner can.** `gh repo view … --json
+  visibility` answers while authenticated as the owner, and an owner can see a private repo;
+  the question that matters is whether an anonymous request reaches it. Those are different
+  questions and only one of them is the reader's:
+
+  ```bash
+  curl -s -o /dev/null -w '%{http_code}\n' https://github.com/syncytium2/draughtsman   # want 200
+  ```
+
+  Credit to `murderboard-7a` for the general form: a probe that answers confidently about
+  something it cannot actually see is the same defect whether it is an authenticated
+  visibility check or a `curl` that does not run JavaScript (see §3, the `Born` stamps). Both
+  return a clean answer to a question you did not ask.
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 
