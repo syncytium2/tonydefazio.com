@@ -2,7 +2,7 @@
   "name": "tonydefazio-com",
   "private": true,
   "version": "1.5.1",
-  "description": "Landing page for tonydefazio.com — routes visitors to the five project sites.",
+  "description": "Landing page for tonydefazio.com — routes visitors to the five project sites and the draughtsman repository.",
   "scripts": {
     "serve": "python3 -m http.server 5099 --bind 127.0.0.1 --directory site",
     "dry": "wrangler deploy --dry-run",

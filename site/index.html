@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tony DeFazio — a murderboard, an AI coding short course, and research tools</title>
-<meta name="description" content="An adversarial review process for any document that makes claims, a short course on working with coding agents, and open-source research tools for neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection. The research tools run in your browser; nothing is uploaded.">
+<title>Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools</title>
+<meta name="description" content="draughtsman, which draws a PyTorch model's architecture and proves mechanically that nothing was dropped; an adversarial review process for any document that makes claims; a short course on working with coding agents; and open-source research tools for neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection. The research tools run in your browser; nothing is uploaded.">
 <link rel="canonical" href="https://tonydefazio.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tonydefazio.com/">
-<meta property="og:title" content="Tony DeFazio — a murderboard, an AI coding short course, and research tools">
-<meta property="og:description" content="An adversarial document-review process, a short course on working with coding agents, and research tools for calcium-imaging kernel recovery, hormone pulse detection and coordinated-event detection. Open source; the data never leaves your machine.">
+<meta property="og:title" content="Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools">
+<meta property="og:description" content="Readable architecture figures for PyTorch models, an adversarial document-review process, a short course on working with coding agents, and research tools for calcium-imaging kernel recovery, hormone pulse detection and coordinated-event detection. Open source; the data never leaves your machine.">
 <meta name="twitter:card" content="summary">
 
 <!-- No external requests of any kind. Every font stack ends in a generic family and
      every asset is inline, so this page renders identically from disk, air-gapped, or
-     behind a captive portal — the same posture the five sites it points at hold. -->
+     behind a captive portal — the same posture the sites it points at hold. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231B1719'/%3E%3Cpath d='M7 20.5h4.2l2.1-8 2.6 11 2.6-14.5 2.3 11.5h4.2' fill='none' stroke='%23F3F2EF' stroke-width='2.1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <script type="application/ld+json">
@@ -32,6 +32,7 @@
     "https://orcid.org/0000-0001-7302-7528"
   ],
   "subjectOf": [
+    { "@type": "SoftwareSourceCode", "name": "draughtsman", "codeRepository": "https://github.com/syncytium2/draughtsman", "programmingLanguage": "Python" },
     { "@type": "WebSite", "name": "It Looked Right", "url": "https://lookedright.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "Colonel Kernel", "url": "https://kernel.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "no_peak", "url": "https://nopeak.tonydefazio.com/" },
@@ -44,7 +45,7 @@
 <style>
 /* ==========================================================================
    Palette and type inherited from murderboard.tonydefazio.com, which is the
-   most fully designed of the five destinations. This page is deliberately the
+   most fully designed of the six destinations. This page is deliberately the
    parent of that language rather than a sixth dialect: same paper, same
    Charter body, same mono kickers. What it adds is one accent hue per
    destination, so a card is recognisable before its title is read.
@@ -68,7 +69,8 @@
   --c-nopeak: #1F63B8;   /* no_peak's --accent, darkened to clear AA on white */
   --c-bugarach: #0E6674; /* bugarach's site is neutral; teal is this page's assignment */
   --c-murderboard: #8A1C2B; /* murderboard's --blood */
-  --c-lookedright: #8A5D0F;  /* the site's own caution ochre; the one hue the other four leave free */
+  --c-lookedright: #8A5D0F;  /* the site's own caution ochre; the one hue the other four left free */
+  --c-draughtsman: #1F6B45;  /* green: the hue the other five leave free. 5.9:1 on --surface */
 
   --f-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable Display",
                "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -103,6 +105,7 @@ html { font-size: 17px; }
     --c-bugarach: #6BC6D4;
     --c-murderboard: #E0808C;
     --c-lookedright: #D2A64E;
+    --c-draughtsman: #7CC79B;
   }
 }
 :root[data-theme="dark"] {
@@ -189,7 +192,7 @@ strong { font-weight: 600; }
 }
 .deck b { color: var(--ink); font-weight: 600; }
 
-/* ---------- the five cards ---------- */
+/* ---------- the six cards ---------- */
 .shelf {
   padding-block: 0 clamp(2.5rem, 6vw, 4rem);
   display: grid; gap: 1.15rem;
@@ -236,6 +239,7 @@ strong { font-weight: 600; }
 .card .eyebrow {
   font-family: var(--f-mono); font-size: .68rem; letter-spacing: .16em;
   text-transform: uppercase; color: var(--c); margin: 0 0 .75rem;
+  display: flex; align-items: center; gap: .5rem;
 }
 .card h2 {
   font-family: var(--f-display); font-weight: 700;
@@ -261,6 +265,14 @@ strong { font-weight: 600; }
 }
 .go .arrow { font-family: var(--f-display); font-weight: 700; }
 .card:hover .arrow { transform: translateX(2px); }
+
+/* The draughtsman-nn mark. Two "n" glyphs drawn as a network — four nodes and
+   three edges each — because the thing it marks draws networks. Inline like
+   everything else on this page; it is a logo, not a reason to fetch a file. */
+.nnmark { width: 3.1em; height: 1.55em; overflow: visible; flex: 0 0 auto; }
+.nnmark .nnn { fill: none; stroke: var(--c); stroke-width: 2.6; stroke-linecap: round;
+               stroke-linejoin: round; }
+.nnmark .nnd { fill: var(--c); }
 
 /* ---------- graphical abstracts ---------- */
 .ga { display: block; width: 100%; height: auto; margin: 0 0 1.25rem; overflow: visible; }
@@ -301,6 +313,16 @@ strong { font-weight: 600; }
 .ga .s1    { stop-color: var(--c); stop-opacity: .16; }
 .ga .tk    { stroke: var(--ink); stroke-width: 1.15; opacity: .42; }
 .ga .rate  { fill: none; stroke: var(--c); stroke-width: 1.2; opacity: .75; }
+
+/* --- draughtsman: three stages, and the lookup that bypasses the agent --- */
+.ga .stg       { fill: var(--surface); stroke: var(--c); stroke-width: 1.6; }
+.ga .stg.det   { fill: var(--c); }
+.ga text.stgl  { font-family: var(--f-mono); font-size: 10px; letter-spacing: .05em;
+                 fill: var(--ink); }
+.ga text.stgl.on { fill: var(--surface); }
+.ga .lk        { stroke: var(--c); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2.5;
+                 opacity: .9; }
+.ga .head.lkh  { fill: var(--c); opacity: .9; }
 
 /* --- murderboard: the loop --- */
 .ga .nd        { fill: var(--surface); stroke: var(--c); stroke-width: 1.6; }
@@ -424,23 +446,42 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
     <span><span class="lbl">Version date</span> <time class="val" datetime="2026-08-31">2026-08-31</time></span>
   </p>
 
-  <h1 class="wordmark">A <em>murderboard</em>, an AI coding short course, and research tools.</h1>
+  <h1 class="wordmark"><em>Architecture figures</em> for PyTorch, a murderboard, an AI coding short course, and research tools.</h1>
 
   <p class="deck">
-    I build small, open-source tools for <b>measuring things in neuroscience data</b> —
-    and for knowing when the measurement fails. The research tools run <b>in your
-    browser</b>: no install, no account, and <b>your data never leaves your computer.</b>
-    The rest are not instruments — <b>a review process for any document that makes
-    claims</b>, tied to no field and improved by being run against itself, and <b>a short
-    course on working with coding agents</b>. Both exist because plausible and correct are
-    not the same thing.
+    I build small, open-source tools that report their own failure modes as loudly as
+    their results. <b>draughtsman</b> draws a PyTorch model's architecture and then proves
+    mechanically that nothing was dropped on the way to the picture. The research tools —
+    for <b>measuring things in neuroscience data</b>, and for knowing when the measurement
+    fails — run <b>in your browser</b>: no install, no account, and <b>your data never
+    leaves your computer.</b> The rest are not instruments — <b>a review process for any
+    document that makes claims</b>, tied to no field and improved by being run against
+    itself, and <b>a short course on working with coding agents</b>. They exist because
+    plausible and correct are not the same thing.
   </p>
 </header>
 
 <main class="shelf wrap">
 
-  <a class="card is-new" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
+  <a class="card" style="--c: var(--c-draughtsman)" href="https://github.com/syncytium2/draughtsman">
     <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow"><svg class="nnmark" viewBox="0 0 40 26" role="img" aria-label="draughtsman-nn"><path d="M5,23 V12 A5,5 0 0 1 15,12 V23" class="nnn"/><path d="M23,23 V12 A5,5 0 0 1 33,12 V23" class="nnn"/><circle cx="5" cy="23" r="2.7" class="nnd"/><circle cx="10" cy="7" r="2.7" class="nnd"/><circle cx="15" cy="23" r="2.7" class="nnd"/><circle cx="23" cy="23" r="2.7" class="nnd"/><circle cx="28" cy="7" r="2.7" class="nnd"/><circle cx="33" cy="23" r="2.7" class="nnd"/></svg>Model architecture</p>
+    <h2>draughtsman</h2>
+    <p class="what">
+      Readable architecture diagrams for PyTorch models &mdash; the tracer supplies the facts,
+      an agent supplies the abstraction, and a coverage check proves nothing was silently
+      dropped.
+    </p>
+    <svg class="ga ga-d" viewBox="0 0 420 104" role="img" aria-label="Trace, abstract, render: the tracer supplies facts, an agent supplies the abstraction, and every quantity in the figure is looked up from the trace at render time rather than passing through the agent."><rect x="26.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg"/><text x="70.0" y="47.0" class="stgl" text-anchor="middle">Trace</text><line x1="117.0" y1="43.0" x2="157.0" y2="43.0" class="edge"/><path d="M157.0,43.0 l-4,-2.6 l0,5.2 Z" class="head"/><text x="140.0" y="22.0" class="cap" text-anchor="middle">graph.json</text><rect x="166.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg"/><text x="210.0" y="47.0" class="stgl" text-anchor="middle">Abstract</text><line x1="257.0" y1="43.0" x2="297.0" y2="43.0" class="edge"/><path d="M297.0,43.0 l-4,-2.6 l0,5.2 Z" class="head"/><text x="280.0" y="22.0" class="cap" text-anchor="middle">spec.json</text><rect x="306.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg det"/><text x="350.0" y="47.0" class="stgl on" text-anchor="middle">Render</text><path d="M70.0,56.0 C70.0,80.0 350.0,80.0 350.0,59.0" class="lk"/><path d="M350.0,59.0 l-2.6,4.5 l5.2,0 Z" class="head lkh"/><text x="210.0" y="90.0" class="cap" text-anchor="middle">every number looked up, never typed</text><text x="210.0" y="102" class="cap" text-anchor="middle">every traced node in exactly one stage</text></svg>
+    <ul class="facts">
+      <li>10 worked models</li>
+      <li>zero runtime deps</li>
+      <li>coverage-checked</li>
+    </ul>
+    <p class="go"><span>github.com/syncytium2/draughtsman</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
     <p class="eyebrow">Working with agents</p>
     <h2>It Looked Right</h2>
     <p class="what">
@@ -543,7 +584,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
     </li>
     <li>
       <span class="t">Open source</span>
-      <span>All five repositories are public, caveats and references included.</span>
+      <span>All six repositories are public, caveats and references included.</span>
     </li>
     <li>
       <span class="t">Readable without a browser</span>
@@ -615,6 +656,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
       <h3>The source</h3>
       <ul>
         <li><a href="https://github.com/syncytium2">github.com/syncytium2</a></li>
+        <li><a href="https://github.com/syncytium2/draughtsman">draughtsman</a></li>
         <li><a href="https://github.com/syncytium2/short-course">short-course</a></li>
         <li><a href="https://github.com/syncytium2/colonel_kernel">colonel_kernel</a></li>
         <li><a href="https://github.com/syncytium2/no_peak">no_peak</a></li>

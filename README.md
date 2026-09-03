@@ -144,8 +144,51 @@ npm run serve       # http://127.0.0.1:5099
 ```
 
 Then click **every card and every footer link** — the page is made almost entirely of links,
-so a dead one is the whole failure mode. All **thirteen** outbound links were verified 200 on
-2026-08-31 (five destinations, five repositories, the GitHub profile, ORCID, the bibliography).
+so a dead one is the whole failure mode. Thirteen were verified 200 on 2026-08-31 (five
+destinations, five repositories, the GitHub profile, ORCID, the bibliography). **The draughtsman
+card took that to fourteen distinct outbound URLs**, and the fourteenth is the one that is not
+200 yet — see the DEPLOY GATE in §4. Count them rather than trusting this sentence:
+
+```bash
+python3 -c "import re,io;h=re.findall(r'href=\"(https?://[^\"]+)\"',io.open('site/index.html').read());print(len(set(h)))"
+```
+
+**Before deploying, check the inlined figures against their generator.** They are hand-pasted
+from the darkroom and nothing else links the two — the page's one structural weakness, and it
+has already been paid for once: `ga-lookedright` was drawn straight into the page on 2026-08-28,
+never added to `make_figures.py`, and went unnoticed for five days.
+
+```bash
+# resolve the darkroom rather than spelling it -- the path carries a personal name
+ROOT=$(python3 ~/Developer/armory/tools/show.py --where | sed 's#/[^/]*$##')
+python3 ~/Developer/armory/tools/inline_asset_drift.py \
+  --generated "$ROOT/tonydefazio/figures" \
+  --into site/index.html \
+  --pattern '<svg[^>]*class="ga (?P<id>ga-[a-z0-9-]+)"[\s\S]*?</svg>'
+```
+
+Exit 0 clean, 1 on DRIFTED or ORPHAN, **2 on a precondition failure** — a distinction worth
+respecting: 2 means it could not look, and must never be spent as though it had looked. Today it
+exits 1 on `ga-l`, which is the known orphan above and not a regression. Scope the pattern to
+`ga-`; a wider selector also matches `new-star`, which is page furniture and never generated.
+
+⚠ **If that exits 2 with `No such file`, the armory checkout is behind, not the tool missing.**
+The tool is on `origin/main` (`570e2af`, warning fixed at `7d71642`); `~/Developer/armory` is a
+**shared working tree** — several sessions use it at once and it routinely sits behind the
+remote, so a path into it is not evidence about what exists. That happened while this very
+paragraph was being written: the command above exited 2 on this machine with the tool sitting on
+`origin/main` the whole time.
+
+```bash
+git -C ~/Developer/armory fetch --quiet
+git -C ~/Developer/armory cat-file -e origin/main:tools/inline_asset_drift.py && echo present
+git -C ~/Developer/armory rev-list --count HEAD..origin/main   # how far behind the tree is
+```
+
+`git -C ~/Developer/armory pull --ff-only` fast-forwards it — but **check with the other sessions
+first**; that tree is shared and has carried uncommitted work in flight. `git branch --contains`
+is the wrong instrument here: it lists local branches only and will tell you a commit is nowhere
+when it is on `origin/main`. Use `git branch -r --contains` after a fetch.
 
 What a local server cannot tell you, the same caveat `bugarach/docs/deploy.md` records: the
 edge serves HTTPS and adds Cloudflare's own headers, and `robots.txt` may be host-injected
@@ -193,6 +236,47 @@ the page. What the cards still assert:
   so 19 is neither confirmed nor refuted here. It also tracks a page that moves: lookedright
   was at version 0.1.57 on 2026-08-31, three days after first publication. Recount it or drop
   the chip.
+- **The draughtsman card, and its `11 worked models` / `zero runtime deps` / `coverage-checked`
+  chips** — checked against the repository on 2026-09-02, not from memory. The card sentence is
+  `draughtsman/README.md`'s own opening, quoted verbatim: "Readable architecture diagrams for
+  PyTorch models. The tracer supplies the facts, an agent supplies the abstraction, and a
+  coverage check proves nothing was silently dropped." That makes it the **second** deliberate
+  quotation on this page, alongside the Murderboard's "Draft, attack, repair, re-attack,
+  deliver" — the rule below says the card sentences are paraphrase; these two are the
+  exceptions and are marked as such.
+  - `10 worked models` — ten committed figures, each with the `graph.json` it was measured from:
+    nine in `examples/gallery/` (mlp, lstm, lenet, dual, vae, transformer, whisper, unet, resnet)
+    plus `examples/tube/` alongside it. Verified against `origin/main` on 2026-09-03, not against
+    a local checkout.
+    **This chip was `11` for about four hours and is the page's first worked example of the
+    hazard it exists to document.** `cascade` was removed on 2026-09-03 (`3652d81`): CascadeTorch
+    is GPL-3.0 against draughtsman's BSD-3 — latent while the repo is private, real on the day it
+    is not — so it moved to `haruspex`, which is private and is itself a CASCADE reimplementation.
+    Recount here whenever that directory changes; do not infer the number from any sentence.
+    **Upstream now derives it rather than asserting it.** When this chip was written the repo's
+    README said ten while the directory held eleven; that turned out to be six stale prose counts,
+    all invalidated by one addition and unnoticed for a day. `draughtsman/tests/test_counts.py`
+    now derives every one from the directory and the committed graphs. A seventh count —
+    `len(REPRODUCIBLE) >= 10` in `test_reproduces.py` — was the only one that was *executed*, and
+    it was the only one that failed loudly when `cascade` came out. Executed counts fail loudly;
+    prose counts go stale in silence. That is the page's own §4 lesson arriving from a repository
+    it links to, and it is the best single answer to why that repo is worth a reader's time.
+  - `zero runtime deps` — `pip install -e .` installs nothing but draughtsman; the layout engine
+    and SVG emitter are in-repo. Asserted upstream by an install into an empty virtualenv that
+    renders byte-identically to the committed `figure.svg`.
+  - `coverage-checked` — every traced node must be accounted for in exactly one stage; a node
+    may be `elided` only explicitly, with a reason.
+  - **The figure on this card is a schematic, NOT draughtsman's own output**, and that is a
+    deliberate decision rather than a shortcut. Measured across all eleven committed figures at
+    420x104, detail type lands between 1.3pt and 3.5pt against a screen floor near 8pt; seven of
+    eleven are height-limited, so a wider card does not rescue it. Shipping an unreadable but
+    authoritative-looking figure is the exact failure `draughtsman/README.md` convicts
+    pytorch-graph of. Revisit when that repo's queue item 3 (a stated width budget with a type
+    floor that fails) lands.
+  - **The card does NOT quote an install command.** `pip install draughtsman-nn` would name a
+    package that does not exist: the distribution was renamed off PyPI's `draughtsman` (Kyle
+    Fuller's API Blueprint parser, last released 2020) but nothing has been uploaded. The import
+    name, the CLI and the repository all keep the unabbreviated spelling.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The `Fortran + Igor implementations` chip** — 75/75 checks vs Igor; exact reproduction of
   CLUST5 v6.01 at documented defaults. The chip now carries this on its own, since the
@@ -237,6 +321,12 @@ those projects, not as those projects' own words.
   `short-course`, `colonel_kernel`, `no_peak`, `bugarach`, `murderboard`. (It was already
   "five" when there were four destinations, which was wrong then and is right now by
   accident. Recount it if a sixth lands.)
+- **DEPLOY GATE: `draughtsman` is a private repository.** The card links to
+  `github.com/syncytium2/draughtsman` and the colophon says "All six repositories are public".
+  Both are false until Tony flips it. **Deploying before the flip ships a 404 and a false
+  claim** — this is the "went false rather than stale" class from `DEPLOYED.md` §1.5.0, caught
+  before shipping this time rather than after. Verify with
+  `gh repo view syncytium2/draughtsman --json visibility` and deploy only on `PUBLIC`.
 - **Nothing detects a stale claim.** See §3. `bugarach` has a `site-staleness.yml` workflow
   that is the model if this ever earns one.
 
