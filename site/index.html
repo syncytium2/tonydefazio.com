@@ -241,6 +241,21 @@ strong { font-weight: 600; }
   text-transform: uppercase; color: var(--c); margin: 0 0 .75rem;
   display: flex; align-items: center; gap: .5rem;
 }
+/* Born-on, and only born-on. Version and revised move on every commit upstream and
+   this page has no build step, so a copy of either would be a second source that
+   rots silently -- short-course's argument, and it is right. Born is immutable by
+   construction: it is the destination's first commit, which is what colonel_kernel
+   and no_peak already mean by the word. Sourced per card in README section 3. */
+.card .eyebrow .born {
+  margin-left: auto; color: var(--ink-faint); letter-spacing: .1em;
+  font-weight: 400; white-space: nowrap;
+}
+@media (max-width: 26rem) { .card .eyebrow .born { display: none; } }
+/* The starred card has a sticker in that corner, so the stamp gets out of its way.
+   :has() rather than a marker class: the badge is the thing that occupies the space,
+   so the rule should key off the badge and cannot fall out of step with it. Where
+   :has() is unsupported the stamp simply sits closer -- it does not disappear. */
+.card:has(.new-star) .eyebrow .born { margin-right: 2.1rem; }
 .card h2 {
   font-family: var(--f-display); font-weight: 700;
   font-size: clamp(1.42rem, 3.4vw, 1.85rem); line-height: 1.1;
@@ -465,7 +480,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 
   <a class="card" style="--c: var(--c-draughtsman)" href="https://github.com/syncytium2/draughtsman">
     <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
-    <p class="eyebrow"><svg class="nnmark" viewBox="0 0 40 26" role="img" aria-label="draughtsman-nn"><path d="M5,23 V12 A5,5 0 0 1 15,12 V23" class="nnn"/><path d="M23,23 V12 A5,5 0 0 1 33,12 V23" class="nnn"/><circle cx="5" cy="23" r="2.7" class="nnd"/><circle cx="10" cy="7" r="2.7" class="nnd"/><circle cx="15" cy="23" r="2.7" class="nnd"/><circle cx="23" cy="23" r="2.7" class="nnd"/><circle cx="28" cy="7" r="2.7" class="nnd"/><circle cx="33" cy="23" r="2.7" class="nnd"/></svg>Model architecture</p>
+    <p class="eyebrow"><svg class="nnmark" viewBox="0 0 40 26" role="img" aria-label="draughtsman-nn"><path d="M5,23 V12 A5,5 0 0 1 15,12 V23" class="nnn"/><path d="M23,23 V12 A5,5 0 0 1 33,12 V23" class="nnn"/><circle cx="5" cy="23" r="2.7" class="nnd"/><circle cx="10" cy="7" r="2.7" class="nnd"/><circle cx="15" cy="23" r="2.7" class="nnd"/><circle cx="23" cy="23" r="2.7" class="nnd"/><circle cx="28" cy="7" r="2.7" class="nnd"/><circle cx="33" cy="23" r="2.7" class="nnd"/></svg>Model architecture<span class="born">Born <time datetime="2026-09-01">2026-09-01</time></span></p>
     <h2>draughtsman</h2>
     <p class="what">
       Readable architecture diagrams for PyTorch models &mdash; the tracer supplies the facts,
@@ -482,7 +497,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
   </a>
 
   <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
-    <p class="eyebrow">Working with agents</p>
+    <p class="eyebrow">Working with agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
     <h2>It Looked Right</h2>
     <p class="what">
       Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
@@ -498,7 +513,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
   </a>
 
   <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/">
-    <p class="eyebrow">Calcium imaging</p>
+    <p class="eyebrow">Calcium imaging<span class="born">Born <time datetime="2026-06-21">2026-06-21</time></span></p>
     <h2>Colonel Kernel</h2>
     <p class="what">
       Recover the shape linking action potentials to a calcium signal, from ground-truth
@@ -513,7 +528,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
   </a>
 
   <a class="card" style="--c: var(--c-nopeak)" href="https://nopeak.tonydefazio.com/">
-    <p class="eyebrow">Endocrine time series</p>
+    <p class="eyebrow">Endocrine time series<span class="born">Born <time datetime="2026-08-07">2026-08-07</time></span></p>
     <h2>no_peak</h2>
     <p class="what">
       CLUSTER pulse detection for hormone sampling data — LH, GnRH, GH, or any pulsatile
@@ -528,7 +543,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
   </a>
 
   <a class="card" style="--c: var(--c-bugarach)" href="https://bugarach.tonydefazio.com/">
-    <p class="eyebrow">Coordinated activity</p>
+    <p class="eyebrow">Coordinated activity<span class="born">Born <time datetime="2026-08-10">2026-08-10</time></span></p>
     <h2>bugarach</h2>
     <p class="what">
       Find the moments when many cells fire together — and how often you are wrong,
@@ -543,7 +558,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
   </a>
 
   <a class="card" style="--c: var(--c-murderboard)" href="https://murderboard.tonydefazio.com/">
-    <p class="eyebrow">Review process</p>
+    <p class="eyebrow">Review process<span class="born">Born <time datetime="2026-07-20">2026-07-20</time></span></p>
     <h2>The Murderboard</h2>
     <p class="what">
       Draft, attack, repair, re-attack, deliver &mdash; the re-attacker shown neither

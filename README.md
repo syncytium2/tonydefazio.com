@@ -277,6 +277,29 @@ the page. What the cards still assert:
     package that does not exist: the distribution was renamed off PyPI's `draughtsman` (Kyle
     Fuller's API Blueprint parser, last released 2020) but nothing has been uploaded. The import
     name, the CLI and the repository all keep the unabbreviated spelling.
+- **The six `Born` stamps.** Each is the destination repository's **first commit**, read from
+  `git log --reverse` on 2026-09-03: draughtsman `ddc332f` 2026-09-01 · short-course `5a6ffc4`
+  2026-08-26 · colonel_kernel `511893f` 2026-06-21 · no_peak `1827d70` 2026-08-07 · bugarach
+  `3622dee` 2026-08-10 · murderboard `4a92748` 2026-07-20. Emitted as `<time datetime=…>` so a
+  consumer can read them without scraping prose — the contract bugarach already offers and
+  short-course does not.
+  **Born only: no version, no revised date.** Those move on every upstream commit and this page
+  has no build step, so a copy of either would be a second source that rots silently. Born is
+  immutable by construction, and both repos that publish it say so — `no_peak/src/version.ts:2`
+  ("BORN is the date of the first commit and never changes") and `murderboard/CLAUDE.md:48-51`
+  ("Born never changes … a born-on date that can be quietly edited is just another mutable
+  field").
+  **The estate runs two conventions and this page follows the first:** `Born` means repo birth
+  (colonel_kernel, no_peak); `First published` means page birth (bugarach 2026-08-13,
+  short-course per-page). Both are used correctly upstream. Do not read a `Born` here as a
+  publication date, and do not reconcile it against a destination's `First published` — they are
+  different facts under different labels.
+  ⚠ **How this was got wrong once, so it is not got wrong again.** The convention was first
+  recorded here as page-birth, on the evidence that colonel_kernel and no_peak published no stamp
+  at all. **They both do; they are JavaScript applications, and a `curl` that does not execute JS
+  sees only their `<noscript>` summary.** Rendering them shows `Born June 21, 2026` and
+  `born August 7, 2026`. Any future check of what a destination publishes must render the page,
+  not fetch it — three of the six are client-side apps.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The `Fortran + Igor implementations` chip** — 75/75 checks vs Igor; exact reproduction of
   CLUST5 v6.01 at documented defaults. The chip now carries this on its own, since the
