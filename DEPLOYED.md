@@ -143,6 +143,46 @@ enough to find everything a new card breaks.
 deployed as-is rather than quietly dropped, because an unverified claim that is recorded as
 unverified is a different thing from one that looks checked.
 
+## 1.6.0 — the sixth destination — ⚠ PREPARED, NOT DEPLOYED
+
+**The header table above is deliberately still 1.5.1**, and so is `Version ID`
+`82289c9e…` and `Deployed 2026-08-31`. Those three describe **what is live**, and what is
+live is the five-card page. `package.json` and the masthead strip say 1.6.0 because they
+describe the *source*; this file describes the *edge*. They are meant to disagree between
+a bump and a deploy, and this section is the record of that gap rather than a papering
+over of it. **Setting the header to 1.6.0 before `npm run deploy` would make this file
+assert a deploy that never happened** — the exact class of defect §1.5.0 records.
+
+When it does ship, move the header to 1.6.0, replace the version ID with the new one, set
+the date, and delete this paragraph.
+
+**What 1.6.0 is.** A sixth destination, `draughtsman` — readable architecture diagrams for
+PyTorch models — placed first on the shelf and carrying the `NEW` star, which it takes from
+It Looked Right on the honest grounds that it is newer (first commit 2026-09-01 against
+2026-08-28). It links to `github.com/syncytium2/draughtsman` rather than a subdomain:
+`draughtsman.tonydefazio.com` exists and serves over HTTP, but GitHub has never requested
+its certificate (`https_certificate: state=None`), so HTTPS does not answer. Every other
+card links `https://`. Re-point the card when that resolves.
+
+**Also in 1.6.0: a `Born` stamp on every card**, being that repository's first commit,
+emitted as `<time datetime=…>`. Born only — no version, no revised date. Both of those move
+on every upstream commit and this page has no build step, so a copy of either becomes a
+second source that rots silently. Born cannot move. The estate runs two conventions and
+this page follows the first: `Born` means repo birth (colonel_kernel, no_peak), `First
+published` means page birth (bugarach, short-course). See README §3, including the trap
+that three of six destinations are client-side apps whose stamps are invisible to `curl`.
+
+**The recount §4 warns about was run and found four more.** Two README sentences, two
+`thanks.html` comments. One went *false* rather than stale: the no-external-requests
+posture, which draughtsman's page does not hold — it requests a webfont from
+`fonts.googleapis.com`. Narrowed rather than widened; nothing shipped was ever wrong.
+
+**The card's figure is a schematic, not draughtsman's own output.** At 420×104 all ten of
+its figures render detail type between 1.6px and 3.6px against a screen floor near 8px, and
+two got *worse* on 2026-09-03 when a fix bought width by spending height. Tony's rule for
+revisiting: once draughtsman has an **icon mode** that drops text rather than shipping it as
+grey noise, the card question reopens. Until then the schematic stands.
+
 ## Rolling back
 
 ```bash
