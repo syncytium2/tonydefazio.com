@@ -177,11 +177,27 @@ that three of six destinations are client-side apps whose stamps are invisible t
 posture, which draughtsman's page does not hold — it requests a webfont from
 `fonts.googleapis.com`. Narrowed rather than widened; nothing shipped was ever wrong.
 
-**The card's figure is a schematic, not draughtsman's own output.** At 420×104 all ten of
-its figures render detail type between 1.6px and 3.6px against a screen floor near 8px, and
-two got *worse* on 2026-09-03 when a fix bought width by spending height. Tony's rule for
-revisiting: once draughtsman has an **icon mode** that drops text rather than shipping it as
-grey noise, the card question reopens. Until then the schematic stands.
+**The card's figure is draughtsman's own output, as of 2026-09-04.** It was a schematic, on
+the measurement that all ten figures rendered detail type between 1.6px and 3.6px at 420×104
+against a screen floor near 8px. Tony's condition for revisiting was stated in advance —
+*once draughtsman has an icon mode that drops text rather than shipping it as grey noise* —
+and it was met the same day. `render --icon 420x104` on `examples/gallery/lenet` fits at
+0.86x and carries no text at all. **The condition was written down before it was met, which
+is why the swap took one measurement rather than an argument.**
+
+bugarach's card takes the same treatment from `examples/tube` — which is the model bugarach
+actually runs, vendored from draughtsman. That one is an **editorial** change rather than a
+repair: it replaced a raster figure that illustrated the card's sentence with a model mark
+that does not. Both retired abstracts are still generated and show as UNUSED in the drift
+check, so either card reverts in one line.
+
+**The marks' stage fills are restatable.** draughtsman emits `var(--ds-fill-<kind>, <hex>)`,
+and this page restates the nine kinds for dark mode; light takes the hex fallback. Its rule
+is *hue is the family, value is the kind* — the three convolutional kinds must stay apart by
+value so a figure survives a greyscale print. Verified here rather than assumed: within-family
+separation is preserved and mostly improved (kernel|conv 1.083:1 → 1.139:1, conv|stack 1.114 →
+1.194), and all three greens stay green-dominant. **Do not flatten these to `currentColor`** to
+make them match the card accent; that discards a tested property.
 
 ## Rolling back
 

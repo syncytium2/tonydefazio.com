@@ -106,6 +106,22 @@ html { font-size: 17px; }
     --c-murderboard: #E0808C;
     --c-lookedright: #D2A64E;
     --c-draughtsman: #7CC79B;
+
+    /* THE MODEL MARKS' OWN PALETTE, RESTATED FOR A DARK GROUND.
+       draughtsman emits every stage fill as var(--ds-fill-<kind>, <light hex>), so
+       these override cleanly and a browser with no dark mode still gets the hex.
+       Its rule is "hue is the family, value is the kind": the three convolutional
+       kinds share a green hue and must stay apart by value, which is what survives a
+       greyscale print. Verified rather than assumed -- within-family separation is
+       preserved and mostly improved here (kernel|conv 1.083:1 light -> 1.139:1 dark,
+       conv|stack 1.114 -> 1.194, pool|reduce 1.096 -> 1.087) and all three greens
+       stay green-dominant. Strokes keep their light values: they read as edges over
+       a dark fill and carry the kind distinction a second time. */
+    --ds-fill-input:  #2b2b28;  --ds-fill-output: #2b2b28;
+    --ds-fill-pool:   #1d2f3a;  --ds-fill-reduce: #16283a;
+    --ds-fill-kernel: #183026;  --ds-fill-conv:   #1e3a2c;
+    --ds-fill-stack:  #244734;  --ds-fill-concat: #2d2740;
+    --ds-fill-op:     #26262a;
   }
 }
 :root[data-theme="dark"] {
@@ -329,6 +345,14 @@ strong { font-weight: 600; }
 .ga .tk    { stroke: var(--ink); stroke-width: 1.15; opacity: .42; }
 .ga .rate  { fill: none; stroke: var(--c); stroke-width: 1.2; opacity: .75; }
 
+/* Model marks drawn by draughtsman's own `render --icon 420x104`. They are the
+   tool's output, not a drawing of it -- which is the point on the draughtsman card
+   and the reason bugarach's shows the model it actually runs. No text: icon mode
+   removes it rather than shipping type nobody can read, which is the rule that made
+   these usable at all. Edges and arrowheads take currentColor, so the accent still
+   flows; the stage fills are the tool's own palette, restated below for dark. */
+.ds { display: block; width: 100%; height: auto; margin: 0 0 1.25rem; color: var(--c); }
+
 /* --- draughtsman: three stages, and the lookup that bypasses the agent --- */
 .ga .stg       { fill: var(--surface); stroke: var(--c); stroke-width: 1.6; }
 .ga .stg.det   { fill: var(--c); }
@@ -487,7 +511,32 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
       an agent supplies the abstraction, and a coverage check proves nothing was silently
       dropped.
     </p>
-    <svg class="ga ga-d" viewBox="0 0 420 104" role="img" aria-label="Trace, abstract, render: the tracer supplies facts, an agent supplies the abstraction, and every quantity in the figure is looked up from the trace at render time rather than passing through the agent."><rect x="26.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg"/><text x="70.0" y="47.0" class="stgl" text-anchor="middle">Trace</text><line x1="117.0" y1="43.0" x2="157.0" y2="43.0" class="edge"/><path d="M157.0,43.0 l-4,-2.6 l0,5.2 Z" class="head"/><text x="140.0" y="22.0" class="cap" text-anchor="middle">graph.json</text><rect x="166.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg"/><text x="210.0" y="47.0" class="stgl" text-anchor="middle">Abstract</text><line x1="257.0" y1="43.0" x2="297.0" y2="43.0" class="edge"/><path d="M297.0,43.0 l-4,-2.6 l0,5.2 Z" class="head"/><text x="280.0" y="22.0" class="cap" text-anchor="middle">spec.json</text><rect x="306.0" y="30.0" width="88.0" height="26.0" rx="2.5" class="stg det"/><text x="350.0" y="47.0" class="stgl on" text-anchor="middle">Render</text><path d="M70.0,56.0 C70.0,80.0 350.0,80.0 350.0,59.0" class="lk"/><path d="M350.0,59.0 l-2.6,4.5 l5.2,0 Z" class="head lkh"/><text x="210.0" y="90.0" class="cap" text-anchor="middle">every number looked up, never typed</text><text x="210.0" y="102" class="cap" text-anchor="middle">every traced node in exactly one stage</text></svg>
+    <svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="ds ds-d" role="img" aria-label="LeNet drawn by draughtsman in icon mode: stacked feature maps narrowing through convolution and pooling to a classifier. A mark, not a diagram — no text survives at card size." aria-label="LeNet — the canonical image CNN" viewBox="180.36 69.63 487.33 82.78">
+<defs><marker id="ds-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0.6 L8 4 L0 7.4 Z" style="fill:currentColor"/></marker></defs>
+
+
+<g class="ds-body" transform="translate(0 36)">
+
+<path class="ds-edge ds-edge-solid" data-from="conv1" data-to="pool1" d="M269.8 86.27 C296.8 86.27 296.8 86.27 323.8 86.27" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="pool1" data-to="conv2" d="M399.8 86.27 C426.8 86.27 426.8 86.27 453.8 86.27" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="conv2" data-to="pool2" d="M535.68 86.27 C562.68 86.27 562.68 86.27 589.68 86.27" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+
+
+
+
+
+<g class="ds-stage ds-bare ds-kind-conv" data-stage="conv1" data-box="185.73 16 84.07 140.54"><rect class="ds-sheet" x="213.8" y="43" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="208.99" y="45.41" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="204.17" y="47.81" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="199.36" y="50.22" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="194.54" y="52.63" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="189.73" y="55.04" width="52" height="52" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/></g>
+<g class="ds-stage ds-bare ds-kind-pool" data-stage="pool1" data-box="323.8 29.87 76 112.81"><rect class="ds-sheet" x="355.45" y="56.87" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="350.64" y="59.27" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="345.82" y="61.68" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="341.01" y="64.09" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="336.2" y="66.49" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/><rect class="ds-sheet" x="331.38" y="68.9" width="36.77" height="36.77" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/></g>
+<g class="ds-stage ds-bare ds-kind-conv" data-stage="conv2" data-box="453.8 22.65 81.88 127.23"><polygon class="ds-sheet ds-sheet-top" points="459.55,69.31 498.86,49.65 529.93,49.65 490.62,69.31" style="fill:var(--ds-stroke-conv,#6f9c85);fill-opacity:0.46;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.7;stroke-linejoin:round"/><polygon class="ds-sheet ds-sheet-side" points="490.62,69.31 529.93,49.65 529.93,80.73 490.62,100.38" style="fill:var(--ds-stroke-conv,#6f9c85);fill-opacity:0.60;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.7;stroke-linejoin:round"/><rect class="ds-sheet" x="459.55" y="69.31" width="31.08" height="31.08" style="fill:var(--ds-fill-conv,#e2eee7);fill-opacity:0.94;stroke:var(--ds-stroke-conv,#6f9c85);stroke-width:0.9;stroke-linejoin:round"/></g>
+<g class="ds-stage ds-bare ds-kind-pool" data-stage="pool2" data-box="589.68 33.45 76 105.63"><polygon class="ds-sheet ds-sheet-top" points="597.04,80.11 636.35,60.45 658.32,60.45 619.01,80.11" style="fill:var(--ds-stroke-pool,#6f93a8);fill-opacity:0.46;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.7;stroke-linejoin:round"/><polygon class="ds-sheet ds-sheet-side" points="619.01,80.11 658.32,60.45 658.32,82.43 619.01,102.08" style="fill:var(--ds-stroke-pool,#6f93a8);fill-opacity:0.60;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.7;stroke-linejoin:round"/><rect class="ds-sheet" x="597.04" y="80.11" width="21.97" height="21.97" style="fill:var(--ds-fill-pool,#e4eef5);fill-opacity:0.94;stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:0.9;stroke-linejoin:round"/></g>
+
+
+
+
+</g>
+
+
+</svg>
     <ul class="facts">
       <li>10 worked models</li>
       <li>zero runtime deps</li>
@@ -549,7 +598,29 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
       Find the moments when many cells fire together — and how often you are wrong,
       against a simulation built from your own recordings.
     </p>
-    <svg class="ga ga-b" viewBox="0 0 420 104" role="img" aria-label="A 22-cell raster over a ramping background rate, with the population rate below. Four coordinated events are present and are left unmarked."><defs><linearGradient id="rmp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="s0"/><stop offset="1" class="s1"/></linearGradient></defs><rect x="6" y="10" width="408" height="64" fill="url(#rmp)"/><path d="M98.8,12.4v2.0M129.0,12.4v2.0M165.7,12.4v2.0M196.0,12.4v2.0M301.7,12.4v2.0M316.9,12.4v2.0M340.6,12.4v2.0M379.5,12.4v2.0M29.7,15.1v2.0M129.0,15.1v2.0M137.7,15.1v2.0M232.7,15.1v2.0M325.5,15.1v2.0M336.3,15.1v2.0M377.3,15.1v2.0M392.4,15.1v2.0M409.7,15.1v2.0M88.0,17.8v2.0M228.3,17.8v2.0M271.5,17.8v2.0M316.9,17.8v2.0M327.7,17.8v2.0M381.6,17.8v2.0M394.6,17.8v2.0M396.7,17.8v2.0M174.4,20.6v2.0M204.6,20.6v2.0M226.2,20.6v2.0M319.0,20.6v2.0M377.3,20.6v2.0M390.3,20.6v2.0M131.2,23.3v2.0M144.2,23.3v2.0M148.5,23.3v2.0M185.2,23.3v2.0M224.0,23.3v2.0M228.3,23.3v2.0M316.9,23.3v2.0M351.4,23.3v2.0M377.3,23.3v2.0M381.6,23.3v2.0M36.2,26.0v2.0M131.2,26.0v2.0M217.6,26.0v2.0M232.7,26.0v2.0M323.3,26.0v2.0M349.2,26.0v2.0M362.2,26.0v2.0M377.3,26.0v2.0M405.4,26.0v2.0M414.0,26.0v2.0M34.1,28.7v2.0M94.5,28.7v2.0M126.9,28.7v2.0M234.8,28.7v2.0M319.0,28.7v2.0M329.8,28.7v2.0M344.9,28.7v2.0M375.1,28.7v2.0M379.5,28.7v2.0M385.9,28.7v2.0M129.0,31.5v2.0M185.2,31.5v2.0M224.0,31.5v2.0M230.5,31.5v2.0M319.0,31.5v2.0M377.3,31.5v2.0M381.6,31.5v2.0M217.6,34.2v2.0M228.3,34.2v2.0M278.0,34.2v2.0M316.9,34.2v2.0M373.0,34.2v2.0M375.1,34.2v2.0M94.5,36.9v2.0M133.4,36.9v2.0M232.7,36.9v2.0M321.2,36.9v2.0M379.5,36.9v2.0M129.0,39.7v2.0M176.5,39.7v2.0M208.9,39.7v2.0M232.7,39.7v2.0M237.0,39.7v2.0M249.9,39.7v2.0M316.9,39.7v2.0M340.6,39.7v2.0M349.2,39.7v2.0M375.1,39.7v2.0M383.8,39.7v2.0M228.3,42.4v2.0M303.9,42.4v2.0M319.0,42.4v2.0M336.3,42.4v2.0M377.3,42.4v2.0M379.5,42.4v2.0M226.2,45.1v2.0M237.0,45.1v2.0M321.2,45.1v2.0M336.3,45.1v2.0M375.1,45.1v2.0M403.2,45.1v2.0M414.0,45.1v2.0M189.5,47.8v2.0M206.8,47.8v2.0M282.3,47.8v2.0M288.8,47.8v2.0M297.4,47.8v2.0M316.9,47.8v2.0M321.2,47.8v2.0M357.9,47.8v2.0M370.8,47.8v2.0M377.3,47.8v2.0M316.9,50.6v2.0M325.5,50.6v2.0M344.9,50.6v2.0M364.3,50.6v2.0M366.5,50.6v2.0M375.1,50.6v2.0M120.4,53.3v2.0M122.6,53.3v2.0M129.0,53.3v2.0M256.4,53.3v2.0M280.2,53.3v2.0M323.3,53.3v2.0M377.3,53.3v2.0M66.4,56.0v2.0M133.4,56.0v2.0M155.0,56.0v2.0M191.7,56.0v2.0M202.4,56.0v2.0M219.7,56.0v2.0M234.8,56.0v2.0M299.6,56.0v2.0M323.3,56.0v2.0M381.6,56.0v2.0M224.0,58.7v2.0M228.3,58.7v2.0M247.8,58.7v2.0M282.3,58.7v2.0M316.9,58.7v2.0M366.5,58.7v2.0M375.1,58.7v2.0M36.2,61.5v2.0M131.2,61.5v2.0M228.3,61.5v2.0M234.8,61.5v2.0M308.2,61.5v2.0M321.2,61.5v2.0M325.5,61.5v2.0M381.6,61.5v2.0M129.0,64.2v2.0M208.9,64.2v2.0M230.5,64.2v2.0M234.8,64.2v2.0M286.6,64.2v2.0M301.7,64.2v2.0M375.1,64.2v2.0M396.7,64.2v2.0M409.7,64.2v2.0M135.5,66.9v2.0M224.0,66.9v2.0M234.8,66.9v2.0M284.5,66.9v2.0M288.8,66.9v2.0M316.9,66.9v2.0M351.4,66.9v2.0M109.6,69.7v2.0M126.9,69.7v2.0M163.6,69.7v2.0M288.8,69.7v2.0" class="tk"/><path d="M6.0,94.0 L10.3,94.0 L14.6,94.0 L19.0,94.0 L23.3,94.0 L27.6,93.2 L31.9,90.8 L36.2,91.6 L40.5,92.4 L44.9,94.0 L49.2,94.0 L53.5,94.0 L57.8,94.0 L62.1,93.2 L66.4,93.2 L70.8,93.2 L75.1,94.0 L79.4,94.0 L83.7,93.2 L88.0,93.2 L92.3,91.6 L96.7,91.6 L101.0,93.2 L105.3,93.2 L109.6,93.2 L113.9,93.2 L118.3,93.2 L122.6,91.6 L126.9,85.2 L131.2,82.8 L135.5,88.4 L139.8,91.6 L144.2,93.2 L148.5,93.2 L152.8,92.4 L157.1,93.2 L161.4,92.4 L165.7,92.4 L170.1,92.4 L174.4,92.4 L178.7,92.4 L183.0,92.4 L187.3,90.8 L191.7,91.6 L196.0,92.4 L200.3,91.6 L204.6,90.0 L208.9,90.8 L213.2,90.8 L217.6,91.6 L221.9,86.8 L226.2,85.2 L230.5,80.4 L234.8,85.2 L239.1,88.4 L243.5,93.2 L247.8,92.4 L252.1,91.6 L256.4,93.2 L260.7,93.2 L265.0,94.0 L269.4,93.2 L273.7,92.4 L278.0,90.8 L282.3,89.2 L286.6,90.0 L291.0,90.8 L295.3,92.4 L299.6,90.0 L303.9,90.0 L308.2,92.4 L312.5,86.0 L316.9,81.2 L321.2,78.0 L325.5,85.2 L329.8,90.0 L334.1,90.8 L338.4,90.0 L342.8,90.8 L347.1,89.2 L351.4,90.8 L355.7,91.6 L360.0,91.6 L364.3,91.6 L368.7,90.8 L373.0,82.0 L377.3,78.0 L381.6,82.0 L385.9,87.6 L390.3,90.8 L394.6,90.8 L398.9,91.6 L403.2,92.4 L407.5,90.8 L411.8,90.8" class="rate"/><text x="6" y="102" class="cap">22 cells</text><text x="414" y="102" class="cap" text-anchor="end">4 coordinated events</text></svg>
+    <svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="ds ds-b" role="img" aria-label="The tube detector drawn by draughtsman in icon mode: the onset raster widened, convolved, reduced over cells and concatenated with its bypass." aria-label="tube — a coordinated-event detector" viewBox="-8.41 27.59 1269.24 285.81">
+<defs><marker id="ds-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0.6 L8 4 L0 7.4 Z" style="fill:currentColor"/></marker></defs>
+
+
+<g class="ds-body" transform="translate(0 36)">
+<path class="ds-edge ds-edge-solid" data-from="raster" data-to="widen" d="M130.01 128.5 C157.01 128.5 157.01 128.5 184.01 128.5" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="widen" data-to="mean" d="M307 128.5 C334 128.5 334 128.5 361 128.5" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="mean" data-to="concat" d="M474.06 128.5 C501.07 128.5 501.07 252.99 528.07 252.99 C619.95 252.99 619.95 252.99 711.84 252.99 C738.84 252.99 738.84 128.49 765.84 128.49" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="mean" data-to="dog" d="M474.06 128.5 C501.07 128.5 501.07 128.49 528.07 128.49" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="dog" data-to="concat" d="M711.84 128.49 C738.84 128.49 738.84 128.49 765.84 128.49" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="concat" data-to="head" d="M863.69 128.49 C890.69 128.49 890.69 128.48 917.69 128.48" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<path class="ds-edge ds-edge-solid" data-from="head" data-to="score" d="M1042.79 128.48 C1069.79 128.48 1069.79 128.48 1096.79 128.48" style="fill:none;stroke:currentColor;stroke-width:1.4" marker-end="url(#ds-arrow)"/>
+<g class="ds-stage ds-kind-input" data-stage="raster"><rect x="16" y="16" width="114.01" height="225" rx="4" style="fill:var(--ds-fill-input,#f2f2f0);stroke:var(--ds-stroke-input,#8a8a86);stroke-width:1.2"/></g>
+<g class="ds-stage ds-kind-pool" data-stage="widen"><rect x="184.01" y="16" width="122.99" height="225" rx="4" style="fill:var(--ds-fill-pool,#e4eef5);stroke:var(--ds-stroke-pool,#6f93a8);stroke-width:1.2"/></g>
+<g class="ds-stage ds-kind-reduce" data-stage="mean"><rect x="361" y="88.5" width="113.06" height="80" rx="4" style="fill:var(--ds-fill-reduce,#d5e5ef);stroke:var(--ds-stroke-reduce,#5b829a);stroke-width:1.2"/></g>
+<g class="ds-stage ds-kind-kernel" data-stage="dog"><rect x="528.07" y="35.99" width="183.78" height="185" rx="4" style="fill:var(--ds-fill-kernel,#eef6f1);stroke:var(--ds-stroke-kernel,#7fae99);stroke-width:1.2"/><rect class="ds-lane" x="535.07" y="114.99" width="169.78" height="12" rx="2" style="fill:#ffffff;fill-opacity:0.62;stroke:var(--ds-stroke-kernel,#7fae99);stroke-width:0.7"/><rect class="ds-lane" x="535.07" y="129.99" width="169.78" height="12" rx="2" style="fill:#ffffff;fill-opacity:0.62;stroke:var(--ds-stroke-kernel,#7fae99);stroke-width:0.7"/><rect class="ds-lane" x="535.07" y="144.99" width="169.78" height="12" rx="2" style="fill:#ffffff;fill-opacity:0.62;stroke:var(--ds-stroke-kernel,#7fae99);stroke-width:0.7"/><rect class="ds-lane" x="535.07" y="159.99" width="169.78" height="12" rx="2" style="fill:#ffffff;fill-opacity:0.62;stroke:var(--ds-stroke-kernel,#7fae99);stroke-width:0.7"/></g>
+<g class="ds-stage ds-kind-concat" data-stage="concat"><rect x="765.84" y="78.49" width="97.85" height="100" rx="4" style="fill:var(--ds-fill-concat,#ece6f2);stroke:var(--ds-stroke-concat,#8d7ba8);stroke-width:1.2"/></g>
+<g class="ds-stage ds-kind-stack" data-stage="head"><rect x="917.69" y="64.73" width="125.1" height="127.5" rx="4" style="fill:var(--ds-fill-stack,#d1e4d9);stroke:var(--ds-stroke-stack,#5a8a71);stroke-width:1.2"/></g>
+<g class="ds-stage ds-kind-output" data-stage="score"><rect x="1096.79" y="93.23" width="139.63" height="70.5" rx="4" style="fill:var(--ds-fill-output,#f2f2f0);stroke:var(--ds-stroke-output,#8a8a86);stroke-width:1.2"/></g>
+</g>
+
+
+</svg>
     <ul class="facts">
       <li>six detectors</li>
       <li>browser raster viewer</li>
