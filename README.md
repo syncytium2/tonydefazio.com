@@ -1,7 +1,8 @@
 # tonydefazio.com
 
 The apex landing page. It is a **router**: one screen that tells a visitor which of the
-five destination sites is closest to their problem, and gets them there.
+six destinations is closest to their problem, and gets them there. Five are sites; the
+sixth, `draughtsman`, is a repository.
 
 **Live:** https://tonydefazio.com — *not yet deployed, see §2.*
 
@@ -28,7 +29,7 @@ site/sitemap.xml    one URL
 
 `index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, runs
 no JavaScript, sets no cookies, and carries no analytics** — the same posture the five
-destinations hold, which is also why the page renders identically from `file://`,
+destination **sites** hold, which is also why the page renders identically from `file://`,
 air-gapped, or behind a captive portal.
 
 **One exception, and the page says so rather than burying it:** the contact form posts to
@@ -201,8 +202,22 @@ curl -sI https://tonydefazio.com/ | head -1
 
 ## 3. Keeping it honest
 
-The page makes claims about the five projects. Each was checked against the source
-repository on 2026-08-25 — the fifth on 2026-08-31 — not written from memory.
+The page makes claims about the six projects. Each was checked against the source
+repository on 2026-08-25 — the fifth on 2026-08-31, the sixth on 2026-09-02/03 — not written
+from memory.
+
+⚠ **NARROWED 2026-09-04, and this is the sixth destination doing what the fifth did.** §1 used
+to say "the same posture the five destinations hold" about loading no fonts and making no
+external requests. **draughtsman's page does not hold it** — `draughtsman.tonydefazio.com`
+requests a stylesheet from `fonts.googleapis.com`, measured on 2026-09-04. The sentence now
+says *destination **sites***, which is true of the five it was written about. This is the same
+class as the 2026-08-31 narrowing of "each repository carries an instruction file": a sentence
+that named no number, held for the destinations it was written about, and went **false** rather
+than stale when one more arrived. `NEXT_SESSION.md` §4 predicted exactly this and it is the
+second instance.
+  - The page does not claim the no-requests posture *for* draughtsman anywhere, so nothing on
+    the shipped page is wrong. Whether draughtsman's own page should drop the webfont is that
+    repo's call, not this one's — but it is the only destination that phones out on load.
 
 **In 1.2.0 each card was cut to a single sentence**, which retired most of those claims from
 the page. What the cards still assert:
@@ -236,7 +251,7 @@ the page. What the cards still assert:
   so 19 is neither confirmed nor refuted here. It also tracks a page that moves: lookedright
   was at version 0.1.57 on 2026-08-31, three days after first publication. Recount it or drop
   the chip.
-- **The draughtsman card, and its `11 worked models` / `zero runtime deps` / `coverage-checked`
+- **The draughtsman card, and its `10 worked models` / `zero runtime deps` / `coverage-checked`
   chips** — checked against the repository on 2026-09-02, not from memory. The card sentence is
   `draughtsman/README.md`'s own opening, quoted verbatim: "Readable architecture diagrams for
   PyTorch models. The tracer supplies the facts, an agent supplies the abstraction, and a
