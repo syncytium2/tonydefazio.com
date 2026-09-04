@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `82289c9e-f852-4f7c-a4f7-809789a02461` |
-| **Deployed** | 2026-08-31 |
-| **Site version** | 1.5.1 |
+| **Version ID** | `11997c97-b38f-49fd-8d81-a0d70bc3e88a` |
+| **Deployed** | 2026-09-04 |
+| **Site version** | 1.6.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -143,18 +143,11 @@ enough to find everything a new card breaks.
 deployed as-is rather than quietly dropped, because an unverified claim that is recorded as
 unverified is a different thing from one that looks checked.
 
-## 1.6.0 — the sixth destination — ⚠ PREPARED, NOT DEPLOYED
+## 1.6.0 — the sixth destination
 
-**The header table above is deliberately still 1.5.1**, and so is `Version ID`
-`82289c9e…` and `Deployed 2026-08-31`. Those three describe **what is live**, and what is
-live is the five-card page. `package.json` and the masthead strip say 1.6.0 because they
-describe the *source*; this file describes the *edge*. They are meant to disagree between
-a bump and a deploy, and this section is the record of that gap rather than a papering
-over of it. **Setting the header to 1.6.0 before `npm run deploy` would make this file
-assert a deploy that never happened** — the exact class of defect §1.5.0 records.
-
-When it does ship, move the header to 1.6.0, replace the version ID with the new one, set
-the date, and delete this paragraph.
+**Deployed 2026-09-04**, version ID `11997c97-b38f-49fd-8d81-a0d70bc3e88a`. Two files
+changed at the edge (`index.html`, `thanks.html`); `robots.txt` and `sitemap.xml` were
+already current.
 
 **What 1.6.0 is.** A sixth destination, `draughtsman` — readable architecture diagrams for
 PyTorch models — placed first on the shelf and carrying the `NEW` star, which it takes from
@@ -198,6 +191,25 @@ value so a figure survives a greyscale print. Verified here rather than assumed:
 separation is preserved and mostly improved (kernel|conv 1.083:1 → 1.139:1, conv|stack 1.114 →
 1.194), and all three greens stay green-dominant. **Do not flatten these to `currentColor`** to
 make them match the card accent; that discards a tested property.
+
+## Verified at the edge on 2026-09-04
+
+- `index.html`, `robots.txt`, `sitemap.xml` **byte-identical** to `site/`.
+- **`thanks.html` needs a followed redirect, and this is not a fault.** `/thanks.html`
+  returns **307 → `/thanks`**; the Workers assets runtime drops the `.html` extension.
+  A plain `diff <(curl -s …/thanks.html) site/thanks.html` therefore compares against an
+  empty body and reports DIFFERS. With `curl -sL` it is byte-identical. **Use `-L` for that
+  one file** — this cost a few minutes on deploy day and would read as a broken page to
+  anyone who did not.
+- **No analytics as served**: zero `beacon.min.js`, and — checked properly this time — no
+  external `<script>`, `<img>` or stylesheet, and no webfont reference. The page's one
+  `<script>` is `type="application/ld+json"`, which is data, not executable JavaScript, so
+  the colophon's "runs no JavaScript" holds as served. Counting *anchor hrefs* to other
+  sites is the wrong check and reports 21; those are links, not loads.
+- Six `<a class="card">` served, six `Born` stamps, two draughtsman model marks, version
+  strip reads 1.6.0, `HTTP/2 200`.
+- The deploy gate held: `github.com/syncytium2/draughtsman` returned 200 to an anonymous
+  request immediately before upload.
 
 ## Rolling back
 
