@@ -25,8 +25,8 @@
   "name": "Richard Anthony DeFazio",
   "alternateName": "Tony DeFazio",
   "url": "https://tonydefazio.com/",
-  "description": "Neuroendocrinology and calcium imaging. Builds open-source, client-side research tools for measuring signals in neuroscience data, an adversarial document-review process, and a short course on working with coding agents.",
-  "knowsAbout": ["Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection", "AI-assisted research"],
+  "description": "Research software for neuroscience and machine learning. Builds readable PyTorch model-architecture figures with a mechanical coverage check, open-source client-side tools for measuring signals in neuroscience data, an adversarial document-review process, and a short course on working with coding agents.",
+  "knowsAbout": ["Machine learning", "PyTorch", "Neural network architecture", "Scientific visualization", "Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection", "AI-assisted research", "Research software engineering"],
   "sameAs": [
     "https://github.com/syncytium2",
     "https://orcid.org/0000-0001-7302-7528"
@@ -207,6 +207,23 @@ strong { font-weight: 600; }
   color: var(--ink-soft); line-height: 1.5; font-size: 1.07rem;
 }
 .deck b { color: var(--ink); font-weight: 600; }
+
+/* WHO, not just what. The byline used to read "Neuroendocrinology & calcium imaging"
+   above a headline about PyTorch figures and coding agents, and a reader who scans the
+   byline and stops learned the wrong thing about six destinations. This line carries the
+   background and the through-line, and lifts the identity links out of the footer, which
+   is the last place a first-time reader looks. */
+.whois {
+  margin: 0 0 clamp(1rem, 2.4vw, 1.4rem); max-width: 68ch;
+  color: var(--ink-soft); line-height: 1.55; font-size: .95rem;
+}
+.whois a {
+  font-family: var(--f-mono); font-size: .74rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--rule); padding-bottom: .05rem;
+  margin-left: .85rem; white-space: nowrap;
+}
+.whois a:hover, .whois a:focus-visible { border-bottom-color: var(--ink); }
 
 /* ---------- the six cards ---------- */
 .shelf {
@@ -476,13 +493,21 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 <header class="masthead wrap">
   <p class="kicker">
     <span>Richard Anthony &ldquo;Tony&rdquo; DeFazio</span>
-    <span>Neuroendocrinology &amp; calcium imaging</span>
+    <span>Research software &mdash; neuroscience &amp; machine learning</span>
   </p>
 
   <p class="meta">
     <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
     <span><span class="lbl">Version</span> <span class="val">1.6.0</span></span>
     <span><span class="lbl">Version date</span> <time class="val" datetime="2026-09-04">2026-09-04</time></span>
+  </p>
+
+  <p class="whois">
+    Neuroendocrinologist by training. I build the measurement and model-architecture tools I
+    needed and could not find &mdash; and the checks that say when they are wrong.
+    <a href="https://github.com/syncytium2">GitHub</a>
+    <a href="https://orcid.org/0000-0001-7302-7528">ORCID</a>
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/richard.defazio.1/bibliography/public/">Publications</a>
   </p>
 
   <h1 class="wordmark"><em>Architecture figures</em> for PyTorch, a murderboard, an AI coding short course, and research tools.</h1>
