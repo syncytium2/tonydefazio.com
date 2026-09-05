@@ -109,15 +109,28 @@ This page is deliberately the **parent** of that language rather than another di
 it adds is **one accent hue per destination**, taken from that site's own accent where it
 had one, so a card is recognisable before its title is read:
 
-| Card | Light | Dark | Source |
-|---|---|---|---|
-| Colonel Kernel | `#7A1FC4` | `#C79BF5` | its `--accent-solid` |
-| no_peak | `#1F63B8` | `#8FBDEE` | its `--accent`, darkened to clear AA on white |
-| bugarach | `#0E6674` | `#6BC6D4` | assigned here — bugarach's own site is neutral |
-| The Murderboard | `#8A1C2B` | `#E0808C` | its `--blood` |
+| Card | Hue | Source |
+|---|---|---|
+| draughtsman | `#1F6B45` | assigned here — the one hue the other five leave free |
+| It Looked Right | `#8A5D0F` | the site's own caution ochre |
+| Colonel Kernel | `#7A1FC4` | its `--accent-solid` |
+| no_peak | `#1F63B8` | its `--accent`, darkened to clear AA on white |
+| bugarach | `#0E6674` | assigned here — bugarach's own site is neutral |
+| The Murderboard | `#8A1C2B` | its `--blood` |
 
-Light and dark both come from `prefers-color-scheme`, with a `[data-theme]` override defined
-so a toggle could be added later without touching the palette.
+**The page is light only, and that is a decision rather than an omission.** It carried a
+`prefers-color-scheme: dark` palette and a `[data-theme]` override until 2026-09-04; both are
+gone and `:root` declares `color-scheme: light`, which is what stops a browser rendering form
+fields and scrollbars dark around a light page.
+
+*Why:* the figures are drawn as **plates on paper** — pale fills, hairline rules, traces that
+assume ink on white. On a dark ground `no_peak`'s pulse bands became heavy navy slabs instead
+of faint highlights, and both draughtsman model marks went muddy against the card. A second
+ground meant every figure had to work twice, and half of them did not. One ground, and every
+figure drawn for it.
+
+The dark values are recoverable from git (`git log -S'--c-kernel: #C79BF5'`) if this is ever
+revisited — but reviving them means re-drawing the figures, not restoring a palette.
 
 ## 2. Deploying
 

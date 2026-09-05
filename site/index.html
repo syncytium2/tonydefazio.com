@@ -51,6 +51,14 @@
    destination, so a card is recognisable before its title is read.
    ========================================================================== */
 :root {
+  /* LIGHT ONLY, DELIBERATELY. The figures are drawn as plates on paper: pale fills,
+     hairline rules, and traces that assume ink on white. A dark ground turned the
+     no_peak pulse bands into heavy navy slabs and left both model marks muddy against
+     the card, so the page states one ground and every figure is drawn for it. This
+     declaration is what stops the browser rendering form fields and scrollbars dark
+     around a light page. */
+  color-scheme: light;
+
   --bg:        #F3F2EF;
   --surface:   #FFFFFF;
   --surface-2: #EBE9E5;
@@ -86,62 +94,6 @@
 html { font-size: 17px; }
 @media (max-width: 760px) { html { font-size: 18.5px; } }
 @media (max-width: 380px) { html { font-size: 18px; } }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:        #141215;
-    --surface:   #1C191D;
-    --surface-2: #232025;
-    --ink:       #EDE9E6;
-    --ink-soft:  #A79EA1;
-    --ink-faint: #8D868A;
-    --rule:      #342F35;
-    --rule-soft: #262227;
-    --blood:     #E0808C;
-    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
-    --shadow-lift: 0 2px 6px rgba(0,0,0,.5), 0 22px 46px -22px rgba(0,0,0,.9);
-    --c-kernel: #C79BF5;
-    --c-nopeak: #8FBDEE;
-    --c-bugarach: #6BC6D4;
-    --c-murderboard: #E0808C;
-    --c-lookedright: #D2A64E;
-    --c-draughtsman: #7CC79B;
-
-    /* THE MODEL MARKS' OWN PALETTE, RESTATED FOR A DARK GROUND.
-       draughtsman emits every stage fill as var(--ds-fill-<kind>, <light hex>), so
-       these override cleanly and a browser with no dark mode still gets the hex.
-       Its rule is "hue is the family, value is the kind": the three convolutional
-       kinds share a green hue and must stay apart by value, which is what survives a
-       greyscale print. Verified rather than assumed -- within-family separation is
-       preserved and mostly improved here (kernel|conv 1.083:1 light -> 1.139:1 dark,
-       conv|stack 1.114 -> 1.194, pool|reduce 1.096 -> 1.087) and all three greens
-       stay green-dominant. Strokes keep their light values: they read as edges over
-       a dark fill and carry the kind distinction a second time. */
-    --ds-fill-input:  #2b2b28;  --ds-fill-output: #2b2b28;
-    --ds-fill-pool:   #1d2f3a;  --ds-fill-reduce: #16283a;
-    --ds-fill-kernel: #183026;  --ds-fill-conv:   #1e3a2c;
-    --ds-fill-stack:  #244734;  --ds-fill-concat: #2d2740;
-    --ds-fill-op:     #26262a;
-  }
-}
-:root[data-theme="dark"] {
-  --bg:        #141215;
-  --surface:   #1C191D;
-  --surface-2: #232025;
-  --ink:       #EDE9E6;
-  --ink-soft:  #A79EA1;
-  --ink-faint: #8D868A;
-  --rule:      #342F35;
-  --rule-soft: #262227;
-  --blood:     #E0808C;
-  --shadow:    0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
-  --shadow-lift: 0 2px 6px rgba(0,0,0,.5), 0 22px 46px -22px rgba(0,0,0,.9);
-  --c-kernel: #C79BF5;
-  --c-nopeak: #8FBDEE;
-  --c-bugarach: #6BC6D4;
-  --c-murderboard: #E0808C;
-  --c-lookedright: #D2A64E;
-}
 
 * { box-sizing: border-box; }
 
@@ -481,9 +433,7 @@ form.contact button {
 }
 form.contact button:hover { opacity: .88; }
 form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-:root[data-theme="dark"] form.contact button,
-:root:not([data-theme="light"]) form.contact button { color: #1B1719; }
-@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) form.contact button { color: #fff; } }
+form.contact button { color: #fff; }
 .formnote { font-family: var(--f-mono); font-size: .72rem; line-height: 1.6;
   color: var(--ink-faint); margin: .3rem 0 0; max-width: 44ch; }
 </style>
@@ -498,7 +448,7 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 
   <p class="meta">
     <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
-    <span><span class="lbl">Version</span> <span class="val">1.6.0</span></span>
+    <span><span class="lbl">Version</span> <span class="val">1.6.1</span></span>
     <span><span class="lbl">Version date</span> <time class="val" datetime="2026-09-04">2026-09-04</time></span>
   </p>
 

@@ -5,7 +5,7 @@
 | **Worker** | `tonydefazio-com` |
 | **Version ID** | `11997c97-b38f-49fd-8d81-a0d70bc3e88a` |
 | **Deployed** | 2026-09-04 |
-| **Site version** | 1.6.0 |
+| **Site version** | 1.6.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -73,9 +73,10 @@ deliberate: a licence can change upstream without this page becoming wrong.
 **1.4.0 inlined a figure into each of the four cards**, and the fifth arrived with the
 It Looked Right card on 2026-08-28. They are inline `<svg>` carrying
 geometry only; every stroke and fill comes from the `graphical abstracts` block in the page
-stylesheet, via `currentColor` and each card's `--c`. That is what gives both themes and
-five accent colours from one copy of each figure — and it is why the SVGs are useless to
-look at outside the page.
+stylesheet, via `currentColor` and each card's `--c`. That is what gives five accent
+colours from one copy of each figure — and it is why the SVGs are useless to look at
+outside the page. *(It also gave both themes until 2026-09-04, when dark mode was removed;
+see §1.6.1.)*
 
 Source, generator and a viewer live in `~/Dropbox/darkroom/tonydefazio/figures/`, not in
 this repo. `make_figures.py` regenerates them; `FIGURES.html` displays them with captions.
@@ -195,8 +196,10 @@ repair: it replaced a raster figure that illustrated the card's sentence with a 
 that does not. Both retired abstracts are still generated and show as UNUSED in the drift
 check, so either card reverts in one line.
 
-**The marks' stage fills are restatable.** draughtsman emits `var(--ds-fill-<kind>, <hex>)`,
-and this page restates the nine kinds for dark mode; light takes the hex fallback. Its rule
+**The marks' stage fills are restatable.** draughtsman emits `var(--ds-fill-<kind>, <hex>)`.
+This page restated the nine kinds for dark mode; since 1.6.1 there is no dark mode and the
+hex fallback is what renders. The mechanism is worth keeping in mind rather than deleting:
+it is how a host supplies its own ground. Its rule
 is *hue is the family, value is the kind* — the three convolutional kinds must stay apart by
 value so a figure survives a greyscale print. Verified here rather than assumed: within-family
 separation is preserved and mostly improved (kernel|conv 1.083:1 → 1.139:1, conv|stack 1.114 →
@@ -221,6 +224,29 @@ make them match the card accent; that discards a tested property.
   strip reads 1.6.0, `HTTP/2 200`.
 - The deploy gate held: `github.com/syncytium2/draughtsman` returned 200 to an anonymous
   request immediately before upload.
+
+## 1.6.1 — light only
+
+**Deployed 2026-09-04.** Removed the `prefers-color-scheme: dark` palette and the
+`[data-theme="dark"]` override from both pages, and declared `color-scheme: light` on
+`:root`.
+
+**Why: most of the figures were wrong on a dark ground, and that is not a palette problem.**
+They are drawn as plates on paper. `no_peak`'s pulse bands are pale blue highlights behind a
+trace; inverted they read as heavy navy slabs that look like the data. Both draughtsman model
+marks went muddy — their stage fills were restated dark and still sat too close to the card.
+Supporting a second ground meant every figure had to work twice, and half did not.
+
+**A defect the removal exposed.** With the dark block gone, `form.contact button` was still
+governed by `:root:not([data-theme="light"]) form.contact button { color: #1B1719 }`, which
+matches when no `data-theme` is set — i.e. always — and outranks a plain `form.contact
+button` on specificity. The Send button would have rendered dark text on the dark red button.
+Both `[data-theme]` rules are gone and the colour is stated once. **A conditional rule whose
+condition can never be false is not a conditional rule**, and deleting the branch that made
+it look conditional is what surfaced it.
+
+Verified after: page renders identically under `prefers-color-scheme: dark`, all six accents
+resolve, Send is `#fff` on `#8A1C2B` in both OS settings.
 
 ## Rolling back
 
