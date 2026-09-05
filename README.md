@@ -1,8 +1,9 @@
 # tonydefazio.com
 
 The apex landing page. It is a **router**: one screen that tells a visitor which of the
-six destinations is closest to their problem, and gets them there. Five are sites; the
-sixth, `draughtsman`, is a repository.
+six destination sites is closest to their problem, and gets them there. `draughtsman`
+became the sixth site on 2026-09-04, when its GitHub Pages certificate finally issued;
+before that its card pointed at the repository.
 
 **Live:** https://tonydefazio.com — *not yet deployed, see §2.*
 
@@ -28,8 +29,10 @@ site/sitemap.xml    one URL
 ```
 
 `index.html` inlines its own CSS and its favicon (a data-URI SVG). It loads **no fonts, runs
-no JavaScript, sets no cookies, and carries no analytics** — the same posture the five
-destination **sites** hold, which is also why the page renders identically from `file://`,
+no JavaScript, sets no cookies, and carries no analytics** — **five of the six destination
+sites hold the same posture**, and `draughtsman`'s is the exception: it requests a webfont
+stylesheet from `fonts.googleapis.com` (§3). That is also why this page renders identically
+from `file://`,
 air-gapped, or behind a captive portal.
 
 **One exception, and the page says so rather than burying it:** the contact form posts to
@@ -213,18 +216,21 @@ The page makes claims about the six projects. Each was checked against the sourc
 repository on 2026-08-25 — the fifth on 2026-08-31, the sixth on 2026-09-02/03 — not written
 from memory.
 
-⚠ **NARROWED 2026-09-04, and this is the sixth destination doing what the fifth did.** §1 used
-to say "the same posture the five destinations hold" about loading no fonts and making no
-external requests. **draughtsman's page does not hold it** — `draughtsman.tonydefazio.com`
-requests a stylesheet from `fonts.googleapis.com`, measured on 2026-09-04. The sentence now
-says *destination **sites***, which is true of the five it was written about. This is the same
-class as the 2026-08-31 narrowing of "each repository carries an instruction file": a sentence
-that named no number, held for the destinations it was written about, and went **false** rather
-than stale when one more arrived. `NEXT_SESSION.md` §4 predicted exactly this and it is the
-second instance.
-  - The page does not claim the no-requests posture *for* draughtsman anywhere, so nothing on
-    the shipped page is wrong. Whether draughtsman's own page should drop the webfont is that
-    repo's call, not this one's — but it is the only destination that phones out on load.
+⚠ **NARROWED TWICE ON 2026-09-04, and the second time undid the first.** §1 said the
+no-fonts/no-external-requests posture was "the same posture the five destinations hold". It was
+first narrowed to *destination **sites***, which excluded draughtsman because it was then a
+repository card. **Hours later draughtsman became a site**, its certificate issued, and the
+narrowing silently stopped excluding anything. §1 now states the exception by name rather than
+by category: five of six hold the posture, and `draughtsman.tonydefazio.com` requests a webfont
+stylesheet from `fonts.googleapis.com` — measured 2026-09-04, after the switch.
+  - **A category is a worse fence than a name.** "Destination sites" was true when written and
+    false a few hours later without a word of it changing, because the *world* moved across the
+    category rather than the sentence moving. `NEXT_SESSION.md` §4 warns about sentences that
+    name no number; this is the same failure one level up — a sentence that names no *instance*.
+  - draughtsman is the only destination that phones out on load. Whether its page should drop
+    the webfont is that repo's call; a `@font-face` with the file committed would get the same
+    typography with no request. Nothing on this page claims otherwise, so nothing shipped is
+    wrong.
 
 **In 1.2.0 each card was cut to a single sentence**, which retired most of those claims from
 the page. What the cards still assert:
@@ -270,6 +276,12 @@ the page. What the cards still assert:
     nine in `examples/gallery/` (mlp, lstm, lenet, dual, vae, transformer, whisper, unet, resnet)
     plus `examples/tube/` alongside it. Verified against `origin/main` on 2026-09-03, not against
     a local checkout.
+  - **The card links to `draughtsman.tonydefazio.com`, not the repository**, since 2026-09-04.
+    The subdomain served over HTTP for about ten hours with no certificate: GitHub had never
+    *requested* one, because the domain was set by committing a `CNAME` file rather than through
+    the Pages API, and `https_certificate` read `state: None` rather than `in_progress` or an
+    error. Re-setting the custom domain through the API fired the request and it issued within
+    seconds. The repository is still linked from the footer's source list.
     **This chip was `11` for about four hours and is the page's first worked example of the
     hazard it exists to document.** `cascade` was removed on 2026-09-03 (`3652d81`): CascadeTorch
     is GPL-3.0 against draughtsman's BSD-3 — latent while the repo is private, real on the day it

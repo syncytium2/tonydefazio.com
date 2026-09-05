@@ -152,10 +152,21 @@ already current.
 **What 1.6.0 is.** A sixth destination, `draughtsman` — readable architecture diagrams for
 PyTorch models — placed first on the shelf and carrying the `NEW` star, which it takes from
 It Looked Right on the honest grounds that it is newer (first commit 2026-09-01 against
-2026-08-28). It links to `github.com/syncytium2/draughtsman` rather than a subdomain:
-`draughtsman.tonydefazio.com` exists and serves over HTTP, but GitHub has never requested
-its certificate (`https_certificate: state=None`), so HTTPS does not answer. Every other
-card links `https://`. Re-point the card when that resolves.
+2026-08-28). It linked to `github.com/syncytium2/draughtsman` at first, because
+`draughtsman.tonydefazio.com` served over HTTP with no certificate. **Resolved 2026-09-04
+and the card now points at the site.** GitHub had never *requested* the certificate — the
+domain was set by committing a `CNAME` file rather than through the Pages API, so
+`https_certificate` read `state: None`, not `in_progress` and not an error, for about ten
+hours. Re-setting the custom domain through the API fired the request and it issued within
+seconds:
+
+```bash
+gh api -X PUT repos/<owner>/<repo>/pages -f cname=''
+gh api -X PUT repos/<owner>/<repo>/pages -f cname='<host>'
+```
+
+**That distinction is the useful part**: `state: None` means never asked, and waiting longer
+would never have fixed it. `in_progress` is the one you wait on.
 
 **Also in 1.6.0: a `Born` stamp on every card**, being that repository's first commit,
 emitted as `<time datetime=…>`. Born only — no version, no revised date. Both of those move
