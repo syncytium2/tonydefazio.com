@@ -427,6 +427,19 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   PDF and fails if any of the fifteen names survives. It also fails if a name matches zero or
   more than one row, or if the rows stop being contiguous — so a regenerated CV that reorders
   entries stops the build instead of silently publishing a name.
+- **The header line is load-bearing outside this repo. Do not reword it casually.**
+  `td-resume`'s `claims.yml` registers a `cv.published` claim whose derive curls this URL for
+  200 *and* greps the rendered text for `Public copy: student names are withheld`. That is
+  deliberate: if the un-redacted CV is ever served in its place, their checker fails rather
+  than a reader being the one to notice. `make_public_cv.py` fails the build if the line goes
+  missing, so the coupling is enforced from both ends.
+- **The leak check normalises text before searching, and that is not fussiness.** `pdftotext`
+  breaks lines mid-token, so a name like `Jane Q.\nDoe` or `Mary-\nAnne Roe` would read as *absent*
+  to a naive substring search while sitting in plain sight on the page — a false pass in the
+  one direction that matters. The script rejoins hyphenated breaks, collapses whitespace, and
+  checks the document XML as well as the extracted text. (The artifact was found by
+  td-resume-08 on a chapter DOI, which `pdftotext` renders as `B978-0080450469.00517-9`
+  because the hyphen lands on a line break. The DOI in the file is correct.)
 - **⚠ IT WILL GO STALE SILENTLY, AND NOTHING HERE WILL NOTICE.** The private source is
   `defazio_cv_2026a` plus four hand-applied corrections: degree fields (BS Physics, PhD Biology),
   PhD advisor (John P. Walsh), a duplicated book chapter removed, and the Physiol 578 lecture

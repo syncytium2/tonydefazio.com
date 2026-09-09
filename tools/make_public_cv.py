@@ -131,14 +131,38 @@ def main(src, outdir):
                     '--convert-to', 'pdf', '--outdir', outdir, docx], check=True)
 
     pdf = os.path.join(outdir, 'cv_public.pdf')
-    txt = subprocess.run(['pdftotext', '-layout', pdf, '-'],
+    raw = subprocess.run(['pdftotext', '-layout', pdf, '-'],
                          capture_output=True, text=True).stdout
-    leaked = [n for n in GRAD + UNDER + COMM if n in txt]
-    if leaked: raise SystemExit(f"FAIL: names still in rendered PDF: {leaked}")
+
+    # pdftotext breaks lines mid-token, so a name can be split by a newline (or by a
+    # hyphen + newline) and a naive substring search reports it ABSENT while it is on
+    # the page. That is the dangerous direction for a leak check, so normalise first:
+    # rejoin hyphenated breaks, then collapse all whitespace to single spaces.
+    # Credit to td-resume-08, who hit the same artifact on a chapter DOI.
+    def norm(t):
+        return re.sub(r'\s+', ' ', re.sub(r'-\s*\n\s*', '-', t.replace('\u00ad', '')))
+    txt = norm(raw)
+
+    # Belt and braces: also check the XML the PDF was rendered from. Text extraction can
+    # drop or mangle glyphs; the XML is what the document actually says.
+    with zipfile.ZipFile(docx) as z:
+        xml_text = norm("".join(re.findall(
+            r'<w:t[^>]*>([^<]*)</w:t>', z.read('word/document.xml').decode('utf-8'))))
+
+    leaked = sorted({n for n in GRAD + UNDER + COMM
+                     if norm(n) in txt or norm(n) in xml_text})
+    if leaked: raise SystemExit(f"FAIL: names still present: {leaked}")
     for cite in COAUTHOR_CITATIONS:
-        if cite not in txt:
+        if norm(cite) not in txt:
             raise SystemExit(f"FAIL: co-author citation {cite!r} was lost -- it must survive.")
-    print(f"OK  {pdf}  (no student names; co-author citations intact)")
+
+    # The published header line is load-bearing OUTSIDE this repo: td-resume's claims.yml
+    # greps the served PDF for it, so that its checker fails rather than a reader finding
+    # out if the un-redacted CV is ever served in its place. Changing NOTE breaks that.
+    if "Public copy: student names are withheld" not in txt:
+        raise SystemExit("FAIL: the public-copy header line is missing. td-resume's "
+                         "cv.published claim greps for it -- do not reword it lightly.")
+    print(f"OK  {pdf}  (no student names; co-author citations intact; header line present)")
     shutil.rmtree(work)
 
 if __name__ == '__main__':

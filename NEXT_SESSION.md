@@ -49,6 +49,10 @@ goes missing. **Do not write down here which co-authors were students** — that
 relationship being redacted, and this repository is public. The names live in
 `td-resume/cv/public_cv_redactions.json`, which is private; the script will not run without it.
 
+**Do not reword the `Public copy: student names are withheld` header line.** `td-resume`'s
+`claims.yml` greps the served PDF for it, so serving the un-redacted CV in its place fails their
+checker instead of surprising a reader. Both ends enforce it.
+
 **⚠ It will go stale silently.** The four corrections in the private CV live in Symplectic
 Elements records, not in the document. The next Elements-generated CV has all four defects back.
 README §3 has the record ids.
