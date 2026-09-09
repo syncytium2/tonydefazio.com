@@ -2,7 +2,8 @@
   // Cloudflare Workers config — assets-only, the same shape colonel_kernel and
   // bugarach use: no server script, Cloudflare serves ./site directly.
   //
-  // There is no build step. ./site is three static files, committed as-is, so
+  // There is no build step. ./site is committed as-is -- index.html, thanks.html,
+  // robots.txt, sitemap.xml and cv.pdf -- so
   // `wrangler deploy` uploads exactly what is in the repository and there is no
   // generated artifact that can drift from source.
   "name": "tonydefazio-com",
