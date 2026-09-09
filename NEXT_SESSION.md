@@ -1,152 +1,143 @@
 # Next session
 
-Handoff written **2026-09-02**. Everything below was verified against the live site and the
-repo on that date, not recalled. Re-verify before trusting any of it — this file is exactly
-the kind of document §3 of the README warns about.
+Handoff written **2026-09-09**, replacing one written 2026-09-02 that had gone stale at 1.5.1
+while the site moved to 1.7.0. Everything below was verified against the live site and the repo
+on that date, not recalled. Re-verify before trusting any of it — this file is exactly the kind
+of document §3 of the README warns about, and it has already been wrong once.
 
-## 1. Status: the site is up to date. The GitHub repo is not.
+## 1. Status
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **1.5.1**, deployed 2026-08-31 |
-| Cloudflare version ID | `82289c9e-f852-4f7c-a4f7-809789a02461` — matches `DEPLOYED.md` |
-| Served vs `site/` | all four files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`) |
-| Working tree | clean at `2473bc6` |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.5.1 |
+| Live | https://tonydefazio.com — **1.7.0**, deployed 2026-09-09 |
+| Cloudflare version ID | `c0187e47-8151-43dc-bd66-9afdade72516` — matches `DEPLOYED.md` |
+| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`) |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.7.0 |
 
-**The one thing outstanding: `main` is 4 commits ahead of `origin/main`.** The public repo's
-last push was 2026-08-28, so all of the 2026-08-31 work is local only:
-
-```
-2473bc6  Record the 1.5.1 version ID
-7218d77  Proud action potentials, drawn the way the 1996 paper draws them
-0037162  Record the 1.5.0 deploy, and retire the one-row wordmark rule
-de089fc  Everything else that was still counting to four
-```
-
-`git push origin main` fixes it. Ask first — the repo is **public**.
-
-Also stale: `origin/claude/website-dev-status-flags-g3ihxd`, two commits branched from
-`5be73c8` on 2026-08-25 ("Flag all four projects as under development", "Version stamp").
-`main` is 9 commits ahead of it and the version-stamp idea landed on main independently.
-It is superseded; delete it or rebase it, but do not merge it as-is — it still says *four*
-projects.
+**Outstanding: `main` is ahead of `origin/main`.** The repo is **public** — ask before pushing.
 
 ## 2. What this is
 
-One static page, four files in `site/`, **no build step**, deployed to Cloudflare Workers.
-It routes to five destinations:
-
-| Card | Subdomain | What it is |
-|---|---|---|
-| It Looked Right | `lookedright` | AI-coding short course — **newest**, carries the `NEW` star badge |
-| Colonel Kernel | `kernel` | calcium-imaging kernel recovery |
-| no_peak | `nopeak` | CLUSTER pulse detection |
-| bugarach | `bugarach` | coordinated-event detection |
-| The Murderboard | `murderboard` | adversarial document review |
-
-Page is 46,400 bytes, **14.4 KB gzipped on the wire**. Five inline `<svg>` graphical
-abstracts account for most of the weight.
+One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to six
+destinations (draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
+and, since 1.7.0, serves Tony's CV.
 
 ```bash
-npm run serve    # localhost:5099
+npm run serve    # localhost:5099  -- SEE THE WARNING IN §7, THIS PORT LIES
 npm run dry      # wrangler dry-run
 npm run deploy   # wrangler deploy
 ```
 
-After any deploy, run the §2 edge checks in the README. They are not ceremony — `robots.txt`
-being byte-identical to source is the check that caught a real host-injection failure on
-`bugarach`, and the `beacon.min.js` check is what keeps the no-analytics claim true *as
-served* rather than merely as authored.
+After any deploy, run the §2 edge checks in the README.
 
-## 3. Rules this page is built on. Do not quietly break them.
+## 3. The CV is a redacted copy, and that is the whole point
 
-These look like style. They are the product.
+`site/cv.pdf` is **not** the CV Tony sends people. `tools/make_public_cv.py` builds it from the
+private one in `td-resume/cv/`, removing 15 named students — 7 graduate mentees, 6
+undergraduates, 2 dissertation-committee members — and replacing each block with a count and its
+institutions.
 
-- **No network requests.** No fonts, no scripts, no cookies, no analytics. The page makes
-  exactly one request, and only if the contact form is sent. Every asset is inline. Adding a
-  CDN font or an analytics snippet falsifies a claim in the colophon.
-- **Nothing marks the coordinated events** in the bugarach figure. Vertical bands (`.ev`) and
-  recoloured ticks (`.tk.hi`) both existed and were both deliberately removed. Every tick is
-  drawn identically; the events are found by the eye and by the rate trace. Re-adding a
-  highlight makes the figure colour in the answer the detector is supposed to earn. Neither
-  rule remains in the stylesheet.
-- **The kernel panel's spike trace is on an expanded time base** (currently 40 ms across).
-  On the ΔF/F₀ axis the two spikes are 500 ms apart and each would be a fraction of a pixel.
-  The `aria-label` says so. Keep that sentence if the figure changes.
-- **Figure data is simulated, on purpose.** Nothing on this public page comes from a real
-  recording. Real LH and raster data sit in `~/Dropbox/darkroom/{no_peak,bugarach}/`. If that
-  is ever revisited, the page owes the reader a provenance statement.
-- **README §3 is a claim ledger.** Every factual assertion on the page is listed there with
-  its source. Add a claim, add a row. Change a destination, re-read the whole section.
+**If you regenerate or replace that file, run the script. Do not copy the private CV in.**
+The script fails loudly rather than quietly publishing a name: it fails if any of the 15 names
+survives into the rendered PDF, if a name matches zero or more than one row, or if the rows stop
+being contiguous. A regenerated CV that reorders entries stops the build.
 
-## 4. The trap that has already bitten twice
+**Some of those people stay in the document on purpose.** Where a student is also a co-author
+in the publication list, the citation stays: a co-authorship is a published fact they hold
+credit for, and stripping it would falsify the citation. The script fails if a guarded citation
+goes missing. **Do not write down here which co-authors were students** — that is the
+relationship being redacted, and this repository is public. The names live in
+`td-resume/cv/public_cv_redactions.json`, which is private; the script will not run without it.
 
-**Adding a destination falsifies sentences that name no number.** The fifth card landed
-2026-08-28 and fixed three counting sites; three more were still wrong three days later,
-including the wordmark — the largest text on the page said "Three instruments and one
-murderboard" above five cards. Grepping for "four" is not enough. `DEPLOYED.md` §1.5.0 has
-the full account, including a claim that went *false* rather than stale: "each repository
-carries an instruction file written for an agent" held for four repos and not the fifth.
+**⚠ It will go stale silently.** The four corrections in the private CV live in Symplectic
+Elements records, not in the document. The next Elements-generated CV has all four defects back.
+README §3 has the record ids.
 
-If a sixth destination lands, budget real time for the recount and re-read §3 line by line.
+## 4. Rules this page is built on. Do not quietly break them.
 
-## 5. Where the figures live
+- **No network requests on load.** No fonts, no scripts, no cookies, no analytics. The page makes
+  exactly one request, and only if the contact form is sent. A PDF fetched on click is a
+  navigation, not a subresource, so the CV link does not touch this claim.
+- **Nothing marks the coordinated events** in the bugarach figure. Vertical bands and recoloured
+  ticks both existed and were both deliberately removed.
+- **The kernel panel's spike trace is on an expanded time base.** The `aria-label` says so.
+- **Figure data is simulated, on purpose.** Nothing on the public page comes from a real recording.
+- **README §3 is a claim ledger.** Add a claim, add a row.
+- **The page is light only.** The figures are plates on paper; a second ground meant every figure
+  had to work twice and half of them did not.
 
-Source, generator and viewer are in **`~/Dropbox/darkroom/tonydefazio/figures/`**, not in
-this repo:
+## 5. The trap that has now bitten four times
 
+**Adding a thing falsifies sentences that name no number, and grepping for the old number does
+not find them.**
+
+1. The fifth destination left "Three instruments and one murderboard" over five cards for 3 days.
+2. The sixth left several more wrong.
+3. A claim narrowed to "destination **sites**" silently stopped excluding draughtsman the moment
+   draughtsman became a site. **A category is a worse fence than a name.**
+4. **1.7.0 found two that had been wrong for a while**: `wrangler.jsonc` said "three static files"
+   when there were four, and README §2 claimed "fourteen distinct outbound URLs" when there were
+   sixteen — draughtsman's card moved to its own site and the number moved underneath the prose.
+
+**Both are now fixed by removing the count rather than correcting it.** README §2 gives the
+command instead of a number; `wrangler.jsonc` and README §1 name the files instead of counting
+them. Prefer that shape. A number nobody recomputes is what this page keeps getting caught by.
+
+## 6. Where the figures live
+
+Source, generator and viewer are in the darkroom, **not in this repo**. Resolve the path with
+`python3 ~/Developer/armory/tools/show.py --where` rather than typing it — it contains a personal
+name and must never be spelled in a committed file.
+
+The `ga-*.svg` files carry no stroke or fill; every colour comes from `ga.css` via `currentColor`.
+Opening one directly shows a few words and nothing else. That is not a broken file.
+
+**The gap:** the figures in `site/index.html` are hand-inlined. Run the drift check before every
+deploy:
+
+```bash
+ROOT=$(python3 ~/Developer/armory/tools/show.py --where | sed 's#/[^/]*$##')
+python3 ~/Developer/armory/tools/inline_asset_drift.py \
+  --generated "$ROOT/tonydefazio/figures" --into site/index.html \
+  --pattern '<svg[^>]*class="(?:ga|ds) (?P<id>(?:ga|ds)-[a-z0-9-]+)"[\s\S]*?</svg>'
 ```
-FIGURES.html      the viewer — open this, works on phone and laptop
-HOW-TO-VIEW.md    read first if anything looks blank
-make_figures.py   regenerates the SVGs from computed data
-ga.css            the stylesheet the SVGs require
-ga-*.svg          geometry only — blank on their own, by design
-```
 
-The `ga-*.svg` files carry **no stroke or fill**. Every colour comes from the `ga.css` rules
-via `currentColor` and each card's `--c`, which is what gives both themes and five accent
-colours from one copy of each figure. Opening one directly shows a few words of text and
-nothing else. That is not a broken file.
-
-**The gap:** the figures in `site/index.html` are **hand-inlined**. Nothing links the page to
-the Dropbox source, and nothing detects divergence. They matched on 2026-09-02. Editing a
-figure means regenerating there and pasting back — and updating `ga.css` in *both* places.
-
-## 6. Candidate work
-
-Ordered by value, with what is already known.
-
-1. **Push to GitHub** (§1). One command, four commits, zero risk beyond publicity.
-2. **Inbound links** — README §4 calls this the single biggest reason `kernel` was never
-   indexed. The page fixed the internal half; the apex still needs a link from somewhere real
-   (a UMich page, a GitHub profile README) and `sitemap.xml` submitted to Google and Bing.
-   This is the highest-value item on the list and it is not a code change.
-3. **Destinations do not link back.** A parent link in each site's footer closes the loop —
-   five repos, five deploys: `short-course`, `colonel_kernel`, `no_peak`, `bugarach`,
-   `murderboard`.
-4. **Verify or drop `19 worked failures`.** The one unverified number on the page, on the
-   It Looked Right card. Recorded as unverified in README §3 rather than quietly dropped,
-   which is the right posture — but it should get checked.
-5. **A staleness check.** `bugarach` has `site-staleness.yml`; it is the model. Nothing here
-   detects a claim going stale, and §4 above shows that is the failure mode this page
-   actually has. Could also diff the inlined figures against the Dropbox source.
-6. **Page weight.** 46 KB / 14.4 KB gzipped, roughly doubled by the figures. Coarser trace
-   sampling in `make_figures.py` recovers ~6 KB with no visible difference at card size.
-7. **Wide single-column figures.** Between roughly 700–1030 px the cards are one column and
-   wide, so a figure renders far larger than the desktop thumbnail. Capping the figure width
-   and left-aligning would hold it at abstract scale.
-8. **`is-new` is a dead class.** Applied to the It Looked Right card, referenced nowhere in
-   the CSS — the `NEW` badge works entirely through `.new-star` plus `.card{position}`.
-   Harmless; either style it or drop it.
+Expect exactly three known rows: `ga-l` ORPHAN, `ga-b`/`ga-d` UNUSED. **A new row is a
+regression; those three are not.** `tools/make_public_cv.py` exists partly because of this gap —
+the CV's generator is in the repo so the same weakness is not repeated for it.
 
 ## 7. Small things worth knowing
 
-- `DEPLOYED.md` dates are **local time**. The 1.4.0 deploy reads 2026-08-26 while
-  Cloudflare's UTC log says `2026-08-27T00:00:08Z`. Both are right. Do not "fix" it.
-- `Preview.app` cannot open SVG at all. Use Quick Look or Safari. `qlmanage -t` crops
-  anything far from square — never judge figure framing from its thumbnail.
-- The Dropbox MCP server **cannot overwrite a file**; delete then create. It also takes text
-  only — no binary, so no PNG exports land there.
-- Rolling back is `npx wrangler delete --name tonydefazio-com`, which removes the Worker
-  **and both DNS records**. See `DEPLOYED.md`.
+- **⚠ A stale `python3 -m http.server` has been squatting on port 5099 since 2026-08-28** with no
+  `--directory` flag, so it serves whatever directory it was started in. `npm run serve` cannot
+  bind, dies silently, and `curl localhost:5099` hits the squatter. **This makes the README's
+  "look at it before you upload" check return results from the wrong tree.** It caused a false
+  404 on `/cv.pdf` during 1.7.0. `kill 75871` — or use any other port. Left running because it is
+  not this session's process to kill.
+- **`/index.html` 307s to `/`**, exactly as `/thanks.html` 307s to `/thanks`. Byte-comparing the
+  served page needs `curl -sL`, or the check reports DIFFERS against a redirect body and looks
+  briefly like the host-injection failure bugarach actually hit.
+- `DEPLOYED.md` dates are **local time**. Do not "fix" the offset against Cloudflare's UTC log.
+- `Preview.app` cannot open SVG. Use Quick Look or Safari. `qlmanage -t` crops anything far from
+  square — never judge figure framing from its thumbnail.
+- The Dropbox MCP server **cannot overwrite a file**; delete then create. Text only, no binary.
+- Rolling back is `npx wrangler delete --name tonydefazio-com`, which removes the Worker **and
+  both DNS records**. See `DEPLOYED.md`.
+
+## 8. Candidate work
+
+1. **Push to GitHub** (§1). The repo is public; ask first.
+2. **Inbound links** — README §4 calls this the single biggest reason `kernel` was never indexed.
+   The apex needs a link from somewhere real and `sitemap.xml` submitted to Google and Bing. Now
+   that a CV is served, a link from a U-M page is worth more than it was. **Highest-value item on
+   this list, and not a code change.**
+3. **`sitemap.xml` does not list `/cv.pdf`.** Deliberate — the ask was a link people can find, and
+   the crawler question was answered separately. Adding it is one line if Tony wants it indexed
+   harder.
+4. **Destinations do not link back.** A parent link in each site's footer closes the loop.
+5. **Verify or drop `19 worked failures`** — the one unverified number on the page.
+6. **A staleness check.** Nothing detects a claim going stale, and §5 shows that is this page's
+   actual failure mode. The CV's Elements divergence (§3) has no detector either.
+7. **Page weight.** `site/cv.pdf` is 524 KB, ~17x the rest of the site combined. It is a
+   navigation, not a page load, so it costs nothing until clicked.
+8. **`is-new` is a dead class** on the It Looked Right card. Either style it or drop it.

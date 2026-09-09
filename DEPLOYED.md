@@ -3,11 +3,47 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `ed34ab8e-d9d7-48e3-892a-338ab091d950` |
-| **Deployed** | 2026-09-04 |
-| **Site version** | 1.6.1 |
+| **Version ID** | `c0187e47-8151-43dc-bd66-9afdade72516` |
+| **Deployed** | 2026-09-09 |
+| **Site version** | 1.7.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
+
+## 1.7.0 — 2026-09-09 — the CV, with fifteen students taken out of it
+
+Version ID `c0187e47-8151-43dc-bd66-9afdade72516`. Two assets uploaded: `/index.html` and
+`/cv.pdf`. **`site/` now holds a binary**, which it never has before.
+
+The masthead gained **CV (PDF)** → `/cv.pdf`, beside GitHub / ORCID / Publications.
+
+**What is served is not the CV Tony sends people.** The file td-resume produced named 7
+graduate mentees, 6 undergraduates and 2 dissertation-committee students, most from
+2009-2011. `robots.txt` invites every crawler, so publishing it as-is would have made former
+students searchable against a document they never agreed to appear in — and one carried a
+health-adjacent internship detail. Each block is now a count and its institutions, and the
+page-1 header says so and gives `tony@tonydefazio.com` for the real one. Built by
+`tools/make_public_cv.py`; see README §3 for what the link asserts.
+
+**⚠ THIS FILE WILL GO STALE AND NOTHING HERE WILL NOTICE.** The four corrections in the
+private CV (degree fields, PhD advisor, a duplicated chapter, the Physiol 578 lecture count)
+live in Symplectic Elements records, not in the document. The next CV generated from Elements
+has all four defects back and disagrees with the published copy on a date nobody picks. The
+durable fix is in Elements. Whoever replaces `site/cv.pdf` must re-run `make_public_cv.py`,
+which fails loudly rather than quietly publishing a name.
+
+### Verified at the edge, 2026-09-09
+
+- `/cv.pdf` 200, `content-type: application/pdf`, **byte-identical to `site/cv.pdf`**
+- **Zero of the fifteen student names** in the PDF text pulled back off the live URL — checked
+  against the served file, not the local one
+- The `Full CV on request — tony@tonydefazio.com` header line is present in the live file
+- `/`, `/robots.txt`, `/sitemap.xml`, `/thanks`, `/cv.pdf` all byte-identical to source
+- masthead reads 1.7.0; 0 matches for `beacon.min.js`; 0 external subresources
+
+> **`/index.html` 307s to `/`, exactly as `/thanks.html` 307s to `/thanks`.** Byte-comparing
+> the served page needs `curl -sL` or the check reports DIFFERS against a redirect body. This
+> bit during the 1.7.0 edge checks and looked briefly like a host-injection failure. It is the
+> assets Worker's default `auto-trailing-slash`, not a fault.
 
 ## Live
 
