@@ -433,6 +433,16 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   deliberate: if the un-redacted CV is ever served in its place, their checker fails rather
   than a reader being the one to notice. `make_public_cv.py` fails the build if the line goes
   missing, so the coupling is enforced from both ends.
+- **The leak check is proved able to fail on every run.** Before trusting `0 of 15 found` in
+  the output, the script confirms the same matcher finds **15 of 15 in the unredacted source**;
+  if it cannot, it refuses to publish, because a clean result from a probe that cannot ring is
+  decoration rather than evidence. Verified by blinding the probe deliberately — it refuses.
+- **Do not "improve" this by searching the PDF's decompressed content streams.** It looks like
+  a stronger structural check than reading extracted text and it is the opposite: PDF text is
+  drawn through subset fonts with custom glyph encodings, so the literal string is not in the
+  stream at all. It finds nothing, reports no leaks, and *cannot fail*. td-resume-08 tried it
+  and caught it with a control — `DeFazio`, certainly in the document, was not found. The XML
+  check is sound only because `.docx` stores literal text in `<w:t>`; that does not transfer.
 - **The leak check normalises text before searching, and that is not fussiness.** `pdftotext`
   breaks lines mid-token, so a name like `Jane Q.\nDoe` or `Mary-\nAnne Roe` would read as *absent*
   to a naive substring search while sitting in plain sight on the page — a false pass in the

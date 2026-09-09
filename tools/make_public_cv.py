@@ -21,6 +21,15 @@ the person from the document.
 Rows are matched by name, and the script fails loudly if a name is missing --
 so a regenerated CV that renumbers or reorders rows stops the build instead of
 silently publishing a name.
+
+DO NOT "improve" the leak check by searching the PDF's decompressed content
+streams. It looks like a stronger structural check than reading extracted text
+and it is the opposite: PDF text is drawn through subset fonts with custom glyph
+encodings, so the literal string is not in the stream at all. Searching it finds
+nothing, reports no leaks, and cannot fail -- a probe dressed as a second opinion.
+td-resume-08 tried it and caught it with a control: "DeFazio", certainly in the
+document, was not found. The XML check below is sound because .docx stores literal
+text in <w:t>; that property does not transfer to PDF.
 """
 import re, sys, io, os, json, shutil, subprocess, zipfile, tempfile
 
@@ -149,8 +158,24 @@ def main(src, outdir):
         xml_text = norm("".join(re.findall(
             r'<w:t[^>]*>([^<]*)</w:t>', z.read('word/document.xml').decode('utf-8'))))
 
-    leaked = sorted({n for n in GRAD + UNDER + COMM
-                     if norm(n) in txt or norm(n) in xml_text})
+    # POSITIVE CONTROL. A leak check that cannot fail is not evidence, it is decoration.
+    # Before trusting "0 of 15 found" in the output, prove the matcher finds all 15 in the
+    # UNREDACTED source. If it does not, the probe is broken and its clean result on the
+    # output means nothing -- so fail the build rather than publish on a silent no-op.
+    # (Prompted by td-resume-08, who ran the same control on their own verification and
+    # found they had reported a clean result from a method that could not have rung.)
+    with zipfile.ZipFile(src) as z:
+        src_text = norm("".join(re.findall(
+            r'<w:t[^>]*>([^<]*)</w:t>', z.read('word/document.xml').decode('utf-8'))))
+    names = GRAD + UNDER + COMM
+    missed = sorted({n for n in names if norm(n) not in src_text})
+    if missed:
+        raise SystemExit(
+            f"FAIL: the leak check cannot see {len(missed)} of {len(names)} names in the "
+            f"UNREDACTED source: {missed}. The probe is broken, so a clean result on the "
+            "output would prove nothing. Fix the matcher before publishing.")
+
+    leaked = sorted({n for n in names if norm(n) in txt or norm(n) in xml_text})
     if leaked: raise SystemExit(f"FAIL: names still present: {leaked}")
     for cite in COAUTHOR_CITATIONS:
         if norm(cite) not in txt:
@@ -159,10 +184,14 @@ def main(src, outdir):
     # The published header line is load-bearing OUTSIDE this repo: td-resume's claims.yml
     # greps the served PDF for it, so that its checker fails rather than a reader finding
     # out if the un-redacted CV is ever served in its place. Changing NOTE breaks that.
-    if "Public copy: student names are withheld" not in txt:
+    if norm("Public copy: student names are withheld") not in txt:
         raise SystemExit("FAIL: the public-copy header line is missing. td-resume's "
                          "cv.published claim greps for it -- do not reword it lightly.")
-    print(f"OK  {pdf}  (no student names; co-author citations intact; header line present)")
+    print(f"OK  {pdf}")
+    print(f"    positive control: {len(names)}/{len(names)} names found in unredacted source "
+          "-- the check can fail")
+    print(f"    published copy:   0/{len(names)} names found; co-author citations intact; "
+          "header line present")
     shutil.rmtree(work)
 
 if __name__ == '__main__':
