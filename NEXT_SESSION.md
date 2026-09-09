@@ -57,6 +57,32 @@ checker instead of surprising a reader. Both ends enforce it.
 Elements records, not in the document. The next Elements-generated CV has all four defects back.
 README §3 has the record ids.
 
+## 3a. OPEN, AND AWAITING TONY: the U-M address is still on page one
+
+**The published CV carries both addresses.** Verified in the bytes served from the edge on
+2026-09-09, not in the local file:
+
+```
+                    Tony DeFazio
+              Associate Research Scientist
+                  defazio@umich.edu                      <- the original Elements header
+Public copy: student names are withheld ... tony@tonydefazio.com   <- the line added beside it
+```
+
+The name redaction is sound and independently confirmed — all fifteen absent, with a positive
+control that fires. **The address was not part of it.** The handoff from `tonydefazio-com-a0`
+described the change as "a header line giving `tony@tonydefazio.com` for the real one", which
+reads as a replacement; it is an addition.
+
+**This may be exactly right.** `defazio@umich.edu` is already public through the U-M directory
+and sixty-odd papers, so an argument that publishing it costs nothing is reasonable. But the
+concern put to Tony before publication was specifically *"a deliberate publication of an address
+to scrapers"*, and the file that shipped does that. **He has not been told the address stayed.**
+Ask him; do not quietly remove it either, since it may be deliberate.
+
+If it comes out, it is a `tools/make_public_cv.py` change plus a re-render, a version bump and a
+deploy — not a hand-edit of the PDF.
+
 ## 4. Rules this page is built on. Do not quietly break them.
 
 - **No network requests on load.** No fonts, no scripts, no cookies, no analytics. The page makes
