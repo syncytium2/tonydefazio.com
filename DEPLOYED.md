@@ -284,6 +284,32 @@ it look conditional is what surfaced it.
 Verified after: page renders identically under `prefers-color-scheme: dark`, all six accents
 resolve, Send is `#fff` on `#8A1C2B` in both OS settings.
 
+## The old byline shipped inside a comment
+
+**Deployed 2026-09-10**, version ID `957f99da-8676-4013-b7e2-e70a55b64423`. One file
+uploaded: `/index.html`. No rendered output changed — the edit is to a CSS comment.
+
+The byline was rewritten on 2026-09-04 (`f2ed3b1`) and the live page has read
+"Neuroendocrinologist by training..." ever since. That commit left a comment above `.whois`
+quoting the superseded line, `Neuroendocrinology & calcium imaging`, verbatim — and comments
+in `site/index.html` ship, because there is no build step and `wrangler deploy` uploads the
+file as committed.
+
+**Why it mattered.** A reviewer audited the site by reading its source, found the string,
+and reported the byline as still wrong. They also reported the draughtsman card as linking
+to GitHub and the subdomain as missing from the footer; both had been fixed the same day in
+`19c28a3`. Two of the three claims were simply stale, but the byline claim had real evidence
+sitting in the delivered page, which is what made the whole report credible.
+
+**A comment that narrates what the code replaced becomes a claim about the present.** This
+one explained a decision the surrounding rule already makes plain, and the cost of keeping it
+was a superseded description of Tony readable by anyone who viewed source. The reasoning is
+kept; the quotation is gone.
+
+Verified after: `curl https://tonydefazio.com/` contains zero occurrences of the old string,
+the `.whois` byline renders unchanged, and `draughtsman.tonydefazio.com` still appears three
+times — the card link, the footer's "The sites" entry, and the `WebSite` schema block.
+
 ## Rolling back
 
 ```bash
