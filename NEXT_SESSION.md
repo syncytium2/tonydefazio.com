@@ -57,6 +57,19 @@ checker instead of surprising a reader. Both ends enforce it.
 Elements records, not in the document. The next Elements-generated CV has all four defects back.
 README §3 has the record ids.
 
+**Two numbers queried on 2026-09-10, both settled against the served PDF.** Check claims like
+these against `site/cv.pdf` itself rather than against a handoff that paraphrases it.
+
+- **Book chapters: 3, not 4.** "Books and Chapters" in the served PDF lists three entries —
+  Dudek *et al.* 2002, Perez-Pinzon *et al.* 2009, Hughes *et al.* 2014. Four was a handoff
+  error, and it is the duplicate described in README §3: Elements records `id=2560231`
+  (deleted) and `id=396247` (kept) were the same chapter.
+- **Physiol 578 lectures: not a contradiction.** The CV states both figures in one sentence —
+  "Lectures range from 9-14 x 50 minute lectures per semester; academic year 2026-27 is 18 x
+  50 minute lectures (15 fall, 3 spring)". 9–14 is the ordinary per-*semester* range; 18 is
+  the 2026-27 *academic-year* total. Anything quoting "18 lectures per academic year" against
+  "9–14 per semester" is comparing two different units.
+
 ## 3a. OPEN, AND AWAITING TONY: the U-M address is still on page one
 
 **The published CV carries both addresses.** Verified in the bytes served from the edge on
@@ -96,10 +109,11 @@ deploy — not a hand-edit of the PDF.
 - **The page is light only.** The figures are plates on paper; a second ground meant every figure
   had to work twice and half of them did not.
 
-## 5. The trap that has now bitten four times
+## 5. The trap that has now bitten five times
 
-**Adding a thing falsifies sentences that name no number, and grepping for the old number does
-not find them.**
+**A claim goes stale and nothing says so. Grepping for the old number does not find the
+sentences that name no number, and re-reading the page does not find a copy that is not the
+page.**
 
 1. The fifth destination left "Three instruments and one murderboard" over five cards for 3 days.
 2. The sixth left several more wrong.
@@ -108,10 +122,27 @@ not find them.**
 4. **1.7.0 found two that had been wrong for a while**: `wrangler.jsonc` said "three static files"
    when there were four, and README §2 claimed "fourteen distinct outbound URLs" when there were
    sixteen — draughtsman's card moved to its own site and the number moved underneath the prose.
+   Both are now fixed by *removing* the count rather than correcting it: README §2 gives the
+   command instead of a number, and `wrangler.jsonc` and README §1 name the files instead of
+   counting them. Prefer that shape. A number nobody recomputes is what this page keeps getting
+   caught by.
+5. **The stale copy can be the reader's, not the repo's.** On 2026-09-10 a reviewer reported
+   three live-site defects — the old byline, the draughtsman card pointing at GitHub, and
+   draughtsman absent from the footer. All three were false against the live page, and all
+   three were true of the build before `19c28a3`. Chat's fetch had returned a copy roughly five
+   days old and gave no indication it was cached.
 
-**Both are now fixed by removing the count rather than correcting it.** README §2 gives the
-command instead of a number; `wrangler.jsonc` and README §1 name the files instead of counting
-them. Prefer that shape. A number nobody recomputes is what this page keeps getting caught by.
+**So: verify site state with `curl` from Claude Code and diff against `site/index.html`.** Do
+not assert what the live site says on the strength of a chat fetch. The page's own `Version` /
+`Version date` stamp is a useful smoke test but not proof — it does not move per commit, so
+`1.6.0 · 2026-09-04` covers both the broken build and its repair.
+
+**The reader can also be wrong about *why*.** The first diagnosis of that report blamed a CSS
+comment which quoted the retired byline and which does ship, there being no build step. It was
+a plausible mechanism that happened to be false: the reviewer had rendered text, not source,
+and no comment could produce the other two findings. **A mechanism that explains one symptom is
+not thereby the cause of three.** The comment was removed anyway, on its own small merits; see
+DEPLOYED.md.
 
 ## 6. Where the figures live
 

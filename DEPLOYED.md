@@ -284,31 +284,43 @@ it look conditional is what surfaced it.
 Verified after: page renders identically under `prefers-color-scheme: dark`, all six accents
 resolve, Send is `#fff` on `#8A1C2B` in both OS settings.
 
-## The old byline shipped inside a comment
+## A comment quoting the old byline, and a report that was not caused by it
 
 **Deployed 2026-09-10**, version ID `957f99da-8676-4013-b7e2-e70a55b64423`. One file
-uploaded: `/index.html`. No rendered output changed — the edit is to a CSS comment.
+uploaded: `/index.html`. No rendered output changed — the edit is to a CSS comment above
+`.whois` that quoted the superseded byline, `Neuroendocrinology & calcium imaging`,
+verbatim. Comments in `site/index.html` ship, because there is no build step and
+`wrangler deploy` uploads the file as committed. Removing the quotation is mild
+housekeeping and stands on its own.
 
-The byline was rewritten on 2026-09-04 (`f2ed3b1`) and the live page has read
-"Neuroendocrinologist by training..." ever since. That commit left a comment above `.whois`
-quoting the superseded line, `Neuroendocrinology & calcium imaging`, verbatim — and comments
-in `site/index.html` ship, because there is no build step and `wrangler deploy` uploads the
-file as committed.
+**The reason recorded here at first was wrong, and the correction is the point.** A
+reviewer had reported three defects on the live site — the old byline, the draughtsman
+card linking to GitHub, and draughtsman missing from the footer's "The sites". All three
+were false against the live page. This entry originally claimed the reviewer had found the
+string by reading the delivered source, and that the comment was therefore a live false
+claim. That was a guess presented as a cause. The reviewer never saw the source; they were
+working from extracted rendered text, where a CSS comment is invisible. And the comment
+could not have produced the other two findings at all.
 
-**Why it mattered.** A reviewer audited the site by reading its source, found the string,
-and reported the byline as still wrong. They also reported the draughtsman card as linking
-to GitHub and the subdomain as missing from the footer; both had been fixed the same day in
-`19c28a3`. Two of the three claims were simply stale, but the byline claim had real evidence
-sitting in the delivered page, which is what made the whole report credible.
+**The actual cause was a stale cached fetch.** The reviewer was served a copy of the page
+predating `f2ed3b1`, stamped `Version 1.6.0 · 2026-09-04`. That build is internally
+consistent with everything they reported: the old byline rendered in the markup, the
+draughtsman card's href resolving to `github.com/syncytium2/draughtsman`, a five-item
+footer with draughtsman absent, and prose reading "all five sites". `19c28a3` changed the
+href, the footer and the count together; `f2ed3b1` had changed the byline just before it.
+One stale build explains all three findings. The comment explains none of them.
 
-**A comment that narrates what the code replaced becomes a claim about the present.** This
-one explained a decision the surrounding rule already makes plain, and the cost of keeping it
-was a superseded description of Tony readable by anyone who viewed source. The reasoning is
-kept; the quotation is gone.
+**The version stamp is a weaker check than it looks.** `Version` and `Version date` do not
+move per commit — `1.6.0 · 2026-09-04` covers the broken build *and* the repaired one, so
+the stamp cannot distinguish them. It would have caught this particular case only because
+the stale copy was five days and one minor version behind. For site-state claims, fetch
+with `curl` and diff against `site/index.html`; treat the stamp as a coarse smoke test, not
+proof.
 
-Verified after: `curl https://tonydefazio.com/` contains zero occurrences of the old string,
-the `.whois` byline renders unchanged, and `draughtsman.tonydefazio.com` still appears three
-times — the card link, the footer's "The sites" entry, and the `WebSite` schema block.
+Verified after: `curl https://tonydefazio.com/` contains zero occurrences of the old
+string, the `.whois` byline renders unchanged, and `draughtsman.tonydefazio.com` still
+appears three times — the card link, the footer's "The sites" entry, and the `WebSite`
+schema block.
 
 ## Rolling back
 
