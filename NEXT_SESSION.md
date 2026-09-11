@@ -14,7 +14,18 @@ of document §3 of the README warns about, and it has already been wrong once.
 | Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`) |
 | Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.7.0 |
 
-**Outstanding: `main` is ahead of `origin/main`.** The repo is **public** — ask before pushing.
+**Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
+out to hardcode all fifteen student names, and the README and two commit messages quoted some of
+them. The eight unpushed commits were rewritten so none of it entered public history; the names
+now live in `td-resume/cv/public_cv_redactions.json`, which is private (§3). **Before any push,
+grep the outgoing range, diffs and messages, for those names:**
+
+```bash
+git log -p origin/main..HEAD | grep -n -i -F -f <(python3 -c "import json; d=json.load(open('../td-resume/cv/public_cv_redactions.json')); print('\n'.join(n.split()[-1] for k in ('GRAD','UNDER','COMM') for n in d[k]))")
+```
+
+Expect no output. The one standing hit anywhere in the tree is `Hughes *et al.* 2014` in §3, a
+published chapter citation with no relationship attached.
 
 ## 2. What this is
 
@@ -187,7 +198,7 @@ the CV's generator is in the repo so the same weakness is not repeated for it.
 
 ## 8. Candidate work
 
-1. **Push to GitHub** (§1). The repo is public; ask first.
+1. ~~**Push to GitHub**~~ — done 2026-09-11 (§1).
 2. **Inbound links** — README §4 calls this the single biggest reason `kernel` was never indexed.
    The apex needs a link from somewhere real and `sitemap.xml` submitted to Google and Bing. Now
    that a CV is served, a link from a U-M page is worth more than it was. **Highest-value item on
