@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `c0187e47-8151-43dc-bd66-9afdade72516` |
-| **Deployed** | 2026-09-09 |
-| **Site version** | 1.7.0 |
+| **Version ID** | `d16ecbe6-a0c7-4419-8575-8208cc0b5dfc` |
+| **Deployed** | 2026-09-11 |
+| **Site version** | 1.7.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -321,6 +321,22 @@ Verified after: `curl https://tonydefazio.com/` contains zero occurrences of the
 string, the `.whois` byline renders unchanged, and `draughtsman.tonydefazio.com` still
 appears three times — the card link, the footer's "The sites" entry, and the `WebSite`
 schema block.
+
+## 1.7.1 — 2026-09-11 — neurophysiologist
+
+Version ID `d16ecbe6-a0c7-4419-8575-8208cc0b5dfc`. One asset uploaded: `/index.html`.
+
+The byline read "Neuroendocrinologist by training". Tony is a neurophysiologist and said so, so it
+now reads **"Neurophysiologist by training"**. `knowsAbout` in the JSON-LD gains `Neurophysiology`;
+`Neuroendocrinology` stays in that list as a topic, not a title — the hormone-pulse tools are real
+work in it. Masthead and `package.json` move to 1.7.1, dated 2026-09-11.
+
+**The table above had been stale since 2026-09-10.** That day's comment-only deploy (`957f99da`,
+below) was recorded in its own section but never reached this file's header, which went on
+naming 1.7.0's `c0187e47`. Corrected here.
+
+Verified after: apex and `www` both byte-identical to `site/index.html`; the byline, version and
+date render as committed; no identity-sense "Neuroendocrinologist" remains on the page.
 
 ## Rolling back
 
