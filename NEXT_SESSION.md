@@ -24,8 +24,7 @@ grep the outgoing range, diffs and messages, for those names:**
 git log -p origin/main..HEAD | grep -n -i -F -f <(python3 -c "import json; d=json.load(open('../td-resume/cv/public_cv_redactions.json')); print('\n'.join(n.split()[-1] for k in ('GRAD','UNDER','COMM') for n in d[k]))")
 ```
 
-Expect no output. The one standing hit anywhere in the tree is `Hughes *et al.* 2014` in §3, a
-published chapter citation with no relationship attached.
+Expect no output. No surname from that list appears anywhere in this repository's text.
 
 ## 2. What this is
 
@@ -72,9 +71,9 @@ README §3 has the record ids.
 these against `site/cv.pdf` itself rather than against a handoff that paraphrases it.
 
 - **Book chapters: 3, not 4.** "Books and Chapters" in the served PDF lists three entries —
-  Dudek *et al.* 2002, Perez-Pinzon *et al.* 2009, Hughes *et al.* 2014. Four was a handoff
-  error, and it is the duplicate described in README §3: Elements records `id=2560231`
-  (deleted) and `id=396247` (kept) were the same chapter.
+  from 2002, 2009 and 2014. Four was a handoff error, and it is the duplicate described in
+  README §3: Elements records `id=2560231` (deleted) and `id=396247` (kept) were the same
+  chapter.
 - **Physiol 578 lectures: not a contradiction.** The CV states both figures in one sentence —
   "Lectures range from 9-14 x 50 minute lectures per semester; academic year 2026-27 is 18 x
   50 minute lectures (15 fall, 3 spring)". 9–14 is the ordinary per-*semester* range; 18 is
