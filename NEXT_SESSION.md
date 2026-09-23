@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **1.7.1**, deployed 2026-09-11 |
-| Cloudflare version ID | `d16ecbe6-a0c7-4419-8575-8208cc0b5dfc` — matches `DEPLOYED.md` |
-| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`), re-checked 2026-09-11 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.7.1 |
+| Live | https://tonydefazio.com — **1.8.0**, deployed 2026-09-23 |
+| Cloudflare version ID | `cee1d4c0-6759-48f4-b4e7-cd6c33334054` — matches `DEPLOYED.md` |
+| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`), re-checked 2026-09-23 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.8.0 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of
@@ -28,8 +28,8 @@ Expect no output. No surname from that list appears anywhere in this repository'
 
 ## 2. What this is
 
-One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to six
-destinations (draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
+One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to seven
+destinations (gaba_excites, draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
 and, since 1.7.0, serves Tony's CV.
 
 ```bash

@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `d16ecbe6-a0c7-4419-8575-8208cc0b5dfc` |
-| **Deployed** | 2026-09-11 |
-| **Site version** | 1.7.1 |
+| **Version ID** | `cee1d4c0-6759-48f4-b4e7-cd6c33334054` |
+| **Deployed** | 2026-09-23 |
+| **Site version** | 1.8.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -337,6 +337,20 @@ naming 1.7.0's `c0187e47`. Corrected here.
 
 Verified after: apex and `www` both byte-identical to `site/index.html`; the byline, version and
 date render as committed; no identity-sense "Neuroendocrinologist" remains on the page.
+
+## 1.8.0 — 2026-09-23 — gaba_excites, the seventh card
+
+Version ID `cee1d4c0-6759-48f4-b4e7-cd6c33334054`. One asset uploaded: `/index.html`.
+
+A card for `gaba.tonydefazio.com`, first on the shelf, in `--c-gaba` `#B5461A`. The NEW
+sticker moves to it from draughtsman. Its figure is gaba_excites' own simulation (README §3):
+one 600 pA step, the same GABA in each panel, E_GABA at −80 / −60 / −35 mV, firing 0 / 0 / 4.
+The footer, JSON-LD `subjectOf`, meta descriptions and deck gain it; "six" becomes "seven"
+wherever the page counts. Masthead and `package.json` move to 1.8.0, dated 2026-09-23.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf` byte-identical to `site/`; `www` byte-identical to `site/index.html`;
+seven `class="card"` served; masthead 1.8.0; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
