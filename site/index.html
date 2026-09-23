@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools</title>
-<meta name="description" content="draughtsman, which draws a PyTorch model's architecture and proves mechanically that nothing was dropped; an adversarial review process for any document that makes claims; a short course on working with coding agents; and open-source research tools for neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection. The research tools run in your browser; nothing is uploaded.">
+<meta name="description" content="draughtsman, which draws a PyTorch model's architecture and proves mechanically that nothing was dropped; an adversarial review process for any document that makes claims; a short course on working with coding agents; and open-source research tools for neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection — and a current-clamp excitability simulator. The research tools run in your browser; nothing is uploaded.">
 <link rel="canonical" href="https://tonydefazio.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tonydefazio.com/">
 <meta property="og:title" content="Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools">
-<meta property="og:description" content="Readable architecture figures for PyTorch models, an adversarial document-review process, a short course on working with coding agents, and research tools for calcium-imaging kernel recovery, hormone pulse detection and coordinated-event detection. Open source; the data never leaves your machine.">
+<meta property="og:description" content="Readable architecture figures for PyTorch models, an adversarial document-review process, a short course on working with coding agents, and research tools for calcium-imaging kernel recovery, hormone pulse detection and coordinated-event detection, plus a current-clamp excitability simulator. Open source; the data never leaves your machine.">
 <meta name="twitter:card" content="summary">
 
 <!-- No external requests of any kind. Every font stack ends in a generic family and
@@ -26,12 +26,13 @@
   "alternateName": "Tony DeFazio",
   "url": "https://tonydefazio.com/",
   "description": "Research software for neuroscience and machine learning. Builds readable PyTorch model-architecture figures with a mechanical coverage check, open-source client-side tools for measuring signals in neuroscience data, an adversarial document-review process, and a short course on working with coding agents.",
-  "knowsAbout": ["Machine learning", "PyTorch", "Neural network architecture", "Scientific visualization", "Neurophysiology", "Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection", "AI-assisted research", "Research software engineering"],
+  "knowsAbout": ["Machine learning", "PyTorch", "Neural network architecture", "Scientific visualization", "Neurophysiology", "Neuronal excitability", "Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection", "AI-assisted research", "Research software engineering"],
   "sameAs": [
     "https://github.com/syncytium2",
     "https://orcid.org/0000-0001-7302-7528"
   ],
   "subjectOf": [
+    { "@type": "WebApplication", "name": "gaba_excites", "url": "https://gaba.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/gaba_excites", "programmingLanguage": "TypeScript" },
     { "@type": "WebSite", "name": "draughtsman", "url": "https://draughtsman.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/draughtsman", "programmingLanguage": "Python" },
     { "@type": "WebSite", "name": "It Looked Right", "url": "https://lookedright.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "Colonel Kernel", "url": "https://kernel.tonydefazio.com/" },
@@ -45,8 +46,8 @@
 <style>
 /* ==========================================================================
    Palette and type inherited from murderboard.tonydefazio.com, which is the
-   most fully designed of the six destinations. This page is deliberately the
-   parent of that language rather than a sixth dialect: same paper, same
+   most fully designed of the seven destinations. This page is deliberately the
+   parent of that language rather than an eighth dialect: same paper, same
    Charter body, same mono kickers. What it adds is one accent hue per
    destination, so a card is recognisable before its title is read.
    ========================================================================== */
@@ -79,6 +80,7 @@
   --c-murderboard: #8A1C2B; /* murderboard's --blood */
   --c-lookedright: #8A5D0F;  /* the site's own caution ochre; the one hue the other four left free */
   --c-draughtsman: #1F6B45;  /* green: the hue the other five leave free. 5.9:1 on --surface */
+  --c-gaba: #B5461A;         /* gaba_excites' --orange, darkened. 5.5:1 on --surface */
 
   --f-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable Display",
                "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -161,7 +163,7 @@ strong { font-weight: 600; }
 .deck b { color: var(--ink); font-weight: 600; }
 
 /* WHO, not just what. A reader who scans the byline and stops should still learn
-   the right thing about six destinations, so this line carries the background and
+   the right thing about seven destinations, so this line carries the background and
    the through-line rather than naming one subject. It also lifts the identity links
    out of the footer, which is the last place a first-time reader looks. */
 .whois {
@@ -176,7 +178,7 @@ strong { font-weight: 600; }
 }
 .whois a:hover, .whois a:focus-visible { border-bottom-color: var(--ink); }
 
-/* ---------- the six cards ---------- */
+/* ---------- the seven cards ---------- */
 .shelf {
   padding-block: 0 clamp(2.5rem, 6vw, 4rem);
   display: grid; gap: 1.15rem;
@@ -331,6 +333,16 @@ strong { font-weight: 600; }
                  opacity: .9; }
 .ga .head.lkh  { fill: var(--c); opacity: .9; }
 
+/* --- gaba_excites: one step, three GABA reversals ---
+   Simulated by gaba_excites itself, not drawn. Each sweep is drawn as a per-pixel
+   min/max envelope so a 1 ms spike survives a 0.2 px/ms time base. The dashed line
+   is resting potential, which is what shows the middle sweep depolarised and silent. */
+.ga .vm    { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linejoin: round; opacity: .8; }
+.ga .vm.ex { stroke: var(--c); opacity: 1; }
+.ga .rest  { stroke: var(--ink-faint); stroke-width: .8; stroke-dasharray: 2 2.5; opacity: .6; }
+.ga tspan.sub { font-size: 7px; }
+.ga tspan.u   { text-transform: none; }  /* a unit, not a caption: mV must not become MV */
+
 /* --- murderboard: the loop --- */
 .ga .nd        { fill: var(--surface); stroke: var(--c); stroke-width: 1.6; }
 .ga .nd.last   { fill: var(--c); }
@@ -468,17 +480,34 @@ form.contact button { color: #fff; }
     mechanically that nothing was dropped on the way to the picture. The research tools —
     for <b>measuring things in neuroscience data</b>, and for knowing when the measurement
     fails — run <b>in your browser</b>: no install, no account, and <b>your data never
-    leaves your computer.</b> The rest are not instruments — <b>a review process for any
-    document that makes claims</b>, tied to no field and improved by being run against
-    itself, and <b>a short course on working with coding agents</b>. They exist because
+    leaves your computer.</b> The rest are not instruments — <b>a current-clamp simulator
+    for playing with excitability</b>, <b>a review process for any document that makes
+    claims</b>, tied to no field and improved by being run against itself, and <b>a short
+    course on working with coding agents</b>. They exist because
     plausible and correct are not the same thing.
   </p>
 </header>
 
 <main class="shelf wrap">
 
-  <a class="card" style="--c: var(--c-draughtsman)" href="https://draughtsman.tonydefazio.com/">
+  <a class="card" style="--c: var(--c-gaba)" href="https://gaba.tonydefazio.com/">
     <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow">Cellular excitability<span class="born">Born <time datetime="2026-09-21">2026-09-21</time></span></p>
+    <h2>gaba_excites</h2>
+    <p class="what">
+      A current-clamp rig in the browser &mdash; step families, rheobase, F&ndash;I curves,
+      and GABA that hyperpolarizes, shunts, or excites depending on where its reversal sits.
+    </p>
+    <svg class="ga ga-g" viewBox="0 0 420 104" role="img" aria-label="Three current-clamp sweeps of the same pyramidal cell under the same 600 pA step and the same GABA conductance, differing only in the GABA reversal potential. At -80 mV it fires 0 spikes; at -60 mV it sits above rest and still fires 0; at -35 mV it fires 4. Without GABA the same step fires 1. Simulated by gaba_excites."><line x1="6.0" y1="61.5" x2="126.0" y2="61.5" class="rest"/><path d="M6.5,62.3 L7.5,62.3 L8.5,62.3 L9.5,62.3 L10.5,62.3 L11.5,62.3 L12.5,62.3 L13.5,62.3 L14.5,62.3 L15.5,62.3 L16.5,62.3 L16.5,58.7 L17.5,58.6 L17.5,56.7 L18.5,56.7 L18.5,55.6 L19.5,55.6 L19.5,55.1 L20.5,55.1 L20.5,54.8 L21.5,54.8 L22.5,54.6 L23.5,54.6 L24.5,54.5 L25.5,54.5 L26.5,54.5 L27.5,54.5 L28.5,54.5 L29.5,54.5 L30.5,54.6 L31.5,54.6 L32.5,54.6 L33.5,54.6 L34.5,54.6 L35.5,54.6 L36.5,54.6 L37.5,54.7 L38.5,54.7 L39.5,54.7 L40.5,54.7 L41.5,54.7 L42.5,54.7 L43.5,54.7 L44.5,54.7 L45.5,54.8 L46.5,54.8 L47.5,54.8 L48.5,54.8 L49.5,54.8 L50.5,54.8 L51.5,54.8 L52.5,54.8 L53.5,54.8 L54.5,54.8 L55.5,54.8 L56.5,54.9 L57.5,54.9 L58.5,54.9 L59.5,54.9 L60.5,54.9 L61.5,54.9 L62.5,54.9 L63.5,54.9 L64.5,54.9 L65.5,54.9 L66.5,54.9 L67.5,54.9 L68.5,54.9 L69.5,54.9 L70.5,55.0 L71.5,55.0 L72.5,55.0 L73.5,55.0 L74.5,55.0 L75.5,55.0 L76.5,55.0 L77.5,55.0 L78.5,55.0 L79.5,55.0 L80.5,55.0 L81.5,55.0 L82.5,55.0 L83.5,55.0 L84.5,55.0 L85.5,55.0 L86.5,55.0 L87.5,55.0 L88.5,55.0 L89.5,55.0 L90.5,55.0 L91.5,55.0 L92.5,55.0 L93.5,55.1 L94.5,55.1 L95.5,55.1 L96.5,55.1 L97.5,55.1 L98.5,55.1 L99.5,55.1 L100.5,55.1 L101.5,55.1 L102.5,55.1 L103.5,55.1 L104.5,55.1 L105.5,55.1 L106.5,55.1 L107.5,55.1 L108.5,55.1 L109.5,55.1 L110.5,55.1 L111.5,55.1 L112.5,55.1 L113.5,55.1 L114.5,55.1 L115.5,55.1 L116.5,55.1 L116.5,58.8 L117.5,58.8 L117.5,60.7 L118.5,60.7 L118.5,61.7 L119.5,61.7 L119.5,62.2 L120.5,62.2 L120.5,62.4 L121.5,62.4 L122.5,62.6 L123.5,62.6 L124.5,62.7 L125.5,62.7" class="vm"/><text x="66.0" y="82" class="cap" text-anchor="middle">E<tspan class="sub" dy="2">GABA</tspan><tspan dy="-2"> &#8722;80 </tspan><tspan class="u">mV</tspan></text><line x1="150.0" y1="61.5" x2="270.0" y2="61.5" class="rest"/><path d="M150.5,60.5 L151.5,60.5 L152.5,60.5 L153.5,60.5 L154.5,60.5 L155.5,60.5 L156.5,60.5 L157.5,60.5 L158.5,60.5 L159.5,60.5 L160.5,60.5 L160.5,56.9 L161.5,56.8 L161.5,54.9 L162.5,54.9 L162.5,53.8 L163.5,53.8 L163.5,53.2 L164.5,53.2 L164.5,52.9 L165.5,52.9 L165.5,52.7 L166.5,52.7 L167.5,52.6 L168.5,52.5 L169.5,52.5 L170.5,52.5 L171.5,52.5 L172.5,52.5 L173.5,52.5 L174.5,52.5 L175.5,52.6 L176.5,52.6 L177.5,52.6 L178.5,52.7 L179.5,52.7 L180.5,52.8 L181.5,52.8 L182.5,52.8 L183.5,52.8 L184.5,52.9 L185.5,52.9 L186.5,52.9 L187.5,52.9 L188.5,53.0 L189.5,53.0 L190.5,53.0 L191.5,53.0 L192.5,53.1 L193.5,53.1 L194.5,53.1 L195.5,53.1 L196.5,53.1 L197.5,53.1 L198.5,53.2 L199.5,53.2 L200.5,53.2 L201.5,53.2 L202.5,53.2 L203.5,53.2 L204.5,53.2 L205.5,53.3 L206.5,53.3 L207.5,53.3 L208.5,53.3 L209.5,53.3 L210.5,53.3 L211.5,53.3 L212.5,53.3 L213.5,53.3 L214.5,53.4 L215.5,53.4 L216.5,53.4 L217.5,53.4 L218.5,53.4 L219.5,53.4 L220.5,53.4 L221.5,53.4 L222.5,53.4 L223.5,53.4 L224.5,53.4 L225.5,53.4 L226.5,53.5 L227.5,53.5 L228.5,53.5 L229.5,53.5 L230.5,53.5 L231.5,53.5 L232.5,53.5 L233.5,53.5 L234.5,53.5 L235.5,53.5 L236.5,53.5 L237.5,53.5 L238.5,53.5 L239.5,53.5 L240.5,53.5 L241.5,53.5 L242.5,53.5 L243.5,53.5 L244.5,53.5 L245.5,53.6 L246.5,53.6 L247.5,53.6 L248.5,53.6 L249.5,53.6 L250.5,53.6 L251.5,53.6 L252.5,53.6 L253.5,53.6 L254.5,53.6 L255.5,53.6 L256.5,53.6 L257.5,53.6 L258.5,53.6 L259.5,53.6 L260.5,53.6 L260.5,57.3 L261.5,57.3 L261.5,59.2 L262.5,59.2 L262.5,60.2 L263.5,60.2 L263.5,60.7 L264.5,60.7 L264.5,60.9 L265.5,60.9 L266.5,61.0 L267.5,61.1 L268.5,61.1 L269.5,61.1" class="vm"/><text x="210.0" y="82" class="cap" text-anchor="middle">E<tspan class="sub" dy="2">GABA</tspan><tspan dy="-2"> &#8722;60 </tspan><tspan class="u">mV</tspan></text><line x1="294.0" y1="61.5" x2="414.0" y2="61.5" class="rest"/><path d="M294.5,58.4 L295.5,58.3 L296.5,58.3 L297.5,58.3 L298.5,58.3 L299.5,58.3 L300.5,58.3 L301.5,58.3 L302.5,58.3 L303.5,58.3 L304.5,58.3 L304.5,54.6 L305.5,54.6 L305.5,52.6 L306.5,52.6 L306.5,51.2 L307.5,51.2 L307.5,5.2 L308.5,7.0 L308.5,59.9 L309.5,57.3 L309.5,54.5 L310.5,54.5 L310.5,53.0 L311.5,53.0 L311.5,52.1 L312.5,52.1 L312.5,51.4 L313.5,51.4 L313.5,50.2 L314.5,5.3 L314.5,60.0 L315.5,60.0 L315.5,56.3 L316.5,56.3 L316.5,54.3 L317.5,54.3 L317.5,53.3 L318.5,53.3 L318.5,52.7 L319.5,52.7 L319.5,52.3 L320.5,52.3 L320.5,52.1 L321.5,52.1 L321.5,51.9 L322.5,51.9 L322.5,51.7 L323.5,51.7 L323.5,51.4 L324.5,51.4 L324.5,51.2 L325.5,51.2 L325.5,50.6 L326.5,50.6 L326.5,5.3 L327.5,5.3 L327.5,60.0 L328.5,57.9 L328.5,55.4 L329.5,55.4 L329.5,54.2 L330.5,54.2 L330.5,53.5 L331.5,53.5 L331.5,53.1 L332.5,53.1 L332.5,52.9 L333.5,52.9 L334.5,52.8 L335.5,52.7 L336.5,52.6 L337.5,52.6 L338.5,52.5 L339.5,52.5 L340.5,52.5 L341.5,52.4 L342.5,52.4 L343.5,52.4 L344.5,52.3 L345.5,52.3 L346.5,52.3 L347.5,52.3 L348.5,52.2 L349.5,52.2 L350.5,52.2 L351.5,52.2 L352.5,52.1 L353.5,52.1 L354.5,52.1 L355.5,52.1 L356.5,52.0 L357.5,52.0 L358.5,52.0 L359.5,52.0 L360.5,51.9 L361.5,51.9 L362.5,51.9 L363.5,51.8 L364.5,51.8 L365.5,51.8 L366.5,51.7 L367.5,51.7 L368.5,51.6 L369.5,51.6 L370.5,51.5 L371.5,51.4 L372.5,51.3 L373.5,51.2 L373.5,50.9 L374.5,50.9 L374.5,50.2 L375.5,5.3 L375.5,59.8 L376.5,60.1 L376.5,56.9 L377.5,56.9 L377.5,55.0 L378.5,55.0 L378.5,54.0 L379.5,54.0 L379.5,53.5 L380.5,53.5 L380.5,53.2 L381.5,53.2 L382.5,53.0 L383.5,52.9 L384.5,52.9 L385.5,52.8 L386.5,52.8 L387.5,52.7 L388.5,52.7 L389.5,52.7 L390.5,52.6 L391.5,52.6 L392.5,52.6 L393.5,52.5 L394.5,52.5 L395.5,52.5 L396.5,52.5 L397.5,52.4 L398.5,52.4 L399.5,52.4 L400.5,52.4 L401.5,52.3 L402.5,52.3 L403.5,52.3 L404.5,52.3 L404.5,56.0 L405.5,56.0 L405.5,57.9 L406.5,57.9 L406.5,58.9 L407.5,58.9 L407.5,59.3 L408.5,59.3 L408.5,59.5 L409.5,59.5 L410.5,59.6 L411.5,59.7 L412.5,59.6 L413.5,59.6" class="vm ex"/><text x="354.0" y="82" class="cap" text-anchor="middle">E<tspan class="sub" dy="2">GABA</tspan><tspan dy="-2"> &#8722;35 </tspan><tspan class="u">mV</tspan></text><text x="210.0" y="102" class="cap" text-anchor="middle">same GABA, same step &mdash; only the reversal moves</text></svg>
+    <ul class="facts">
+      <li>2 cell models</li>
+      <li>NEURON-checked pyramidal</li>
+      <li>movable E<sub>GABA</sub></li>
+    </ul>
+    <p class="go"><span>gaba.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-draughtsman)" href="https://draughtsman.tonydefazio.com/">
     <p class="eyebrow"><svg class="nnmark" viewBox="0 0 40 26" role="img" aria-label="draughtsman-nn"><path d="M5,23 V12 A5,5 0 0 1 15,12 V23" class="nnn"/><path d="M23,23 V12 A5,5 0 0 1 33,12 V23" class="nnn"/><circle cx="5" cy="23" r="2.7" class="nnd"/><circle cx="10" cy="7" r="2.7" class="nnd"/><circle cx="15" cy="23" r="2.7" class="nnd"/><circle cx="23" cy="23" r="2.7" class="nnd"/><circle cx="28" cy="7" r="2.7" class="nnd"/><circle cx="33" cy="23" r="2.7" class="nnd"/></svg>Model architecture<span class="born">Born <time datetime="2026-09-01">2026-09-01</time></span></p>
     <h2>draughtsman</h2>
     <p class="what">
@@ -633,7 +662,7 @@ form.contact button { color: #fff; }
   <ul class="points">
     <li>
       <span class="t">Nothing uploaded</span>
-      <span>No backend, no accounts, no analytics, no cookies, on all six sites. In the
+      <span>No backend, no accounts, no analytics, no cookies, on all seven sites. In the
       research tools the algorithm ships inside the page and runs on your own device, so
       a recording you analyse is never transmitted.</span>
     </li>
@@ -645,7 +674,7 @@ form.contact button { color: #fff; }
     </li>
     <li>
       <span class="t">Open source</span>
-      <span>All six repositories are public, caveats and references included.</span>
+      <span>All seven repositories are public, caveats and references included.</span>
     </li>
     <li>
       <span class="t">Readable without a browser</span>
@@ -706,6 +735,7 @@ form.contact button { color: #fff; }
     <div>
       <h3>The sites</h3>
       <ul>
+        <li><a href="https://gaba.tonydefazio.com/">gaba_excites</a></li>
         <li><a href="https://draughtsman.tonydefazio.com/">draughtsman</a></li>
         <li><a href="https://lookedright.tonydefazio.com/">It Looked Right</a></li>
         <li><a href="https://kernel.tonydefazio.com/">Colonel Kernel</a></li>
@@ -718,6 +748,7 @@ form.contact button { color: #fff; }
       <h3>The source</h3>
       <ul>
         <li><a href="https://github.com/syncytium2">github.com/syncytium2</a></li>
+        <li><a href="https://github.com/syncytium2/gaba_excites">gaba_excites</a></li>
         <li><a href="https://github.com/syncytium2/draughtsman">draughtsman</a></li>
         <li><a href="https://github.com/syncytium2/short-course">short-course</a></li>
         <li><a href="https://github.com/syncytium2/colonel_kernel">colonel_kernel</a></li>
