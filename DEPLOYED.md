@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `cee1d4c0-6759-48f4-b4e7-cd6c33334054` |
-| **Deployed** | 2026-09-23 |
-| **Site version** | 1.8.0 |
+| **Version ID** | `00d2ee03-37e6-49bc-b164-3587fa0d1489` |
+| **Deployed** | 2026-09-25 |
+| **Site version** | 1.9.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -351,6 +351,22 @@ wherever the page counts. Masthead and `package.json` move to 1.8.0, dated 2026-
 Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
 `/thanks`, `/cv.pdf` byte-identical to `site/`; `www` byte-identical to `site/index.html`;
 seven `class="card"` served; masthead 1.8.0; 0 matches for `beacon.min.js`.
+
+## 1.9.0 — 2026-09-25 — ml2dl, the eighth card
+
+Version ID `00d2ee03-37e6-49bc-b164-3587fa0d1489`, deployed by Tony from the `ml2dl-card`
+worktree (the session's own `npm run deploy` was refused by its permission check).
+
+A card for `ml2dl.tonydefazio.com`, first on the shelf, in `--c-ml2dl` `#A3246A`, carrying a
+`development preview` chip because the site says it is one. The NEW sticker moves to it from
+gaba_excites. Its figure is ml2dl's own XOR lesson (README §3): best single line 75%, two ReLU
+hidden units 100%. **ml2dl's repository is private**, so it has no source link and the common
+thread now reads "Seven of the eight repositories are public". "Seven" becomes "eight" wherever
+the page counts. Masthead and `package.json` move to 1.9.0, dated 2026-09-25.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf` byte-identical to `site/`; `www` byte-identical to `site/index.html`;
+eight `class="card"` served; masthead 1.9.0; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
