@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `30dc724c-1a26-441e-9ce6-2f14342155ba` |
+| **Version ID** | `b7dab007-f1e5-487d-a4a3-a04e88bb6765` |
 | **Deployed** | 2026-10-13 |
-| **Site version** | 1.10.0 |
+| **Site version** | 1.10.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -406,6 +406,27 @@ Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/site
 `/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
 `site/index.html`; `/resume.pdf` 200, `application/pdf`; eight `class="card"` served; masthead
 1.10.0; 0 matches for `beacon.min.js`.
+
+## 1.10.1 — 2026-10-13 — one prose width in the masthead
+
+Version ID `b7dab007-f1e5-487d-a4a3-a04e88bb6765`, deployed from the `cv-republish` worktree.
+One asset uploaded: `/index.html`.
+
+Tony counted about five different column widths above the cards. The byline and the intro
+paragraph each set a width in `ch` at a different font size, so they ended at different right
+edges, and the fifth link added in 1.10.0 wrapped alone onto its own line. Both paragraphs now
+use `--measure`, set in `rem` (34rem) and shared with the common-thread prose, and the identity
+links sit in a row of their own beneath the byline. The headline keeps its balanced wrap, so
+there are three right edges above the cards: the full rule, the headline and the prose. Looked
+at in headless Chrome at 1100 px and 500 px before upload.
+
+**The edge lagged after the 1.10.0 upload.** The first `curl` of `/` straight after that deploy
+returned the 1.9.1 page while `/resume.pdf` was already served; repeat checks returned 1.10.0.
+A DIFFERS in the first seconds after a deploy is worth one retry before it is believed.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
+`site/index.html`; eight `class="card"` served; masthead 1.10.1; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
