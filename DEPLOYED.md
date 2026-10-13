@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `b7dab007-f1e5-487d-a4a3-a04e88bb6765` |
+| **Version ID** | `8348a1d8-4a13-44d6-83f9-8e61920fe7d6` |
 | **Deployed** | 2026-10-13 |
-| **Site version** | 1.10.1 |
+| **Site version** | 1.10.2 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -427,6 +427,25 @@ A DIFFERS in the first seconds after a deploy is worth one retry before it is be
 Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
 `/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
 `site/index.html`; eight `class="card"` served; masthead 1.10.1; 0 matches for `beacon.min.js`.
+
+## 1.10.2 — 2026-10-13 — the masthead on the cards' grid
+
+Version ID `8348a1d8-4a13-44d6-83f9-8e61920fe7d6`, deployed from the `cv-republish` worktree.
+One asset uploaded: `/index.html`.
+
+1.10.1 was not enough: Tony looked at it in Chrome and it still read as sloppy, with three
+right edges above the cards and the right half of the page empty beside the prose. The masthead
+now sits on the same two-column grid as the cards (`--col-min`, `--col-gap`). The byline takes
+the first column and the identity links the second, on a shared baseline. The intro is two
+paragraphs, one per column, split where it turns from the instruments to the rest; its words
+are unchanged. Below 1030 px, where the grid is one column, the byline and intro are capped at
+`--measure` so the lines do not run the full width. The headline is untouched.
+
+Looked at in headless Chrome at 1440, 1206, 1040, 1020 and 700 px before upload.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
+`site/index.html`; eight `class="card"` served; masthead 1.10.2; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
