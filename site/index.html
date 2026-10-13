@@ -91,7 +91,9 @@
   --f-mono:    ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
                Menlo, Consolas, "Liberation Mono", monospace;
 
-  --measure: 62ch;
+  /* One prose measure for the whole page, in rem so it is the same width at every
+     font size. In ch it was a different width for each paragraph that used it. */
+  --measure: 34rem;
   --pad: clamp(1.4rem, 4.5vw, 2.75rem);
 }
 
@@ -159,7 +161,7 @@ strong { font-weight: 600; }
 .wordmark em { font-style: normal; color: var(--blood); }
 
 .deck {
-  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0; max-width: 70ch;
+  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0; max-width: var(--measure);
   color: var(--ink-soft); line-height: 1.5; font-size: 1.07rem;
 }
 .deck b { color: var(--ink); font-weight: 600; }
@@ -169,14 +171,18 @@ strong { font-weight: 600; }
    the through-line rather than naming one subject. It also lifts the identity links
    out of the footer, which is the last place a first-time reader looks. */
 .whois {
-  margin: 0 0 clamp(1rem, 2.4vw, 1.4rem); max-width: 68ch;
+  margin: 0 0 clamp(1rem, 2.4vw, 1.4rem); max-width: var(--measure);
   color: var(--ink-soft); line-height: 1.55; font-size: .95rem;
+  text-wrap: pretty;
 }
+/* The links take their own row. Run on after the sentence, the last one wrapped
+   alone onto a line of its own. */
+.whois .links { display: flex; flex-wrap: wrap; gap: .45rem 1.1rem; margin-top: .6rem; }
 .whois a {
   font-family: var(--f-mono); font-size: .74rem; letter-spacing: .08em;
   text-transform: uppercase; color: var(--ink); text-decoration: none;
   border-bottom: 1px solid var(--rule); padding-bottom: .05rem;
-  margin-left: .85rem; white-space: nowrap;
+  white-space: nowrap;
 }
 .whois a:hover, .whois a:focus-visible { border-bottom-color: var(--ink); }
 
@@ -471,18 +477,20 @@ form.contact button { color: #fff; }
 
   <p class="meta">
     <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
-    <span><span class="lbl">Version</span> <span class="val">1.10.0</span></span>
+    <span><span class="lbl">Version</span> <span class="val">1.10.1</span></span>
     <span><span class="lbl">Version date</span> <time class="val" datetime="2026-10-13">2026-10-13</time></span>
   </p>
 
   <p class="whois">
     Neurophysiologist by training. I build the measurement and model-architecture tools I
     needed and could not find &mdash; and the checks that say when they are wrong.
-    <a href="/resume.pdf">Resume (PDF)</a>
-    <a href="/cv.pdf">CV (PDF)</a>
-    <a href="https://github.com/syncytium2">GitHub</a>
-    <a href="https://orcid.org/0000-0001-7302-7528">ORCID</a>
-    <a href="https://www.ncbi.nlm.nih.gov/myncbi/richard.defazio.1/bibliography/public/">Publications</a>
+    <span class="links">
+      <a href="/resume.pdf">Resume (PDF)</a>
+      <a href="/cv.pdf">CV (PDF)</a>
+      <a href="https://github.com/syncytium2">GitHub</a>
+      <a href="https://orcid.org/0000-0001-7302-7528">ORCID</a>
+      <a href="https://www.ncbi.nlm.nih.gov/myncbi/richard.defazio.1/bibliography/public/">Publications</a>
+    </span>
   </p>
 
   <h1 class="wordmark"><em>Architecture figures</em> for PyTorch, a murderboard, an AI coding short course, and research tools.</h1>
