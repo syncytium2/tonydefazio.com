@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `ff7d31ce-87e4-40db-a6e3-b650d3bf62c6` |
+| **Version ID** | `30dc724c-1a26-441e-9ce6-2f14342155ba` |
 | **Deployed** | 2026-10-13 |
-| **Site version** | 1.9.1 |
+| **Site version** | 1.10.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -390,6 +390,22 @@ Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/site
 `DeFazio` found by the same matcher; the public-copy header line once; the In Press entry
 present and no Under Review heading; all guarded co-author citations present. Eight
 `class="card"` served; masthead 1.9.1; 0 matches for `beacon.min.js`.
+
+## 1.10.0 — 2026-10-13 — a resume beside the CV
+
+Version ID `30dc724c-1a26-441e-9ce6-2f14342155ba`, deployed from the `cv-republish` worktree.
+Two assets uploaded: `/index.html` and `/resume.pdf`. `site/` now holds two binaries.
+
+The masthead gained **Resume (PDF)** → `/resume.pdf`, ahead of CV (PDF). The file is td-resume's
+technical variant, copied in as built and not generated here; README §3 has what the link
+asserts. Tony approved the electrophysiology-led cut for the site the same day, after td-resume
+and this session both raised the unpublished lab figures it carries. 2 pages, 99,735 bytes, MD5
+`381384d6b11627cadaf95f84c24ce5a2`.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
+`site/index.html`; `/resume.pdf` 200, `application/pdf`; eight `class="card"` served; masthead
+1.10.0; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
