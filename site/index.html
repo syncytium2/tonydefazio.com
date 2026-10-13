@@ -95,6 +95,9 @@
      font size. In ch it was a different width for each paragraph that used it. */
   --measure: 34rem;
   --pad: clamp(1.4rem, 4.5vw, 2.75rem);
+  /* The two-column grid the cards sit on. The masthead uses it too, so the byline,
+     the intro and the cards share one left edge, one right edge and one gutter. */
+  --col-min: 27rem; --col-gap: 1.15rem;
 }
 
 html { font-size: 17px; }
@@ -161,9 +164,13 @@ strong { font-weight: 600; }
 .wordmark em { font-style: normal; color: var(--blood); }
 
 .deck {
-  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0; max-width: var(--measure);
+  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0;
   color: var(--ink-soft); line-height: 1.5; font-size: 1.07rem;
+  text-wrap: pretty;
+  display: grid; gap: 1.05em var(--col-gap); align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min)), 1fr));
 }
+.deck p { margin: 0; }
 .deck b { color: var(--ink); font-weight: 600; }
 
 /* WHO, not just what. A reader who scans the byline and stops should still learn
@@ -171,13 +178,15 @@ strong { font-weight: 600; }
    the through-line rather than naming one subject. It also lifts the identity links
    out of the footer, which is the last place a first-time reader looks. */
 .whois {
-  margin: 0 0 clamp(1rem, 2.4vw, 1.4rem); max-width: var(--measure);
+  margin: 0 0 clamp(1rem, 2.4vw, 1.4rem);
   color: var(--ink-soft); line-height: 1.55; font-size: .95rem;
   text-wrap: pretty;
+  display: grid; gap: .6rem var(--col-gap); align-items: baseline;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min)), 1fr));
 }
-/* The links take their own row. Run on after the sentence, the last one wrapped
-   alone onto a line of its own. */
-.whois .links { display: flex; flex-wrap: wrap; gap: .45rem 1.1rem; margin-top: .6rem; }
+/* The links take the second column, level with the first line of the sentence, and
+   drop beneath it when there is only room for one. */
+.whois .links { display: flex; flex-wrap: wrap; gap: .45rem 1.1rem; }
 .whois a {
   font-family: var(--f-mono); font-size: .74rem; letter-spacing: .08em;
   text-transform: uppercase; color: var(--ink); text-decoration: none;
@@ -185,12 +194,15 @@ strong { font-weight: 600; }
   white-space: nowrap;
 }
 .whois a:hover, .whois a:focus-visible { border-bottom-color: var(--ink); }
+/* Below this the grid is one column, and prose the full width of it runs past a
+   hundred characters a line. 1030px is where two columns of --col-min stop fitting. */
+@media (max-width: 1030px) { .whois, .deck { max-width: var(--measure); } }
 
 /* ---------- the eight cards ---------- */
 .shelf {
   padding-block: 0 clamp(2.5rem, 6vw, 4rem);
-  display: grid; gap: 1.15rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr));
+  display: grid; gap: var(--col-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min)), 1fr));
 }
 
 .card {
@@ -477,13 +489,13 @@ form.contact button { color: #fff; }
 
   <p class="meta">
     <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
-    <span><span class="lbl">Version</span> <span class="val">1.10.1</span></span>
+    <span><span class="lbl">Version</span> <span class="val">1.10.2</span></span>
     <span><span class="lbl">Version date</span> <time class="val" datetime="2026-10-13">2026-10-13</time></span>
   </p>
 
   <p class="whois">
-    Neurophysiologist by training. I build the measurement and model-architecture tools I
-    needed and could not find &mdash; and the checks that say when they are wrong.
+    <span>Neurophysiologist by training. I build the measurement and model-architecture tools I
+    needed and could not find &mdash; and the checks that say when they are wrong.</span>
     <span class="links">
       <a href="/resume.pdf">Resume (PDF)</a>
       <a href="/cv.pdf">CV (PDF)</a>
@@ -495,18 +507,23 @@ form.contact button { color: #fff; }
 
   <h1 class="wordmark"><em>Architecture figures</em> for PyTorch, a murderboard, an AI coding short course, and research tools.</h1>
 
-  <p class="deck">
+  <div class="deck">
+    <p>
     I build small, open-source tools that report their own failure modes as loudly as
     their results. <b>draughtsman</b> draws a PyTorch model's architecture and then proves
     mechanically that nothing was dropped on the way to the picture. The research tools —
     for <b>measuring things in neuroscience data</b>, and for knowing when the measurement
     fails — run <b>in your browser</b>: no install, no account, and <b>your data never
-    leaves your computer.</b> The rest are not instruments — <b>deep learning built up from
+    leaves your computer.</b>
+    </p>
+    <p>
+    The rest are not instruments — <b>deep learning built up from
     its parts</b>, <b>a current-clamp simulator for playing with excitability</b>, <b>a review process for any document that makes
     claims</b>, tied to no field and improved by being run against itself, and <b>a short
     course on working with coding agents</b>. They exist because
     plausible and correct are not the same thing.
-  </p>
+    </p>
+  </div>
 </header>
 
 <main class="shelf wrap">
