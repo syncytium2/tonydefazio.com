@@ -22,7 +22,7 @@ at the repository.
 ## 1. What is here
 
 Everything in [`site/`](site/) is committed as-is — `index.html`, `thanks.html`, `robots.txt`,
-`sitemap.xml` and `cv.pdf`. **There is no build step**, so
+`sitemap.xml`, `cv.pdf` and `resume.pdf`. **There is no build step**, so
 `wrangler deploy` uploads exactly what is in the repository and no generated artifact can
 drift from source.
 
@@ -31,7 +31,8 @@ site/index.html     the page — self-contained, ~24 KB
 site/thanks.html    where the contact form lands after a send (noindex)
 site/robots.txt     allow-all + sitemap pointer
 site/sitemap.xml    one URL
-site/cv.pdf         the redacted public CV (§3) — the only binary here, 539 KB
+site/cv.pdf         the redacted public CV (§3), 539 KB
+site/resume.pdf     the technical resume (§3), built in td-resume and copied in, 97 KB
 ```
 
 `tools/make_public_cv.py` builds `site/cv.pdf` from the private CV. It is **not** a build step
@@ -185,10 +186,11 @@ GitHub to its own site and the number moved underneath the prose. Compute it ins
 python3 -c "import re,io;h=re.findall(r'href=\"(https?://[^\"]+)\"',io.open('site/index.html').read());print(len(set(h)))"
 ```
 
-**That command is `https?://` only, so it does not see `/cv.pdf`.** The CV link is same-origin
-and relative, which is why adding it left the outbound count untouched — but it is still a link
-that can 404, and the one link on the page whose target is a file in this repo rather than
-another site. Check it by hand: `curl -sI https://tonydefazio.com/cv.pdf` should be `200` with
+**That command is `https?://` only, so it does not see `/cv.pdf` or `/resume.pdf`.** Both links
+are same-origin and relative, which is why adding them left the outbound count untouched — but
+they are still links that can 404, and the only links on the page whose targets are files in this
+repo rather than another site. Check them by hand: `curl -sI https://tonydefazio.com/cv.pdf` and
+`curl -sI https://tonydefazio.com/resume.pdf` should each be `200` with
 `content-type: application/pdf`.
 
 **Before deploying, check the inlined figures against their generator.** They are hand-pasted
@@ -519,6 +521,32 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   point at `umich.elements.symplectic.org` (the other 66 are PMIDs, which link to PubMed since 1.9.1), baked in by Elements; they resolve for nobody outside
   U-M. Untidy, harmless, not worth blocking a publish on. (An earlier estimate of ~200 was low —
   measured with `strings site/cv.pdf | grep -c '/URI'`.)
+
+### The resume link, added 1.10.0 (2026-10-13)
+
+The masthead links **Resume (PDF)** to `/resume.pdf`, ahead of the CV. What that link asserts,
+and what will make it wrong:
+
+- **It is Tony's technical resume, and it is not built here.** td-resume builds it as
+  `out/technical.pdf` from `variants/technical.md` (branch `technical-resume`, commit `5df9d94`,
+  not yet on that repo's `main`); this repo holds a copy. 2 pages, letter, no JavaScript, MD5
+  `381384d6b11627cadaf95f84c24ce5a2`, stamped `Version 0.2.1 · Version date 2026-10-13` on the
+  page. Unlike the CV there is no generator in this repo, so **a resume rebuilt in td-resume does
+  not reach the site until someone copies it in and deploys.** Do not hand-edit the PDF.
+- **It is the electrophysiology-led cut**, made from the variant written for one lab with the
+  lab-specific material and the location line removed. Tony, 2026-10-13: "the ephys leading
+  resume is fine for now". A software-led cut may replace it.
+- **It carries no student names.** Checked against the same private list as the CV, with a
+  control: 0 of 15 in the extracted text, `DeFazio` found by the same matcher. Named PIs and
+  published co-authors are there on purpose.
+- **It states unpublished lab figures, by Tony's decision.** The paired loose-patch and imaging
+  recording counts, the sentence marked *(unpublished)*, and the in-progress segmentation
+  comparison had not been public before this page. td-resume and this session both raised it
+  before publication; Tony approved the page as built.
+- **Its lecture line is looser than the CV's.** It says 18 lectures per academic year; the CV
+  gives 9–14 per semester ordinarily and 18 as the 2026-27 total. Raised with Tony, not changed.
+- **Every link in it goes to Tony's own sites, GitHub, Zenodo or NCBI**, and one is
+  `tonydefazio.com/cv.pdf`. If the CV moves, the resume's link breaks with it.
 
 **If any of the surviving claims change, the page is stale.** Nothing checks this automatically.
 

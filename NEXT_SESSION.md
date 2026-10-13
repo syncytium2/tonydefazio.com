@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **1.9.1**, deployed 2026-10-13 |
+| Live | https://tonydefazio.com — **1.10.0**, deployed 2026-10-13 |
 | Cloudflare version ID | `00d2ee03-37e6-49bc-b164-3587fa0d1489` — matches `DEPLOYED.md` |
-| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`), re-checked 2026-10-13 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.9.1 |
+| Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-13 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.10.0 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of
@@ -30,7 +30,8 @@ Expect no output. No surname from that list appears anywhere in this repository'
 
 One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to eight
 destinations (ml2dl, gaba_excites, draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
-and, since 1.7.0, serves Tony's CV.
+and, since 1.7.0, serves Tony's CV. Since 1.10.0 it also serves his technical resume at
+`/resume.pdf`, which is built in td-resume and only copied here (README §3).
 
 ```bash
 npm run serve    # localhost:5099  -- SEE THE WARNING IN §7, THIS PORT LIES

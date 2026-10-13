@@ -3,7 +3,7 @@
   // bugarach use: no server script, Cloudflare serves ./site directly.
   //
   // There is no build step. ./site is committed as-is -- index.html, thanks.html,
-  // robots.txt, sitemap.xml and cv.pdf -- so
+  // robots.txt, sitemap.xml, cv.pdf and resume.pdf -- so
   // `wrangler deploy` uploads exactly what is in the repository and there is no
   // generated artifact that can drift from source.
   "name": "tonydefazio-com",
