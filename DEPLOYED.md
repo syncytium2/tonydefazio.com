@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `00d2ee03-37e6-49bc-b164-3587fa0d1489` |
-| **Deployed** | 2026-09-25 |
-| **Site version** | 1.9.0 |
+| **Version ID** | `ff7d31ce-87e4-40db-a6e3-b650d3bf62c6` |
+| **Deployed** | 2026-10-13 |
+| **Site version** | 1.9.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -367,6 +367,29 @@ the page counts. Masthead and `package.json` move to 1.9.0, dated 2026-09-25.
 Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
 `/thanks`, `/cv.pdf` byte-identical to `site/`; `www` byte-identical to `site/index.html`;
 eight `class="card"` served; masthead 1.9.0; 0 matches for `beacon.min.js`.
+
+## 1.9.1 — 2026-10-13 — the CV rebuilt from the October source
+
+Version ID `ff7d31ce-87e4-40db-a6e3-b650d3bf62c6`, deployed from the `cv-republish` worktree.
+Two assets uploaded: `/index.html` and `/cv.pdf`.
+
+`site/cv.pdf` is rebuilt by `tools/make_public_cv.py` from `td-resume/cv/defazio_cv_2026b.docx`
+as it stood on 2026-10-12, on td-resume's handoff of 2026-09-18. The script itself did not
+change: the Under Review strip that handoff first asked for was overtaken when the paper was
+accepted, so the entry is published under *In Press*. README §3 lists what the new copy carries
+that the 1.7.0 copy did not. 13 pages (`/Count` read from the file), 551,855 bytes, MD5
+`8195c30d5e1b3dbd9589e0601171cde2`. Nothing on the page changed but the version strip.
+
+Build output: positive control 15/15 names found in the unredacted source, 0/15 in the
+published copy, co-author citations intact, header line present. The name grep over the
+outgoing commit returned nothing, and the same pipe counted a word known to be in the diff.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf` byte-identical to `site/`; `www` byte-identical to `site/index.html`;
+`/cv.pdf` 200, `application/pdf`. In the text pulled back off the live URL: 0 of 15 names, with
+`DeFazio` found by the same matcher; the public-copy header line once; the In Press entry
+present and no Under Review heading; all guarded co-author citations present. Eight
+`class="card"` served; masthead 1.9.1; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
