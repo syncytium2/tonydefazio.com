@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **1.9.0**, deployed 2026-09-25 |
+| Live | https://tonydefazio.com — **1.9.1**, deployed 2026-10-13 |
 | Cloudflare version ID | `00d2ee03-37e6-49bc-b164-3587fa0d1489` — matches `DEPLOYED.md` |
-| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`), re-checked 2026-09-25 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.9.0 |
+| Served vs `site/` | all five files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`), re-checked 2026-10-13 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.9.1 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of
@@ -62,6 +62,11 @@ relationship being redacted, and this repository is public. The names live in
 **Do not reword the `Public copy: student names are withheld` header line.** `td-resume`'s
 `claims.yml` greps the served PDF for it, so serving the un-redacted CV in its place fails their
 checker instead of surprising a reader. Both ends enforce it.
+
+**Rebuilt 2026-10-13 (1.9.1)** from `td-resume/cv/defazio_cv_2026b.docx` as of 2026-10-12, on the
+handoff in `td-resume/docs/todo/2026-09-18-republish-public-cv.md`. 13 pages. The Under Review
+strip that handoff first asked for was never written: the paper was accepted, so the entry is
+public as *In Press*. README §3 lists what changed.
 
 **⚠ It will go stale silently.** The four corrections in the private CV live in Symplectic
 Elements records, not in the document. The next Elements-generated CV has all four defects back.
@@ -209,6 +214,6 @@ the CV's generator is in the repo so the same weakness is not repeated for it.
 5. **Verify or drop `19 worked failures`** — the one unverified number on the page.
 6. **A staleness check.** Nothing detects a claim going stale, and §5 shows that is this page's
    actual failure mode. The CV's Elements divergence (§3) has no detector either.
-7. **Page weight.** `site/cv.pdf` is 524 KB, ~17x the rest of the site combined. It is a
+7. **Page weight.** `site/cv.pdf` is 539 KB, about six times the rest of the site combined. It is a
    navigation, not a page load, so it costs nothing until clicked.
 8. **`is-new` is a dead class** on the It Looked Right card. Either style it or drop it.

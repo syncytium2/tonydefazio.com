@@ -31,7 +31,7 @@ site/index.html     the page — self-contained, ~24 KB
 site/thanks.html    where the contact form lands after a send (noindex)
 site/robots.txt     allow-all + sitemap pointer
 site/sitemap.xml    one URL
-site/cv.pdf         the redacted public CV (§3) — the only binary here, 524 KB
+site/cv.pdf         the redacted public CV (§3) — the only binary here, 539 KB
 ```
 
 `tools/make_public_cv.py` builds `site/cv.pdf` from the private CV. It is **not** a build step
@@ -446,7 +446,9 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
 
 - **It is Tony's current CV, with student names removed.** Built by
   [`tools/make_public_cv.py`](tools/make_public_cv.py) from `td-resume/cv/defazio_cv_2026b.docx`.
-  11 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `a638bec06068a9eeb9fdae3d0f402a73`.
+  13 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `8195c30d5e1b3dbd9589e0601171cde2`
+  (rebuilt 2026-10-13 for 1.9.1; the 1.7.0 build was 11 pages, `a638bec0…`). LibreOffice stamps a
+  creation time into the file, so a rebuild from the same source has a different MD5.
   Rebuild with `python3 tools/make_public_cv.py <the .docx> out/`.
 - **Fifteen named students were removed and replaced with counts and institutions** — 7 graduate
   mentees, 6 undergraduate mentees, 2 dissertation-committee members. On a CV sent to a search
@@ -491,7 +493,17 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   checks the document XML as well as the extracted text. (The artifact was found by
   td-resume-08 on a chapter DOI, which `pdftotext` renders as `B978-0080450469.00517-9`
   because the hyphen lands on a line break. The DOI in the file is correct.)
-- **⚠ IT WILL GO STALE SILENTLY, AND NOTHING HERE WILL NOTICE.** The private source is
+- **Rebuilt 2026-10-13 from the private CV as it stood on 2026-10-12.** New against the 1.7.0
+  copy: Research Interests rewritten in Tony's own prose; a new section, *Research Computing and
+  AI-Assisted Development*; the publication list audited against NCBI, with PMIDs linking to
+  PubMed; grant amounts removed and a note naming the Principal Investigator; an *In Press*
+  entry for the kisspeptin calcium-events paper (*J Neuroendocrinol*, accepted 2026-10-07); a
+  pending grant submission no longer listed; footer `Tony DeFazio`, dated `10/12/2026`. The
+  private source is now generated from the Elements export by `td-resume/cv/apply_elements_fixes.py`
+  rather than corrected by hand, which narrows the warning below without removing it: the
+  corrections are re-applied on each build, but the published copy still moves only when someone
+  runs `make_public_cv.py` and deploys.
+- **⚠ IT WILL GO STALE SILENTLY, AND NOTHING HERE WILL NOTICE.** At 1.7.0 the private source was
   `defazio_cv_2026a` plus four hand-applied corrections: degree fields (BS Physics, PhD Biology),
   PhD advisor (John P. Walsh), a duplicated book chapter removed, and the Physiol 578 lecture
   count for 2026-27. **All four defects live in Elements records, not in the document** — the
@@ -503,8 +515,8 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
 - **`defazio@umich.edu` remains in the header, deliberately.** `robots.txt` allows all crawlers,
   so it is indexable and scrapable by design. Already public via the U-M directory and 60+
   papers. Recorded here because it was a decision, not a side effect.
-- **It contains 656 dead links, and that is known.** All but four of the PDF's `/URI` annotations
-  point at `umich.elements.symplectic.org`, baked in by Elements; they resolve for nobody outside
+- **It contains 646 dead links, and that is known.** Of the PDF's `/URI` annotations, 646
+  point at `umich.elements.symplectic.org` (the other 66 are PMIDs, which link to PubMed since 1.9.1), baked in by Elements; they resolve for nobody outside
   U-M. Untidy, harmless, not worth blocking a publish on. (An earlier estimate of ~200 was low —
   measured with `strings site/cv.pdf | grep -c '/URI'`.)
 
