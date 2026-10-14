@@ -448,8 +448,8 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
 
 - **It is Tony's current CV, with student names removed.** Built by
   [`tools/make_public_cv.py`](tools/make_public_cv.py) from `td-resume/cv/defazio_cv_2026b.docx`.
-  13 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `8195c30d5e1b3dbd9589e0601171cde2`
-  (rebuilt 2026-10-13 for 1.9.1; the 1.7.0 build was 11 pages, `a638bec0…`). LibreOffice stamps a
+  13 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `aef30e89772b887c8c8c095d73d516d9`
+  (rebuilt 2026-10-14 for 1.10.3; 1.9.1 was `8195c30d…`, the 1.7.0 build 11 pages, `a638bec0…`). LibreOffice stamps a
   creation time into the file, so a rebuild from the same source has a different MD5.
   Rebuild with `python3 tools/make_public_cv.py <the .docx> out/`.
 - **Fifteen named students were removed and replaced with counts and institutions** — 7 graduate
@@ -500,7 +500,8 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   AI-Assisted Development*; the publication list audited against NCBI, with PMIDs linking to
   PubMed; grant amounts removed and a note naming the Principal Investigator; an *In Press*
   entry for the kisspeptin calcium-events paper (*J Neuroendocrinol*, accepted 2026-10-07); a
-  pending grant submission no longer listed; footer `Tony DeFazio`, dated `10/12/2026`. The
+  pending grant submission no longer listed; footer `Tony DeFazio`, dated `10/12/2026`
+  (`10/14/2026` since 1.10.3, which corrected the Physiol 578 and 592 lecture lines). The
   private source is now generated from the Elements export by `td-resume/cv/apply_elements_fixes.py`
   rather than corrected by hand, which narrows the warning below without removing it: the
   corrections are re-applied on each build, but the published copy still moves only when someone
@@ -528,10 +529,9 @@ The masthead links **Resume (PDF)** to `/resume.pdf`, ahead of the CV. What that
 and what will make it wrong:
 
 - **It is Tony's technical resume, and it is not built here.** td-resume builds it as
-  `out/technical.pdf` from `variants/technical.md` (branch `technical-resume`, commit `5df9d94`,
-  not yet on that repo's `main`); this repo holds a copy. 2 pages, letter, no JavaScript, MD5
-  `381384d6b11627cadaf95f84c24ce5a2`, stamped `Version 0.2.1 · Version date 2026-10-13` on the
-  page. Unlike the CV there is no generator in this repo, so **a resume rebuilt in td-resume does
+  `out/technical.pdf` from `variants/technical.md` (td-resume `main`, commit `62b2871`); this repo
+  holds a copy. 2 pages, letter, no JavaScript, MD5 `2f57f1623d32c0883d06d1f99c9bb465`, stamped
+  `Version 0.2.1 · Version date 2026-10-14` on the page. Unlike the CV there is no generator in this repo, so **a resume rebuilt in td-resume does
   not reach the site until someone copies it in and deploys.** Do not hand-edit the PDF.
 - **It is the electrophysiology-led cut**, made from the variant written for one lab with the
   lab-specific material and the location line removed. Tony, 2026-10-13: "the ephys leading
@@ -543,8 +543,9 @@ and what will make it wrong:
   recording counts, the sentence marked *(unpublished)*, and the in-progress segmentation
   comparison had not been public before this page. td-resume and this session both raised it
   before publication; Tony approved the page as built.
-- **Its lecture line is looser than the CV's.** It says 18 lectures per academic year; the CV
-  gives 9–14 per semester ordinarily and 18 as the 2026-27 total. Raised with Tony, not changed.
+- **Its lecture line agrees with the CV's since 1.10.3**: 42 lectures by 10 faculty, 12 of them
+  Tony's. Until then it said "18 lectures per academic year", which was his total across three
+  courses.
 - **Every link in it goes to Tony's own sites, GitHub, Zenodo or NCBI**, and one is
   `tonydefazio.com/cv.pdf`. If the CV moves, the resume's link breaks with it.
 

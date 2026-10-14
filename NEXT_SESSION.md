@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **1.10.2**, deployed 2026-10-13 |
+| Live | https://tonydefazio.com — **1.10.3**, deployed 2026-10-14 |
 | Cloudflare version ID | `00d2ee03-37e6-49bc-b164-3587fa0d1489` — matches `DEPLOYED.md` |
-| Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-13 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.10.2 |
+| Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-14 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.10.3 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of
@@ -80,11 +80,12 @@ these against `site/cv.pdf` itself rather than against a handoff that paraphrase
   from 2002, 2009 and 2014. Four was a handoff error, and it is the duplicate described in
   README §3: Elements records `id=2560231` (deleted) and `id=396247` (kept) were the same
   chapter.
-- **Physiol 578 lectures: not a contradiction.** The CV states both figures in one sentence —
-  "Lectures range from 9-14 x 50 minute lectures per semester; academic year 2026-27 is 18 x
-  50 minute lectures (15 fall, 3 spring)". 9–14 is the ordinary per-*semester* range; 18 is
-  the 2026-27 *academic-year* total. Anything quoting "18 lectures per academic year" against
-  "9–14 per semester" is comparing two different units.
+- **Physiol 578 lectures: corrected 2026-10-14 (1.10.3).** The 1.9.1 CV said 2026-27 was "18 x
+  50 minute lectures", and the resume said "18 lectures per academic year". Both were wrong in
+  the same way: 18 was Tony's total across three courses, not 578's. The CV now says 578 is a
+  42-lecture course taught by 10 faculty, of which he gives 12 in 2026-27, and gives 592 as 2
+  lectures and 1 student presentation; the resume says the same and adds the team-taught Human
+  Physiology and Integrative Neuroscience. Check any lecture count against `site/cv.pdf` itself.
 
 ## 3a. OPEN, AND AWAITING TONY: the U-M address is still on page one
 
