@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "python3 -m http.server 5099 --bind 127.0.0.1 --directory site",
     "dry": "wrangler deploy --dry-run",
+    "predeploy": "python3 tools/predeploy.py",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {

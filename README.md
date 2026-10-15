@@ -159,6 +159,14 @@ npm run dry         # everything except the upload
 npm run deploy      # upload
 ```
 
+**Bump the version, then deploy; the masthead takes care of itself.** `npm version patch
+--no-git-tag-version` (or `minor`) moves `package.json`. `npm run deploy` runs
+`tools/predeploy.py` first, which writes that version and today's date into the masthead and
+**refuses to upload unless the version is newer than the one live**. That refusal is what
+catches a branch cut from a `main` that lags the last deploy — on 2026-10-15 one shipped over an
+unmerged deploy and put the uncorrected CV back. Call `wrangler deploy` directly and none of
+this runs; use `npm run deploy`.
+
 `wrangler.jsonc` declares the apex as a `custom_domain` route, so **`wrangler deploy` creates
 the DNS record and the Worker binding itself.** There is nothing to click in the Cloudflare
 dashboard and nothing to do at Porkbun, which is only the registrar — `tonydefazio.com`'s
