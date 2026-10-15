@@ -226,11 +226,11 @@ and it was met the same day. `render --icon 420x104` on `examples/gallery/lenet`
 0.86x and carries no text at all. **The condition was written down before it was met, which
 is why the swap took one measurement rather than an argument.**
 
-bugarach's card takes the same treatment from `examples/tube` — which is the model bugarach
-actually runs, vendored from draughtsman. That one is an **editorial** change rather than a
-repair: it replaced a raster figure that illustrated the card's sentence with a model mark
-that does not. Both retired abstracts are still generated and show as UNUSED in the drift
-check, so either card reverts in one line.
+bugarach's card took the same treatment from `examples/tube` — the model bugarach actually
+runs, vendored from draughtsman — on 2026-09-04, as an **editorial** change rather than a
+repair. **It was reverted on 2026-10-15 at Tony's call**: the card shows the raster again,
+which illustrates the card's sentence where the model mark did not. The tube mark is still in
+the darkroom as `ds-b.svg`, so either direction is a one-block swap.
 
 **The marks' stage fills are restatable.** draughtsman emits `var(--ds-fill-<kind>, <hex>)`.
 This page restated the nine kinds for dark mode; since 1.6.1 there is no dark mode and the

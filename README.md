@@ -374,16 +374,14 @@ the page. What the cards still assert:
   sees only their `<noscript>` summary.** Rendering them shows `Born June 21, 2026` and
   `born August 7, 2026`. Any future check of what a destination publishes must render the page,
   not fetch it — three of the six are client-side apps.
-- **The bugarach card's figure is also draughtsman's output** — `render --icon 420x104` on
-  `examples/tube`, fitted at 0.33x. **bugarach's model *is* draughtsman's `tube`**: its
-  `docs/learned/architecture.spec.json` is the vendored copy and says so in its own first line,
-  so this is the model bugarach actually runs, not an illustration of one.
-  ⚠ **This replaced the raster/rate abstract, and that is an editorial change, not a repair.**
-  The retired figure showed 22 cells over a ramping background with four coordinated events left
-  deliberately unmarked — it illustrated the card's sentence, which is about finding those
-  moments. The model mark does not; it shows the detector instead of the problem. It is still
-  generated as `ga-b` and shows as UNUSED in the drift check, so putting it back is a one-line
-  revert. Consistent with bugarach's own front page, which now leads with the model.
+- **The bugarach card's figure is the raster/rate abstract again, as of 2026-10-15**, at Tony's
+  call — `ga-bugarach.svg` from the darkroom, inlined unchanged: 22 cells over a ramping
+  background with four coordinated events left deliberately unmarked. It illustrates the card's
+  sentence, which is about finding those moments.
+  From 2026-09-04 the card carried draughtsman's `render --icon 420x104` of `examples/tube`
+  instead — the model bugarach actually runs (its `docs/learned/architecture.spec.json` is the
+  vendored copy). That showed the detector rather than the problem. The mark is still generated
+  as `ds-b.svg` in the darkroom, so putting it back is a one-block revert.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The ml2dl card**, checked against `origin/main` (`1b85963`) and the live site on
   2026-09-25. The sentence paraphrases the site's own opening ("Deep learning, built up from
