@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `8348a1d8-4a13-44d6-83f9-8e61920fe7d6` |
-| **Deployed** | 2026-10-13 |
-| **Site version** | 1.10.2 |
+| **Version ID** | `3133564b-caa9-4a02-99d3-7035e887be04` — **⚠ not what is live; see 1.10.3 below** |
+| **Deployed** | 2026-10-14 |
+| **Site version** | 1.10.3 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -446,6 +446,48 @@ Looked at in headless Chrome at 1440, 1206, 1040, 1020 and 700 px before upload.
 Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
 `/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
 `site/index.html`; eight `class="card"` served; masthead 1.10.2; 0 matches for `beacon.min.js`.
+
+## 1.10.3 — 2026-10-14 — the lecture line corrected on the CV and the resume
+
+Version ID `3133564b-caa9-4a02-99d3-7035e887be04`, deployed from the `teaching-line` worktree.
+Three assets uploaded: `/index.html`, `/cv.pdf`, `/resume.pdf`.
+
+On td-resume's request, which said Tony asked for it that day; Tony confirmed it on 2026-10-16.
+Both documents had given 18 lectures for Physiol 578, which was Tony's total across three
+courses. The CV now says 578 is a 42-lecture course taught by 10 faculty, 12 of the lectures his
+in 2026-27, and gives 592 as 2 lectures and a student presentation; its footer is dated
+`10/14/2026`. The resume carries the same figures and adds the team-taught Human Physiology and
+Integrative Neuroscience. Source: td-resume `main`, commit `62b2871`.
+
+`cv.pdf` rebuilt by `tools/make_public_cv.py`: positive control 15/15, published copy 0/15,
+co-author citations intact, header line present. 13 pages, 551,765 bytes, MD5
+`aef30e89772b887c8c8c095d73d516d9`. `resume.pdf` copied from td-resume's `out/technical.pdf`:
+2 pages, 99,865 bytes, MD5 `2f57f1623d32c0883d06d1f99c9bb465`. Name grep over the outgoing
+commit: nothing.
+
+Verified after, on 2026-10-14, by `curl` with a cache-busting query: all six files
+byte-identical to `site/`; `www` byte-identical to `site/index.html`; both PDFs 200,
+`application/pdf`. In the text pulled back off the live URLs: 0 of 15 names in either, with the
+control found; the 42-lecture line in both and no 18-lecture line in either; the CV's header
+line once and its guarded citations all present. Eight `class="card"`; masthead 1.10.3.
+
+The record itself was not committed that day; the permission check refused the command.
+
+### ⚠ Overwritten at the edge on 2026-10-15, by a deploy that is on no branch
+
+`wrangler deployments list` shows version `034ad65c-5fd7-47fe-8553-5a97eb1c6046`, created
+2026-10-15T16:59Z, after this one. Checked on 2026-10-16, it serves:
+
+- `/index.html` with the bugarach raster card from the `bugarach-raster` worktree, but stamped
+  **`1.10.3` / `2026-10-13`**: a version number that described a different page, and a date
+  older than this deploy;
+- **the 1.9.1 `cv.pdf`** (MD5 `8195c30d…`, 551,855 bytes, footer `10/12/2026`) and **the 1.10.0
+  `resume.pdf`** (MD5 `381384d6…`, 99,735 bytes) — both with the old 18-lecture line.
+
+So the lecture correction above is **not live**, though nothing on the page says so. The
+`bugarach-raster` branch (`0536561`, `8e6875a`) already sits on top of this commit and holds the
+corrected PDFs; deploying it, or this branch, puts them back. Whoever does that: re-verify the
+two PDFs by MD5 at the edge rather than trusting the masthead, which is exactly what failed here.
 
 ## Rolling back
 
