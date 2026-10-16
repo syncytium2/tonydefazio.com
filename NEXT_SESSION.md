@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — **⚠ not described by `main`.** 1.10.3 was deployed 2026-10-14, then overwritten 2026-10-15 by version `034ad65c`, which serves the bugarach raster with the *old* `cv.pdf` and `resume.pdf` under a `1.10.3` stamp. See DEPLOYED.md 1.10.3 |
-| Cloudflare version ID | `00d2ee03-37e6-49bc-b164-3587fa0d1489` — matches `DEPLOYED.md` |
-| Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-14 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.10.3 |
+| Live | https://tonydefazio.com — 1.10.4, deployed 2026-10-16. See DEPLOYED.md 1.10.4 |
+| Cloudflare version ID | `d15a1944-9497-4965-b356-faefeaab2ce3` — matches `DEPLOYED.md` |
+| Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-16 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.10.4 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of

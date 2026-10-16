@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `3133564b-caa9-4a02-99d3-7035e887be04` — **⚠ not what is live; see 1.10.3 below** |
-| **Deployed** | 2026-10-14 |
-| **Site version** | 1.10.3 |
+| **Version ID** | `d15a1944-9497-4965-b356-faefeaab2ce3` |
+| **Deployed** | 2026-10-16 |
+| **Site version** | 1.10.4 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -473,7 +473,7 @@ line once and its guarded citations all present. Eight `class="card"`; masthead 
 
 The record itself was not committed that day; the permission check refused the command.
 
-### ⚠ Overwritten at the edge on 2026-10-15, by a deploy that is on no branch
+### Overwritten at the edge on 2026-10-15, and put right by 1.10.4
 
 `wrangler deployments list` shows version `034ad65c-5fd7-47fe-8553-5a97eb1c6046`, created
 2026-10-15T16:59Z, after this one. Checked on 2026-10-16, it serves:
@@ -488,6 +488,33 @@ So the lecture correction above is **not live**, though nothing on the page says
 `bugarach-raster` branch (`0536561`, `8e6875a`) already sits on top of this commit and holds the
 corrected PDFs; deploying it, or this branch, puts them back. Whoever does that: re-verify the
 two PDFs by MD5 at the edge rather than trusting the masthead, which is exactly what failed here.
+
+**Resolved 2026-10-16 by 1.10.4.** The overwriting deploy came from `bugarach-raster` before it
+was rebased onto this commit (its tree then was `3f0742a`, cut from a `main` that did not have
+`f033004`), so it was on a branch, just not one anyone kept: the rebase replaced it.
+
+## 1.10.4 — 2026-10-16 — the bugarach raster, the corrected PDFs back, American spelling
+
+Version ID `d15a1944-9497-4965-b356-faefeaab2ce3`, created 2026-10-16T17:30Z, deployed by Tony
+with `npm run deploy` from the `bugarach-raster` worktree at `2365334`.
+
+- **The bugarach card shows the raster/rate abstract again**, in place of draughtsman's `tube`
+  mark, at Tony's call. `ga-bugarach.svg` from the darkroom, inlined unchanged; the other five
+  data figures were confirmed byte-identical to their darkroom files first. README §3 has the
+  editorial reasoning; the mark is kept in the darkroom as `ds-b.svg`.
+- **The 1.10.3 `cv.pdf` and `resume.pdf` are live again**, undoing the 2026-10-15 overwrite.
+- **American spelling:** analyze and license in visible text; recognizable (homepage and
+  thanks page), recolored and depolarized in the stylesheet comments, which ship.
+- **`tools/predeploy.py` now runs before every `npm run deploy`.** It writes the
+  `package.json` version and today's date into the masthead, and refuses the upload unless that
+  version is greater than the one live. Either half would have stopped the 2026-10-15 deploy.
+
+Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/sitemap.xml`,
+`/thanks`, `/cv.pdf`, `/resume.pdf` byte-identical to `site/`; `www` byte-identical to
+`site/index.html`; `cv.pdf` MD5 `aef30e89772b887c8c8c095d73d516d9` and `resume.pdf` MD5
+`2f57f1623d32c0883d06d1f99c9bb465`, both `200 application/pdf`; eight `class="card"`; the
+raster (`ga-b`) served; masthead 1.10.4 / 2026-10-16; 0 matches for `beacon.min.js`.
+Checked independently by two sessions.
 
 ## Rolling back
 
