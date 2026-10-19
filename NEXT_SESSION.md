@@ -216,6 +216,6 @@ the CV's generator is in the repo so the same weakness is not repeated for it.
 5. **Verify or drop `19 worked failures`** — the one unverified number on the page.
 6. **A staleness check.** Nothing detects a claim going stale, and §5 shows that is this page's
    actual failure mode. The CV's Elements divergence (§3) has no detector either.
-7. **Page weight.** `site/cv.pdf` is 539 KB, about six times the rest of the site combined. It is a
+7. **Page weight.** `site/cv.pdf` is 433 KB, about four times the rest of the site combined. It is a
    navigation, not a page load, so it costs nothing until clicked.
 8. **`is-new` is a dead class** on the It Looked Right card. Either style it or drop it.

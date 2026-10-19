@@ -31,7 +31,7 @@ site/index.html     the page — self-contained, ~24 KB
 site/thanks.html    where the contact form lands after a send (noindex)
 site/robots.txt     allow-all + sitemap pointer
 site/sitemap.xml    one URL
-site/cv.pdf         the redacted public CV (§3), 539 KB
+site/cv.pdf         the redacted public CV (§3), 433 KB
 site/resume.pdf     the technical resume (§3), built in td-resume and copied in, 97 KB
 ```
 
@@ -454,8 +454,9 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
 
 - **It is Tony's current CV, with student names removed.** Built by
   [`tools/make_public_cv.py`](tools/make_public_cv.py) from `td-resume/cv/defazio_cv_2026b.docx`.
-  13 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `aef30e89772b887c8c8c095d73d516d9`
-  (rebuilt 2026-10-14 for 1.10.3; 1.9.1 was `8195c30d…`, the 1.7.0 build 11 pages, `a638bec0…`). LibreOffice stamps a
+  13 pages, PDF 1.7, letter, no JavaScript, not encrypted, MD5 `97593acfb3d6c5f66ca264abc38d4a13`
+  (rebuilt 2026-10-19 for 1.10.5; 1.10.3 was `aef30e89…`, 1.9.1 `8195c30d…`, the 1.7.0 build 11
+  pages, `a638bec0…`). LibreOffice stamps a
   creation time into the file, so a rebuild from the same source has a different MD5.
   Rebuild with `python3 tools/make_public_cv.py <the .docx> out/`.
 - **Fifteen named students were removed and replaced with counts and institutions** — 7 graduate
@@ -507,7 +508,8 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
   PubMed; grant amounts removed and a note naming the Principal Investigator; an *In Press*
   entry for the kisspeptin calcium-events paper (*J Neuroendocrinol*, accepted 2026-10-07); a
   pending grant submission no longer listed; footer `Tony DeFazio`, dated `10/12/2026`
-  (`10/14/2026` since 1.10.3, which corrected the Physiol 578 and 592 lecture lines). The
+  (`10/14/2026` at 1.10.3, which corrected the Physiol 578 and 592 lecture lines; `10/19/2026`
+  since 1.10.5, which moved every citation link from Symplectic to PubMed). The
   private source is now generated from the Elements export by `td-resume/cv/apply_elements_fixes.py`
   rather than corrected by hand, which narrows the warning below without removing it: the
   corrections are re-applied on each build, but the published copy still moves only when someone
@@ -524,10 +526,12 @@ the CV Tony sends to people.** What that link asserts, and what will make it wro
 - **`defazio@umich.edu` remains in the header, deliberately.** `robots.txt` allows all crawlers,
   so it is indexable and scrapable by design. Already public via the U-M directory and 60+
   papers. Recorded here because it was a decision, not a side effect.
-- **It contains 646 dead links, and that is known.** Of the PDF's `/URI` annotations, 646
-  point at `umich.elements.symplectic.org` (the other 66 are PMIDs, which link to PubMed since 1.9.1), baked in by Elements; they resolve for nobody outside
-  U-M. Untidy, harmless, not worth blocking a publish on. (An earlier estimate of ~200 was low —
-  measured with `strings site/cv.pdf | grep -c '/URI'`.)
+- **Every link in it goes to PubMed, since 1.10.5.** Until then 646 of its `/URI` annotations
+  pointed at `umich.elements.symplectic.org`, baked in by Elements and resolving for nobody outside
+  U-M. td-resume now points each citation at the paper on PubMed and drops the link from talks
+  and posters with no PubMed record: 461 links, all to `pubmed.ncbi.nlm.nih.gov`, measured with
+  `strings site/cv.pdf | grep '/URI'`. The one remaining "Symplectic" in the file is the
+  producer name in its XMP metadata (`Symplectic Ltd.`), which is not a link.
 
 ### The resume link, added 1.10.0 (2026-10-13)
 
