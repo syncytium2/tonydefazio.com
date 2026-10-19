@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `d15a1944-9497-4965-b356-faefeaab2ce3` |
-| **Deployed** | 2026-10-16 |
-| **Site version** | 1.10.4 |
+| **Version ID** | `f0c9ef5f-35aa-465e-bbff-290bda7d4cd2` |
+| **Deployed** | 2026-10-19 |
+| **Site version** | 1.10.5 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -515,6 +515,27 @@ Verified after, by `curl` with a cache-busting query: `/`, `/robots.txt`, `/site
 `2f57f1623d32c0883d06d1f99c9bb465`, both `200 application/pdf`; eight `class="card"`; the
 raster (`ga-b`) served; masthead 1.10.4 / 2026-10-16; 0 matches for `beacon.min.js`.
 Checked independently by two sessions.
+
+## 1.10.5 — 2026-10-19 — the public CV's links go to PubMed
+
+Version ID `f0c9ef5f-35aa-465e-bbff-290bda7d4cd2`, deployed from the `cv-pubmed-links` worktree
+through `tools/predeploy.py`, which stamped the masthead 1.10.5 / 2026-10-19 against a live
+1.10.4. Two assets uploaded: `/index.html` and `/cv.pdf`.
+
+On td-resume's request, which Tony confirmed in this session before the deploy. td-resume moved
+every citation link in the private CV from Symplectic (behind a U-M login) to the paper on
+PubMed, and dropped the link from talks and posters with no PubMed record (td-resume `fcae9af`).
+`cv.pdf` rebuilt by `tools/make_public_cv.py`: positive control 15/15, published copy 0/15,
+co-author citations intact, header line present. 13 pages, 442,828 bytes, MD5
+`97593acfb3d6c5f66ca264abc38d4a13`, footer `10/19/2026`. Name grep over the outgoing commit:
+nothing.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; `/cv.pdf` 200, `application/pdf`. In the live CV: 461
+`/URI` annotations, every one to `pubmed.ncbi.nlm.nih.gov`, none to Symplectic; 0 of 15 names
+with the `DeFazio` control found; the header line once; 3 of 3 guarded citations; the
+42-lecture line still present. Eight `class="card"`; masthead 1.10.5; 0 matches for
+`beacon.min.js`.
 
 ## Rolling back
 
