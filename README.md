@@ -394,7 +394,9 @@ the page. What the cards still assert:
   as `ds-b.svg` in the darkroom, so putting it back is a one-block revert.
 - **The `six detectors` chip** — `bugarach/README.md`.
 - **The ionhomie card**, checked against `origin/main` (`20ef232`) and the live site (v0.1.3,
-  release commit `0b4121b`) on 2026-10-20, and confirmed by the ionhomie session.
+  release commit `0b4121b`) on 2026-10-20, and confirmed by the ionhomie session. The card
+  waited for v0.1.4 (release commit `3a6f88b`), which put "← tonydefazio.com" in the top bar of
+  every route, so the tile does not send anyone to a page with no way back.
   - The sentence paraphrases the repository's README ("Ion homeostasis, built one mechanism at
     a time, in the browser … the NKCC1 and KCC2 cotransporters that set E_Cl, and with it
     E_GABA").
