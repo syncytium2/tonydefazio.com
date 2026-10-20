@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `f0c9ef5f-35aa-465e-bbff-290bda7d4cd2` |
-| **Deployed** | 2026-10-19 |
-| **Site version** | 1.10.5 |
+| **Version ID** | `2f5d491b-c046-46c0-b497-41e439c85e39` |
+| **Deployed** | 2026-10-20 |
+| **Site version** | 1.11.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -536,6 +536,23 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 with the `DeFazio` control found; the header line once; 3 of 3 guarded citations; the
 42-lecture line still present. Eight `class="card"`; masthead 1.10.5; 0 matches for
 `beacon.min.js`.
+
+## 1.11.0 — 2026-10-20 — ionhomie, the ninth card
+
+Version ID `2f5d491b-c046-46c0-b497-41e439c85e39`, deployed from the `ionhomie-card` worktree
+through `tools/predeploy.py`, which stamped 1.11.0 / 2026-10-20 against a live 1.10.5. One asset
+uploaded: `/index.html`.
+
+Tony: "add ionhomie as a new tile", and "make sure it has a return tag". The card went out only
+after ionhomie v0.1.4 (release commit `3a6f88b`) put "← tonydefazio.com" in the top bar of every
+route; checked in its live bundle and in a screenshot of the live page first. The card is first
+on the shelf and takes the NEW sticker from ml2dl; accent `#4A4FC0`; figure `ga-i`, ionhomie's
+rundown computed by ionhomie (README §3). The sentences that counted the sites now name no
+number. Figure drift check before upload: the three known rows and nothing new.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; nine `class="card"`, the first and the one with the
+NEW sticker both ionhomie; `ga-i` present; masthead 1.11.0; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
