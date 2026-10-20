@@ -32,6 +32,7 @@
     "https://orcid.org/0000-0001-7302-7528"
   ],
   "subjectOf": [
+    { "@type": "WebApplication", "name": "ionhomie", "url": "https://ionhomie.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/ionhomie", "programmingLanguage": "TypeScript" },
     { "@type": "WebSite", "name": "ml2dl", "url": "https://ml2dl.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "gaba_excites", "url": "https://gaba.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/gaba_excites", "programmingLanguage": "TypeScript" },
     { "@type": "WebSite", "name": "draughtsman", "url": "https://draughtsman.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/draughtsman", "programmingLanguage": "Python" },
@@ -47,8 +48,8 @@
 <style>
 /* ==========================================================================
    Palette and type inherited from murderboard.tonydefazio.com, which is the
-   most fully designed of the eight destinations. This page is deliberately the
-   parent of that language rather than a ninth dialect: same paper, same
+   most fully designed of the destinations. This page is deliberately the
+   parent of that language rather than a dialect of its own: same paper, same
    Charter body, same mono kickers. What it adds is one accent hue per
    destination, so a card is recognizable before its title is read.
    ========================================================================== */
@@ -83,6 +84,7 @@
   --c-draughtsman: #1F6B45;  /* green: the hue the other five leave free. 5.9:1 on --surface */
   --c-gaba: #B5461A;         /* gaba_excites' --orange, darkened. 5.5:1 on --surface */
   --c-ml2dl: #A3246A;        /* ml2dl's site is neutral; magenta is this page's assignment. 7.0:1 */
+  --c-ionhomie: #4A4FC0;     /* ionhomie's --link periwinkle, darkened. 6.6:1 on --surface; hue 237, between no_peak 213 and kernel 273 */
 
   --f-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable Display",
                "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -174,7 +176,7 @@ strong { font-weight: 600; }
 .deck b { color: var(--ink); font-weight: 600; }
 
 /* WHO, not just what. A reader who scans the byline and stops should still learn
-   the right thing about eight destinations, so this line carries the background and
+   the right thing about every destination, so this line carries the background and
    the through-line rather than naming one subject. It also lifts the identity links
    out of the footer, which is the last place a first-time reader looks. */
 .whois {
@@ -198,7 +200,7 @@ strong { font-weight: 600; }
    hundred characters a line. 1030px is where two columns of --col-min stop fitting. */
 @media (max-width: 1030px) { .whois, .deck { max-width: var(--measure); } }
 
-/* ---------- the eight cards ---------- */
+/* ---------- the cards ---------- */
 .shelf {
   padding-block: 0 clamp(2.5rem, 6vw, 4rem);
   display: grid; gap: var(--col-gap);
@@ -373,6 +375,12 @@ strong { font-weight: 600; }
 .ga .xo0   { fill: var(--ink); opacity: .55; }
 .ga .xo1   { fill: var(--c); }
 
+/* --- ionhomie: rundown with the pump stopped ---
+   Computed by ionhomie itself. Vm in the accent; Na+ in solid and K+ in dashed ink,
+   labeled at their ends, so the crossing reads without a legend. */
+.ga .ion   { fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-linejoin: round; opacity: .75; }
+.ga .ion.k { stroke-dasharray: 3 2.5; }
+
 /* --- murderboard: the loop --- */
 .ga .nd        { fill: var(--surface); stroke: var(--c); stroke-width: 1.6; }
 .ga .nd.last   { fill: var(--c); }
@@ -518,7 +526,7 @@ form.contact button { color: #fff; }
     </p>
     <p>
     The rest are not instruments — <b>deep learning built up from
-    its parts</b>, <b>a current-clamp simulator for playing with excitability</b>, <b>a review process for any document that makes
+    its parts</b>, <b>ion homeostasis built one mechanism at a time</b>, <b>a current-clamp simulator for playing with excitability</b>, <b>a review process for any document that makes
     claims</b>, tied to no field and improved by being run against itself, and <b>a short
     course on working with coding agents</b>. They exist because
     plausible and correct are not the same thing.
@@ -528,8 +536,25 @@ form.contact button { color: #fff; }
 
 <main class="shelf wrap">
 
-  <a class="card" style="--c: var(--c-ml2dl)" href="https://ml2dl.tonydefazio.com/">
+  <a class="card" style="--c: var(--c-ionhomie)" href="https://ionhomie.tonydefazio.com/">
     <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow">Ion homeostasis<span class="born">Born <time datetime="2026-10-20">2026-10-20</time></span></p>
+    <h2>ionhomie</h2>
+    <p class="what">
+      Ion homeostasis built one mechanism at a time &mdash; diffusion, Nernst, the GHK
+      equation, a cell running down with no pump, the pumps that stop it, and the
+      chloride transporters that set E<sub>GABA</sub>.
+    </p>
+    <svg class="ga ga-i" viewBox="0 0 420 104" role="img" aria-label="A cell with its Na+/K+ pump stopped, over one hour. Membrane potential drifts from -78 mV to -23 mV while internal Na+ rises from 10 to 138 mM and internal K+ falls from 140 to 12 mM. Computed by ionhomie."><line x1="6.0" y1="60.0" x2="192.0" y2="60.0" class="rest"/><path d="M6.0,60.0 L7.2,59.6 L8.5,59.3 L9.7,58.9 L11.0,58.6 L12.2,58.3 L13.4,57.9 L14.7,57.6 L15.9,57.3 L17.2,57.0 L18.4,56.7 L19.6,56.3 L20.9,56.0 L22.1,55.7 L23.4,55.4 L24.6,55.1 L25.8,54.7 L27.1,54.4 L28.3,54.1 L29.6,53.8 L30.8,53.4 L32.0,53.1 L33.3,52.8 L34.5,52.4 L35.8,52.1 L37.0,51.8 L38.2,51.4 L39.5,51.1 L40.7,50.7 L42.0,50.4 L43.2,50.0 L44.4,49.7 L45.7,49.3 L46.9,49.0 L48.2,48.6 L49.4,48.2 L50.6,47.9 L51.9,47.5 L53.1,47.2 L54.4,46.8 L55.6,46.4 L56.8,46.0 L58.1,45.7 L59.3,45.3 L60.6,44.9 L61.8,44.5 L63.0,44.2 L64.3,43.8 L65.5,43.4 L66.8,43.0 L68.0,42.6 L69.2,42.3 L70.5,41.9 L71.7,41.5 L73.0,41.1 L74.2,40.7 L75.4,40.3 L76.7,39.9 L77.9,39.5 L79.2,39.1 L80.4,38.8 L81.6,38.4 L82.9,38.0 L84.1,37.6 L85.4,37.2 L86.6,36.8 L87.8,36.4 L89.1,36.0 L90.3,35.7 L91.6,35.3 L92.8,34.9 L94.0,34.5 L95.3,34.1 L96.5,33.7 L97.8,33.4 L99.0,33.0 L100.2,32.6 L101.5,32.3 L102.7,31.9 L104.0,31.5 L105.2,31.2 L106.4,30.8 L107.7,30.4 L108.9,30.1 L110.2,29.7 L111.4,29.4 L112.6,29.1 L113.9,28.7 L115.1,28.4 L116.4,28.0 L117.6,27.7 L118.8,27.4 L120.1,27.1 L121.3,26.7 L122.6,26.4 L123.8,26.1 L125.0,25.8 L126.3,25.5 L127.5,25.2 L128.8,24.9 L130.0,24.6 L131.2,24.3 L132.5,24.1 L133.7,23.8 L135.0,23.5 L136.2,23.2 L137.4,23.0 L138.7,22.7 L139.9,22.4 L141.2,22.2 L142.4,21.9 L143.6,21.7 L144.9,21.5 L146.1,21.2 L147.4,21.0 L148.6,20.8 L149.8,20.5 L151.1,20.3 L152.3,20.1 L153.6,19.9 L154.8,19.7 L156.0,19.4 L157.3,19.2 L158.5,19.0 L159.8,18.8 L161.0,18.6 L162.2,18.5 L163.5,18.3 L164.7,18.1 L166.0,17.9 L167.2,17.7 L168.4,17.5 L169.7,17.4 L170.9,17.2 L172.2,17.0 L173.4,16.9 L174.6,16.7 L175.9,16.5 L177.1,16.4 L178.4,16.2 L179.6,16.1 L180.8,15.9 L182.1,15.8 L183.3,15.6 L184.6,15.5 L185.8,15.3 L187.0,15.2 L188.3,15.1 L189.5,14.9 L190.8,14.8 L192.0,14.7" class="vm ex"/><path d="M228.0,62.1 L229.2,61.4 L230.5,60.7 L231.7,59.9 L233.0,59.2 L234.2,58.5 L235.4,57.8 L236.7,57.1 L237.9,56.4 L239.2,55.7 L240.4,55.0 L241.6,54.3 L242.9,53.6 L244.1,52.9 L245.4,52.3 L246.6,51.6 L247.8,50.9 L249.1,50.3 L250.3,49.6 L251.6,48.9 L252.8,48.3 L254.0,47.7 L255.3,47.0 L256.5,46.4 L257.8,45.8 L259.0,45.1 L260.2,44.5 L261.5,43.9 L262.7,43.3 L264.0,42.7 L265.2,42.1 L266.4,41.5 L267.7,40.9 L268.9,40.4 L270.2,39.8 L271.4,39.2 L272.6,38.7 L273.9,38.1 L275.1,37.6 L276.4,37.0 L277.6,36.5 L278.8,35.9 L280.1,35.4 L281.3,34.9 L282.6,34.4 L283.8,33.9 L285.0,33.4 L286.3,32.9 L287.5,32.4 L288.8,31.9 L290.0,31.5 L291.2,31.0 L292.5,30.5 L293.7,30.1 L295.0,29.6 L296.2,29.2 L297.4,28.8 L298.7,28.3 L299.9,27.9 L301.2,27.5 L302.4,27.1 L303.6,26.7 L304.9,26.3 L306.1,25.9 L307.4,25.5 L308.6,25.2 L309.8,24.8 L311.1,24.5 L312.3,24.1 L313.6,23.8 L314.8,23.4 L316.0,23.1 L317.3,22.8 L318.5,22.5 L319.8,22.2 L321.0,21.9 L322.2,21.6 L323.5,21.3 L324.7,21.0 L326.0,20.7 L327.2,20.5 L328.4,20.2 L329.7,19.9 L330.9,19.7 L332.2,19.4 L333.4,19.2 L334.6,19.0 L335.9,18.8 L337.1,18.5 L338.4,18.3 L339.6,18.1 L340.8,17.9 L342.1,17.7 L343.3,17.5 L344.6,17.4 L345.8,17.2 L347.0,17.0 L348.3,16.8 L349.5,16.7 L350.8,16.5 L352.0,16.4 L353.2,16.2 L354.5,16.1 L355.7,15.9 L357.0,15.8 L358.2,15.7 L359.4,15.5 L360.7,15.4 L361.9,15.3 L363.2,15.2 L364.4,15.1 L365.6,15.0 L366.9,14.8 L368.1,14.7 L369.4,14.6 L370.6,14.5 L371.8,14.5 L373.1,14.4 L374.3,14.3 L375.6,14.2 L376.8,14.1 L378.0,14.0 L379.3,13.9 L380.5,13.9 L381.8,13.8 L383.0,13.7 L384.2,13.7 L385.5,13.6 L386.7,13.5 L388.0,13.5 L389.2,13.4 L390.4,13.3 L391.7,13.3 L392.9,13.2 L394.2,13.2 L395.4,13.1 L396.6,13.1 L397.9,13.0 L399.1,13.0 L400.4,12.9 L401.6,12.9 L402.8,12.8 L404.1,12.8 L405.3,12.7 L406.6,12.7 L407.8,12.6 L409.0,12.6 L410.3,12.6 L411.5,12.5 L412.8,12.5 L414.0,12.4" class="ion"/><path d="M228.0,11.9 L229.2,12.6 L230.5,13.3 L231.7,14.1 L233.0,14.8 L234.2,15.5 L235.4,16.2 L236.7,16.9 L237.9,17.6 L239.2,18.3 L240.4,19.0 L241.6,19.7 L242.9,20.4 L244.1,21.1 L245.4,21.7 L246.6,22.4 L247.8,23.1 L249.1,23.7 L250.3,24.4 L251.6,25.0 L252.8,25.7 L254.0,26.3 L255.3,27.0 L256.5,27.6 L257.8,28.2 L259.0,28.8 L260.2,29.4 L261.5,30.1 L262.7,30.7 L264.0,31.3 L265.2,31.9 L266.4,32.4 L267.7,33.0 L268.9,33.6 L270.2,34.2 L271.4,34.7 L272.6,35.3 L273.9,35.9 L275.1,36.4 L276.4,36.9 L277.6,37.5 L278.8,38.0 L280.1,38.5 L281.3,39.0 L282.6,39.6 L283.8,40.1 L285.0,40.6 L286.3,41.0 L287.5,41.5 L288.8,42.0 L290.0,42.5 L291.2,42.9 L292.5,43.4 L293.7,43.9 L295.0,44.3 L296.2,44.7 L297.4,45.2 L298.7,45.6 L299.9,46.0 L301.2,46.4 L302.4,46.8 L303.6,47.2 L304.9,47.6 L306.1,48.0 L307.4,48.4 L308.6,48.7 L309.8,49.1 L311.1,49.4 L312.3,49.8 L313.6,50.1 L314.8,50.5 L316.0,50.8 L317.3,51.1 L318.5,51.4 L319.8,51.7 L321.0,52.0 L322.2,52.3 L323.5,52.6 L324.7,52.9 L326.0,53.1 L327.2,53.4 L328.4,53.7 L329.7,53.9 L330.9,54.2 L332.2,54.4 L333.4,54.6 L334.6,54.9 L335.9,55.1 L337.1,55.3 L338.4,55.5 L339.6,55.7 L340.8,55.9 L342.1,56.1 L343.3,56.3 L344.6,56.5 L345.8,56.6 L347.0,56.8 L348.3,57.0 L349.5,57.1 L350.8,57.3 L352.0,57.4 L353.2,57.6 L354.5,57.7 L355.7,57.9 L357.0,58.0 L358.2,58.1 L359.4,58.2 L360.7,58.4 L361.9,58.5 L363.2,58.6 L364.4,58.7 L365.6,58.8 L366.9,58.9 L368.1,59.0 L369.4,59.1 L370.6,59.2 L371.8,59.3 L373.1,59.4 L374.3,59.5 L375.6,59.5 L376.8,59.6 L378.0,59.7 L379.3,59.8 L380.5,59.9 L381.8,59.9 L383.0,60.0 L384.2,60.1 L385.5,60.1 L386.7,60.2 L388.0,60.3 L389.2,60.3 L390.4,60.4 L391.7,60.4 L392.9,60.5 L394.2,60.5 L395.4,60.6 L396.6,60.6 L397.9,60.7 L399.1,60.7 L400.4,60.8 L401.6,60.8 L402.8,60.9 L404.1,60.9 L405.3,60.9 L406.6,61.0 L407.8,61.0 L409.0,61.1 L410.3,61.1 L411.5,61.1 L412.8,61.2 L414.0,61.2" class="ion k"/><text x="414.0" y="23.4" class="cap" text-anchor="end"><tspan class="u">Na&#8314; in</tspan></text><text x="414.0" y="56.2" class="cap" text-anchor="end"><tspan class="u">K&#8314; in</tspan></text><text x="99.0" y="82" class="cap" text-anchor="middle">V<tspan class="sub u" dy="2">m</tspan><tspan dy="-2"> &#8722;78 &#8594; &#8722;23 </tspan><tspan class="u">mV</tspan></text><text x="321.0" y="82" class="cap" text-anchor="middle"><tspan class="u">Na&#8314;</tspan> 10 &#8594; 138, <tspan class="u">K&#8314;</tspan> 140 &#8594; 12 <tspan class="u">mM</tspan></text><text x="210.0" y="102" class="cap" text-anchor="middle">the pump stops: one hour of rundown</text></svg>
+    <ul class="facts">
+      <li>8 chapters</li>
+      <li>development preview</li>
+      <li>NKCC1 &amp; KCC2</li>
+    </ul>
+    <p class="go"><span>ionhomie.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-ml2dl)" href="https://ml2dl.tonydefazio.com/">
     <p class="eyebrow">Deep learning<span class="born">Born <time datetime="2026-09-23">2026-09-23</time></span></p>
     <h2>ml2dl</h2>
     <p class="what">
@@ -694,7 +719,7 @@ form.contact button { color: #fff; }
   <ul class="points">
     <li>
       <span class="t">Nothing uploaded</span>
-      <span>No backend, no accounts, no analytics, no cookies, on all eight sites. In the
+      <span>No backend, no accounts, no analytics, no cookies, on every site. In the
       research tools the algorithm ships inside the page and runs on your own device, so
       a recording you analyze is never transmitted.</span>
     </li>
@@ -706,7 +731,7 @@ form.contact button { color: #fff; }
     </li>
     <li>
       <span class="t">Open source</span>
-      <span>Seven of the eight repositories are public, caveats and references included; ml2dl&rsquo;s is not yet.</span>
+      <span>Every repository but ml2dl&rsquo;s is public, caveats and references included; ml2dl&rsquo;s is not yet.</span>
     </li>
     <li>
       <span class="t">Readable without a browser</span>
@@ -767,6 +792,7 @@ form.contact button { color: #fff; }
     <div>
       <h3>The sites</h3>
       <ul>
+        <li><a href="https://ionhomie.tonydefazio.com/">ionhomie</a></li>
         <li><a href="https://ml2dl.tonydefazio.com/">ml2dl</a></li>
         <li><a href="https://gaba.tonydefazio.com/">gaba_excites</a></li>
         <li><a href="https://draughtsman.tonydefazio.com/">draughtsman</a></li>
@@ -781,6 +807,7 @@ form.contact button { color: #fff; }
       <h3>The source</h3>
       <ul>
         <li><a href="https://github.com/syncytium2">github.com/syncytium2</a></li>
+        <li><a href="https://github.com/syncytium2/ionhomie">ionhomie</a></li>
         <li><a href="https://github.com/syncytium2/gaba_excites">gaba_excites</a></li>
         <li><a href="https://github.com/syncytium2/draughtsman">draughtsman</a></li>
         <li><a href="https://github.com/syncytium2/short-course">short-course</a></li>

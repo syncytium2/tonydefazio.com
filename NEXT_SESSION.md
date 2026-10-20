@@ -28,8 +28,8 @@ Expect no output. No surname from that list appears anywhere in this repository'
 
 ## 2. What this is
 
-One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to eight
-destinations (ml2dl, gaba_excites, draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
+One static page in `site/`, **no build step**, deployed to Cloudflare Workers. It routes to nine
+destinations (ionhomie, ml2dl, gaba_excites, draughtsman, It Looked Right, Colonel Kernel, no_peak, bugarach, The Murderboard)
 and, since 1.7.0, serves Tony's CV. Since 1.10.0 it also serves his technical resume at
 `/resume.pdf`, which is built in td-resume and only copied here (README §3).
 
