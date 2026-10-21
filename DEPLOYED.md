@@ -573,7 +573,8 @@ drift check: the three known rows only.
 
 Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
 `www` byte-identical to `site/index.html`; nine `class="card"`; `ga-i` at viewBox 420×210;
-0 `<script`; masthead 1.11.1; 0 matches for `beacon.min.js`.
+one `<script`, the JSON-LD block (`application/ld+json`, not executable, unchanged), so
+no executable script; masthead 1.11.1; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
