@@ -410,8 +410,13 @@ the page. What the cards still assert:
   - The shared claims hold: the site's CSP is `connect-src 'none'` and `form-action 'none'`,
     the repository is public (MIT) and carries a `CLAUDE.md`.
   - **The figure is ionhomie's own drawing**: its home page's living cell, rendered by
-    `node scripts/tile-svg.ts` at ionhomie `d3e3210`, at viewBox 420×170 (the other plates are
-    420×104). A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
+    `node scripts/tile-svg.ts` at ionhomie `5c225e6` through the stage's own style module
+    (`src/views/stage-style.ts`, which the site's `draw.ts` also draws with) and its CSS ion
+    colors, so it is the stage as a visitor will meet it: dark ground, white Na⁺, light-blue
+    K⁺, orange Cl⁻, the stage's own labels. Two declared differences: crossing dots r 4.2
+    rather than 3.6 so they read on a phone, and every other ± of the rim. ViewBox 420×210 (the
+    other plates are 420×104). A light restyle (`d3e3210`) preceded it the same day and was
+    dropped when Tony asked for the original colors. A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
     out and 5 in, the Na⁺ leak 3 in, the Cl⁻ leak 3 each way, and the pump one cycle (3 Na⁺ out,
     then 2 K⁺ in), so the loop is the model's steady state. Under `prefers-reduced-motion` it
     stops on a still frame. **It is the only moving thing on this page.** Its `<style>` applies
