@@ -409,12 +409,16 @@ the page. What the cards still assert:
     animation is proposed. Drop the chip when that settles.
   - The shared claims hold: the site's CSP is `connect-src 'none'` and `form-action 'none'`,
     the repository is public (MIT) and carries a `CLAUDE.md`.
-  - **The figure is ionhomie's own computation**: `node scripts/tile-rundown.ts` at its commit
-    `20ef232`, clean tree, writes the rundown chapter's cell with the pump stopped at t = 0 (10
-    µm cell, 37 °C, pK:pNa:pCl = 1:0.02:0.5 from the Physiol 578 lecture, forward Euler dt 1 s).
-    Copied into the darkroom as `ga-ionhomie-data.json`. Vm −78 → −23 mV, Na⁺ in 10 → 138 mM,
-    K⁺ in 140 → 12 mM, over 60 minutes. **Vm starts at −78, not the healthy cell's −80**: the
-    pump's own 2.6 mV goes the instant it stops, so the caption says −78.
+  - **The figure is ionhomie's own drawing**: its home page's living cell, rendered by
+    `node scripts/tile-svg.ts` at ionhomie `d3e3210`, at viewBox 420×170 (the other plates are
+    420×104). A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
+    out and 5 in, the Na⁺ leak 3 in, the Cl⁻ leak 3 each way, and the pump one cycle (3 Na⁺ out,
+    then 2 K⁺ in), so the loop is the model's steady state. Under `prefers-reduced-motion` it
+    stops on a still frame. **It is the only moving thing on this page.** Its `<style>` applies
+    to the whole document once inlined, so `make_figures.py` prefixes every selector with
+    `.ga-i` and every keyframe name with `ih-` and changes nothing else. It replaced a rundown
+    line graph on 2026-10-21, which Tony rejected: "we've got these beautiful animations and
+    you pulled a graph that half or more of our audience will ignore".
 - **The ml2dl card**, checked against `origin/main` (`1b85963`) and the live site on
   2026-09-25. The sentence paraphrases the site's own opening ("Deep learning, built up from
   its parts and knocked down again. Each part is introduced only when the model without it
