@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `2f5d491b-c046-46c0-b497-41e439c85e39` |
-| **Deployed** | 2026-10-20 |
-| **Site version** | 1.11.0 |
+| **Version ID** | `9b40a5eb-b7b3-4741-83c6-aab73e2ac738` |
+| **Deployed** | 2026-10-21 |
+| **Site version** | 1.11.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -553,6 +553,27 @@ number. Figure drift check before upload: the three known rows and nothing new.
 Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
 `www` byte-identical to `site/index.html`; nine `class="card"`, the first and the one with the
 NEW sticker both ionhomie; `ga-i` present; masthead 1.11.0; 0 matches for `beacon.min.js`.
+
+## 1.11.1 — 2026-10-21 — the ionhomie tile shows the living cell
+
+Version ID `9b40a5eb-b7b3-4741-83c6-aab73e2ac738`, deployed from the `ionhomie-cell` worktree
+through `tools/predeploy.py` (1.11.1 / 2026-10-21 against a live 1.11.0). One asset uploaded:
+`/index.html`.
+
+Tony rejected the 1.11.0 rundown graph ("we've got these beautiful animations and you pulled a
+graph that half or more of our audience will ignore"), then a light restyle of the cell ("are
+those the original colors?"). What shipped is ionhomie's home-page cell drawn through its own
+stage code at ionhomie `5c225e6`: dark ground, its own ion colors and labels, a 12 s CSS loop
+of the model's fluxes, a still frame under reduced motion. The page's first moving figure; still
+no script. Its styles are scoped to `.ga-i`. Tony approved it from screenshots before upload.
+
+Checked before upload in headless Chrome at 1206 and 500 px: the figure moves between frames,
+does not under `--force-prefers-reduced-motion`, and no other card changes over time. Figure
+drift check: the three known rows only.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; nine `class="card"`; `ga-i` at viewBox 420×210;
+0 `<script`; masthead 1.11.1; 0 matches for `beacon.min.js`.
 
 ## Rolling back
 
