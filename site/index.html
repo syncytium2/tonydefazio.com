@@ -558,16 +558,30 @@ form.contact button { color: #fff; }
 .ga-i .rn{stroke:#9ad1ff;stroke-width:1.6}
 .ga-i .pump{fill:#b9a3ff}
 .ga-i .cleft{fill:#101826}
-.ga-i .atp{font:700 10px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#f0e442;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#101826;stroke-width:3px;opacity:0}
+.ga-i .dom{fill-opacity:.75}
+.ga-i .ring{fill:none;stroke-width:1.4}
+.ga-i .rn{stroke:#ececec}
+.ga-i .rk{stroke:#56b4e9}
+.ga-i .atp rect,.ga-i .adp rect,.ga-i .newatp rect{fill:#f0e442}
+.ga-i .atp text,.ga-i .adp text,.ga-i .newatp text,.ga-i .ph text{font:700 9px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#0d1117;text-anchor:middle;dominant-baseline:middle}
+.ga-i .site rect{fill:none;stroke:#f0e442;stroke-width:1.2;stroke-dasharray:2.5 2}
+.ga-i .ph circle{fill:#f0e442}
 .ga-i .lab{font:600 12px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#e6edf3;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#101826;stroke-width:3px}
 .ga-i .rocker{animation:ih-rock 12s linear infinite}
 .ga-i .co{animation:ih-co 12s linear infinite}
 .ga-i .ci{animation:ih-ci 12s linear infinite}
+.ga-i .rna{animation:ih-ci 12s linear infinite}
+.ga-i .rk{animation:ih-co 12s linear infinite}
 .ga-i .atp{animation:ih-atp 12s linear infinite}
+.ga-i .adp{animation:ih-adp 12s linear infinite}
+.ga-i .newatp{animation:ih-newatp 12s linear infinite}
+.ga-i .ph{animation:ih-co 12s linear infinite}
 @keyframes ih-rock{0%,48.8%{transform:rotate(-9deg)}51.7%,66.3%{transform:rotate(9deg)}69.2%,100%{transform:rotate(-9deg)}}
 @keyframes ih-co{0%,48.8%{opacity:0}51.7%,66.3%{opacity:1}69.2%,100%{opacity:0}}
 @keyframes ih-ci{0%,46.7%{opacity:1}48.8%,69.2%{opacity:0}71.3%,100%{opacity:1}}
-@keyframes ih-atp{0%,44.2%{opacity:0}45.8%,50%{opacity:1}52.5%,100%{opacity:0}}
+@keyframes ih-atp{0%,45%{opacity:1}45.4%,69.2%{opacity:0}69.3%,100%{opacity:0}}
+@keyframes ih-adp{0%,45%{opacity:0;transform:translate(0,0)}45.4%{opacity:1;transform:translate(0,0)}55.8%{opacity:0;transform:translate(29.4px,-37.7px)}100%{opacity:0}}
+@keyframes ih-newatp{0%,69.2%{opacity:0;transform:translate(5.4px,-35.6px)}74.2%{opacity:1;transform:translate(0,0)}100%{opacity:1;transform:translate(0,0)}}
 @keyframes ih-w0{50%{transform:translate(2px,-1.5px)}}
 @keyframes ih-w1{50%{transform:translate(-1.5px,2px)}}
 @keyframes ih-w2{50%{transform:translate(1.5px,1.5px)}}
@@ -631,9 +645,9 @@ form.contact button { color: #fff; }
 @keyframes ih-x25{0%,61.8%{transform:translate(173.6px,181.9px);opacity:0}63.8%,73.2%{opacity:1}75.2%,100%{transform:translate(192.2px,142.1px);opacity:0}}
 .ga-i .x25{animation:ih-x25 12s linear infinite}
 .ga-i .still{opacity:0}
-@media (prefers-reduced-motion: reduce){.ga-i .w,.ga-i .rocker,.ga-i .co,.ga-i .ci,.ga-i .atp,.ga-i .mv{animation:none}
-.ga-i .mv,.ga-i .co,.ga-i .atp{opacity:0}
-.ga-i .ci,.ga-i .still{opacity:1}
+@media (prefers-reduced-motion: reduce){.ga-i .w,.ga-i .rocker,.ga-i .co,.ga-i .ci,.ga-i .rna,.ga-i .rk,.ga-i .atp,.ga-i .adp,.ga-i .newatp,.ga-i .ph,.ga-i .mv{animation:none}
+.ga-i .mv,.ga-i .co,.ga-i .rk,.ga-i .adp,.ga-i .newatp,.ga-i .ph{opacity:0}
+.ga-i .ci,.ga-i .rna,.ga-i .atp,.ga-i .still{opacity:1}
 .ga-i .rocker{transform:rotate(-9deg)}}
 
 </style><rect class="bath" width="420" height="210" rx="8"/>
@@ -642,7 +656,7 @@ form.contact button { color: #fff; }
 <g class="w w2"><circle class="k" cx="218.4" cy="120.5" r="2.8"/></g><g class="w w3"><circle class="k" cx="205.2" cy="99.1" r="2.8"/></g><g class="w w4"><circle class="k" cx="225.7" cy="65.6" r="2.8"/></g><g class="w w0"><circle class="k" cx="210.1" cy="84.7" r="2.8"/></g><g class="w w1"><circle class="k" cx="187.7" cy="143.8" r="2.8"/></g><g class="w w2"><circle class="k" cx="248.4" cy="92.9" r="2.8"/></g><g class="w w3"><circle class="k" cx="169.5" cy="78.9" r="2.8"/></g><g class="w w4"><circle class="k" cx="196.4" cy="59.8" r="2.8"/></g><g class="w w0"><circle class="k" cx="196" cy="94.2" r="2.8"/></g><g class="w w1"><circle class="k" cx="250.6" cy="115.9" r="2.8"/></g><g class="w w2"><circle class="k" cx="216.5" cy="144.7" r="2.8"/></g><g class="w w2"><path class="a" d="M204.1 129.5Q204.1 123.7 209.9 126.4Q215.6 123.7 215.6 129.5Q215.6 135.3 209.9 132.6Q204.1 135.3 204.1 129.5Z"/></g><g class="w w3"><path class="a" d="M173 74.7Q173 68.9 178.8 71.6Q184.6 68.9 184.6 74.7Q184.6 80.4 178.8 77.7Q173 80.4 173 74.7Z"/></g><g class="w w4"><path class="a" d="M214.4 79.6Q214.4 73.8 220.2 76.5Q225.9 73.8 225.9 79.6Q225.9 85.4 220.2 82.7Q214.4 85.4 214.4 79.6Z"/></g><g class="w w0"><path class="a" d="M214.5 97.1Q214.5 91.3 220.3 94Q226.1 91.3 226.1 97.1Q226.1 102.8 220.3 100.1Q214.5 102.8 214.5 97.1Z"/></g><g class="w w1"><path class="a" d="M191.7 71.9Q191.7 66.1 197.5 68.9Q203.2 66.1 203.2 71.9Q203.2 77.7 197.5 75Q191.7 77.7 191.7 71.9Z"/></g><g class="w w2"><path class="a" d="M215.7 61.7Q215.7 55.9 221.4 58.6Q227.2 55.9 227.2 61.7Q227.2 67.4 221.4 64.7Q215.7 67.4 215.7 61.7Z"/></g><g class="w w3"><path class="a" d="M210.1 87.6Q210.1 81.8 215.9 84.5Q221.7 81.8 221.7 87.6Q221.7 93.3 215.9 90.6Q210.1 93.3 210.1 87.6Z"/></g><g class="w w4"><path class="a" d="M237.6 85.5Q237.6 79.7 243.4 82.4Q249.2 79.7 249.2 85.5Q249.2 91.3 243.4 88.5Q237.6 91.3 237.6 85.5Z"/></g><g class="w w0"><path class="a" d="M219.8 72.4Q219.8 66.7 225.6 69.4Q231.4 66.7 231.4 72.4Q231.4 78.2 225.6 75.5Q219.8 78.2 219.8 72.4Z"/></g><g class="w w1"><path class="a" d="M236.3 68.2Q236.3 62.5 242 65.2Q247.8 62.5 247.8 68.2Q247.8 74 242 71.3Q236.3 74 236.3 68.2Z"/></g><g class="w w2"><path class="a" d="M196.9 53.1Q196.9 47.3 202.6 50Q208.4 47.3 208.4 53.1Q208.4 58.9 202.6 56.1Q196.9 58.9 196.9 53.1Z"/></g><g class="w w3"><path class="a" d="M219 85.7Q219 79.9 224.8 82.6Q230.6 79.9 230.6 85.7Q230.6 91.5 224.8 88.7Q219 91.5 219 85.7Z"/></g><g class="w w2"><circle class="na" cx="206" cy="83.2" r="2.8"/></g><g class="w w2"><path class="cl" d="M247.1 137.7L250.6 141.2L247.1 144.7L243.6 141.2Z"/></g>
 <circle class="mem" cx="210" cy="104" r="64"/>
 <path class="rp" d="M280.4 104.9h5.2M283 102.3v5.2"/><path class="rn" d="M262.4 104.7h5.2"/><path class="rp" d="M278.5 120.6h5.2M281.1 118v5.2"/><path class="rn" d="M261 116.5h5.2"/><path class="rp" d="M273.2 135.5h5.2M275.8 132.9v5.2"/><path class="rn" d="M257 127.7h5.2"/><path class="rp" d="M264.9 148.9h5.2M267.5 146.3v5.2"/><path class="rn" d="M250.7 137.9h5.2"/><path class="rp" d="M253.9 160.2h5.2M256.5 157.6v5.2"/><path class="rn" d="M242.5 146.4h5.2"/><path class="rp" d="M240.8 168.9h5.2M243.4 166.3v5.2"/><path class="rn" d="M232.5 152.9h5.2"/><path class="rp" d="M226 174.6h5.2M228.6 172v5.2"/><path class="rn" d="M221.4 157.2h5.2"/><path class="rp" d="M210.4 176.9h5.2M213 174.3v5.2"/><path class="rn" d="M209.7 159h5.2"/><path class="rp" d="M194.7 175.9h5.2M197.3 173.3v5.2"/><path class="rn" d="M197.8 158.2h5.2"/><path class="rp" d="M179.5 171.5h5.2M182.1 168.9v5.2"/><path class="rn" d="M186.4 154.8h5.2"/><path class="rp" d="M165.7 163.9h5.2M168.3 161.3v5.2"/><path class="rn" d="M175.9 149.1h5.2"/><path class="rp" d="M153.8 153.5h5.2M156.4 150.9v5.2"/><path class="rn" d="M167 141.3h5.2"/><path class="rp" d="M144.4 140.8h5.2M147 138.2v5.2"/><path class="rn" d="M159.9 131.7h5.2"/><path class="rp" d="M137.9 126.4h5.2M140.5 123.8v5.2"/><path class="rn" d="M155.1 120.9h5.2"/><path class="rp" d="M134.7 110.9h5.2M137.3 108.3v5.2"/><path class="rn" d="M152.6 109.2h5.2"/><path class="rp" d="M134.9 95.2h5.2M137.5 92.6v5.2"/><path class="rn" d="M152.8 97.3h5.2"/><path class="rp" d="M138.5 79.8h5.2M141.1 77.2v5.2"/><path class="rn" d="M155.5 85.8h5.2"/><path class="rp" d="M145.3 65.6h5.2M147.9 63v5.2"/><path class="rn" d="M160.6 75h5.2"/><path class="rp" d="M155.1 53.1h5.2M157.7 50.5v5.2"/><path class="rn" d="M168 65.7h5.2"/><path class="rp" d="M167.2 43.1h5.2M169.8 40.5v5.2"/><path class="rn" d="M177.1 58.1h5.2"/><path class="rp" d="M181.3 35.8h5.2M183.9 33.2v5.2"/><path class="rn" d="M187.7 52.6h5.2"/><path class="rp" d="M196.5 31.8h5.2M199.1 29.2v5.2"/><path class="rn" d="M199.2 49.6h5.2"/><path class="rp" d="M212.3 31.2h5.2M214.9 28.6v5.2"/><path class="rn" d="M211.1 49.1h5.2"/><path class="rp" d="M227.8 33.9h5.2M230.4 31.3v5.2"/><path class="rn" d="M222.8 51.2h5.2"/><path class="rp" d="M242.4 40h5.2M245 37.4v5.2"/><path class="rn" d="M233.8 55.7h5.2"/><path class="rp" d="M255.4 49h5.2M258 46.4v5.2"/><path class="rn" d="M243.5 62.5h5.2"/><path class="rp" d="M266.1 60.6h5.2M268.7 58v5.2"/><path class="rn" d="M251.6 71.3h5.2"/><path class="rp" d="M274 74.2h5.2M276.6 71.6v5.2"/><path class="rn" d="M257.6 81.6h5.2"/><path class="rp" d="M278.9 89.2h5.2M281.5 86.6v5.2"/><path class="rn" d="M261.3 92.9h5.2"/>
-<g transform="translate(232.7 44.2) rotate(20.8) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="k ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="k ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(270.1 82.1) rotate(70) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="na ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="na ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(259.3 144.8) rotate(129.6) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="cl ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="cl ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(186.4 163.5) rotate(201.6) scale(1.35)"><g class="rocker"><rect class="pump" x="-17" y="-15" width="34" height="30" rx="8"/><path class="cleft co" d="M-11 -15L11 -15L4 0L-4 0Z"/><path class="cleft ci" d="M-11 15L11 15L4 0L-4 0Z"/></g></g>
+<g transform="translate(232.7 44.2) rotate(20.8) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="k ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="k ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(270.1 82.1) rotate(70) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="na ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="na ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(259.3 144.8) rotate(129.6) scale(1.35)"><rect class="gap" x="-6" y="-9" width="12" height="18"/><rect class="cl ch" x="-14" y="-12" width="8" height="24" rx="3"/><rect class="cl ch" x="6" y="-12" width="8" height="24" rx="3"/></g><g transform="translate(186.4 163.5) rotate(201.6) scale(1.35)"><g class="rocker"><rect class="pump dom" x="-14" y="10" width="28" height="22" rx="9"/><rect class="pump" x="-17" y="-15" width="34" height="30" rx="8"/><path class="cleft co" d="M-11 -15L11 -15L4 0L-4 0Z"/><path class="cleft ci" d="M-11 15L11 15L4 0L-4 0Z"/><g class="rna"><circle class="ring rn" cx="-6.5" cy="0" r="2.8"/><circle class="ring rn" cx="0" cy="0" r="2.8"/><circle class="ring rn" cx="6.5" cy="0" r="2.8"/></g><g class="rk"><circle class="ring rk" cx="-3.25" cy="0" r="2.8"/><circle class="ring rk" cx="3.25" cy="0" r="2.8"/></g></g></g>
 <g class="mv x0"><circle class="k" cx="0" cy="0" r="4.2"/></g>
 <g class="mv x1"><circle class="k" cx="0" cy="0" r="4.2"/></g>
 <g class="mv x2"><circle class="k" cx="0" cy="0" r="4.2"/></g>
@@ -670,7 +684,7 @@ form.contact button { color: #fff; }
 <g class="mv x24"><circle class="k" cx="0" cy="0" r="4.2"/></g>
 <g class="mv x25"><circle class="k" cx="0" cy="0" r="4.2"/></g>
 <g class="still"><circle class="k" cx="234.8" cy="38.5" r="4.2"/><circle class="na" cx="264.5" cy="84.2" r="4.2"/></g>
-<text class="atp" x="201.3" y="125.8">ATP → ADP</text>
+<g class="site"><rect x="185.9" y="125.6" width="26" height="13" rx="6.5"/></g><g class="atp"><rect x="185.9" y="125.6" width="26" height="13" rx="6.5"/><text x="198.9" y="132.6">ATP</text></g><g class="newatp"><rect x="185.9" y="125.6" width="26" height="13" rx="6.5"/><text x="198.9" y="132.6">ATP</text></g><g class="adp"><rect x="185.9" y="125.6" width="26" height="13" rx="6.5"/><text x="198.9" y="132.6">ADP</text></g><g class="ph"><circle cx="172.1" cy="144.8" r="5"/><text x="172.1" y="145.3">P</text></g>
 <text class="lab" x="246.9" y="6.8">K⁺ leak</text><text class="lab" x="307.7" y="68.4">Na⁺ leak</text><text class="lab" x="290.1" y="170.3">Cl⁻ leak</text><text class="lab" x="171.7" y="200.7">Na⁺/K⁺ pump</text></svg>
     <ul class="facts">
       <li>8 chapters</li>
