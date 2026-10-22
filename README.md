@@ -422,11 +422,13 @@ the page. What the cards still assert:
     releases them, takes 2 K⁺ and rocks back. The rotor it replaced suggested ATP synthase.
     **Ship it only with or after the ionhomie deploy that carries the rocker**, so the tile
     never shows a pump the site does not.
-  - **The pump shows its ATP throughout since 1.11.3** (ionhomie `1ceb46c`, its ADR-0018): a
-    cytoplasmic domain holds a docked ATP, which splits as the Na⁺ bind (ADP drifts off, a P
-    rides the pump while it faces out) and is replaced after it rocks back; hollow rings mark
-    the 3 Na⁺ and 2 K⁺ binding sites. Tony asked for the pump to look unlike the transporters.
-    Same rule: it ships only once ionhomie's own site carries `1ceb46c`. A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
+  - **The pump shows its ATP throughout since 1.11.3** (ionhomie `7f33fe5`, its ADR-0018 and
+    ADR-0019): a five-pointed ATP star docks in a star-shaped cutout on the pump's cytoplasmic
+    face and breaks as the Na⁺ bind, a four-pointed ADP star drifting off and a P riding the
+    pump while it faces out; a fresh ATP docks after it rocks back. Hollow rings mark the 3 Na⁺
+    and 2 K⁺ binding sites. Tony asked for the pump to look unlike the transporters. An
+    earlier pill-shaped ATP (`1ceb46c`) was staged and never shipped. Same rule: it ships only
+    once ionhomie's own site carries `7f33fe5`. A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
     out and 5 in, the Na⁺ leak 3 in, the Cl⁻ leak 3 each way, and the pump one cycle (3 Na⁺ out,
     then 2 K⁺ in), so the loop is the model's steady state. Under `prefers-reduced-motion` it
     stops on a still frame. **It is the only moving thing on this page.** Its `<style>` applies
