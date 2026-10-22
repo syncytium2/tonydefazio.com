@@ -416,7 +416,12 @@ the page. What the cards still assert:
     K⁺, orange Cl⁻, the stage's own labels. Two declared differences: crossing dots r 4.2
     rather than 3.6 so they read on a phone, and every other ± of the rim. ViewBox 420×210 (the
     other plates are 420×104). A light restyle (`d3e3210`) preceded it the same day and was
-    dropped when Tony asked for the original colors. A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
+    dropped when Tony asked for the original colors.
+  - **The pump is an alternating-access rocker since 1.11.2** (ionhomie `3c25f02`, its ADR-0017):
+    a body whose cleft opens to the cytoplasm, takes 3 Na⁺, flashes "ATP → ADP", rocks out,
+    releases them, takes 2 K⁺ and rocks back. The rotor it replaced suggested ATP synthase.
+    **Ship it only with or after the ionhomie deploy that carries the rocker**, so the tile
+    never shows a pump the site does not. A 12 s loop with no script: CSS keyframes inside the SVG. The K⁺ leak carries 7
     out and 5 in, the Na⁺ leak 3 in, the Cl⁻ leak 3 each way, and the pump one cycle (3 Na⁺ out,
     then 2 K⁺ in), so the loop is the model's steady state. Under `prefers-reduced-motion` it
     stops on a still frame. **It is the only moving thing on this page.** Its `<style>` applies
