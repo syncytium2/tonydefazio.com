@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `9b40a5eb-b7b3-4741-83c6-aab73e2ac738` |
-| **Deployed** | 2026-10-21 |
-| **Site version** | 1.11.1 |
+| **Version ID** | `5b8b20ed-7539-4dfd-a182-45f87a80e24e` |
+| **Deployed** | 2026-10-22 |
+| **Site version** | 1.11.2 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -575,6 +575,26 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; `ga-i` at viewBox 420×210;
 one `<script`, the JSON-LD block (`application/ld+json`, not executable, unchanged), so
 no executable script; masthead 1.11.1; 0 matches for `beacon.min.js`.
+
+## 1.11.2 — 2026-10-22 — the ionhomie tile's pump rocks instead of spinning
+
+Version ID `5b8b20ed-7539-4dfd-a182-45f87a80e24e`, deployed from the `ionhomie-rocker` worktree
+through `tools/predeploy.py` (1.11.2 / 2026-10-22 against a live 1.11.1). One asset uploaded:
+`/index.html`.
+
+ionhomie `3c25f02` (its ADR-0017) redrew the Na⁺/K⁺ pump as an alternating-access rocker with
+an "ATP → ADP" flash; the rotor suggested ATP synthase. Only the pump changed in the tile. It
+was staged and held until ionhomie's own site carried the rocker, so the tile never showed a
+pump the site did not: ionhomie v0.1.6 (release commit `baeb981`, which contains `3c25f02`),
+checked in its live bundle before this upload. Tony approved shipping once that was live.
+
+Checked before upload in headless Chrome: the figure moves, holds still under
+`--force-prefers-reduced-motion`, and no other card changes.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
+`<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
+check run against the served page: the three known rows only.
 
 ## Rolling back
 
