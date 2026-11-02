@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools</title>
+<title>Tony DeFazio — neuroscience tools for education and research</title>
 <meta name="description" content="draughtsman, which draws a PyTorch model's architecture and proves mechanically that nothing was dropped; an adversarial review process for any document that makes claims; a short course on working with coding agents; and open-source research tools for neuroscience data — calcium-imaging kernel recovery, hormone pulse detection, coordinated-event detection — a current-clamp excitability simulator, and deep learning built up from its parts. The research tools run in your browser; nothing is uploaded.">
 <link rel="canonical" href="https://tonydefazio.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tonydefazio.com/">
-<meta property="og:title" content="Tony DeFazio — architecture figures for PyTorch, a murderboard, an AI coding short course, and research tools">
+<meta property="og:title" content="Tony DeFazio — neuroscience tools for education and research">
 <meta property="og:description" content="Readable architecture figures for PyTorch models, an adversarial document-review process, a short course on working with coding agents, and research tools for calcium-imaging kernel recovery, hormone pulse detection and coordinated-event detection, plus a current-clamp excitability simulator and deep learning built up from its parts. Open source; the data never leaves your machine.">
 <meta name="twitter:card" content="summary">
 
@@ -97,8 +97,8 @@
      font size. In ch it was a different width for each paragraph that used it. */
   --measure: 34rem;
   --pad: clamp(1.4rem, 4.5vw, 2.75rem);
-  /* The two-column grid the cards sit on. The masthead uses it too, so the byline,
-     the intro and the cards share one left edge, one right edge and one gutter. */
+  /* The two-column grid the cards sit on. The masthead uses it too, so the byline
+     and the cards share one left edge, one right edge and one gutter. */
   --col-min: 27rem; --col-gap: 1.15rem;
 }
 
@@ -137,26 +137,19 @@ strong { font-weight: 600; }
   display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: baseline;
 }
 
-/* Provenance strip. Sits directly above the wordmark so the first thing read is
-   how old this page is, which version it is, and when that version shipped. */
+/* Provenance strip, at the foot of the page: how old it is, which version, and when
+   that version shipped. tools/predeploy.py stamps the Version and the date. */
 .meta {
   font-family: var(--f-mono); font-size: .69rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--ink-faint);
-  margin: 0 0 clamp(1.2rem, 3vw, 1.8rem);
-  padding-top: .75rem; border-top: 1px solid var(--rule-soft);
+  margin: 1rem 0 0;
   display: flex; flex-wrap: wrap; gap: .3rem 1.6rem; align-items: baseline;
 }
 .meta .lbl { color: var(--ink-faint); }
 .meta .val { color: var(--ink); letter-spacing: .06em; }
 
-/* Wraps, balanced. It used to be one row always, sized at content-width / 21,
-   which worked while the wordmark was 38 characters ~ 18.1em wide at weight 800.
-   The current one is 61 characters ~ 27em, and one row would have meant a 10px
-   headline at 360px — so it wraps instead: two rows on a desktop, three on a
-   phone, `balance` keeping them even. Measured 2026-08-31.
-   THE OLD RULE FAILED SILENTLY. `body` sets `overflow-x: hidden`, so a too-long
-   nowrap wordmark is clipped rather than scrolled and looks deliberate. If the
-   wordmark text changes again, re-measure rather than trusting either constant. */
+/* Wraps, balanced. `body` sets `overflow-x: hidden`, so a headline that cannot wrap
+   is clipped rather than scrolled, and looks deliberate. Keep it wrapping. */
 .wordmark {
   font-family: var(--f-display); font-weight: 800;
   font-size: clamp(1.5rem, 5vw, 2.4rem);
@@ -165,15 +158,6 @@ strong { font-weight: 600; }
 }
 .wordmark em { font-style: normal; color: var(--blood); }
 
-.deck {
-  margin: clamp(1.4rem, 3.2vw, 2rem) 0 0;
-  color: var(--ink-soft); line-height: 1.5; font-size: 1.07rem;
-  text-wrap: pretty;
-  display: grid; gap: 1.05em var(--col-gap); align-items: start;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min)), 1fr));
-}
-.deck p { margin: 0; }
-.deck b { color: var(--ink); font-weight: 600; }
 
 /* WHO, not just what. A reader who scans the byline and stops should still learn
    the right thing about every destination, so this line carries the background and
@@ -198,7 +182,7 @@ strong { font-weight: 600; }
 .whois a:hover, .whois a:focus-visible { border-bottom-color: var(--ink); }
 /* Below this the grid is one column, and prose the full width of it runs past a
    hundred characters a line. 1030px is where two columns of --col-min stop fitting. */
-@media (max-width: 1030px) { .whois, .deck { max-width: var(--measure); } }
+@media (max-width: 1030px) { .whois { max-width: var(--measure); } }
 
 /* ---------- the cards ---------- */
 .shelf {
@@ -495,12 +479,6 @@ form.contact button { color: #fff; }
     <span>Research software &mdash; neuroscience &amp; machine learning</span>
   </p>
 
-  <p class="meta">
-    <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
-    <span><span class="lbl">Version</span> <span class="val">1.11.3</span></span>
-    <span><span class="lbl">Version date</span> <time class="val" datetime="2026-11-02">2026-11-02</time></span>
-  </p>
-
   <p class="whois">
     <span>Neurophysiologist by training. I build the measurement and model-architecture tools I
     needed and could not find &mdash; and the checks that say when they are wrong.</span>
@@ -513,25 +491,7 @@ form.contact button { color: #fff; }
     </span>
   </p>
 
-  <h1 class="wordmark"><em>Architecture figures</em> for PyTorch, a murderboard, an AI coding short course, and research tools.</h1>
-
-  <div class="deck">
-    <p>
-    I build small, open-source tools that report their own failure modes as loudly as
-    their results. <b>draughtsman</b> draws a PyTorch model's architecture and then proves
-    mechanically that nothing was dropped on the way to the picture. The research tools —
-    for <b>measuring things in neuroscience data</b>, and for knowing when the measurement
-    fails — run <b>in your browser</b>: no install, no account, and <b>your data never
-    leaves your computer.</b>
-    </p>
-    <p>
-    The rest are not instruments — <b>deep learning built up from
-    its parts</b>, <b>ion homeostasis built one mechanism at a time</b>, <b>a current-clamp simulator for playing with excitability</b>, <b>a review process for any document that makes
-    claims</b>, tied to no field and improved by being run against itself, and <b>a short
-    course on working with coding agents</b>. They exist because
-    plausible and correct are not the same thing.
-    </p>
-  </div>
+  <h1 class="wordmark">Neuroscience tools for <em>education and research</em>.</h1>
 </header>
 
 <main class="shelf wrap">
@@ -978,6 +938,11 @@ form.contact button { color: #fff; }
     &copy; 2026 Richard Anthony DeFazio &middot; each project under its own license, linked above.
     This page loads no fonts, runs no JavaScript, sets no cookies, and carries no analytics. It
     makes one network request, and only if you send the form above.
+  </p>
+  <p class="meta">
+    <span><span class="lbl">Born</span> <time class="val" datetime="2026-08-25">2026-08-25</time></span>
+    <span><span class="lbl">Version</span> <span class="val">1.11.3</span></span>
+    <span><span class="lbl">Version date</span> <time class="val" datetime="2026-11-02">2026-11-02</time></span>
   </p>
 </footer>
 
