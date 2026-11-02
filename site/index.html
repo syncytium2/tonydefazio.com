@@ -32,6 +32,7 @@
     "https://orcid.org/0000-0001-7302-7528"
   ],
   "subjectOf": [
+    { "@type": "WebApplication", "name": "HHhero", "url": "https://hhhero.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/HHhero", "programmingLanguage": "TypeScript" },
     { "@type": "WebApplication", "name": "ionhomie", "url": "https://ionhomie.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/ionhomie", "programmingLanguage": "TypeScript" },
     { "@type": "WebSite", "name": "ml2dl", "url": "https://ml2dl.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "gaba_excites", "url": "https://gaba.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/gaba_excites", "programmingLanguage": "TypeScript" },
@@ -84,6 +85,7 @@
   --c-draughtsman: #1F6B45;  /* green: the hue the other five leave free. 5.9:1 on --surface */
   --c-gaba: #B5461A;         /* gaba_excites' --orange, darkened. 5.5:1 on --surface */
   --c-ml2dl: #A3246A;        /* ml2dl's site is neutral; magenta is this page's assignment. 7.0:1 */
+  --c-hhhero: #5E6A12;       /* olive: no other card uses it. HHhero's own gate colors stay in its figure */
   --c-ionhomie: #4A4FC0;     /* ionhomie's --link periwinkle, darkened. 6.6:1 on --surface; hue 237, between no_peak 213 and kernel 273 */
 
   --f-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable Display",
@@ -185,8 +187,16 @@ strong { font-weight: 600; }
 @media (max-width: 1030px) { .whois { max-width: var(--measure); } }
 
 /* ---------- the cards ---------- */
+/* Two groups, Education and Tools, then Murderboard on its own. Colonel Kernel
+   is both, so its card appears in each. */
+.group-h {
+  font-family: var(--f-mono); font-size: .74rem; font-weight: 400; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-faint);
+  margin: 0 0 .9rem; padding-top: .75rem; border-top: 1px solid var(--rule-soft);
+}
+.group, .shelf.solo { margin-bottom: clamp(2rem, 5vw, 3rem); }
+main.wrap { padding-bottom: clamp(.5rem, 2vw, 1rem); }
 .shelf {
-  padding-block: 0 clamp(2.5rem, 6vw, 4rem);
   display: grid; gap: var(--col-gap);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min)), 1fr));
 }
@@ -248,10 +258,19 @@ strong { font-weight: 600; }
    so the rule should key off the badge and cannot fall out of step with it. Where
    :has() is unsupported the stamp simply sits closer -- it does not disappear. */
 .card:has(.new-star) .eyebrow .born { margin-right: 2.1rem; }
-.card h2 {
+.card h3 {
   font-family: var(--f-display); font-weight: 700;
   font-size: clamp(1.42rem, 3.4vw, 1.85rem); line-height: 1.1;
   letter-spacing: -.026em; margin: 0 0 .65rem; text-wrap: balance;
+}
+/* The wide card: text on the left, figure on the right, where there is room. */
+@media (min-width: 1030px) {
+  .card.wide {
+    display: grid; column-gap: calc(var(--col-gap) * 2.4);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .card.wide > * { grid-column: 1; }
+  .card.wide > .ga { grid-column: 2; grid-row: 1 / span 5; align-self: center; margin: 0; }
 }
 .card .what { color: var(--ink); font-size: 1.01rem; line-height: 1.5; margin: 0 0 1.15rem; }
 
@@ -494,12 +513,52 @@ form.contact button { color: #fff; }
   <h1 class="wordmark">Neuroscience tools for <em>education and research</em>.</h1>
 </header>
 
-<main class="shelf wrap">
+<main class="wrap">
+
+  <section class="group" aria-labelledby="g-edu">
+    <h2 class="group-h" id="g-edu">Education</h2>
+    <div class="shelf">
+
+  <a class="card" style="--c: var(--c-hhhero)" href="https://hhhero.tonydefazio.com/">
+    <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow">Hodgkin&ndash;Huxley gates<span class="born">Born <time datetime="2026-10-30">2026-10-30</time></span></p>
+    <h3>HHhero</h3>
+    <p class="what">
+      The Hodgkin&ndash;Huxley gates, two ways &mdash; as the rates the 1952 paper wrote
+      (&alpha; opens, &beta; closes) or as where each gate settles and how fast (x&#8734;, &tau;).
+      Flip between them and watch the currents and the spike change.
+    </p>
+    <svg class="ga ga-h" viewBox="0 0 420 160" role="img" aria-label="One Hodgkin-Huxley gate drawn two ways: as an opening rate and a closing rate, and as where it settles and how fast. HHhero switches between them."><style>.ga-h .g{fill:none;stroke:#d35400;stroke-width:1.7;stroke-linejoin:round}
+.ga-h .g.d{stroke-dasharray:4 3}
+.ga-h .sw{fill:var(--surface);stroke:var(--ink);stroke-width:1.2}
+.ga-h .on{fill:var(--ink)}
+.ga-h text.sl{font-family:var(--f-display);font-size:12px;font-weight:700;fill:var(--ink)}
+.ga-h text.sl.w{fill:var(--surface)}
+.ga-h text.lg{font-family:var(--f-display);font-size:11px;fill:#d35400}</style>
+<rect class="sw" x="150" y="4" width="120" height="24" rx="5"/><rect class="on" x="150" y="4" width="60" height="24" rx="5"/>
+<text class="sl w" x="180" y="20.5" text-anchor="middle">&#945;, &#946;</text><text class="sl" x="240" y="20.5" text-anchor="middle">x&#8734;, &#964;</text>
+<line class="ax" x1="14.0" y1="132.0" x2="196.0" y2="132.0"/><line class="ax" x1="224.0" y1="132.0" x2="406.0" y2="132.0"/>
+<path class="g" d="M14.0,132.0 L15.2,132.0 L16.4,131.9 L17.6,131.9 L18.9,131.9 L20.1,131.9 L21.3,131.9 L22.5,131.9 L23.7,131.9 L24.9,131.9 L26.1,131.9 L27.3,131.9 L28.6,131.9 L29.8,131.9 L31.0,131.9 L32.2,131.8 L33.4,131.8 L34.6,131.8 L35.8,131.8 L37.1,131.8 L38.3,131.8 L39.5,131.8 L40.7,131.7 L41.9,131.7 L43.1,131.7 L44.3,131.7 L45.5,131.6 L46.8,131.6 L48.0,131.6 L49.2,131.6 L50.4,131.5 L51.6,131.5 L52.8,131.4 L54.0,131.4 L55.3,131.4 L56.5,131.3 L57.7,131.3 L58.9,131.2 L60.1,131.2 L61.3,131.1 L62.5,131.0 L63.7,131.0 L65.0,130.9 L66.2,130.8 L67.4,130.8 L68.6,130.7 L69.8,130.6 L71.0,130.5 L72.2,130.4 L73.5,130.3 L74.7,130.2 L75.9,130.1 L77.1,130.0 L78.3,129.9 L79.5,129.8 L80.7,129.6 L81.9,129.5 L83.2,129.4 L84.4,129.2 L85.6,129.1 L86.8,128.9 L88.0,128.8 L89.2,128.6 L90.4,128.4 L91.7,128.3 L92.9,128.1 L94.1,127.9 L95.3,127.7 L96.5,127.5 L97.7,127.3 L98.9,127.1 L100.1,126.9 L101.4,126.7 L102.6,126.5 L103.8,126.3 L105.0,126.1 L106.2,125.8 L107.4,125.6 L108.6,125.4 L109.9,125.1 L111.1,124.9 L112.3,124.6 L113.5,124.4 L114.7,124.1 L115.9,123.9 L117.1,123.6 L118.3,123.4 L119.6,123.1 L120.8,122.8 L122.0,122.6 L123.2,122.3 L124.4,122.0 L125.6,121.7 L126.8,121.5 L128.1,121.2 L129.3,120.9 L130.5,120.6 L131.7,120.3 L132.9,120.0 L134.1,119.8 L135.3,119.5 L136.5,119.2 L137.8,118.9 L139.0,118.6 L140.2,118.3 L141.4,118.0 L142.6,117.7 L143.8,117.4 L145.0,117.1 L146.3,116.8 L147.5,116.5 L148.7,116.2 L149.9,115.9 L151.1,115.6 L152.3,115.3 L153.5,115.0 L154.7,114.7 L156.0,114.4 L157.2,114.1 L158.4,113.8 L159.6,113.5 L160.8,113.2 L162.0,112.9 L163.2,112.6 L164.5,112.3 L165.7,112.0 L166.9,111.7 L168.1,111.4 L169.3,111.1 L170.5,110.8 L171.7,110.4 L172.9,110.1 L174.2,109.8 L175.4,109.5 L176.6,109.2 L177.8,108.9 L179.0,108.6 L180.2,108.3 L181.4,108.0 L182.7,107.7 L183.9,107.4 L185.1,107.1 L186.3,106.8 L187.5,106.5 L188.7,106.2 L189.9,105.8 L191.1,105.5 L192.4,105.2 L193.6,104.9 L194.8,104.6 L196.0,104.3"/><path class="g d" d="M14.0,46.0 L15.2,50.6 L16.4,55.0 L17.6,59.2 L18.9,63.1 L20.1,66.9 L21.3,70.4 L22.5,73.7 L23.7,76.9 L24.9,79.8 L26.1,82.7 L27.3,85.3 L28.6,87.8 L29.8,90.2 L31.0,92.5 L32.2,94.6 L33.4,96.6 L34.6,98.6 L35.8,100.4 L37.1,102.1 L38.3,103.7 L39.5,105.2 L40.7,106.7 L41.9,108.0 L43.1,109.3 L44.3,110.6 L45.5,111.7 L46.8,112.8 L48.0,113.8 L49.2,114.8 L50.4,115.8 L51.6,116.6 L52.8,117.5 L54.0,118.3 L55.3,119.0 L56.5,119.7 L57.7,120.4 L58.9,121.0 L60.1,121.6 L61.3,122.1 L62.5,122.7 L63.7,123.2 L65.0,123.7 L66.2,124.1 L67.4,124.5 L68.6,124.9 L69.8,125.3 L71.0,125.7 L72.2,126.0 L73.5,126.3 L74.7,126.7 L75.9,126.9 L77.1,127.2 L78.3,127.5 L79.5,127.7 L80.7,127.9 L81.9,128.2 L83.2,128.4 L84.4,128.6 L85.6,128.8 L86.8,128.9 L88.0,129.1 L89.2,129.3 L90.4,129.4 L91.7,129.5 L92.9,129.7 L94.1,129.8 L95.3,129.9 L96.5,130.0 L97.7,130.1 L98.9,130.2 L100.1,130.3 L101.4,130.4 L102.6,130.5 L103.8,130.6 L105.0,130.7 L106.2,130.7 L107.4,130.8 L108.6,130.9 L109.9,130.9 L111.1,131.0 L112.3,131.0 L113.5,131.1 L114.7,131.1 L115.9,131.2 L117.1,131.2 L118.3,131.3 L119.6,131.3 L120.8,131.4 L122.0,131.4 L123.2,131.4 L124.4,131.5 L125.6,131.5 L126.8,131.5 L128.1,131.5 L129.3,131.6 L130.5,131.6 L131.7,131.6 L132.9,131.6 L134.1,131.6 L135.3,131.7 L136.5,131.7 L137.8,131.7 L139.0,131.7 L140.2,131.7 L141.4,131.7 L142.6,131.8 L143.8,131.8 L145.0,131.8 L146.3,131.8 L147.5,131.8 L148.7,131.8 L149.9,131.8 L151.1,131.8 L152.3,131.8 L153.5,131.9 L154.7,131.9 L156.0,131.9 L157.2,131.9 L158.4,131.9 L159.6,131.9 L160.8,131.9 L162.0,131.9 L163.2,131.9 L164.5,131.9 L165.7,131.9 L166.9,131.9 L168.1,131.9 L169.3,131.9 L170.5,131.9 L171.7,131.9 L172.9,131.9 L174.2,131.9 L175.4,131.9 L176.6,131.9 L177.8,132.0 L179.0,132.0 L180.2,132.0 L181.4,132.0 L182.7,132.0 L183.9,132.0 L185.1,132.0 L186.3,132.0 L187.5,132.0 L188.7,132.0 L189.9,132.0 L191.1,132.0 L192.4,132.0 L193.6,132.0 L194.8,132.0 L196.0,132.0"/>
+<path class="g" d="M224.0,132.0 L225.2,131.9 L226.4,131.9 L227.6,131.9 L228.9,131.9 L230.1,131.9 L231.3,131.9 L232.5,131.9 L233.7,131.9 L234.9,131.8 L236.1,131.8 L237.3,131.8 L238.6,131.8 L239.8,131.7 L241.0,131.7 L242.2,131.6 L243.4,131.6 L244.6,131.5 L245.8,131.5 L247.1,131.4 L248.3,131.3 L249.5,131.2 L250.7,131.1 L251.9,131.0 L253.1,130.8 L254.3,130.7 L255.5,130.5 L256.8,130.3 L258.0,130.1 L259.2,129.8 L260.4,129.5 L261.6,129.2 L262.8,128.8 L264.0,128.4 L265.3,128.0 L266.5,127.4 L267.7,126.9 L268.9,126.3 L270.1,125.6 L271.3,124.8 L272.5,123.9 L273.7,123.0 L275.0,122.0 L276.2,120.9 L277.4,119.7 L278.6,118.4 L279.8,117.0 L281.0,115.5 L282.2,113.9 L283.5,112.2 L284.7,110.4 L285.9,108.5 L287.1,106.6 L288.3,104.5 L289.5,102.4 L290.7,100.2 L291.9,98.0 L293.2,95.8 L294.4,93.5 L295.6,91.2 L296.8,88.9 L298.0,86.7 L299.2,84.5 L300.4,82.3 L301.7,80.1 L302.9,78.1 L304.1,76.1 L305.3,74.1 L306.5,72.3 L307.7,70.5 L308.9,68.8 L310.1,67.3 L311.4,65.8 L312.6,64.3 L313.8,63.0 L315.0,61.8 L316.2,60.6 L317.4,59.5 L318.6,58.5 L319.9,57.6 L321.1,56.7 L322.3,55.9 L323.5,55.1 L324.7,54.4 L325.9,53.8 L327.1,53.2 L328.3,52.6 L329.6,52.1 L330.8,51.7 L332.0,51.2 L333.2,50.8 L334.4,50.5 L335.6,50.1 L336.8,49.8 L338.1,49.5 L339.3,49.3 L340.5,49.0 L341.7,48.8 L342.9,48.6 L344.1,48.4 L345.3,48.2 L346.5,48.1 L347.8,47.9 L349.0,47.8 L350.2,47.6 L351.4,47.5 L352.6,47.4 L353.8,47.3 L355.0,47.2 L356.3,47.1 L357.5,47.0 L358.7,47.0 L359.9,46.9 L361.1,46.8 L362.3,46.8 L363.5,46.7 L364.7,46.7 L366.0,46.6 L367.2,46.6 L368.4,46.5 L369.6,46.5 L370.8,46.5 L372.0,46.4 L373.2,46.4 L374.5,46.4 L375.7,46.4 L376.9,46.3 L378.1,46.3 L379.3,46.3 L380.5,46.3 L381.7,46.2 L382.9,46.2 L384.2,46.2 L385.4,46.2 L386.6,46.2 L387.8,46.2 L389.0,46.2 L390.2,46.2 L391.4,46.1 L392.7,46.1 L393.9,46.1 L395.1,46.1 L396.3,46.1 L397.5,46.1 L398.7,46.1 L399.9,46.1 L401.1,46.1 L402.4,46.1 L403.6,46.1 L404.8,46.1 L406.0,46.1"/><path class="g d" d="M224.0,125.9 L225.2,125.5 L226.4,125.1 L227.6,124.8 L228.9,124.3 L230.1,123.9 L231.3,123.4 L232.5,123.0 L233.7,122.4 L234.9,121.9 L236.1,121.3 L237.3,120.7 L238.6,120.1 L239.8,119.4 L241.0,118.7 L242.2,117.9 L243.4,117.1 L244.6,116.3 L245.8,115.4 L247.1,114.5 L248.3,113.5 L249.5,112.5 L250.7,111.4 L251.9,110.2 L253.1,109.0 L254.3,107.8 L255.5,106.4 L256.8,105.1 L258.0,103.6 L259.2,102.1 L260.4,100.5 L261.6,98.8 L262.8,97.0 L264.0,95.2 L265.3,93.3 L266.5,91.4 L267.7,89.4 L268.9,87.3 L270.1,85.1 L271.3,82.9 L272.5,80.7 L273.7,78.4 L275.0,76.1 L276.2,73.8 L277.4,71.4 L278.6,69.1 L279.8,66.8 L281.0,64.5 L282.2,62.3 L283.5,60.1 L284.7,58.1 L285.9,56.1 L287.1,54.3 L288.3,52.7 L289.5,51.2 L290.7,49.8 L291.9,48.7 L293.2,47.8 L294.4,47.0 L295.6,46.5 L296.8,46.1 L298.0,46.0 L299.2,46.1 L300.4,46.3 L301.7,46.8 L302.9,47.4 L304.1,48.1 L305.3,49.0 L306.5,50.0 L307.7,51.2 L308.9,52.4 L310.1,53.7 L311.4,55.1 L312.6,56.5 L313.8,58.0 L315.0,59.5 L316.2,61.0 L317.4,62.5 L318.6,64.0 L319.9,65.6 L321.1,67.1 L322.3,68.6 L323.5,70.0 L324.7,71.5 L325.9,72.9 L327.1,74.3 L328.3,75.7 L329.6,77.0 L330.8,78.3 L332.0,79.5 L333.2,80.7 L334.4,81.9 L335.6,83.1 L336.8,84.2 L338.1,85.2 L339.3,86.3 L340.5,87.3 L341.7,88.3 L342.9,89.2 L344.1,90.1 L345.3,91.0 L346.5,91.8 L347.8,92.7 L349.0,93.5 L350.2,94.2 L351.4,95.0 L352.6,95.7 L353.8,96.4 L355.0,97.1 L356.3,97.7 L357.5,98.3 L358.7,99.0 L359.9,99.5 L361.1,100.1 L362.3,100.7 L363.5,101.2 L364.7,101.7 L366.0,102.2 L367.2,102.7 L368.4,103.2 L369.6,103.7 L370.8,104.1 L372.0,104.5 L373.2,105.0 L374.5,105.4 L375.7,105.8 L376.9,106.1 L378.1,106.5 L379.3,106.9 L380.5,107.2 L381.7,107.6 L382.9,107.9 L384.2,108.3 L385.4,108.6 L386.6,108.9 L387.8,109.2 L389.0,109.5 L390.2,109.8 L391.4,110.1 L392.7,110.3 L393.9,110.6 L395.1,110.9 L396.3,111.1 L397.5,111.4 L398.7,111.6 L399.9,111.8 L401.1,112.1 L402.4,112.3 L403.6,112.5 L404.8,112.7 L406.0,113.0"/>
+<text class="lg" x="196.0" y="98.3" text-anchor="end">&#945; opens</text>
+<text class="lg" x="18.0" y="50.0">&#946; closes</text>
+<text class="lg" x="406.0" y="40.0" text-anchor="end">x&#8734; where it settles</text>
+<text class="lg" x="292" y="58" text-anchor="end">&#964; how fast</text>
+<text class="cap" x="14.0" y="150">as Hodgkin &amp; Huxley wrote it</text>
+<text class="cap" x="224.0" y="150">as models since write it</text>
+<text class="op" x="210" y="94" text-anchor="middle">&#8644;</text>
+</svg>
+    <ul class="facts">
+      <li>NEURON-checked</li>
+      <li>voltage &amp; current clamp</li>
+      <li>phone or lecture screen</li>
+    </ul>
+    <p class="go"><span>hhhero.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
 
   <a class="card" style="--c: var(--c-ionhomie)" href="https://ionhomie.tonydefazio.com/">
-    <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
     <p class="eyebrow">Ion homeostasis<span class="born">Born <time datetime="2026-10-20">2026-10-20</time></span></p>
-    <h2>ionhomie</h2>
+    <h3>ionhomie</h3>
     <p class="what">
       Ion homeostasis built one mechanism at a time &mdash; diffusion, Nernst, the GHK
       equation, a cell running down with no pump, the pumps that stop it, and the
@@ -658,7 +717,7 @@ form.contact button { color: #fff; }
 
   <a class="card" style="--c: var(--c-ml2dl)" href="https://ml2dl.tonydefazio.com/">
     <p class="eyebrow">Deep learning<span class="born">Born <time datetime="2026-09-23">2026-09-23</time></span></p>
-    <h2>ml2dl</h2>
+    <h3>ml2dl</h3>
     <p class="what">
       Deep learning built up from its parts and knocked down again &mdash; each part arrives
       only when the model without it visibly fails, and every model is small enough to see
@@ -674,7 +733,7 @@ form.contact button { color: #fff; }
 
   <a class="card" style="--c: var(--c-gaba)" href="https://gaba.tonydefazio.com/">
     <p class="eyebrow">Cellular excitability<span class="born">Born <time datetime="2026-09-21">2026-09-21</time></span></p>
-    <h2>gaba_excites</h2>
+    <h3>gaba_excites</h3>
     <p class="what">
       A current-clamp rig in the browser &mdash; step families, rheobase, F&ndash;I curves,
       and GABA that hyperpolarizes, shunts, or excites depending on where its reversal sits.
@@ -688,9 +747,47 @@ form.contact button { color: #fff; }
     <p class="go"><span>gaba.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
+  <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
+    <p class="eyebrow">Working with agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
+    <h3>It Looked Right</h3>
+    <p class="what">
+      Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
+      dated incident that produced it.
+    </p>
+    <svg class="ga ga-l" viewBox="0 0 420 104" role="img" aria-label="Ran clean, numbers right, gates green — and the result still wrong."><circle cx="30.0" cy="40" r="7" class="nd"/><text x="30.0" y="62" class="cap" text-anchor="middle">Ran clean</text><line x1="38.0" y1="40" x2="141.0" y2="40" class="edge"/><path d="M141.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="150.0" cy="40" r="7" class="nd"/><text x="150.0" y="62" class="cap" text-anchor="middle">Numbers right</text><line x1="158.0" y1="40" x2="261.0" y2="40" class="edge"/><path d="M261.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="270.0" cy="40" r="7" class="nd"/><text x="270.0" y="62" class="cap" text-anchor="middle">Gates green</text><line x1="278.0" y1="40" x2="381.0" y2="40" class="edge"/><path d="M381.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="390.0" cy="40" r="7" class="nd last"/><text x="390.0" y="62" class="cap" text-anchor="middle">Wrong</text><text x="30" y="88" class="cap">every check passed and the page was about the wrong thing</text></svg>
+    <ul class="facts">
+      <li>4 challenges</li>
+      <li>19 worked failures</li>
+      <li>3 reading depths</li>
+    </ul>
+    <p class="go"><span>lookedright.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/">
+    <p class="eyebrow">Calcium imaging<span class="born">Born <time datetime="2026-06-21">2026-06-21</time></span></p>
+    <h3>Colonel Kernel</h3>
+    <p class="what">
+      Recover the shape linking action potentials to a calcium signal, from ground-truth
+      spike times and a measured &Delta;F/F&#8320; trace.
+    </p>
+    <svg class="ga ga-k" viewBox="0 0 420 104" role="img" aria-label="Two action potentials on a 40 ms base, convolved with a calcium-indicator kernel; the second response superimposes on the decay of the first."><line x1="0" y1="71.3" x2="74" y2="71.3" class="ax"/><path d="M0.0,71.3 L1.1,71.3 L2.1,71.3 L3.2,71.3 L4.2,71.3 L5.3,71.3 L6.3,71.3 L7.4,71.3 L8.5,71.3 L9.5,71.3 L10.6,71.3 L11.6,71.3 L12.7,71.3 L13.7,71.3 L14.8,71.3 L15.9,71.3 L16.9,71.3 L18.0,71.3 L19.0,34.4 L19.1,38.0 L19.2,41.6 L19.3,45.1 L19.3,48.3 L19.4,51.2 L19.5,53.9 L19.5,56.4 L19.6,58.6 L19.7,60.6 L19.8,62.4 L19.8,64.0 L19.9,65.4 L20.0,66.7 L20.1,67.8 L20.1,68.8 L20.2,69.7 L20.5,72.1 L20.8,73.5 L21.0,74.3 L21.3,74.6 L21.6,74.7 L21.9,74.7 L22.2,74.5 L22.4,74.3 L22.7,74.1 L23.0,73.9 L23.3,73.7 L23.5,73.5 L23.8,73.3 L24.1,73.1 L24.4,72.9 L24.7,72.8 L24.9,72.6 L25.2,72.5 L25.5,72.4 L25.8,72.3 L26.0,72.2 L26.3,72.1 L26.6,72.0 L26.9,71.9 L27.2,71.9 L27.4,71.8 L27.7,71.8 L28.0,71.7 L28.3,71.7 L28.5,71.6 L28.8,71.6 L29.1,71.6 L29.4,71.6 L29.6,71.5 L30.7,71.4 L31.8,71.4 L32.8,71.4 L33.9,71.3 L34.9,71.3 L36.0,71.3 L37.0,71.3 L38.1,71.3 L39.2,71.3 L40.2,71.3 L41.3,71.3 L42.3,71.3 L43.4,71.3 L44.4,52.7 L44.5,35.9 L44.6,28.4 L44.7,26.2 L44.7,27.0 L44.8,29.4 L44.9,32.7 L45.0,36.2 L45.0,39.9 L45.1,43.4 L45.2,46.7 L45.3,49.8 L45.3,52.6 L45.4,55.2 L45.5,57.5 L45.6,59.6 L45.6,61.5 L45.7,63.2 L45.8,64.7 L45.9,66.1 L45.9,67.3 L46.0,68.3 L46.1,69.3 L46.4,71.9 L46.6,73.4 L46.9,74.2 L47.2,74.6 L47.5,74.7 L47.7,74.7 L48.0,74.5 L48.3,74.3 L48.6,74.1 L48.9,73.9 L49.1,73.7 L49.4,73.5 L49.7,73.3 L50.0,73.1 L50.2,72.9 L50.5,72.8 L50.8,72.6 L51.1,72.5 L51.3,72.4 L51.6,72.3 L51.9,72.2 L52.2,72.1 L52.5,72.0 L52.7,72.0 L53.0,71.9 L53.3,71.8 L53.6,71.8 L53.8,71.7 L54.1,71.7 L54.4,71.7 L54.7,71.6 L55.0,71.6 L55.2,71.6 L55.5,71.5 L56.6,71.5 L57.6,71.4 L58.7,71.4 L59.7,71.3 L60.8,71.3 L61.9,71.3 L62.9,71.3 L64.0,71.3 L65.0,71.3 L66.1,71.3 L67.1,71.3 L68.2,71.3 L69.3,71.3 L70.3,71.3 L71.4,71.3 L72.4,71.3 L73.5,71.3 L74.0,71.3" class="ap"/><text x="37" y="98" class="cap">2 APs</text><text x="88" y="60" class="op">&#8859;</text><line x1="104" y1="78" x2="178" y2="78" class="ax"/><path d="M104.0,78.0 L104.6,58.2 L105.2,45.2 L105.8,36.8 L106.4,31.6 L107.0,28.5 L107.6,26.8 L108.2,26.1 L108.7,26.0 L109.3,26.4 L109.9,27.1 L110.5,28.0 L111.1,28.9 L111.7,30.0 L112.3,31.1 L112.9,32.2 L113.5,33.3 L114.1,34.4 L114.7,35.5 L115.3,36.5 L115.9,37.6 L116.5,38.6 L117.1,39.6 L117.6,40.6 L118.2,41.5 L118.8,42.4 L119.4,43.3 L120.0,44.2 L120.6,45.1 L121.2,45.9 L121.8,46.7 L122.4,47.5 L123.0,48.3 L123.6,49.1 L124.2,49.8 L124.8,50.5 L125.4,51.2 L125.9,51.9 L126.5,52.6 L127.1,53.2 L127.7,53.8 L128.3,54.5 L128.9,55.1 L129.5,55.6 L130.1,56.2 L130.7,56.8 L131.3,57.3 L131.9,57.8 L132.5,58.3 L133.1,58.9 L133.7,59.3 L134.3,59.8 L134.8,60.3 L135.4,60.7 L136.0,61.2 L136.6,61.6 L137.2,62.0 L137.8,62.4 L138.4,62.8 L139.0,63.2 L139.6,63.6 L140.2,64.0 L140.8,64.3 L141.4,64.7 L142.0,65.0 L142.6,65.3 L143.2,65.7 L143.7,66.0 L144.3,66.3 L144.9,66.6 L145.5,66.9 L146.1,67.1 L146.7,67.4 L147.3,67.7 L147.9,68.0 L148.5,68.2 L149.1,68.5 L149.7,68.7 L150.3,68.9 L150.9,69.2 L151.5,69.4 L152.0,69.6 L152.6,69.8 L153.2,70.0 L153.8,70.2 L154.4,70.4 L155.0,70.6 L155.6,70.8 L156.2,71.0 L156.8,71.2 L157.4,71.4 L158.0,71.5 L158.6,71.7 L159.2,71.8 L159.8,72.0 L160.4,72.2 L160.9,72.3 L161.5,72.5 L162.1,72.6 L162.7,72.7 L163.3,72.9 L163.9,73.0 L164.5,73.1 L165.1,73.2 L165.7,73.4 L166.3,73.5 L166.9,73.6 L167.5,73.7 L168.1,73.8 L168.7,73.9 L169.3,74.0 L169.8,74.1 L170.4,74.2 L171.0,74.3 L171.6,74.4 L172.2,74.5 L172.8,74.6 L173.4,74.7 L174.0,74.8 L174.6,74.9 L175.2,74.9 L175.8,75.0 L176.4,75.1 L177.0,75.2 L177.6,75.2 L178.0,75.3" class="ker"/><text x="141" y="98" class="cap">kernel</text><text x="192" y="60" class="op">=</text><line x1="210" y1="78" x2="418" y2="78" class="ax"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,55.6 L272.9,56.7 L274.8,57.8 L276.6,58.8 L278.5,59.7 L280.3,60.7 L282.2,61.5 L284.0,62.4 L285.9,63.2 L287.7,63.9 L289.6,64.6 L291.4,65.3 L293.3,65.9 L295.1,66.5 L297.0,67.1 L298.8,67.7 L300.7,68.2 L302.5,68.7 L304.4,69.1 L306.2,69.6 L308.1,70.0 L310.0,70.4 L311.8,70.8 L313.7,71.2 L315.5,71.5 L317.4,71.8 L319.2,72.1 L321.1,72.4 L322.9,72.7 L324.8,73.0 L326.6,73.2 L328.5,73.5 L330.3,73.7 L332.2,73.9 L334.0,74.1 L335.9,74.3 L337.7,74.5 L339.6,74.7 L341.4,74.8 L343.3,75.0 L345.1,75.2 L347.0,75.3 L348.8,75.4 L350.7,75.6 L352.5,75.7 L354.4,75.8 L356.2,75.9 L358.1,76.0 L359.9,76.1 L361.8,76.2 L363.6,76.3 L365.5,76.4 L367.3,76.5 L369.2,76.5 L371.0,76.6 L372.9,76.7 L374.7,76.8 L376.6,76.8 L378.4,76.9 L380.3,76.9 L382.1,77.0 L384.0,77.0 L385.8,77.1 L387.7,77.1 L389.5,77.2 L391.4,77.2 L393.2,77.3 L395.1,77.3 L396.9,77.3 L398.8,77.4 L400.6,77.4 L402.5,77.4 L404.3,77.5 L406.2,77.5 L408.1,77.5 L409.9,77.5 L411.8,77.6 L413.6,77.6 L415.5,77.6 L417.3,77.6 L418.0,77.6" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,78.0 L245.2,78.0 L247.0,78.0 L248.9,78.0 L250.7,78.0 L252.6,78.0 L254.4,78.0 L256.3,78.0 L258.1,78.0 L260.0,78.0 L261.8,78.0 L263.7,78.0 L265.5,78.0 L267.4,78.0 L269.2,78.0 L271.1,69.8 L272.9,49.9 L274.8,41.8 L276.6,39.2 L278.5,39.1 L280.3,40.1 L282.2,41.6 L284.0,43.2 L285.9,44.8 L287.7,46.5 L289.6,48.0 L291.4,49.5 L293.3,51.0 L295.1,52.3 L297.0,53.6 L298.8,54.8 L300.7,56.0 L302.5,57.1 L304.4,58.2 L306.2,59.1 L308.1,60.1 L310.0,61.0 L311.8,61.9 L313.7,62.7 L315.5,63.4 L317.4,64.2 L319.2,64.9 L321.1,65.5 L322.9,66.2 L324.8,66.7 L326.6,67.3 L328.5,67.9 L330.3,68.4 L332.2,68.8 L334.0,69.3 L335.9,69.7 L337.7,70.2 L339.6,70.6 L341.4,70.9 L343.3,71.3 L345.1,71.6 L347.0,71.9 L348.8,72.2 L350.7,72.5 L352.5,72.8 L354.4,73.1 L356.2,73.3 L358.1,73.6 L359.9,73.8 L361.8,74.0 L363.6,74.2 L365.5,74.4 L367.3,74.6 L369.2,74.7 L371.0,74.9 L372.9,75.1 L374.7,75.2 L376.6,75.3 L378.4,75.5 L380.3,75.6 L382.1,75.7 L384.0,75.8 L385.8,76.0 L387.7,76.1 L389.5,76.2 L391.4,76.2 L393.2,76.3 L395.1,76.4 L396.9,76.5 L398.8,76.6 L400.6,76.6 L402.5,76.7 L404.3,76.8 L406.2,76.8 L408.1,76.9 L409.9,77.0 L411.8,77.0 L413.6,77.1 L415.5,77.1 L417.3,77.1 L418.0,77.2" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,47.4 L272.9,28.6 L274.8,21.6 L276.6,20.0 L278.5,20.9 L280.3,22.8 L282.2,25.1 L284.0,27.5 L285.9,30.0 L287.7,32.4 L289.6,34.6 L291.4,36.8 L293.3,38.9 L295.1,40.8 L297.0,42.7 L298.8,44.5 L300.7,46.2 L302.5,47.8 L304.4,49.3 L306.2,50.7 L308.1,52.1 L310.0,53.4 L311.8,54.6 L313.7,55.8 L315.5,56.9 L317.4,58.0 L319.2,59.0 L321.1,60.0 L322.9,60.9 L324.8,61.7 L326.6,62.5 L328.5,63.3 L330.3,64.1 L332.2,64.8 L334.0,65.4 L335.9,66.1 L337.7,66.7 L339.6,67.2 L341.4,67.8 L343.3,68.3 L345.1,68.8 L347.0,69.2 L348.8,69.7 L350.7,70.1 L352.5,70.5 L354.4,70.9 L356.2,71.2 L358.1,71.6 L359.9,71.9 L361.8,72.2 L363.6,72.5 L365.5,72.8 L367.3,73.0 L369.2,73.3 L371.0,73.5 L372.9,73.7 L374.7,74.0 L376.6,74.2 L378.4,74.4 L380.3,74.5 L382.1,74.7 L384.0,74.9 L385.8,75.0 L387.7,75.2 L389.5,75.3 L391.4,75.5 L393.2,75.6 L395.1,75.7 L396.9,75.8 L398.8,75.9 L400.6,76.0 L402.5,76.1 L404.3,76.2 L406.2,76.3 L408.1,76.4 L409.9,76.5 L411.8,76.6 L413.6,76.6 L415.5,76.7 L417.3,76.8 L418.0,76.8" class="ca"/><text x="314" y="98" class="cap">&#916;F/F&#8320;</text></svg>
+    <ul class="facts">
+      <li>convolution / deconvolution</li>
+      <li>teaching demonstrator</li>
+    </ul>
+    <p class="go"><span>kernel.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="g-tools">
+    <h2 class="group-h" id="g-tools">Tools</h2>
+    <div class="shelf">
+
   <a class="card" style="--c: var(--c-draughtsman)" href="https://draughtsman.tonydefazio.com/">
     <p class="eyebrow"><svg class="nnmark" viewBox="0 0 40 26" role="img" aria-label="draughtsman-nn"><path d="M5,23 V12 A5,5 0 0 1 15,12 V23" class="nnn"/><path d="M23,23 V12 A5,5 0 0 1 33,12 V23" class="nnn"/><circle cx="5" cy="23" r="2.7" class="nnd"/><circle cx="10" cy="7" r="2.7" class="nnd"/><circle cx="15" cy="23" r="2.7" class="nnd"/><circle cx="23" cy="23" r="2.7" class="nnd"/><circle cx="28" cy="7" r="2.7" class="nnd"/><circle cx="33" cy="23" r="2.7" class="nnd"/></svg>Model architecture<span class="born">Born <time datetime="2026-09-01">2026-09-01</time></span></p>
-    <h2>draughtsman</h2>
+    <h3>draughtsman</h3>
     <p class="what">
       Readable architecture diagrams for PyTorch models &mdash; the tracer supplies the facts,
       an agent supplies the abstraction, and a coverage check proves nothing was silently
@@ -730,55 +827,9 @@ form.contact button { color: #fff; }
     <p class="go"><span>draughtsman.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
-  <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
-    <p class="eyebrow">Working with agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
-    <h2>It Looked Right</h2>
-    <p class="what">
-      Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
-      dated incident that produced it.
-    </p>
-    <svg class="ga ga-l" viewBox="0 0 420 104" role="img" aria-label="Ran clean, numbers right, gates green — and the result still wrong."><circle cx="30.0" cy="40" r="7" class="nd"/><text x="30.0" y="62" class="cap" text-anchor="middle">Ran clean</text><line x1="38.0" y1="40" x2="141.0" y2="40" class="edge"/><path d="M141.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="150.0" cy="40" r="7" class="nd"/><text x="150.0" y="62" class="cap" text-anchor="middle">Numbers right</text><line x1="158.0" y1="40" x2="261.0" y2="40" class="edge"/><path d="M261.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="270.0" cy="40" r="7" class="nd"/><text x="270.0" y="62" class="cap" text-anchor="middle">Gates green</text><line x1="278.0" y1="40" x2="381.0" y2="40" class="edge"/><path d="M381.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="390.0" cy="40" r="7" class="nd last"/><text x="390.0" y="62" class="cap" text-anchor="middle">Wrong</text><text x="30" y="88" class="cap">every check passed and the page was about the wrong thing</text></svg>
-    <ul class="facts">
-      <li>4 challenges</li>
-      <li>19 worked failures</li>
-      <li>3 reading depths</li>
-    </ul>
-    <p class="go"><span>lookedright.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-  <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/">
-    <p class="eyebrow">Calcium imaging<span class="born">Born <time datetime="2026-06-21">2026-06-21</time></span></p>
-    <h2>Colonel Kernel</h2>
-    <p class="what">
-      Recover the shape linking action potentials to a calcium signal, from ground-truth
-      spike times and a measured &Delta;F/F&#8320; trace.
-    </p>
-    <svg class="ga ga-k" viewBox="0 0 420 104" role="img" aria-label="Two action potentials on a 40 ms base, convolved with a calcium-indicator kernel; the second response superimposes on the decay of the first."><line x1="0" y1="71.3" x2="74" y2="71.3" class="ax"/><path d="M0.0,71.3 L1.1,71.3 L2.1,71.3 L3.2,71.3 L4.2,71.3 L5.3,71.3 L6.3,71.3 L7.4,71.3 L8.5,71.3 L9.5,71.3 L10.6,71.3 L11.6,71.3 L12.7,71.3 L13.7,71.3 L14.8,71.3 L15.9,71.3 L16.9,71.3 L18.0,71.3 L19.0,34.4 L19.1,38.0 L19.2,41.6 L19.3,45.1 L19.3,48.3 L19.4,51.2 L19.5,53.9 L19.5,56.4 L19.6,58.6 L19.7,60.6 L19.8,62.4 L19.8,64.0 L19.9,65.4 L20.0,66.7 L20.1,67.8 L20.1,68.8 L20.2,69.7 L20.5,72.1 L20.8,73.5 L21.0,74.3 L21.3,74.6 L21.6,74.7 L21.9,74.7 L22.2,74.5 L22.4,74.3 L22.7,74.1 L23.0,73.9 L23.3,73.7 L23.5,73.5 L23.8,73.3 L24.1,73.1 L24.4,72.9 L24.7,72.8 L24.9,72.6 L25.2,72.5 L25.5,72.4 L25.8,72.3 L26.0,72.2 L26.3,72.1 L26.6,72.0 L26.9,71.9 L27.2,71.9 L27.4,71.8 L27.7,71.8 L28.0,71.7 L28.3,71.7 L28.5,71.6 L28.8,71.6 L29.1,71.6 L29.4,71.6 L29.6,71.5 L30.7,71.4 L31.8,71.4 L32.8,71.4 L33.9,71.3 L34.9,71.3 L36.0,71.3 L37.0,71.3 L38.1,71.3 L39.2,71.3 L40.2,71.3 L41.3,71.3 L42.3,71.3 L43.4,71.3 L44.4,52.7 L44.5,35.9 L44.6,28.4 L44.7,26.2 L44.7,27.0 L44.8,29.4 L44.9,32.7 L45.0,36.2 L45.0,39.9 L45.1,43.4 L45.2,46.7 L45.3,49.8 L45.3,52.6 L45.4,55.2 L45.5,57.5 L45.6,59.6 L45.6,61.5 L45.7,63.2 L45.8,64.7 L45.9,66.1 L45.9,67.3 L46.0,68.3 L46.1,69.3 L46.4,71.9 L46.6,73.4 L46.9,74.2 L47.2,74.6 L47.5,74.7 L47.7,74.7 L48.0,74.5 L48.3,74.3 L48.6,74.1 L48.9,73.9 L49.1,73.7 L49.4,73.5 L49.7,73.3 L50.0,73.1 L50.2,72.9 L50.5,72.8 L50.8,72.6 L51.1,72.5 L51.3,72.4 L51.6,72.3 L51.9,72.2 L52.2,72.1 L52.5,72.0 L52.7,72.0 L53.0,71.9 L53.3,71.8 L53.6,71.8 L53.8,71.7 L54.1,71.7 L54.4,71.7 L54.7,71.6 L55.0,71.6 L55.2,71.6 L55.5,71.5 L56.6,71.5 L57.6,71.4 L58.7,71.4 L59.7,71.3 L60.8,71.3 L61.9,71.3 L62.9,71.3 L64.0,71.3 L65.0,71.3 L66.1,71.3 L67.1,71.3 L68.2,71.3 L69.3,71.3 L70.3,71.3 L71.4,71.3 L72.4,71.3 L73.5,71.3 L74.0,71.3" class="ap"/><text x="37" y="98" class="cap">2 APs</text><text x="88" y="60" class="op">&#8859;</text><line x1="104" y1="78" x2="178" y2="78" class="ax"/><path d="M104.0,78.0 L104.6,58.2 L105.2,45.2 L105.8,36.8 L106.4,31.6 L107.0,28.5 L107.6,26.8 L108.2,26.1 L108.7,26.0 L109.3,26.4 L109.9,27.1 L110.5,28.0 L111.1,28.9 L111.7,30.0 L112.3,31.1 L112.9,32.2 L113.5,33.3 L114.1,34.4 L114.7,35.5 L115.3,36.5 L115.9,37.6 L116.5,38.6 L117.1,39.6 L117.6,40.6 L118.2,41.5 L118.8,42.4 L119.4,43.3 L120.0,44.2 L120.6,45.1 L121.2,45.9 L121.8,46.7 L122.4,47.5 L123.0,48.3 L123.6,49.1 L124.2,49.8 L124.8,50.5 L125.4,51.2 L125.9,51.9 L126.5,52.6 L127.1,53.2 L127.7,53.8 L128.3,54.5 L128.9,55.1 L129.5,55.6 L130.1,56.2 L130.7,56.8 L131.3,57.3 L131.9,57.8 L132.5,58.3 L133.1,58.9 L133.7,59.3 L134.3,59.8 L134.8,60.3 L135.4,60.7 L136.0,61.2 L136.6,61.6 L137.2,62.0 L137.8,62.4 L138.4,62.8 L139.0,63.2 L139.6,63.6 L140.2,64.0 L140.8,64.3 L141.4,64.7 L142.0,65.0 L142.6,65.3 L143.2,65.7 L143.7,66.0 L144.3,66.3 L144.9,66.6 L145.5,66.9 L146.1,67.1 L146.7,67.4 L147.3,67.7 L147.9,68.0 L148.5,68.2 L149.1,68.5 L149.7,68.7 L150.3,68.9 L150.9,69.2 L151.5,69.4 L152.0,69.6 L152.6,69.8 L153.2,70.0 L153.8,70.2 L154.4,70.4 L155.0,70.6 L155.6,70.8 L156.2,71.0 L156.8,71.2 L157.4,71.4 L158.0,71.5 L158.6,71.7 L159.2,71.8 L159.8,72.0 L160.4,72.2 L160.9,72.3 L161.5,72.5 L162.1,72.6 L162.7,72.7 L163.3,72.9 L163.9,73.0 L164.5,73.1 L165.1,73.2 L165.7,73.4 L166.3,73.5 L166.9,73.6 L167.5,73.7 L168.1,73.8 L168.7,73.9 L169.3,74.0 L169.8,74.1 L170.4,74.2 L171.0,74.3 L171.6,74.4 L172.2,74.5 L172.8,74.6 L173.4,74.7 L174.0,74.8 L174.6,74.9 L175.2,74.9 L175.8,75.0 L176.4,75.1 L177.0,75.2 L177.6,75.2 L178.0,75.3" class="ker"/><text x="141" y="98" class="cap">kernel</text><text x="192" y="60" class="op">=</text><line x1="210" y1="78" x2="418" y2="78" class="ax"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,55.6 L272.9,56.7 L274.8,57.8 L276.6,58.8 L278.5,59.7 L280.3,60.7 L282.2,61.5 L284.0,62.4 L285.9,63.2 L287.7,63.9 L289.6,64.6 L291.4,65.3 L293.3,65.9 L295.1,66.5 L297.0,67.1 L298.8,67.7 L300.7,68.2 L302.5,68.7 L304.4,69.1 L306.2,69.6 L308.1,70.0 L310.0,70.4 L311.8,70.8 L313.7,71.2 L315.5,71.5 L317.4,71.8 L319.2,72.1 L321.1,72.4 L322.9,72.7 L324.8,73.0 L326.6,73.2 L328.5,73.5 L330.3,73.7 L332.2,73.9 L334.0,74.1 L335.9,74.3 L337.7,74.5 L339.6,74.7 L341.4,74.8 L343.3,75.0 L345.1,75.2 L347.0,75.3 L348.8,75.4 L350.7,75.6 L352.5,75.7 L354.4,75.8 L356.2,75.9 L358.1,76.0 L359.9,76.1 L361.8,76.2 L363.6,76.3 L365.5,76.4 L367.3,76.5 L369.2,76.5 L371.0,76.6 L372.9,76.7 L374.7,76.8 L376.6,76.8 L378.4,76.9 L380.3,76.9 L382.1,77.0 L384.0,77.0 L385.8,77.1 L387.7,77.1 L389.5,77.2 L391.4,77.2 L393.2,77.3 L395.1,77.3 L396.9,77.3 L398.8,77.4 L400.6,77.4 L402.5,77.4 L404.3,77.5 L406.2,77.5 L408.1,77.5 L409.9,77.5 L411.8,77.6 L413.6,77.6 L415.5,77.6 L417.3,77.6 L418.0,77.6" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,78.0 L245.2,78.0 L247.0,78.0 L248.9,78.0 L250.7,78.0 L252.6,78.0 L254.4,78.0 L256.3,78.0 L258.1,78.0 L260.0,78.0 L261.8,78.0 L263.7,78.0 L265.5,78.0 L267.4,78.0 L269.2,78.0 L271.1,69.8 L272.9,49.9 L274.8,41.8 L276.6,39.2 L278.5,39.1 L280.3,40.1 L282.2,41.6 L284.0,43.2 L285.9,44.8 L287.7,46.5 L289.6,48.0 L291.4,49.5 L293.3,51.0 L295.1,52.3 L297.0,53.6 L298.8,54.8 L300.7,56.0 L302.5,57.1 L304.4,58.2 L306.2,59.1 L308.1,60.1 L310.0,61.0 L311.8,61.9 L313.7,62.7 L315.5,63.4 L317.4,64.2 L319.2,64.9 L321.1,65.5 L322.9,66.2 L324.8,66.7 L326.6,67.3 L328.5,67.9 L330.3,68.4 L332.2,68.8 L334.0,69.3 L335.9,69.7 L337.7,70.2 L339.6,70.6 L341.4,70.9 L343.3,71.3 L345.1,71.6 L347.0,71.9 L348.8,72.2 L350.7,72.5 L352.5,72.8 L354.4,73.1 L356.2,73.3 L358.1,73.6 L359.9,73.8 L361.8,74.0 L363.6,74.2 L365.5,74.4 L367.3,74.6 L369.2,74.7 L371.0,74.9 L372.9,75.1 L374.7,75.2 L376.6,75.3 L378.4,75.5 L380.3,75.6 L382.1,75.7 L384.0,75.8 L385.8,76.0 L387.7,76.1 L389.5,76.2 L391.4,76.2 L393.2,76.3 L395.1,76.4 L396.9,76.5 L398.8,76.6 L400.6,76.6 L402.5,76.7 L404.3,76.8 L406.2,76.8 L408.1,76.9 L409.9,77.0 L411.8,77.0 L413.6,77.1 L415.5,77.1 L417.3,77.1 L418.0,77.2" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,47.4 L272.9,28.6 L274.8,21.6 L276.6,20.0 L278.5,20.9 L280.3,22.8 L282.2,25.1 L284.0,27.5 L285.9,30.0 L287.7,32.4 L289.6,34.6 L291.4,36.8 L293.3,38.9 L295.1,40.8 L297.0,42.7 L298.8,44.5 L300.7,46.2 L302.5,47.8 L304.4,49.3 L306.2,50.7 L308.1,52.1 L310.0,53.4 L311.8,54.6 L313.7,55.8 L315.5,56.9 L317.4,58.0 L319.2,59.0 L321.1,60.0 L322.9,60.9 L324.8,61.7 L326.6,62.5 L328.5,63.3 L330.3,64.1 L332.2,64.8 L334.0,65.4 L335.9,66.1 L337.7,66.7 L339.6,67.2 L341.4,67.8 L343.3,68.3 L345.1,68.8 L347.0,69.2 L348.8,69.7 L350.7,70.1 L352.5,70.5 L354.4,70.9 L356.2,71.2 L358.1,71.6 L359.9,71.9 L361.8,72.2 L363.6,72.5 L365.5,72.8 L367.3,73.0 L369.2,73.3 L371.0,73.5 L372.9,73.7 L374.7,74.0 L376.6,74.2 L378.4,74.4 L380.3,74.5 L382.1,74.7 L384.0,74.9 L385.8,75.0 L387.7,75.2 L389.5,75.3 L391.4,75.5 L393.2,75.6 L395.1,75.7 L396.9,75.8 L398.8,75.9 L400.6,76.0 L402.5,76.1 L404.3,76.2 L406.2,76.3 L408.1,76.4 L409.9,76.5 L411.8,76.6 L413.6,76.6 L415.5,76.7 L417.3,76.8 L418.0,76.8" class="ca"/><text x="314" y="98" class="cap">&#916;F/F&#8320;</text></svg>
-    <ul class="facts">
-      <li>convolution / deconvolution</li>
-      <li>teaching demonstrator</li>
-    </ul>
-    <p class="go"><span>kernel.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
-  <a class="card" style="--c: var(--c-nopeak)" href="https://nopeak.tonydefazio.com/">
-    <p class="eyebrow">Endocrine time series<span class="born">Born <time datetime="2026-08-07">2026-08-07</time></span></p>
-    <h2>no_peak</h2>
-    <p class="what">
-      CLUSTER pulse detection for hormone sampling data — LH, GnRH, GH, or any pulsatile
-      analyte.
-    </p>
-    <svg class="ga ga-n" viewBox="0 0 420 104" role="img" aria-label="Six hours of LH sampled every ten minutes, with four pulses detected; each detected nadir-to-peak excursion is shaded."><line x1="6" y1="80" x2="414" y2="80" class="ax"/><rect x="40.0" y="12" width="22.7" height="68.0" class="band"/><rect x="142.0" y="12" width="11.3" height="68.0" class="band"/><rect x="221.3" y="12" width="11.3" height="68.0" class="band"/><rect x="323.3" y="12" width="22.7" height="68.0" class="band"/><path d="M6.0,71.3 L17.3,72.2 L28.7,69.7 L40.0,72.5 L51.3,70.2 L62.7,29.4 L74.0,37.5 L85.3,45.3 L96.7,55.5 L108.0,59.0 L119.3,64.6 L130.7,67.0 L142.0,67.1 L153.3,24.6 L164.7,35.4 L176.0,45.6 L187.3,51.8 L198.7,55.9 L210.0,61.7 L221.3,65.2 L232.7,22.5 L244.0,34.9 L255.3,41.8 L266.7,53.0 L278.0,59.6 L289.3,63.8 L300.7,65.5 L312.0,64.9 L323.3,69.3 L334.7,68.2 L346.0,26.8 L357.3,35.1 L368.7,44.6 L380.0,55.0 L391.3,60.6 L402.7,63.7 L414.0,63.9" class="lh"/><circle cx="6.0" cy="71.3" r="1.7" class="pt"/><circle cx="17.3" cy="72.2" r="1.7" class="pt"/><circle cx="28.7" cy="69.7" r="1.7" class="pt"/><circle cx="40.0" cy="72.5" r="1.7" class="pt nd"/><circle cx="51.3" cy="70.2" r="1.7" class="pt"/><circle cx="62.7" cy="29.4" r="2.6" class="pt pk"/><circle cx="74.0" cy="37.5" r="1.7" class="pt"/><circle cx="85.3" cy="45.3" r="1.7" class="pt"/><circle cx="96.7" cy="55.5" r="1.7" class="pt"/><circle cx="108.0" cy="59.0" r="1.7" class="pt"/><circle cx="119.3" cy="64.6" r="1.7" class="pt"/><circle cx="130.7" cy="67.0" r="1.7" class="pt"/><circle cx="142.0" cy="67.1" r="1.7" class="pt nd"/><circle cx="153.3" cy="24.6" r="2.6" class="pt pk"/><circle cx="164.7" cy="35.4" r="1.7" class="pt"/><circle cx="176.0" cy="45.6" r="1.7" class="pt"/><circle cx="187.3" cy="51.8" r="1.7" class="pt"/><circle cx="198.7" cy="55.9" r="1.7" class="pt"/><circle cx="210.0" cy="61.7" r="1.7" class="pt"/><circle cx="221.3" cy="65.2" r="1.7" class="pt nd"/><circle cx="232.7" cy="22.5" r="2.6" class="pt pk"/><circle cx="244.0" cy="34.9" r="1.7" class="pt"/><circle cx="255.3" cy="41.8" r="1.7" class="pt"/><circle cx="266.7" cy="53.0" r="1.7" class="pt"/><circle cx="278.0" cy="59.6" r="1.7" class="pt"/><circle cx="289.3" cy="63.8" r="1.7" class="pt"/><circle cx="300.7" cy="65.5" r="1.7" class="pt"/><circle cx="312.0" cy="64.9" r="1.7" class="pt"/><circle cx="323.3" cy="69.3" r="1.7" class="pt nd"/><circle cx="334.7" cy="68.2" r="1.7" class="pt"/><circle cx="346.0" cy="26.8" r="2.6" class="pt pk"/><circle cx="357.3" cy="35.1" r="1.7" class="pt"/><circle cx="368.7" cy="44.6" r="1.7" class="pt"/><circle cx="380.0" cy="55.0" r="1.7" class="pt"/><circle cx="391.3" cy="60.6" r="1.7" class="pt"/><circle cx="402.7" cy="63.7" r="1.7" class="pt"/><circle cx="414.0" cy="63.9" r="1.7" class="pt"/><path d="M58.7,22.4 L66.7,22.4 L62.7,27.4 Z" class="mark"/><path d="M149.3,17.6 L157.3,17.6 L153.3,22.6 Z" class="mark"/><path d="M228.7,15.5 L236.7,15.5 L232.7,20.5 Z" class="mark"/><path d="M342.0,19.8 L350.0,19.8 L346.0,24.8 Z" class="mark"/><text x="6" y="98" class="cap">LH, 10 min sampling</text><text x="414" y="98" class="cap" text-anchor="end">4 pulses detected</text></svg>
-    <ul class="facts">
-      <li>Fortran + Igor implementations</li>
-      <li>batch CLI</li>
-    </ul>
-    <p class="go"><span>nopeak.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
   <a class="card" style="--c: var(--c-bugarach)" href="https://bugarach.tonydefazio.com/">
     <p class="eyebrow">Coordinated activity<span class="born">Born <time datetime="2026-08-10">2026-08-10</time></span></p>
-    <h2>bugarach</h2>
+    <h3>bugarach</h3>
     <p class="what">
       Find the moments when many cells fire together — and how often you are wrong,
       against a simulation built from your own recordings.
@@ -791,9 +842,44 @@ form.contact button { color: #fff; }
     <p class="go"><span>bugarach.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
-  <a class="card" style="--c: var(--c-murderboard)" href="https://murderboard.tonydefazio.com/">
+  <a class="card" style="--c: var(--c-nopeak)" href="https://nopeak.tonydefazio.com/">
+    <p class="eyebrow">Endocrine time series<span class="born">Born <time datetime="2026-08-07">2026-08-07</time></span></p>
+    <h3>no_peak</h3>
+    <p class="what">
+      CLUSTER pulse detection for hormone sampling data — LH, GnRH, GH, or any pulsatile
+      analyte.
+    </p>
+    <svg class="ga ga-n" viewBox="0 0 420 104" role="img" aria-label="Six hours of LH sampled every ten minutes, with four pulses detected; each detected nadir-to-peak excursion is shaded."><line x1="6" y1="80" x2="414" y2="80" class="ax"/><rect x="40.0" y="12" width="22.7" height="68.0" class="band"/><rect x="142.0" y="12" width="11.3" height="68.0" class="band"/><rect x="221.3" y="12" width="11.3" height="68.0" class="band"/><rect x="323.3" y="12" width="22.7" height="68.0" class="band"/><path d="M6.0,71.3 L17.3,72.2 L28.7,69.7 L40.0,72.5 L51.3,70.2 L62.7,29.4 L74.0,37.5 L85.3,45.3 L96.7,55.5 L108.0,59.0 L119.3,64.6 L130.7,67.0 L142.0,67.1 L153.3,24.6 L164.7,35.4 L176.0,45.6 L187.3,51.8 L198.7,55.9 L210.0,61.7 L221.3,65.2 L232.7,22.5 L244.0,34.9 L255.3,41.8 L266.7,53.0 L278.0,59.6 L289.3,63.8 L300.7,65.5 L312.0,64.9 L323.3,69.3 L334.7,68.2 L346.0,26.8 L357.3,35.1 L368.7,44.6 L380.0,55.0 L391.3,60.6 L402.7,63.7 L414.0,63.9" class="lh"/><circle cx="6.0" cy="71.3" r="1.7" class="pt"/><circle cx="17.3" cy="72.2" r="1.7" class="pt"/><circle cx="28.7" cy="69.7" r="1.7" class="pt"/><circle cx="40.0" cy="72.5" r="1.7" class="pt nd"/><circle cx="51.3" cy="70.2" r="1.7" class="pt"/><circle cx="62.7" cy="29.4" r="2.6" class="pt pk"/><circle cx="74.0" cy="37.5" r="1.7" class="pt"/><circle cx="85.3" cy="45.3" r="1.7" class="pt"/><circle cx="96.7" cy="55.5" r="1.7" class="pt"/><circle cx="108.0" cy="59.0" r="1.7" class="pt"/><circle cx="119.3" cy="64.6" r="1.7" class="pt"/><circle cx="130.7" cy="67.0" r="1.7" class="pt"/><circle cx="142.0" cy="67.1" r="1.7" class="pt nd"/><circle cx="153.3" cy="24.6" r="2.6" class="pt pk"/><circle cx="164.7" cy="35.4" r="1.7" class="pt"/><circle cx="176.0" cy="45.6" r="1.7" class="pt"/><circle cx="187.3" cy="51.8" r="1.7" class="pt"/><circle cx="198.7" cy="55.9" r="1.7" class="pt"/><circle cx="210.0" cy="61.7" r="1.7" class="pt"/><circle cx="221.3" cy="65.2" r="1.7" class="pt nd"/><circle cx="232.7" cy="22.5" r="2.6" class="pt pk"/><circle cx="244.0" cy="34.9" r="1.7" class="pt"/><circle cx="255.3" cy="41.8" r="1.7" class="pt"/><circle cx="266.7" cy="53.0" r="1.7" class="pt"/><circle cx="278.0" cy="59.6" r="1.7" class="pt"/><circle cx="289.3" cy="63.8" r="1.7" class="pt"/><circle cx="300.7" cy="65.5" r="1.7" class="pt"/><circle cx="312.0" cy="64.9" r="1.7" class="pt"/><circle cx="323.3" cy="69.3" r="1.7" class="pt nd"/><circle cx="334.7" cy="68.2" r="1.7" class="pt"/><circle cx="346.0" cy="26.8" r="2.6" class="pt pk"/><circle cx="357.3" cy="35.1" r="1.7" class="pt"/><circle cx="368.7" cy="44.6" r="1.7" class="pt"/><circle cx="380.0" cy="55.0" r="1.7" class="pt"/><circle cx="391.3" cy="60.6" r="1.7" class="pt"/><circle cx="402.7" cy="63.7" r="1.7" class="pt"/><circle cx="414.0" cy="63.9" r="1.7" class="pt"/><path d="M58.7,22.4 L66.7,22.4 L62.7,27.4 Z" class="mark"/><path d="M149.3,17.6 L157.3,17.6 L153.3,22.6 Z" class="mark"/><path d="M228.7,15.5 L236.7,15.5 L232.7,20.5 Z" class="mark"/><path d="M342.0,19.8 L350.0,19.8 L346.0,24.8 Z" class="mark"/><text x="6" y="98" class="cap">LH, 10 min sampling</text><text x="414" y="98" class="cap" text-anchor="end">4 pulses detected</text></svg>
+    <ul class="facts">
+      <li>Fortran + Igor implementations</li>
+      <li>batch CLI</li>
+    </ul>
+    <p class="go"><span>nopeak.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/">
+    <p class="eyebrow">Calcium imaging<span class="born">Born <time datetime="2026-06-21">2026-06-21</time></span></p>
+    <h3>Colonel Kernel</h3>
+    <p class="what">
+      Recover the shape linking action potentials to a calcium signal, from ground-truth
+      spike times and a measured &Delta;F/F&#8320; trace.
+    </p>
+    <svg class="ga ga-k" viewBox="0 0 420 104" role="img" aria-label="Two action potentials on a 40 ms base, convolved with a calcium-indicator kernel; the second response superimposes on the decay of the first."><line x1="0" y1="71.3" x2="74" y2="71.3" class="ax"/><path d="M0.0,71.3 L1.1,71.3 L2.1,71.3 L3.2,71.3 L4.2,71.3 L5.3,71.3 L6.3,71.3 L7.4,71.3 L8.5,71.3 L9.5,71.3 L10.6,71.3 L11.6,71.3 L12.7,71.3 L13.7,71.3 L14.8,71.3 L15.9,71.3 L16.9,71.3 L18.0,71.3 L19.0,34.4 L19.1,38.0 L19.2,41.6 L19.3,45.1 L19.3,48.3 L19.4,51.2 L19.5,53.9 L19.5,56.4 L19.6,58.6 L19.7,60.6 L19.8,62.4 L19.8,64.0 L19.9,65.4 L20.0,66.7 L20.1,67.8 L20.1,68.8 L20.2,69.7 L20.5,72.1 L20.8,73.5 L21.0,74.3 L21.3,74.6 L21.6,74.7 L21.9,74.7 L22.2,74.5 L22.4,74.3 L22.7,74.1 L23.0,73.9 L23.3,73.7 L23.5,73.5 L23.8,73.3 L24.1,73.1 L24.4,72.9 L24.7,72.8 L24.9,72.6 L25.2,72.5 L25.5,72.4 L25.8,72.3 L26.0,72.2 L26.3,72.1 L26.6,72.0 L26.9,71.9 L27.2,71.9 L27.4,71.8 L27.7,71.8 L28.0,71.7 L28.3,71.7 L28.5,71.6 L28.8,71.6 L29.1,71.6 L29.4,71.6 L29.6,71.5 L30.7,71.4 L31.8,71.4 L32.8,71.4 L33.9,71.3 L34.9,71.3 L36.0,71.3 L37.0,71.3 L38.1,71.3 L39.2,71.3 L40.2,71.3 L41.3,71.3 L42.3,71.3 L43.4,71.3 L44.4,52.7 L44.5,35.9 L44.6,28.4 L44.7,26.2 L44.7,27.0 L44.8,29.4 L44.9,32.7 L45.0,36.2 L45.0,39.9 L45.1,43.4 L45.2,46.7 L45.3,49.8 L45.3,52.6 L45.4,55.2 L45.5,57.5 L45.6,59.6 L45.6,61.5 L45.7,63.2 L45.8,64.7 L45.9,66.1 L45.9,67.3 L46.0,68.3 L46.1,69.3 L46.4,71.9 L46.6,73.4 L46.9,74.2 L47.2,74.6 L47.5,74.7 L47.7,74.7 L48.0,74.5 L48.3,74.3 L48.6,74.1 L48.9,73.9 L49.1,73.7 L49.4,73.5 L49.7,73.3 L50.0,73.1 L50.2,72.9 L50.5,72.8 L50.8,72.6 L51.1,72.5 L51.3,72.4 L51.6,72.3 L51.9,72.2 L52.2,72.1 L52.5,72.0 L52.7,72.0 L53.0,71.9 L53.3,71.8 L53.6,71.8 L53.8,71.7 L54.1,71.7 L54.4,71.7 L54.7,71.6 L55.0,71.6 L55.2,71.6 L55.5,71.5 L56.6,71.5 L57.6,71.4 L58.7,71.4 L59.7,71.3 L60.8,71.3 L61.9,71.3 L62.9,71.3 L64.0,71.3 L65.0,71.3 L66.1,71.3 L67.1,71.3 L68.2,71.3 L69.3,71.3 L70.3,71.3 L71.4,71.3 L72.4,71.3 L73.5,71.3 L74.0,71.3" class="ap"/><text x="37" y="98" class="cap">2 APs</text><text x="88" y="60" class="op">&#8859;</text><line x1="104" y1="78" x2="178" y2="78" class="ax"/><path d="M104.0,78.0 L104.6,58.2 L105.2,45.2 L105.8,36.8 L106.4,31.6 L107.0,28.5 L107.6,26.8 L108.2,26.1 L108.7,26.0 L109.3,26.4 L109.9,27.1 L110.5,28.0 L111.1,28.9 L111.7,30.0 L112.3,31.1 L112.9,32.2 L113.5,33.3 L114.1,34.4 L114.7,35.5 L115.3,36.5 L115.9,37.6 L116.5,38.6 L117.1,39.6 L117.6,40.6 L118.2,41.5 L118.8,42.4 L119.4,43.3 L120.0,44.2 L120.6,45.1 L121.2,45.9 L121.8,46.7 L122.4,47.5 L123.0,48.3 L123.6,49.1 L124.2,49.8 L124.8,50.5 L125.4,51.2 L125.9,51.9 L126.5,52.6 L127.1,53.2 L127.7,53.8 L128.3,54.5 L128.9,55.1 L129.5,55.6 L130.1,56.2 L130.7,56.8 L131.3,57.3 L131.9,57.8 L132.5,58.3 L133.1,58.9 L133.7,59.3 L134.3,59.8 L134.8,60.3 L135.4,60.7 L136.0,61.2 L136.6,61.6 L137.2,62.0 L137.8,62.4 L138.4,62.8 L139.0,63.2 L139.6,63.6 L140.2,64.0 L140.8,64.3 L141.4,64.7 L142.0,65.0 L142.6,65.3 L143.2,65.7 L143.7,66.0 L144.3,66.3 L144.9,66.6 L145.5,66.9 L146.1,67.1 L146.7,67.4 L147.3,67.7 L147.9,68.0 L148.5,68.2 L149.1,68.5 L149.7,68.7 L150.3,68.9 L150.9,69.2 L151.5,69.4 L152.0,69.6 L152.6,69.8 L153.2,70.0 L153.8,70.2 L154.4,70.4 L155.0,70.6 L155.6,70.8 L156.2,71.0 L156.8,71.2 L157.4,71.4 L158.0,71.5 L158.6,71.7 L159.2,71.8 L159.8,72.0 L160.4,72.2 L160.9,72.3 L161.5,72.5 L162.1,72.6 L162.7,72.7 L163.3,72.9 L163.9,73.0 L164.5,73.1 L165.1,73.2 L165.7,73.4 L166.3,73.5 L166.9,73.6 L167.5,73.7 L168.1,73.8 L168.7,73.9 L169.3,74.0 L169.8,74.1 L170.4,74.2 L171.0,74.3 L171.6,74.4 L172.2,74.5 L172.8,74.6 L173.4,74.7 L174.0,74.8 L174.6,74.9 L175.2,74.9 L175.8,75.0 L176.4,75.1 L177.0,75.2 L177.6,75.2 L178.0,75.3" class="ker"/><text x="141" y="98" class="cap">kernel</text><text x="192" y="60" class="op">=</text><line x1="210" y1="78" x2="418" y2="78" class="ax"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,55.6 L272.9,56.7 L274.8,57.8 L276.6,58.8 L278.5,59.7 L280.3,60.7 L282.2,61.5 L284.0,62.4 L285.9,63.2 L287.7,63.9 L289.6,64.6 L291.4,65.3 L293.3,65.9 L295.1,66.5 L297.0,67.1 L298.8,67.7 L300.7,68.2 L302.5,68.7 L304.4,69.1 L306.2,69.6 L308.1,70.0 L310.0,70.4 L311.8,70.8 L313.7,71.2 L315.5,71.5 L317.4,71.8 L319.2,72.1 L321.1,72.4 L322.9,72.7 L324.8,73.0 L326.6,73.2 L328.5,73.5 L330.3,73.7 L332.2,73.9 L334.0,74.1 L335.9,74.3 L337.7,74.5 L339.6,74.7 L341.4,74.8 L343.3,75.0 L345.1,75.2 L347.0,75.3 L348.8,75.4 L350.7,75.6 L352.5,75.7 L354.4,75.8 L356.2,75.9 L358.1,76.0 L359.9,76.1 L361.8,76.2 L363.6,76.3 L365.5,76.4 L367.3,76.5 L369.2,76.5 L371.0,76.6 L372.9,76.7 L374.7,76.8 L376.6,76.8 L378.4,76.9 L380.3,76.9 L382.1,77.0 L384.0,77.0 L385.8,77.1 L387.7,77.1 L389.5,77.2 L391.4,77.2 L393.2,77.3 L395.1,77.3 L396.9,77.3 L398.8,77.4 L400.6,77.4 L402.5,77.4 L404.3,77.5 L406.2,77.5 L408.1,77.5 L409.9,77.5 L411.8,77.6 L413.6,77.6 L415.5,77.6 L417.3,77.6 L418.0,77.6" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,78.0 L245.2,78.0 L247.0,78.0 L248.9,78.0 L250.7,78.0 L252.6,78.0 L254.4,78.0 L256.3,78.0 L258.1,78.0 L260.0,78.0 L261.8,78.0 L263.7,78.0 L265.5,78.0 L267.4,78.0 L269.2,78.0 L271.1,69.8 L272.9,49.9 L274.8,41.8 L276.6,39.2 L278.5,39.1 L280.3,40.1 L282.2,41.6 L284.0,43.2 L285.9,44.8 L287.7,46.5 L289.6,48.0 L291.4,49.5 L293.3,51.0 L295.1,52.3 L297.0,53.6 L298.8,54.8 L300.7,56.0 L302.5,57.1 L304.4,58.2 L306.2,59.1 L308.1,60.1 L310.0,61.0 L311.8,61.9 L313.7,62.7 L315.5,63.4 L317.4,64.2 L319.2,64.9 L321.1,65.5 L322.9,66.2 L324.8,66.7 L326.6,67.3 L328.5,67.9 L330.3,68.4 L332.2,68.8 L334.0,69.3 L335.9,69.7 L337.7,70.2 L339.6,70.6 L341.4,70.9 L343.3,71.3 L345.1,71.6 L347.0,71.9 L348.8,72.2 L350.7,72.5 L352.5,72.8 L354.4,73.1 L356.2,73.3 L358.1,73.6 L359.9,73.8 L361.8,74.0 L363.6,74.2 L365.5,74.4 L367.3,74.6 L369.2,74.7 L371.0,74.9 L372.9,75.1 L374.7,75.2 L376.6,75.3 L378.4,75.5 L380.3,75.6 L382.1,75.7 L384.0,75.8 L385.8,76.0 L387.7,76.1 L389.5,76.2 L391.4,76.2 L393.2,76.3 L395.1,76.4 L396.9,76.5 L398.8,76.6 L400.6,76.6 L402.5,76.7 L404.3,76.8 L406.2,76.8 L408.1,76.9 L409.9,77.0 L411.8,77.0 L413.6,77.1 L415.5,77.1 L417.3,77.1 L418.0,77.2" class="ghost"/><path d="M210.0,78.0 L211.9,78.0 L213.7,78.0 L215.6,78.0 L217.4,78.0 L219.3,78.0 L221.1,78.0 L223.0,78.0 L224.8,78.0 L226.7,78.0 L228.5,78.0 L230.4,78.0 L232.2,78.0 L234.1,78.0 L235.9,78.0 L237.8,78.0 L239.6,78.0 L241.5,78.0 L243.3,55.5 L245.2,44.0 L247.0,39.8 L248.9,39.0 L250.7,39.6 L252.6,41.0 L254.4,42.6 L256.3,44.2 L258.1,45.9 L260.0,47.4 L261.8,49.0 L263.7,50.4 L265.5,51.8 L267.4,53.1 L269.2,54.4 L271.1,47.4 L272.9,28.6 L274.8,21.6 L276.6,20.0 L278.5,20.9 L280.3,22.8 L282.2,25.1 L284.0,27.5 L285.9,30.0 L287.7,32.4 L289.6,34.6 L291.4,36.8 L293.3,38.9 L295.1,40.8 L297.0,42.7 L298.8,44.5 L300.7,46.2 L302.5,47.8 L304.4,49.3 L306.2,50.7 L308.1,52.1 L310.0,53.4 L311.8,54.6 L313.7,55.8 L315.5,56.9 L317.4,58.0 L319.2,59.0 L321.1,60.0 L322.9,60.9 L324.8,61.7 L326.6,62.5 L328.5,63.3 L330.3,64.1 L332.2,64.8 L334.0,65.4 L335.9,66.1 L337.7,66.7 L339.6,67.2 L341.4,67.8 L343.3,68.3 L345.1,68.8 L347.0,69.2 L348.8,69.7 L350.7,70.1 L352.5,70.5 L354.4,70.9 L356.2,71.2 L358.1,71.6 L359.9,71.9 L361.8,72.2 L363.6,72.5 L365.5,72.8 L367.3,73.0 L369.2,73.3 L371.0,73.5 L372.9,73.7 L374.7,74.0 L376.6,74.2 L378.4,74.4 L380.3,74.5 L382.1,74.7 L384.0,74.9 L385.8,75.0 L387.7,75.2 L389.5,75.3 L391.4,75.5 L393.2,75.6 L395.1,75.7 L396.9,75.8 L398.8,75.9 L400.6,76.0 L402.5,76.1 L404.3,76.2 L406.2,76.3 L408.1,76.4 L409.9,76.5 L411.8,76.6 L413.6,76.6 L415.5,76.7 L417.3,76.8 L418.0,76.8" class="ca"/><text x="314" y="98" class="cap">&#916;F/F&#8320;</text></svg>
+    <ul class="facts">
+      <li>convolution / deconvolution</li>
+      <li>teaching demonstrator</li>
+    </ul>
+    <p class="go"><span>kernel.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+    </div>
+  </section>
+
+  <div class="shelf solo">
+
+  <a class="card wide" style="--c: var(--c-murderboard)" href="https://murderboard.tonydefazio.com/">
     <p class="eyebrow">Review process<span class="born">Born <time datetime="2026-07-20">2026-07-20</time></span></p>
-    <h2>The Murderboard</h2>
+    <h3>The Murderboard</h3>
     <p class="what">
       Draft, attack, repair, re-attack, deliver &mdash; the re-attacker shown neither
       findings nor fixes, the loop capped at three rounds, the output one fixed report.
@@ -806,6 +892,8 @@ form.contact button { color: #fff; }
     </ul>
     <p class="go"><span>murderboard.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
+
+  </div>
 
 </main>
 
@@ -894,6 +982,7 @@ form.contact button { color: #fff; }
     <div>
       <h3>The sites</h3>
       <ul>
+        <li><a href="https://hhhero.tonydefazio.com/">HHhero</a></li>
         <li><a href="https://ionhomie.tonydefazio.com/">ionhomie</a></li>
         <li><a href="https://ml2dl.tonydefazio.com/">ml2dl</a></li>
         <li><a href="https://gaba.tonydefazio.com/">gaba_excites</a></li>
@@ -909,6 +998,7 @@ form.contact button { color: #fff; }
       <h3>The source</h3>
       <ul>
         <li><a href="https://github.com/syncytium2">github.com/syncytium2</a></li>
+        <li><a href="https://github.com/syncytium2/HHhero">HHhero</a></li>
         <li><a href="https://github.com/syncytium2/ionhomie">ionhomie</a></li>
         <li><a href="https://github.com/syncytium2/gaba_excites">gaba_excites</a></li>
         <li><a href="https://github.com/syncytium2/draughtsman">draughtsman</a></li>

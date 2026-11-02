@@ -1,8 +1,10 @@
 # tonydefazio.com
 
 The apex landing page. It is a **router**: one screen that tells a visitor which of the
-destination sites is closest to their problem, and gets them there. `ionhomie` became the
-ninth on 2026-10-20 and carries the NEW sticker; `ml2dl` became the eighth on 2026-09-25 and
+destination sites is closest to their problem, and gets them there. `HHhero` became the
+tenth on 2026-11-02 and carries the NEW sticker. Since 1.12.0 the cards sit in two groups,
+Education and Tools, with Colonel Kernel in both and The Murderboard on its own wide card
+below them. `ionhomie` became the ninth on 2026-10-20; `ml2dl` became the eighth on 2026-09-25 and
 `gaba_excites` the seventh on 2026-09-23. `draughtsman` became the sixth
 on 2026-09-04, when its GitHub Pages certificate finally issued; before that its card pointed
 at the repository.
@@ -11,7 +13,8 @@ at the repository.
 
 | Destination | What it is |
 |---|---|
-| [ionhomie.tonydefazio.com](https://ionhomie.tonydefazio.com) | ionhomie — ion homeostasis built one mechanism at a time: diffusion, Nernst, GHK, rundown, pumps, and the NKCC1/KCC2 cotransporters that set E_GABA. For graduate and medical students. **Added 2026-10-20, carries the NEW sticker** |
+| [hhhero.tonydefazio.com](https://hhhero.tonydefazio.com) | HHhero — the Hodgkin–Huxley gates two ways: as rates (α, β) or as steady state and time constant (x∞, τ). Its figure is drawn by `tools/make_hhhero_figure.py` from the 1952 rate equations. **Added 2026-11-02, carries the NEW sticker** |
+| [ionhomie.tonydefazio.com](https://ionhomie.tonydefazio.com) | ionhomie — ion homeostasis built one mechanism at a time: diffusion, Nernst, GHK, rundown, pumps, and the NKCC1/KCC2 cotransporters that set E_GABA. For graduate and medical students. Added 2026-10-20 |
 | [ml2dl.tonydefazio.com](https://ml2dl.tonydefazio.com) | ml2dl — deep learning built up from its parts, on models small enough to see every number. A development preview; **its repository is private.** Added 2026-09-25 |
 | [gaba.tonydefazio.com](https://gaba.tonydefazio.com) | gaba_excites — current-clamp excitability simulator: step families, rheobase, F–I, and a movable GABA reversal. Added 2026-09-23 |
 | [lookedright.tonydefazio.com](https://lookedright.tonydefazio.com) | It Looked Right — four challenges in working with coding agents, for researchers. Ships out of [`short-course`](https://github.com/syncytium2/short-course). Added 2026-08-28 |
@@ -362,7 +365,7 @@ the page. What the cards still assert:
     Fuller's API Blueprint parser, last released 2020) but nothing has been uploaded. The import
     name, the CLI and the repository all keep the unabbreviated spelling.
 - **The `Born` stamps.** Each is the destination repository's **first commit**, read from
-  `git log --reverse` on 2026-09-03 (gaba_excites on 2026-09-23, ml2dl on 2026-09-25, ionhomie on 2026-10-20): ionhomie `98282a8` 2026-10-20 · ml2dl `4c7ecae` 2026-09-23 · gaba_excites `c134eaf` 2026-09-21 · draughtsman `ddc332f` 2026-09-01 · short-course `5a6ffc4`
+  `git log --reverse` on 2026-09-03 (gaba_excites on 2026-09-23, ml2dl on 2026-09-25, ionhomie on 2026-10-20, HHhero on 2026-11-02): HHhero `c288c74` 2026-10-30 · ionhomie `98282a8` 2026-10-20 · ml2dl `4c7ecae` 2026-09-23 · gaba_excites `c134eaf` 2026-09-21 · draughtsman `ddc332f` 2026-09-01 · short-course `5a6ffc4`
   2026-08-26 · colonel_kernel `511893f` 2026-06-21 · no_peak `1827d70` 2026-08-07 · bugarach
   `3622dee` 2026-08-10 · murderboard `4a92748` 2026-07-20. Emitted as `<time datetime=…>` so a
   consumer can read them without scraping prose — the contract bugarach already offers and
