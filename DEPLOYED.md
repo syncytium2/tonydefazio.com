@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `93ec4b06-46c4-4b87-9a7d-6449efecae61` |
+| **Version ID** | `2e6aca2f-15c8-44ee-b0f7-c23823137279` |
 | **Deployed** | 2026-11-02 |
-| **Site version** | 1.12.0 |
+| **Site version** | 1.12.1 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,20 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.12.1 — 2026-11-02 — the Murderboard strip, and HHhero's card about teaching
+
+Version ID `2e6aca2f-15c8-44ee-b0f7-c23823137279`, deployed from the `tiles-trim` worktree
+through `tools/predeploy.py` (1.12.1 against a live 1.12.0). One asset uploaded: `/index.html`.
+Deployed for Tony's review.
+
+The Murderboard card is a short full-width strip, ruled off below the two groups: title, text
+and figure share one row at 1030px and wider, 261px tall. The HHhero card leads with teaching
+(students on phones, the instructor projecting, both views built in). It names α, β, x∞ and τ
+without explaining them, and so does its figure.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical; eleven `class="card`; one `<script`, the JSON-LD block.
 
 ## 1.12.0 — 2026-11-02 — HHhero, and the cards in Education and Tools groups
 

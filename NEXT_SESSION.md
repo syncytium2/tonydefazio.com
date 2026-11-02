@@ -9,10 +9,10 @@ of document §3 of the README warns about, and it has already been wrong once.
 
 | | |
 |---|---|
-| Live | https://tonydefazio.com — 1.12.0, deployed 2026-11-02. See DEPLOYED.md 1.12.0 |
-| Cloudflare version ID | `93ec4b06-46c4-4b87-9a7d-6449efecae61` — matches `DEPLOYED.md` |
+| Live | https://tonydefazio.com — 1.12.1, deployed 2026-11-02. See DEPLOYED.md 1.12.1 |
+| Cloudflare version ID | `2e6aca2f-15c8-44ee-b0f7-c23823137279` — matches `DEPLOYED.md` |
 | Served vs `site/` | all six files **byte-identical** (`index.html`, `robots.txt`, `sitemap.xml`, `thanks.html`, `cv.pdf`, `resume.pdf`), re-checked 2026-10-16 by `curl` — `/thanks.html` answers 307 to `/thanks`, so compare that |
-| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.12.0 |
+| Version agreement | `package.json`, masthead strip, `DEPLOYED.md` all say 1.12.1 |
 
 **Pushed 2026-09-11.** The repo is **public**. Before that push, `tools/make_public_cv.py` turned
 out to hardcode all fifteen student names, and the README and two commit messages quoted some of
