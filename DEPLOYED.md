@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `5b8b20ed-7539-4dfd-a182-45f87a80e24e` |
-| **Deployed** | 2026-10-22 |
-| **Site version** | 1.11.2 |
+| **Version ID** | `d3a667aa-d8c8-4fed-939e-66d5b623ed90` |
+| **Deployed** | 2026-11-02 |
+| **Site version** | 1.11.3 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,26 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.11.3 — 2026-11-02 — the ionhomie tile's pump shows its ATP
+
+Version ID `d3a667aa-d8c8-4fed-939e-66d5b623ed90`, deployed from the `ionhomie-atp` worktree
+through `tools/predeploy.py` (1.11.3 / 2026-11-02 against a live 1.11.2). One asset uploaded:
+`/index.html`.
+
+The pump in the tile now carries a five-pointed ATP star docked in a cutout, breaking into a
+four-pointed ADP star and a P as the Na⁺ bind (ionhomie `7f33fe5`, its ADR-0018/0019). Staged
+on 2026-10-22 and held until ionhomie's site carried it. **ionhomie shipped it on 2026-10-28
+(v0.1.7, release `7b29036`) and nobody told this repository**, so for five days the tile
+showed the older rocker pump the site no longer drew. Found on 2026-11-02 when Tony asked
+whether the session was safe to close. Before this upload the tile was regenerated with
+`node scripts/tile-svg.ts` from a detached worktree at `7b29036`: identical to the staged
+figure apart from its commit line, though one commit since `7f33fe5` touched `draw.ts`. Tony
+approved shipping.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; nine `class="card"`; one `<script`, the JSON-LD
+block; masthead 1.11.3; 0 matches for `beacon.min.js`. Figure drift check: the three known rows.
 
 ## Rolling back
 
