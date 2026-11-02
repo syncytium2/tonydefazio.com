@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `d3a667aa-d8c8-4fed-939e-66d5b623ed90` |
+| **Version ID** | `93ec4b06-46c4-4b87-9a7d-6449efecae61` |
 | **Deployed** | 2026-11-02 |
-| **Site version** | 1.11.3 |
+| **Site version** | 1.12.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,26 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.12.0 — 2026-11-02 — HHhero, and the cards in Education and Tools groups
+
+Version ID `93ec4b06-46c4-4b87-9a7d-6449efecae61`, deployed from the `tiles-up` worktree
+through `tools/predeploy.py` (1.12.0 / 2026-11-02 against a live 1.11.3). One asset uploaded:
+`/index.html`.
+
+The intro paragraphs under the headline are gone: they repeated the cards and the closing
+section. The headline reads "Neuroscience tools for education and research", and the Born /
+Version strip moved to the foot of the page. The cards sit in two groups. Education: HHhero,
+ionhomie, ml2dl, gaba_excites, It Looked Right, Colonel Kernel. Tools: draughtsman, bugarach,
+no_peak, Colonel Kernel. Kernel's card appears in both, and the JSON-LD lists it once. The
+Murderboard has a wide card below both groups. HHhero is the tenth destination and takes the
+NEW sticker from ionhomie. Its figure comes from `tools/make_hhhero_figure.py`.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical to `site/index.html`; eleven `class="card` (ten destinations, Kernel
+twice); one `<script`, the JSON-LD block; Version 1.12.0 in the strip; 0 matches for
+`beacon.min.js`. Figure drift check: `ga-l` and `ga-h` ORPHAN, `ds-b` and `ga-d` UNUSED, all
+known.
 
 ## 1.11.3 — 2026-11-02 — the ionhomie tile's pump shows its ATP
 
