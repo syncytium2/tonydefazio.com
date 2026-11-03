@@ -16,7 +16,7 @@ at the repository.
 | [hhhero.tonydefazio.com](https://hhhero.tonydefazio.com) | HHhero — the Hodgkin–Huxley gates two ways: as rates (α, β) or as steady state and time constant (x∞, τ). Its figure is drawn by `tools/make_hhhero_figure.py` from the 1952 rate equations. **Added 2026-11-02, carries the NEW sticker** |
 | [ionhomie.tonydefazio.com](https://ionhomie.tonydefazio.com) | ionhomie — ion homeostasis built one mechanism at a time: diffusion, Nernst, GHK, rundown, pumps, and the NKCC1/KCC2 cotransporters that set E_GABA. For graduate and medical students. Added 2026-10-20 |
 | [ml2dl.tonydefazio.com](https://ml2dl.tonydefazio.com) | ml2dl — deep learning built up from its parts, on models small enough to see every number. A development preview; **its repository is private.** Added 2026-09-25 |
-| [gaba.tonydefazio.com](https://gaba.tonydefazio.com) | gaba_excites — current-clamp excitability simulator: step families, rheobase, F–I, and a movable GABA reversal. Added 2026-09-23 |
+| [gaba.tonydefazio.com](https://gaba.tonydefazio.com) | gaba_excites — a patch-clamp rig for teaching excitability (UM Physiol 578): six cell models, current and voltage clamp, a live oscilloscope, and a movable GABA reversal. Added 2026-09-23; card text refreshed 2026-11-03 |
 | [lookedright.tonydefazio.com](https://lookedright.tonydefazio.com) | It Looked Right — four challenges in working with coding agents, for researchers. Ships out of [`short-course`](https://github.com/syncytium2/short-course). Added 2026-08-28 |
 | [kernel.tonydefazio.com](https://kernel.tonydefazio.com) | Colonel Kernel — calcium-imaging convolution / deconvolution |
 | [nopeak.tonydefazio.com](https://nopeak.tonydefazio.com) | no_peak — CLUSTER hormone pulse detection |
