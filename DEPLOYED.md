@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `2e6aca2f-15c8-44ee-b0f7-c23823137279` |
-| **Deployed** | 2026-11-02 |
-| **Site version** | 1.12.1 |
+| **Version ID** | `2ec48785-ffe4-4be8-af73-c8445264a42f` |
+| **Deployed** | 2026-11-03 |
+| **Site version** | 1.12.2 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,18 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.12.2 — 2026-11-03 — the Murderboard strip from 640px
+
+Version ID `2ec48785-ffe4-4be8-af73-c8445264a42f`, deployed from the `strip-mid` worktree
+through `tools/predeploy.py` (1.12.2 against a live 1.12.1). One asset uploaded: `/index.html`.
+
+Tony saw the Murderboard as an ordinary tile in Safari: below 1030px the strip layout did not
+apply. It now runs from 640px as two columns, with the text beside the figure. Checked in WebKit
+on the live page at 900px (grid, not flex).
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical.
 
 ## 1.12.1 — 2026-11-02 — the Murderboard strip, and HHhero's card about teaching
 
