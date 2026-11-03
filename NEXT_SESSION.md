@@ -5,6 +5,11 @@ while the site moved to 1.7.0. Everything below was verified against the live si
 on that date, not recalled. Re-verify before trusting any of it — this file is exactly the kind
 of document §3 of the README warns about, and it has already been wrong once.
 
+> **In progress, 2026-11-03 (session tonydefazio.com-maple-warden):** branch `gaba-card` (worktree
+> `../tonydefazio.com-worktrees/gaba-card`) holds 1.12.3, the refreshed gaba_excites card with the Old
+> school scope figure. It is committed, not deployed and not pushed, and waiting for Tony's "deploy".
+> After deploying: curl-check, add a DEPLOYED.md entry, fast-forward main, run the name check, push.
+
 ## 1. Status
 
 | | |
