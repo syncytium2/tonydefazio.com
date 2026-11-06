@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `bc270303-f621-49f4-9bc2-1222b105c74d` |
+| **Version ID** | `4a313218-3a05-44a1-a35e-e3f3b6c42903` |
 | **Deployed** | 2026-11-06 |
-| **Site version** | 1.14.0 |
+| **Site version** | 1.15.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,20 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.15.0 — 2026-11-06 — hummerbat, and other sites open in a new tab
+
+Version ID `4a313218-3a05-44a1-a35e-e3f3b6c42903`, deployed from the `hummerbat` worktree through
+`tools/predeploy.py` (1.15.0 against a live 1.14.0). One asset uploaded: `/index.html`. Tony
+approved the deploy after the auto-mode check held it.
+
+hummerbat went live today and joins "More sites" in Icons and List, with a ruby `hb` monogram (it
+has no favicon). All 72 links to other sites now carry `target="_blank" rel="noopener"`; the CV,
+the resume and the contact form still open in place.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical; 72 `target="_blank" rel="noopener"`; hummerbat linked twice (icon and list);
+Version 1.15.0; 0 matches for `beacon.min.js`.
 
 ## 1.14.0 — 2026-11-06 — Cards, Icons and List, and every live subdomain
 
