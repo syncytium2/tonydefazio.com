@@ -18,7 +18,13 @@ The switch is radio buttons and `:has()`, so the page still runs no JavaScript; 
 without `:has()` gets the cards and no switch. The icons are each site's own favicon, copied
 inline into the stylesheet on 2026-11-06 (they will not follow a site that changes its icon);
 the seven sites without a favicon get a monogram in their card's hue. Each list description is
-a short paraphrase of the card, or of the site's own meta description.
+a short paraphrase of the card, or of the site's own meta description. hummerbat joined "More sites" in
+1.15.0, the day it went live (monogram in ruby `#A8325E`, for the ruby-throated hummingbird; its
+repository is private).
+
+**Since 1.15.0 every link to another site opens in a new tab** (`target="_blank"
+rel="noopener"`), at Tony's request, so tonydefazio.com stays open behind it. Same-site links
+(the CV, the resume, the contact form) still open in place.
 
 **Live:** https://tonydefazio.com — *not yet deployed, see §2.*
 

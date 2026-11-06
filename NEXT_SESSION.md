@@ -5,12 +5,6 @@ while the site moved to 1.7.0. Everything below was verified against the live si
 on that date, not recalled. Re-verify before trusting any of it — this file is exactly the kind
 of document §3 of the README warns about, and it has already been wrong once.
 
-> **Waiting, 2026-11-06:** Tony asked to add **hummerbat** (ATP pathways as a hovering
-> hummingbird's fuel choices, for Physiol 578; repo `syncytium2/hummerbat`, private). It has no
-> live site and no screens yet, so he chose to wait. When `hummerbat.tonydefazio.com` (or wherever
-> it lands) serves a page, add it to Icons and List, or give it a card, and treat its repo as
-> private, as for ml2dl and Before You Send.
-
 ## 1. Status
 
 | | |
