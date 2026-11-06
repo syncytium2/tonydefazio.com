@@ -25,13 +25,14 @@
   "name": "Richard Anthony DeFazio",
   "alternateName": "Tony DeFazio",
   "url": "https://tonydefazio.com/",
-  "description": "Research software for neuroscience and machine learning. Builds readable PyTorch model-architecture figures with a mechanical coverage check, open-source client-side tools for measuring signals in neuroscience data, an adversarial document-review process, and a short course on working with coding agents.",
+  "description": "Research software for neuroscience and machine learning. Builds readable PyTorch model-architecture figures with a mechanical coverage check, open-source client-side tools for measuring signals in neuroscience data, an adversarial document-review process, a short course on working with coding agents, and a practice for office staff in checking AI-drafted work before it is sent.",
   "knowsAbout": ["Machine learning", "PyTorch", "Neural network architecture", "Scientific visualization", "Neurophysiology", "Neuronal excitability", "Calcium imaging", "Neuroendocrinology", "Hormone pulsatility", "Deconvolution", "Coordinated activity detection", "AI-assisted research", "Research software engineering"],
   "sameAs": [
     "https://github.com/syncytium2",
     "https://orcid.org/0000-0001-7302-7528"
   ],
   "subjectOf": [
+    { "@type": "WebApplication", "name": "Before You Send", "url": "https://before-you-send.tonydefazio.com/" },
     { "@type": "WebApplication", "name": "HHhero", "url": "https://hhhero.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/HHhero", "programmingLanguage": "TypeScript" },
     { "@type": "WebApplication", "name": "ionhomie", "url": "https://ionhomie.tonydefazio.com/", "codeRepository": "https://github.com/syncytium2/ionhomie", "programmingLanguage": "TypeScript" },
     { "@type": "WebSite", "name": "ml2dl", "url": "https://ml2dl.tonydefazio.com/" },
@@ -86,6 +87,7 @@
   --c-gaba: #B5461A;         /* gaba_excites' --orange, darkened. 5.5:1 on --surface */
   --c-ml2dl: #A3246A;        /* ml2dl's site is neutral; magenta is this page's assignment. 7.0:1 */
   --c-hhhero: #5E6A12;       /* olive: no other card uses it. HHhero's own gate colors stay in its figure */
+  --c-bys: #485566;          /* slate: a gray-blue no other card uses. Its own accent blue sits too close to no_peak. 7.6:1 */
   --c-ionhomie: #4A4FC0;     /* ionhomie's --link periwinkle, darkened. 6.6:1 on --surface; hue 237, between no_peak 213 and kernel 273 */
 
   --f-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable Display",
@@ -540,8 +542,50 @@ form.contact button { color: #fff; }
     <h2 class="group-h" id="g-edu">Education</h2>
     <div class="shelf">
 
-  <a class="card" style="--c: var(--c-hhhero)" href="https://hhhero.tonydefazio.com/">
+  <a class="card" style="--c: var(--c-bys)" href="https://before-you-send.tonydefazio.com/">
     <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow">Checking AI drafts<span class="born">Born <time datetime="2026-10-23">2026-10-23</time></span></p>
+    <h3>Before You Send</h3>
+    <p class="what">
+      Not for coders: sixteen minutes for office staff in sales, HR, finance or legal,
+      checking what an AI tool drafted against the notes it drafted from, before it goes out.
+    </p>
+    <svg class="ga ga-y" viewBox="0 0 400 128" role="img" aria-label="Call notes beside the email an AI drafted from them. Four sentences in the draft are highlighted, one under each of the four checks: a 15% discount where the notes say 10% (Match), confirming an integration nobody has confirmed (Promises), a flattering claim that is in no source (Facts), and an internal note marked don't mention (Audience). From one of Before You Send's sales drafts."><style>.ga-y .sh{fill:var(--surface);stroke:var(--rule);stroke-width:1}
+.ga-y text{font-family:var(--f-display);font-size:9.6px;fill:var(--ink)}
+.ga-y text.lb{font-family:var(--f-mono);font-size:7.6px;letter-spacing:.08em;fill:var(--ink-faint)}
+.ga-y text.n{fill:var(--ink-soft)}
+.ga-y .hl{fill:#fff1b8}
+.ga-y .fb{fill:var(--rule);opacity:.7}
+.ga-y .ch{fill:var(--surface);stroke:var(--c);stroke-width:1.1}
+.ga-y text.cl{font-family:var(--f-mono);font-size:8px;font-weight:700;fill:var(--c)}</style>
+<rect class="sh" x="0.5" y="0.5" width="104" height="127" rx="3"/>
+<text class="lb" x="8" y="14">CALL NOTES</text>
+<text class="n" x="8" y="32">10% off, annual,</text><text class="n" x="8" y="44">nothing else</text>
+<text class="n" x="8" y="62">X-ray: said I&#8217;d</text><text class="n" x="8" y="74">check with Product</text>
+<text class="n" x="8" y="92">Internal: quarter</text><text class="n" x="8" y="104">target at risk;</text><text class="n" x="8" y="116">don&#8217;t mention</text>
+<rect class="sh" x="112.5" y="0.5" width="287" height="127" rx="3"/>
+<text class="lb" x="120" y="14">WHAT THE AI WROTE</text>
+<rect class="fb" x="120" y="21" width="214" height="3" rx="1.5"/>
+<rect class="hl" x="118" y="28" width="218" height="14" rx="2"/><text x="121" y="38.5">&#8230;with 15% off for an annual commitment.</text>
+<rect class="ch" x="342" y="28.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="38" text-anchor="middle">Match</text>
+<rect class="fb" x="120" y="48" width="180" height="3" rx="1.5"/>
+<rect class="hl" x="118" y="55" width="218" height="14" rx="2"/><text x="121" y="65.5">&#8230;to confirm it works with your X-ray system.</text>
+<rect class="ch" x="342" y="55.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="65" text-anchor="middle">Promises</text>
+<rect class="hl" x="118" y="75" width="218" height="14" rx="2"/><text x="121" y="85.5">Pelloway is one of the largest dental groups&#8230;</text>
+<rect class="ch" x="342" y="75.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="85" text-anchor="middle">Facts</text>
+<rect class="hl" x="118" y="95" width="218" height="14" rx="2"/><text x="121" y="105.5">&#8230;keen to close this before our quarter ends.</text>
+<rect class="ch" x="342" y="95.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="105" text-anchor="middle">Audience</text>
+<rect class="fb" x="120" y="115" width="200" height="3" rx="1.5"/>
+</svg>
+    <ul class="facts">
+      <li>4 checks</li>
+      <li>solo or with a team</li>
+      <li>draft for a pilot</li>
+    </ul>
+    <p class="go"><span>before-you-send.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-hhhero)" href="https://hhhero.tonydefazio.com/">
     <p class="eyebrow">Hodgkin&ndash;Huxley gates<span class="born">Born <time datetime="2026-10-30">2026-10-30</time></span></p>
     <h3>HHhero</h3>
     <p class="what">
@@ -805,7 +849,7 @@ form.contact button { color: #fff; }
   </a>
 
   <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/">
-    <p class="eyebrow">Working with agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
+    <p class="eyebrow">Working with coding agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
     <h3>It Looked Right</h3>
     <p class="what">
       Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
@@ -978,7 +1022,7 @@ form.contact button { color: #fff; }
     </li>
     <li>
       <span class="t">Open source</span>
-      <span>Every repository but ml2dl&rsquo;s is public, caveats and references included; ml2dl&rsquo;s is not yet.</span>
+      <span>Every repository but ml2dl&rsquo;s and Before You Send&rsquo;s is public, caveats and references included; those two are private.</span>
     </li>
     <li>
       <span class="t">Readable without a browser</span>
@@ -1039,6 +1083,7 @@ form.contact button { color: #fff; }
     <div>
       <h3>The sites</h3>
       <ul>
+        <li><a href="https://before-you-send.tonydefazio.com/">Before You Send</a></li>
         <li><a href="https://hhhero.tonydefazio.com/">HHhero</a></li>
         <li><a href="https://ionhomie.tonydefazio.com/">ionhomie</a></li>
         <li><a href="https://ml2dl.tonydefazio.com/">ml2dl</a></li>
