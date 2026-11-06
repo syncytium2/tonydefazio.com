@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `cc1a88dd-c656-49e3-a876-a7ba03e7114a` |
+| **Version ID** | `bc270303-f621-49f4-9bc2-1222b105c74d` |
 | **Deployed** | 2026-11-06 |
-| **Site version** | 1.13.0 |
+| **Site version** | 1.14.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,24 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.14.0 — 2026-11-06 — Cards, Icons and List, and every live subdomain
+
+Version ID `bc270303-f621-49f4-9bc2-1222b105c74d`, deployed from the `views` worktree through
+`tools/predeploy.py` (1.14.0 against a live 1.13.0). One asset uploaded: `/index.html`. Tony
+asked for an icon view of every subdomain and a list view with short descriptions, saw
+screenshots, and said deploy.
+
+A switch above the groups shows the sites as cards (the default), icons or a list. Icons and
+List add five live subdomains without cards under "More sites": beta_max, Bloodhound,
+homunculus, Overlook and RepTimer; four of them set `noindex`. The subdomains came from the
+deploy configs in `~/Developer`, so a site hosted elsewhere could be missing. Details in the
+README.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical; twelve `class="card`; one `<script`, the JSON-LD block; Version 1.14.0;
+0 matches for `beacon.min.js`; all 16 linked subdomains 200. In Chromium on the live page,
+each switch position shows only its own view, and every favicon tile has its image.
 
 ## 1.13.0 — 2026-11-06 — Before You Send, the eleventh card
 
