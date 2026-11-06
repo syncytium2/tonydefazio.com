@@ -9,6 +9,17 @@ below them. `ionhomie` became the ninth on 2026-10-20; `ml2dl` became the eighth
 on 2026-09-04, when its GitHub Pages certificate finally issued; before that its card pointed
 at the repository.
 
+Since 1.14.0 a switch above the groups shows the sites three ways: **Cards** (the default),
+**Icons** and **List**. Icons and List also carry five live subdomains that have no card
+(beta_max, Bloodhound, homunculus, Overlook, RepTimer) under "More sites", at Tony's request on
+2026-11-06. Four of the five set `noindex`; linking them here makes them easier to find, and
+Tony chose that. The group says the page's shared claims are checked for the carded sites only.
+The switch is radio buttons and `:has()`, so the page still runs no JavaScript; a browser
+without `:has()` gets the cards and no switch. The icons are each site's own favicon, copied
+inline into the stylesheet on 2026-11-06 (they will not follow a site that changes its icon);
+the seven sites without a favicon get a monogram in their card's hue. Each list description is
+a short paraphrase of the card, or of the site's own meta description.
+
 **Live:** https://tonydefazio.com — *not yet deployed, see §2.*
 
 | Destination | What it is |

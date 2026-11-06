@@ -511,6 +511,68 @@ form.contact button:focus-visible { outline: 2px solid var(--ink); outline-offse
 form.contact button { color: #fff; }
 .formnote { font-family: var(--f-mono); font-size: .72rem; line-height: 1.6;
   color: var(--ink-faint); margin: .3rem 0 0; max-width: 44ch; }
+
+/* Three views of the same sites: cards, icons and a list. A radio switch and :has()
+   do it with no JavaScript. A browser without :has() gets the cards and no switch. */
+.views {
+  display: inline-flex; margin: 0 0 1.4rem; border: 1px solid var(--rule);
+  border-radius: 999px; background: var(--surface); padding: 3px;
+}
+.views input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.views label {
+  font-family: var(--f-mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft); padding: .38rem .95rem; border-radius: 999px; cursor: pointer;
+}
+.views input:checked + label { background: var(--ink); color: var(--surface); }
+.views input:focus-visible + label { outline: 2px solid var(--ink); outline-offset: 2px; }
+@supports not selector(:has(*)) { .views { display: none; } }
+.view.v-icons, .view.v-list { display: none; }
+main:has(#v-icons:checked) .v-cards, main:has(#v-list:checked) .v-cards { display: none; }
+main:has(#v-icons:checked) .v-icons, main:has(#v-list:checked) .v-list { display: block; }
+.group-note { color: var(--ink-soft); font-size: .92rem; margin: -.3rem 0 1rem; max-width: var(--measure); }
+
+.ic {
+  display: block; flex: none; width: 56px; height: 56px; border-radius: 12px;
+  background: center / contain no-repeat;
+}
+.ic.mono {
+  background: var(--c); color: var(--surface); display: grid; place-items: center;
+  font-family: var(--f-mono); font-weight: 700; font-size: 16px; letter-spacing: .02em;
+}
+ul.icons, ul.list { list-style: none; margin: 0; padding: 0; }
+ul.icons { display: grid; gap: 1rem .5rem; grid-template-columns: repeat(auto-fill, minmax(6.4rem, 1fr)); }
+ul.icons a {
+  display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .7rem .3rem;
+  border-radius: 10px; color: var(--ink); text-decoration: none; text-align: center;
+}
+ul.icons a:hover, ul.icons a:focus-visible { background: var(--surface); box-shadow: var(--shadow); }
+ul.icons .nm { font-family: var(--f-display); font-size: .86rem; line-height: 1.25; }
+ul.list li + li { border-top: 1px solid var(--rule-soft); }
+ul.list a {
+  display: grid; grid-template-columns: 36px minmax(9rem, 13rem) 1fr; align-items: center;
+  gap: .15rem 1rem; padding: .7rem .4rem; color: var(--ink); text-decoration: none;
+}
+ul.list a:hover, ul.list a:focus-visible { background: var(--surface); }
+ul.list .ic { width: 36px; height: 36px; border-radius: 8px; }
+@media (min-width: 40.01rem) { ul.list .ic, ul.list .nm { grid-row: 1 / span 2; } }
+ul.list .ic.mono { font-size: 11px; }
+ul.list .nm { font-family: var(--f-display); font-weight: 650; }
+ul.list .ds { font-size: .95rem; line-height: 1.45; }
+ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; color: var(--ink-faint); }
+@media (max-width: 40rem) {
+  ul.list a { grid-template-columns: 36px 1fr; }
+  ul.list .ic { grid-row: 1 / span 3; align-self: start; }
+  ul.list .ds, ul.list .dm { grid-column: 2; }
+}
+.ic-hhhero { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23fcfcfb%22/%3E%3Cpath d=%22M3 22 H10 L12 21 L13.5 5 L15 25 L17 23 H29%22 fill=%22none%22 stroke=%22%23c0392b%22 stroke-width=%222.4%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22/%3E%3C/svg%3E"); }
+.ic-ionhomie { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230d1117%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2210%22 fill=%22none%22 stroke=%22%23d9b77e%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2212%22 cy=%2213%22 r=%223%22 fill=%22%23cc79a7%22/%3E%3Ccircle cx=%2220%22 cy=%2219%22 r=%223%22 fill=%22%23cc79a7%22/%3E%3Ccircle cx=%2227%22 cy=%226%22 r=%222.6%22 fill=%22%23e69f00%22/%3E%3Cpath d=%22M4 26l3-3 3 3-3 3z%22 fill=%22%23009e73%22/%3E%3C/svg%3E"); }
+.ic-gaba { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23fcfcfb%22/%3E%3Cpath d=%22M3 22 H10 L12 21 L13.5 5 L15 25 L17 23 H29%22 fill=%22none%22 stroke=%22%232a78d6%22 stroke-width=%222.4%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22/%3E%3C/svg%3E"); }
+.ic-lookedright { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B1%3C/text%3E%3C/svg%3E"); }
+.ic-kernel { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2246%22 fill=%22none%22 viewBox=%220 0 48 46%22%3E%3Cpath fill=%22%23863bff%22 d=%22M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z%22 style=%22fill:%23863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1%22/%3E%3Cmask id=%22a%22 width=%2248%22 height=%2246%22 x=%220%22 y=%220%22 maskUnits=%22userSpaceOnUse%22 style=%22mask-type:alpha%22%3E%3Cpath fill=%22%23000%22 d=%22M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z%22 style=%22fill:%23000;fill-opacity:1%22/%3E%3C/mask%3E%3Cg mask=%22url(%23a)%22%3E%3Cg filter=%22url(%23b)%22%3E%3Cellipse cx=%225.508%22 cy=%2214.704%22 fill=%22%23ede6ff%22 rx=%225.508%22 ry=%2214.704%22 style=%22fill:%23ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1%22 transform=%22matrix(.00324 1 1 -.00324 -4.47 31.516)%22/%3E%3C/g%3E%3Cg filter=%22url(%23c)%22%3E%3Cellipse cx=%2210.399%22 cy=%2229.851%22 fill=%22%23ede6ff%22 rx=%2210.399%22 ry=%2229.851%22 style=%22fill:%23ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1%22 transform=%22matrix(.00324 1 1 -.00324 -39.328 7.883)%22/%3E%3C/g%3E%3Cg filter=%22url(%23d)%22%3E%3Cellipse cx=%225.508%22 cy=%2230.487%22 fill=%22%237e14ff%22 rx=%225.508%22 ry=%2230.487%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(89.814 -25.913 -14.639)scale(1 -1)%22/%3E%3C/g%3E%3Cg filter=%22url(%23e)%22%3E%3Cellipse cx=%225.508%22 cy=%2230.599%22 fill=%22%237e14ff%22 rx=%225.508%22 ry=%2230.599%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(89.814 -32.644 -3.334)scale(1 -1)%22/%3E%3C/g%3E%3Cg filter=%22url(%23f)%22%3E%3Cellipse cx=%225.508%22 cy=%2230.599%22 fill=%22%237e14ff%22 rx=%225.508%22 ry=%2230.599%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22matrix(.00324 1 1 -.00324 -34.34 30.47)%22/%3E%3C/g%3E%3Cg filter=%22url(%23g)%22%3E%3Cellipse cx=%2214.072%22 cy=%2222.078%22 fill=%22%23ede6ff%22 rx=%2214.072%22 ry=%2222.078%22 style=%22fill:%23ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1%22 transform=%22rotate(93.35 24.506 48.493)scale(-1 1)%22/%3E%3C/g%3E%3Cg filter=%22url(%23h)%22%3E%3Cellipse cx=%223.47%22 cy=%2221.501%22 fill=%22%237e14ff%22 rx=%223.47%22 ry=%2221.501%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(89.009 28.708 47.59)scale(-1 1)%22/%3E%3C/g%3E%3Cg filter=%22url(%23i)%22%3E%3Cellipse cx=%223.47%22 cy=%2221.501%22 fill=%22%237e14ff%22 rx=%223.47%22 ry=%2221.501%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(89.009 28.708 47.59)scale(-1 1)%22/%3E%3C/g%3E%3Cg filter=%22url(%23j)%22%3E%3Cellipse cx=%22.387%22 cy=%228.972%22 fill=%22%237e14ff%22 rx=%224.407%22 ry=%2229.108%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(39.51 .387 8.972)%22/%3E%3C/g%3E%3Cg filter=%22url(%23k)%22%3E%3Cellipse cx=%2247.523%22 cy=%22-6.092%22 fill=%22%237e14ff%22 rx=%224.407%22 ry=%2229.108%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(37.892 47.523 -6.092)%22/%3E%3C/g%3E%3Cg filter=%22url(%23l)%22%3E%3Cellipse cx=%2241.412%22 cy=%226.333%22 fill=%22%2347bfff%22 rx=%225.971%22 ry=%229.665%22 style=%22fill:%2347bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1%22 transform=%22rotate(37.892 41.412 6.333)%22/%3E%3C/g%3E%3Cg filter=%22url(%23m)%22%3E%3Cellipse cx=%22-1.879%22 cy=%2238.332%22 fill=%22%237e14ff%22 rx=%224.407%22 ry=%2229.108%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(37.892 -1.88 38.332)%22/%3E%3C/g%3E%3Cg filter=%22url(%23n)%22%3E%3Cellipse cx=%22-1.879%22 cy=%2238.332%22 fill=%22%237e14ff%22 rx=%224.407%22 ry=%2229.108%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(37.892 -1.88 38.332)%22/%3E%3C/g%3E%3Cg filter=%22url(%23o)%22%3E%3Cellipse cx=%2235.651%22 cy=%2229.907%22 fill=%22%237e14ff%22 rx=%224.407%22 ry=%2229.108%22 style=%22fill:%237e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1%22 transform=%22rotate(37.892 35.651 29.907)%22/%3E%3C/g%3E%3Cg filter=%22url(%23p)%22%3E%3Cellipse cx=%2238.418%22 cy=%2232.4%22 fill=%22%2347bfff%22 rx=%225.971%22 ry=%2215.297%22 style=%22fill:%2347bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1%22 transform=%22rotate(37.892 38.418 32.4)%22/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cfilter id=%22b%22 width=%2260.045%22 height=%2241.654%22 x=%22-19.77%22 y=%2216.149%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%227.659%22/%3E%3C/filter%3E%3Cfilter id=%22c%22 width=%2290.34%22 height=%2251.437%22 x=%22-54.613%22 y=%22-7.533%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%227.659%22/%3E%3C/filter%3E%3Cfilter id=%22d%22 width=%2279.355%22 height=%2229.4%22 x=%22-49.64%22 y=%222.03%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22e%22 width=%2279.579%22 height=%2229.4%22 x=%22-45.045%22 y=%2220.029%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22f%22 width=%2279.579%22 height=%2229.4%22 x=%22-43.513%22 y=%2221.178%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22g%22 width=%2274.749%22 height=%2258.852%22 x=%2215.756%22 y=%22-17.901%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%227.659%22/%3E%3C/filter%3E%3Cfilter id=%22h%22 width=%2261.377%22 height=%2225.362%22 x=%2223.548%22 y=%222.284%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22i%22 width=%2261.377%22 height=%2225.362%22 x=%2223.548%22 y=%222.284%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22j%22 width=%2256.045%22 height=%2263.649%22 x=%22-27.636%22 y=%22-22.853%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22k%22 width=%2254.814%22 height=%2264.646%22 x=%2220.116%22 y=%22-38.415%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22l%22 width=%2233.541%22 height=%2235.313%22 x=%2224.641%22 y=%22-11.323%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22m%22 width=%2254.814%22 height=%2264.646%22 x=%22-29.286%22 y=%226.009%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22n%22 width=%2254.814%22 height=%2264.646%22 x=%22-29.286%22 y=%226.009%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22o%22 width=%2254.814%22 height=%2264.646%22 x=%228.244%22 y=%22-2.416%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3Cfilter id=%22p%22 width=%2239.409%22 height=%2243.623%22 x=%2218.713%22 y=%2210.588%22 color-interpolation-filters=%22sRGB%22 filterUnits=%22userSpaceOnUse%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22/%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22/%3E%3CfeGaussianBlur result=%22effect1_foregroundBlur_2002_17158%22 stdDeviation=%224.596%22/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E"); }
+.ic-betamax { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230d1117%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2211%22 fill=%22none%22 stroke=%22%23d9b77e%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22%23cc79a7%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%223%22 fill=%22%23f0c05a%22/%3E%3Ccircle cx=%2225%22 cy=%2225%22 r=%223%22 fill=%22%232fbf71%22 opacity=%220.8%22/%3E%3C/svg%3E"); }
+.ic-homunculus { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='8' r='6' fill='%230e7c7b'/%3E%3Crect x='9' y='15' width='14' height='15' rx='5' fill='%230e7c7b'/%3E%3C/svg%3E"); }
+.ic-overlook { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%237A1E16'/%3E%3Cpath d='M16 5l9.5 5.5v11L16 27l-9.5-5.5v-11z' fill='none' stroke='%23F3F2EF' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M16 11l4.3 2.5v5L16 21l-4.3-2.5v-5z' fill='%23E07A2E'/%3E%3C/svg%3E"); }
+.ic-reptimer { background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23d62f2f%22/%3E%3Crect x=%228%22 y=%2229%22 width=%2248%22 height=%226%22 rx=%223%22 fill=%22%23fff%22/%3E%3Crect x=%2214%22 y=%2216%22 width=%227%22 height=%2232%22 rx=%222%22 fill=%22%23fff%22/%3E%3Crect x=%2243%22 y=%2216%22 width=%227%22 height=%2232%22 rx=%222%22 fill=%22%23fff%22/%3E%3C/svg%3E"); }
 </style>
 </head>
 <body>
@@ -538,6 +600,13 @@ form.contact button { color: #fff; }
 
 <main class="wrap">
 
+  <div class="views" role="radiogroup" aria-label="View the sites as">
+    <input type="radio" name="view" id="v-cards" checked><label for="v-cards">Cards</label>
+    <input type="radio" name="view" id="v-icons"><label for="v-icons">Icons</label>
+    <input type="radio" name="view" id="v-list"><label for="v-list">List</label>
+  </div>
+
+  <div class="view v-cards">
   <section class="group" aria-labelledby="g-edu">
     <h2 class="group-h" id="g-edu">Education</h2>
     <div class="shelf">
@@ -994,6 +1063,77 @@ form.contact button { color: #fff; }
     <p class="go"><span>murderboard.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
+  </div>
+  </div>
+
+  <div class="view v-icons">
+  <section class="group" aria-labelledby="gi-edu">
+    <h2 class="group-h" id="gi-edu">Education</h2>
+    <ul class="icons">
+      <li><a href="https://before-you-send.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span></a></li>
+      <li><a href="https://hhhero.tonydefazio.com/"><span class="ic ic-hhhero" aria-hidden="true"></span><span class="nm">HHhero</span></a></li>
+      <li><a href="https://ionhomie.tonydefazio.com/"><span class="ic ic-ionhomie" aria-hidden="true"></span><span class="nm">ionhomie</span></a></li>
+      <li><a href="https://ml2dl.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-ml2dl)" aria-hidden="true">ml</span><span class="nm">ml2dl</span></a></li>
+      <li><a href="https://gaba.tonydefazio.com/"><span class="ic ic-gaba" aria-hidden="true"></span><span class="nm">gaba_excites</span></a></li>
+      <li><a href="https://lookedright.tonydefazio.com/"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gi-tools">
+    <h2 class="group-h" id="gi-tools">Tools</h2>
+    <ul class="icons">
+      <li><a href="https://kernel.tonydefazio.com/"><span class="ic ic-kernel" aria-hidden="true"></span><span class="nm">Colonel Kernel</span></a></li>
+      <li><a href="https://draughtsman.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-draughtsman)" aria-hidden="true">dr</span><span class="nm">draughtsman</span></a></li>
+      <li><a href="https://bugarach.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-bugarach)" aria-hidden="true">bu</span><span class="nm">bugarach</span></a></li>
+      <li><a href="https://nopeak.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-nopeak)" aria-hidden="true">np</span><span class="nm">no_peak</span></a></li>
+      <li><a href="https://murderboard.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-murderboard)" aria-hidden="true">MB</span><span class="nm">The Murderboard</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gi-more">
+    <h2 class="group-h" id="gi-more">More sites</h2>
+    <p class="group-note">Demos, prototypes and a proposal, without cards. The claims further down this page are checked for the carded sites only.</p>
+    <ul class="icons">
+      <li><a href="https://beta-max.tonydefazio.com/"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span></a></li>
+      <li><a href="https://bloodhound.tonydefazio.com/"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span></a></li>
+      <li><a href="https://homunculus.tonydefazio.com/"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span></a></li>
+      <li><a href="https://overlook.tonydefazio.com/"><span class="ic ic-overlook" aria-hidden="true"></span><span class="nm">Overlook</span></a></li>
+      <li><a href="https://reptimer.tonydefazio.com/"><span class="ic ic-reptimer" aria-hidden="true"></span><span class="nm">RepTimer</span></a></li>
+    </ul>
+  </section>
+  </div>
+
+  <div class="view v-list">
+  <section class="group" aria-labelledby="gl-edu">
+    <h2 class="group-h" id="gl-edu">Education</h2>
+    <ul class="list">
+      <li><a href="https://before-you-send.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span><span class="ds">Catching mistakes in AI-drafted work before it goes out. For office staff, not coders.</span><span class="dm">before-you-send.tonydefazio.com</span></a></li>
+      <li><a href="https://hhhero.tonydefazio.com/"><span class="ic ic-hhhero" aria-hidden="true"></span><span class="nm">HHhero</span><span class="ds">The Hodgkin&ndash;Huxley gates two ways, for the classroom: as &alpha; and &beta;, or as x&#8734; and &tau;.</span><span class="dm">hhhero.tonydefazio.com</span></a></li>
+      <li><a href="https://ionhomie.tonydefazio.com/"><span class="ic ic-ionhomie" aria-hidden="true"></span><span class="nm">ionhomie</span><span class="ds">Ion homeostasis one mechanism at a time, from diffusion to the transporters that set E<sub>GABA</sub>.</span><span class="dm">ionhomie.tonydefazio.com</span></a></li>
+      <li><a href="https://ml2dl.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-ml2dl)" aria-hidden="true">ml</span><span class="nm">ml2dl</span><span class="ds">Deep learning built up from its parts, on models small enough to see every number.</span><span class="dm">ml2dl.tonydefazio.com</span></a></li>
+      <li><a href="https://gaba.tonydefazio.com/"><span class="ic ic-gaba" aria-hidden="true"></span><span class="nm">gaba_excites</span><span class="ds">A patch-clamp rig in the browser, and GABA that inhibits or excites depending on its reversal.</span><span class="dm">gaba.tonydefazio.com</span></a></li>
+      <li><a href="https://lookedright.tonydefazio.com/"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span><span class="ds">Four challenges in working with coding agents, for researchers.</span><span class="dm">lookedright.tonydefazio.com</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gl-tools">
+    <h2 class="group-h" id="gl-tools">Tools</h2>
+    <ul class="list">
+      <li><a href="https://kernel.tonydefazio.com/"><span class="ic ic-kernel" aria-hidden="true"></span><span class="nm">Colonel Kernel</span><span class="ds">Recover the calcium-imaging kernel from spike times and a &Delta;F/F&#8320; trace.</span><span class="dm">kernel.tonydefazio.com</span></a></li>
+      <li><a href="https://draughtsman.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-draughtsman)" aria-hidden="true">dr</span><span class="nm">draughtsman</span><span class="ds">Readable architecture diagrams for PyTorch models, with a check that nothing was dropped.</span><span class="dm">draughtsman.tonydefazio.com</span></a></li>
+      <li><a href="https://bugarach.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-bugarach)" aria-hidden="true">bu</span><span class="nm">bugarach</span><span class="ds">Find the moments when many cells fire together, and how often you are wrong.</span><span class="dm">bugarach.tonydefazio.com</span></a></li>
+      <li><a href="https://nopeak.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-nopeak)" aria-hidden="true">np</span><span class="nm">no_peak</span><span class="ds">CLUSTER pulse detection for hormone sampling data.</span><span class="dm">nopeak.tonydefazio.com</span></a></li>
+      <li><a href="https://murderboard.tonydefazio.com/"><span class="ic mono" style="--c: var(--c-murderboard)" aria-hidden="true">MB</span><span class="nm">The Murderboard</span><span class="ds">Adversarial review for documents: eleven reviewer roles, at most three rounds.</span><span class="dm">murderboard.tonydefazio.com</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gl-more">
+    <h2 class="group-h" id="gl-more">More sites</h2>
+    <p class="group-note">Demos, prototypes and a proposal, without cards. The claims further down this page are checked for the carded sites only.</p>
+    <ul class="list">
+      <li><a href="https://beta-max.tonydefazio.com/"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span><span class="ds">The pancreatic &beta;-cell, from glucose to granule fusion. A teaching tool.</span><span class="dm">beta-max.tonydefazio.com</span></a></li>
+      <li><a href="https://bloodhound.tonydefazio.com/"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span><span class="ds">A citation checker that learns. A proposal, with a review demo.</span><span class="dm">bloodhound.tonydefazio.com</span></a></li>
+      <li><a href="https://homunculus.tonydefazio.com/"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span><span class="ds">A body-map exam. A demo on invented data; not clinical guidance.</span><span class="dm">homunculus.tonydefazio.com</span></a></li>
+      <li><a href="https://overlook.tonydefazio.com/"><span class="ic ic-overlook" aria-hidden="true"></span><span class="nm">Overlook</span><span class="ds">Lab progress toward goals, with QC for every recording. A prototype on synthetic data.</span><span class="dm">overlook.tonydefazio.com</span></a></li>
+      <li><a href="https://reptimer.tonydefazio.com/"><span class="ic ic-reptimer" aria-hidden="true"></span><span class="nm">RepTimer</span><span class="ds">One big button that times every set and every rest.</span><span class="dm">reptimer.tonydefazio.com</span></a></li>
+    </ul>
+  </section>
   </div>
 
 </main>
