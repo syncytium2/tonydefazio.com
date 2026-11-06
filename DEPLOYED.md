@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `e8573450-8553-493c-876a-f1b5a172b716` |
+| **Version ID** | `cc1a88dd-c656-49e3-a876-a7ba03e7114a` |
 | **Deployed** | 2026-11-06 |
-| **Site version** | 1.12.3 |
+| **Site version** | 1.13.0 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,24 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.13.0 — 2026-11-06 — Before You Send, the eleventh card
+
+Version ID `cc1a88dd-c656-49e3-a876-a7ba03e7114a`, deployed from the `bys-card` worktree
+through `tools/predeploy.py` (1.13.0 against a live 1.12.3, deployed minutes before). One asset
+uploaded: `/index.html`. Brief from the before-you-send session, which relayed Tony's OK; Tony
+confirmed the release order here.
+
+Before You Send joins Education with the NEW sticker, taken from HHhero; accent `#485566`;
+figure `ga-y`, the site's own sales draft with one flagged sentence per check. Its repository is
+private, so it has no source link or `codeRepository`, and the "Open source" line names it
+beside ml2dl. It Looked Right's eyebrow now reads "Working with coding agents", so the two cards
+read as different things. Card claims are recorded in the README.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical; twelve `class="card` (eleven destinations, Kernel twice); one `<script`,
+the JSON-LD block; Version 1.13.0; 0 matches for `beacon.min.js`;
+before-you-send.tonydefazio.com 200.
 
 ## 1.12.3 — 2026-11-06 — the gaba_excites card shows the Old school scope
 
