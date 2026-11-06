@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Worker** | `tonydefazio-com` |
-| **Version ID** | `2ec48785-ffe4-4be8-af73-c8445264a42f` |
-| **Deployed** | 2026-11-03 |
-| **Site version** | 1.12.2 |
+| **Version ID** | `e8573450-8553-493c-876a-f1b5a172b716` |
+| **Deployed** | 2026-11-06 |
+| **Site version** | 1.12.3 |
 | **Commit** | see `git log` for the commit this file lands in |
 | **Account** | tony.defazio@gmail.com (`9915fb1a39095fa035bccfd49c9434d7`) |
 
@@ -595,6 +595,21 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `www` byte-identical to `site/index.html`; nine `class="card"`; the `atp` label present; one
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
+
+## 1.12.3 — 2026-11-06 — the gaba_excites card shows the Old school scope
+
+Version ID `e8573450-8553-493c-876a-f1b5a172b716`, deployed from the `gaba-card` worktree
+through `tools/predeploy.py` (1.12.3 against a live 1.12.2). Committed on 2026-11-03 and held for
+Tony's go-ahead, which came on 2026-11-06 together with Before You Send's card. One asset
+uploaded: `/index.html`.
+
+The gaba_excites card describes the site as it now is: six cell models, voltage clamp and a live
+oscilloscope. Its figure is the site's green-phosphor scope, rendered by gaba_excites from its own
+settings, in place of three current-clamp traces. `ga-g` now reports DRIFTED against
+`make_figures.py` on purpose.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`;
+`www` byte-identical; 0 matches for `beacon.min.js`.
 
 ## 1.12.2 — 2026-11-03 — the Murderboard strip from 640px
 
