@@ -189,14 +189,14 @@ strong { font-weight: 600; }
 @media (max-width: 1030px) { .whois { max-width: var(--measure); } }
 
 /* ---------- the cards ---------- */
-/* Two groups, Education and Tools, then Murderboard on its own. Colonel Kernel
-   is both, so its card appears in each. */
+/* Three groups: Education, Tools, and Review and AI. Colonel Kernel is both
+   Education and Tools, so its card appears in each. */
 .group-h {
   font-family: var(--f-mono); font-size: .74rem; font-weight: 400; letter-spacing: .16em;
   text-transform: uppercase; color: var(--ink-faint);
   margin: 0 0 .9rem; padding-top: .75rem; border-top: 1px solid var(--rule-soft);
 }
-.group, .shelf.solo { margin-bottom: clamp(2rem, 5vw, 3rem); }
+.group { margin-bottom: clamp(2rem, 5vw, 3rem); }
 main.wrap { padding-bottom: clamp(.5rem, 2vw, 1rem); }
 .shelf {
   display: grid; gap: var(--col-gap);
@@ -265,10 +265,10 @@ main.wrap { padding-bottom: clamp(.5rem, 2vw, 1rem); }
   font-size: clamp(1.42rem, 3.4vw, 1.85rem); line-height: 1.1;
   letter-spacing: -.026em; margin: 0 0 .65rem; text-wrap: balance;
 }
-/* The Murderboard: a separate kind of tool, so a short full-width strip below the
-   groups, ruled off from them. Text beside the figure from 640px; title, text and figure
+/* The Murderboard: a short full-width strip at the foot of Review and AI, below
+   its two cards. Text beside the figure from 640px; title, text and figure
    on one row from 1030px. */
-.shelf.solo { padding-top: 1.4rem; border-top: 1px solid var(--rule-soft); }
+.shelf.solo { margin: var(--col-gap) 0 0; }
 @media (min-width: 640px) and (max-width: 1029.98px) {
   .card.wide {
     display: grid; column-gap: calc(var(--col-gap) * 1.6);
@@ -530,6 +530,7 @@ form.contact button { color: #fff; }
 main:has(#v-icons:checked) .v-cards, main:has(#v-list:checked) .v-cards { display: none; }
 main:has(#v-icons:checked) .v-icons, main:has(#v-list:checked) .v-list { display: block; }
 .group-note { color: var(--ink-soft); font-size: .92rem; margin: -.3rem 0 1rem; max-width: var(--measure); }
+.view-note { margin: 0 0 1.2rem; }
 
 .ic {
   display: block; flex: none; width: 56px; height: 56px; border-radius: 12px;
@@ -611,49 +612,6 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
   <section class="group" aria-labelledby="g-edu">
     <h2 class="group-h" id="g-edu">Education</h2>
     <div class="shelf">
-
-  <a class="card" style="--c: var(--c-bys)" href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener">
-    <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
-    <p class="eyebrow">Checking AI drafts<span class="born">Born <time datetime="2026-10-23">2026-10-23</time></span></p>
-    <h3>Before You Send</h3>
-    <p class="what">
-      Not for coders: sixteen minutes for office staff in sales, HR, finance or legal,
-      checking what an AI tool drafted against the notes it drafted from, before it goes out.
-    </p>
-    <svg class="ga ga-y" viewBox="0 0 400 128" role="img" aria-label="Call notes beside the email an AI drafted from them. Four sentences in the draft are highlighted, one under each of the four checks: a 15% discount where the notes say 10% (Match), confirming an integration nobody has confirmed (Promises), a flattering claim that is in no source (Facts), and an internal note marked don't mention (Audience). From one of Before You Send's sales drafts."><style>.ga-y .sh{fill:var(--surface);stroke:var(--rule);stroke-width:1}
-.ga-y text{font-family:var(--f-display);font-size:9.6px;fill:var(--ink)}
-.ga-y text.lb{font-family:var(--f-mono);font-size:7.6px;letter-spacing:.08em;fill:var(--ink-faint)}
-.ga-y text.n{fill:var(--ink-soft)}
-.ga-y .hl{fill:#fff1b8}
-.ga-y .fb{fill:var(--rule);opacity:.7}
-.ga-y .ch{fill:var(--surface);stroke:var(--c);stroke-width:1.1}
-.ga-y text.cl{font-family:var(--f-mono);font-size:8px;font-weight:700;fill:var(--c)}</style>
-<rect class="sh" x="0.5" y="0.5" width="104" height="127" rx="3"/>
-<text class="lb" x="8" y="14">CALL NOTES</text>
-<text class="n" x="8" y="32">10% off, annual,</text><text class="n" x="8" y="44">nothing else</text>
-<text class="n" x="8" y="62">X-ray: said I&#8217;d</text><text class="n" x="8" y="74">check with Product</text>
-<text class="n" x="8" y="92">Internal: quarter</text><text class="n" x="8" y="104">target at risk;</text><text class="n" x="8" y="116">don&#8217;t mention</text>
-<rect class="sh" x="112.5" y="0.5" width="287" height="127" rx="3"/>
-<text class="lb" x="120" y="14">WHAT THE AI WROTE</text>
-<rect class="fb" x="120" y="21" width="214" height="3" rx="1.5"/>
-<rect class="hl" x="118" y="28" width="218" height="14" rx="2"/><text x="121" y="38.5">&#8230;with 15% off for an annual commitment.</text>
-<rect class="ch" x="342" y="28.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="38" text-anchor="middle">Match</text>
-<rect class="fb" x="120" y="48" width="180" height="3" rx="1.5"/>
-<rect class="hl" x="118" y="55" width="218" height="14" rx="2"/><text x="121" y="65.5">&#8230;to confirm it works with your X-ray system.</text>
-<rect class="ch" x="342" y="55.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="65" text-anchor="middle">Promises</text>
-<rect class="hl" x="118" y="75" width="218" height="14" rx="2"/><text x="121" y="85.5">Pelloway is one of the largest dental groups&#8230;</text>
-<rect class="ch" x="342" y="75.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="85" text-anchor="middle">Facts</text>
-<rect class="hl" x="118" y="95" width="218" height="14" rx="2"/><text x="121" y="105.5">&#8230;keen to close this before our quarter ends.</text>
-<rect class="ch" x="342" y="95.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="105" text-anchor="middle">Audience</text>
-<rect class="fb" x="120" y="115" width="200" height="3" rx="1.5"/>
-</svg>
-    <ul class="facts">
-      <li>4 checks</li>
-      <li>solo or with a team</li>
-      <li>draft for a pilot</li>
-    </ul>
-    <p class="go"><span>before-you-send.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
 
   <a class="card" style="--c: var(--c-hhhero)" href="https://hhhero.tonydefazio.com/" target="_blank" rel="noopener">
     <p class="eyebrow">Hodgkin&ndash;Huxley gates<span class="born">Born <time datetime="2026-10-30">2026-10-30</time></span></p>
@@ -918,22 +876,6 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
     <p class="go"><span>gaba.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
-  <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener">
-    <p class="eyebrow">Working with coding agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
-    <h3>It Looked Right</h3>
-    <p class="what">
-      Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
-      dated incident that produced it.
-    </p>
-    <svg class="ga ga-l" viewBox="0 0 420 104" role="img" aria-label="Ran clean, numbers right, gates green — and the result still wrong."><circle cx="30.0" cy="40" r="7" class="nd"/><text x="30.0" y="62" class="cap" text-anchor="middle">Ran clean</text><line x1="38.0" y1="40" x2="141.0" y2="40" class="edge"/><path d="M141.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="150.0" cy="40" r="7" class="nd"/><text x="150.0" y="62" class="cap" text-anchor="middle">Numbers right</text><line x1="158.0" y1="40" x2="261.0" y2="40" class="edge"/><path d="M261.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="270.0" cy="40" r="7" class="nd"/><text x="270.0" y="62" class="cap" text-anchor="middle">Gates green</text><line x1="278.0" y1="40" x2="381.0" y2="40" class="edge"/><path d="M381.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="390.0" cy="40" r="7" class="nd last"/><text x="390.0" y="62" class="cap" text-anchor="middle">Wrong</text><text x="30" y="88" class="cap">every check passed and the page was about the wrong thing</text></svg>
-    <ul class="facts">
-      <li>4 challenges</li>
-      <li>19 worked failures</li>
-      <li>3 reading depths</li>
-    </ul>
-    <p class="go"><span>lookedright.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
-  </a>
-
   <a class="card" style="--c: var(--c-kernel)" href="https://kernel.tonydefazio.com/" target="_blank" rel="noopener">
     <p class="eyebrow">Calcium imaging<span class="born">Born <time datetime="2026-06-21">2026-06-21</time></span></p>
     <h3>Colonel Kernel</h3>
@@ -1046,6 +988,71 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
     </div>
   </section>
 
+  <section class="group" aria-labelledby="g-review">
+    <h2 class="group-h" id="g-review">Review and AI</h2>
+    <div class="shelf">
+
+  <a class="card" style="--c: var(--c-bys)" href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener">
+    <svg class="new-star" viewBox="0 0 64 64" role="img" aria-label="New"><polygon points="32.0,2.0 38.3,8.6 47.0,6.0 49.1,14.9 58.0,17.0 55.4,25.7 62.0,32.0 55.4,38.3 58.0,47.0 49.1,49.1 47.0,58.0 38.3,55.4 32.0,62.0 25.7,55.4 17.0,58.0 14.9,49.1 6.0,47.0 8.6,38.3 2.0,32.0 8.6,25.7 6.0,17.0 14.9,14.9 17.0,6.0 25.7,8.6" fill="var(--c)"/><text x="32" y="36" text-anchor="middle">NEW</text></svg>
+    <p class="eyebrow">Checking AI drafts<span class="born">Born <time datetime="2026-10-23">2026-10-23</time></span></p>
+    <h3>Before You Send</h3>
+    <p class="what">
+      Not for coders: sixteen minutes for office staff in sales, HR, finance or legal,
+      checking what an AI tool drafted against the notes it drafted from, before it goes out.
+    </p>
+    <svg class="ga ga-y" viewBox="0 0 400 128" role="img" aria-label="Call notes beside the email an AI drafted from them. Four sentences in the draft are highlighted, one under each of the four checks: a 15% discount where the notes say 10% (Match), confirming an integration nobody has confirmed (Promises), a flattering claim that is in no source (Facts), and an internal note marked don't mention (Audience). From one of Before You Send's sales drafts."><style>.ga-y .sh{fill:var(--surface);stroke:var(--rule);stroke-width:1}
+.ga-y text{font-family:var(--f-display);font-size:9.6px;fill:var(--ink)}
+.ga-y text.lb{font-family:var(--f-mono);font-size:7.6px;letter-spacing:.08em;fill:var(--ink-faint)}
+.ga-y text.n{fill:var(--ink-soft)}
+.ga-y .hl{fill:#fff1b8}
+.ga-y .fb{fill:var(--rule);opacity:.7}
+.ga-y .ch{fill:var(--surface);stroke:var(--c);stroke-width:1.1}
+.ga-y text.cl{font-family:var(--f-mono);font-size:8px;font-weight:700;fill:var(--c)}</style>
+<rect class="sh" x="0.5" y="0.5" width="104" height="127" rx="3"/>
+<text class="lb" x="8" y="14">CALL NOTES</text>
+<text class="n" x="8" y="32">10% off, annual,</text><text class="n" x="8" y="44">nothing else</text>
+<text class="n" x="8" y="62">X-ray: said I&#8217;d</text><text class="n" x="8" y="74">check with Product</text>
+<text class="n" x="8" y="92">Internal: quarter</text><text class="n" x="8" y="104">target at risk;</text><text class="n" x="8" y="116">don&#8217;t mention</text>
+<rect class="sh" x="112.5" y="0.5" width="287" height="127" rx="3"/>
+<text class="lb" x="120" y="14">WHAT THE AI WROTE</text>
+<rect class="fb" x="120" y="21" width="214" height="3" rx="1.5"/>
+<rect class="hl" x="118" y="28" width="218" height="14" rx="2"/><text x="121" y="38.5">&#8230;with 15% off for an annual commitment.</text>
+<rect class="ch" x="342" y="28.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="38" text-anchor="middle">Match</text>
+<rect class="fb" x="120" y="48" width="180" height="3" rx="1.5"/>
+<rect class="hl" x="118" y="55" width="218" height="14" rx="2"/><text x="121" y="65.5">&#8230;to confirm it works with your X-ray system.</text>
+<rect class="ch" x="342" y="55.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="65" text-anchor="middle">Promises</text>
+<rect class="hl" x="118" y="75" width="218" height="14" rx="2"/><text x="121" y="85.5">Pelloway is one of the largest dental groups&#8230;</text>
+<rect class="ch" x="342" y="75.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="85" text-anchor="middle">Facts</text>
+<rect class="hl" x="118" y="95" width="218" height="14" rx="2"/><text x="121" y="105.5">&#8230;keen to close this before our quarter ends.</text>
+<rect class="ch" x="342" y="95.5" width="52" height="13" rx="6.5"/><text class="cl" x="368" y="105" text-anchor="middle">Audience</text>
+<rect class="fb" x="120" y="115" width="200" height="3" rx="1.5"/>
+</svg>
+    <ul class="facts">
+      <li>4 checks</li>
+      <li>solo or with a team</li>
+      <li>draft for a pilot</li>
+    </ul>
+    <p class="go"><span>before-you-send.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+  <a class="card" style="--c: var(--c-lookedright)" href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener">
+    <p class="eyebrow">Working with coding agents<span class="born">Born <time datetime="2026-08-26">2026-08-26</time></span></p>
+    <h3>It Looked Right</h3>
+    <p class="what">
+      Coding is no longer the barrier &mdash; four challenges remain, each carrying the real,
+      dated incident that produced it.
+    </p>
+    <svg class="ga ga-l" viewBox="0 0 420 104" role="img" aria-label="Ran clean, numbers right, gates green — and the result still wrong."><circle cx="30.0" cy="40" r="7" class="nd"/><text x="30.0" y="62" class="cap" text-anchor="middle">Ran clean</text><line x1="38.0" y1="40" x2="141.0" y2="40" class="edge"/><path d="M141.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="150.0" cy="40" r="7" class="nd"/><text x="150.0" y="62" class="cap" text-anchor="middle">Numbers right</text><line x1="158.0" y1="40" x2="261.0" y2="40" class="edge"/><path d="M261.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="270.0" cy="40" r="7" class="nd"/><text x="270.0" y="62" class="cap" text-anchor="middle">Gates green</text><line x1="278.0" y1="40" x2="381.0" y2="40" class="edge"/><path d="M381.0,40 l-4,-2.6 l0,5.2 Z" class="head"/><circle cx="390.0" cy="40" r="7" class="nd last"/><text x="390.0" y="62" class="cap" text-anchor="middle">Wrong</text><text x="30" y="88" class="cap">every check passed and the page was about the wrong thing</text></svg>
+    <ul class="facts">
+      <li>4 challenges</li>
+      <li>19 worked failures</li>
+      <li>3 reading depths</li>
+    </ul>
+    <p class="go"><span>lookedright.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
+  </a>
+
+    </div>
+
   <div class="shelf solo">
 
   <a class="card wide" style="--c: var(--c-murderboard)" href="https://murderboard.tonydefazio.com/" target="_blank" rel="noopener">
@@ -1064,19 +1071,23 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
     <p class="go"><span>murderboard.tonydefazio.com</span><span class="arrow">&rarr;</span></p>
   </a>
 
+  </section>
   </div>
   </div>
 
   <div class="view v-icons">
+  <p class="group-note view-note">This view also lists sites that have no card. The claims further down this page are checked for the carded sites only.</p>
   <section class="group" aria-labelledby="gi-edu">
     <h2 class="group-h" id="gi-edu">Education</h2>
     <ul class="icons">
-      <li><a href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span></a></li>
       <li><a href="https://hhhero.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hhhero" aria-hidden="true"></span><span class="nm">HHhero</span></a></li>
       <li><a href="https://ionhomie.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-ionhomie" aria-hidden="true"></span><span class="nm">ionhomie</span></a></li>
       <li><a href="https://ml2dl.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-ml2dl)" aria-hidden="true">ml</span><span class="nm">ml2dl</span></a></li>
       <li><a href="https://gaba.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-gaba" aria-hidden="true"></span><span class="nm">gaba_excites</span></a></li>
-      <li><a href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span></a></li>
+      <li><a href="https://beta-max.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span></a></li>
+      <li><a href="https://hummerbat.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: #A8325E" aria-hidden="true">hb</span><span class="nm">hummerbat</span></a></li>
+      <li><a href="https://hpg.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hpg" aria-hidden="true"></span><span class="nm">repro-neuro-endo</span></a></li>
+      <li><a href="https://homunculus.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span></a></li>
     </ul>
   </section>
   <section class="group" aria-labelledby="gi-tools">
@@ -1086,18 +1097,21 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
       <li><a href="https://draughtsman.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-draughtsman)" aria-hidden="true">dr</span><span class="nm">draughtsman</span></a></li>
       <li><a href="https://bugarach.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bugarach)" aria-hidden="true">bu</span><span class="nm">bugarach</span></a></li>
       <li><a href="https://nopeak.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-nopeak)" aria-hidden="true">np</span><span class="nm">no_peak</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gi-review">
+    <h2 class="group-h" id="gi-review">Review and AI</h2>
+    <ul class="icons">
+      <li><a href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span></a></li>
+      <li><a href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span></a></li>
+      <li><a href="https://bloodhound.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span></a></li>
       <li><a href="https://murderboard.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-murderboard)" aria-hidden="true">MB</span><span class="nm">The Murderboard</span></a></li>
     </ul>
   </section>
   <section class="group" aria-labelledby="gi-more">
     <h2 class="group-h" id="gi-more">More sites</h2>
-    <p class="group-note">Sites without cards: teaching tools, demos, a prototype and a proposal. The claims further down this page are checked for the carded sites only.</p>
+    <p class="group-note">A lab-progress prototype and a workout timer.</p>
     <ul class="icons">
-      <li><a href="https://beta-max.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span></a></li>
-      <li><a href="https://hummerbat.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: #A8325E" aria-hidden="true">hb</span><span class="nm">hummerbat</span></a></li>
-      <li><a href="https://hpg.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hpg" aria-hidden="true"></span><span class="nm">repro-neuro-endo</span></a></li>
-      <li><a href="https://bloodhound.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span></a></li>
-      <li><a href="https://homunculus.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span></a></li>
       <li><a href="https://overlook.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-overlook" aria-hidden="true"></span><span class="nm">Overlook</span></a></li>
       <li><a href="https://reptimer.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-reptimer" aria-hidden="true"></span><span class="nm">RepTimer</span></a></li>
     </ul>
@@ -1105,15 +1119,18 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
   </div>
 
   <div class="view v-list">
+  <p class="group-note view-note">This view also lists sites that have no card. The claims further down this page are checked for the carded sites only.</p>
   <section class="group" aria-labelledby="gl-edu">
     <h2 class="group-h" id="gl-edu">Education</h2>
     <ul class="list">
-      <li><a href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span><span class="ds">Catching mistakes in AI-drafted work before it goes out. For office staff, not coders.</span><span class="dm">before-you-send.tonydefazio.com</span></a></li>
       <li><a href="https://hhhero.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hhhero" aria-hidden="true"></span><span class="nm">HHhero</span><span class="ds">The Hodgkin&ndash;Huxley gates two ways, for the classroom: as &alpha; and &beta;, or as x&#8734; and &tau;.</span><span class="dm">hhhero.tonydefazio.com</span></a></li>
       <li><a href="https://ionhomie.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-ionhomie" aria-hidden="true"></span><span class="nm">ionhomie</span><span class="ds">Ion homeostasis one mechanism at a time, from diffusion to the transporters that set E<sub>GABA</sub>.</span><span class="dm">ionhomie.tonydefazio.com</span></a></li>
       <li><a href="https://ml2dl.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-ml2dl)" aria-hidden="true">ml</span><span class="nm">ml2dl</span><span class="ds">Deep learning built up from its parts, on models small enough to see every number.</span><span class="dm">ml2dl.tonydefazio.com</span></a></li>
       <li><a href="https://gaba.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-gaba" aria-hidden="true"></span><span class="nm">gaba_excites</span><span class="ds">A patch-clamp rig in the browser, and GABA that inhibits or excites depending on its reversal.</span><span class="dm">gaba.tonydefazio.com</span></a></li>
-      <li><a href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span><span class="ds">Four challenges in working with coding agents, for researchers.</span><span class="dm">lookedright.tonydefazio.com</span></a></li>
+      <li><a href="https://beta-max.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span><span class="ds">The pancreatic &beta;-cell, from glucose to granule fusion. A teaching tool.</span><span class="dm">beta-max.tonydefazio.com</span></a></li>
+      <li><a href="https://hummerbat.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: #A8325E" aria-hidden="true">hb</span><span class="nm">hummerbat</span><span class="ds">The ATP pathways as a hovering hummingbird&rsquo;s fuel decisions. Work its fat-burning gate by hand.</span><span class="dm">hummerbat.tonydefazio.com</span></a></li>
+      <li><a href="https://hpg.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hpg" aria-hidden="true"></span><span class="nm">repro-neuro-endo</span><span class="ds">The reproductive axis: the sex steroid pathway, and GnRH pulses across the cycle, on the pill and through menopause.</span><span class="dm">hpg.tonydefazio.com</span></a></li>
+      <li><a href="https://homunculus.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span><span class="ds">A body-map exam. A demo on invented data; not clinical guidance.</span><span class="dm">homunculus.tonydefazio.com</span></a></li>
     </ul>
   </section>
   <section class="group" aria-labelledby="gl-tools">
@@ -1123,18 +1140,21 @@ ul.list .dm { grid-column: 3; font-family: var(--f-mono); font-size: .74rem; col
       <li><a href="https://draughtsman.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-draughtsman)" aria-hidden="true">dr</span><span class="nm">draughtsman</span><span class="ds">Readable architecture diagrams for PyTorch models, with a check that nothing was dropped.</span><span class="dm">draughtsman.tonydefazio.com</span></a></li>
       <li><a href="https://bugarach.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bugarach)" aria-hidden="true">bu</span><span class="nm">bugarach</span><span class="ds">Find the moments when many cells fire together, and how often you are wrong.</span><span class="dm">bugarach.tonydefazio.com</span></a></li>
       <li><a href="https://nopeak.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-nopeak)" aria-hidden="true">np</span><span class="nm">no_peak</span><span class="ds">CLUSTER pulse detection for hormone sampling data.</span><span class="dm">nopeak.tonydefazio.com</span></a></li>
+    </ul>
+  </section>
+  <section class="group" aria-labelledby="gl-review">
+    <h2 class="group-h" id="gl-review">Review and AI</h2>
+    <ul class="list">
+      <li><a href="https://before-you-send.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-bys)" aria-hidden="true">BYS</span><span class="nm">Before You Send</span><span class="ds">Catching mistakes in AI-drafted work before it goes out. For office staff, not coders.</span><span class="dm">before-you-send.tonydefazio.com</span></a></li>
+      <li><a href="https://lookedright.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-lookedright" aria-hidden="true"></span><span class="nm">It Looked Right</span><span class="ds">Four challenges in working with coding agents, for researchers.</span><span class="dm">lookedright.tonydefazio.com</span></a></li>
+      <li><a href="https://bloodhound.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span><span class="ds">A citation checker that learns. A proposal, with a review demo.</span><span class="dm">bloodhound.tonydefazio.com</span></a></li>
       <li><a href="https://murderboard.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--c-murderboard)" aria-hidden="true">MB</span><span class="nm">The Murderboard</span><span class="ds">Adversarial review for documents: eleven reviewer roles, at most three rounds.</span><span class="dm">murderboard.tonydefazio.com</span></a></li>
     </ul>
   </section>
   <section class="group" aria-labelledby="gl-more">
     <h2 class="group-h" id="gl-more">More sites</h2>
-    <p class="group-note">Sites without cards: teaching tools, demos, a prototype and a proposal. The claims further down this page are checked for the carded sites only.</p>
+    <p class="group-note">A lab-progress prototype and a workout timer.</p>
     <ul class="list">
-      <li><a href="https://beta-max.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-betamax" aria-hidden="true"></span><span class="nm">beta_max</span><span class="ds">The pancreatic &beta;-cell, from glucose to granule fusion. A teaching tool.</span><span class="dm">beta-max.tonydefazio.com</span></a></li>
-      <li><a href="https://hummerbat.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: #A8325E" aria-hidden="true">hb</span><span class="nm">hummerbat</span><span class="ds">The ATP pathways as a hovering hummingbird&rsquo;s fuel decisions. Work its fat-burning gate by hand.</span><span class="dm">hummerbat.tonydefazio.com</span></a></li>
-      <li><a href="https://hpg.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-hpg" aria-hidden="true"></span><span class="nm">repro-neuro-endo</span><span class="ds">The reproductive axis: the sex steroid pathway, and GnRH pulses across the cycle, on the pill and through menopause.</span><span class="dm">hpg.tonydefazio.com</span></a></li>
-      <li><a href="https://bloodhound.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic mono" style="--c: var(--ink-soft)" aria-hidden="true">Bh</span><span class="nm">Bloodhound</span><span class="ds">A citation checker that learns. A proposal, with a review demo.</span><span class="dm">bloodhound.tonydefazio.com</span></a></li>
-      <li><a href="https://homunculus.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-homunculus" aria-hidden="true"></span><span class="nm">homunculus</span><span class="ds">A body-map exam. A demo on invented data; not clinical guidance.</span><span class="dm">homunculus.tonydefazio.com</span></a></li>
       <li><a href="https://overlook.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-overlook" aria-hidden="true"></span><span class="nm">Overlook</span><span class="ds">Lab progress toward goals, with QC for every recording. A prototype on synthetic data.</span><span class="dm">overlook.tonydefazio.com</span></a></li>
       <li><a href="https://reptimer.tonydefazio.com/" target="_blank" rel="noopener"><span class="ic ic-reptimer" aria-hidden="true"></span><span class="nm">RepTimer</span><span class="ds">One big button that times every set and every rest.</span><span class="dm">reptimer.tonydefazio.com</span></a></li>
     </ul>

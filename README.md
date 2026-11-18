@@ -2,9 +2,9 @@
 
 The apex landing page. It is a **router**: one screen that tells a visitor which of the
 destination sites is closest to their problem, and gets them there. `Before You Send` became
-the eleventh on 2026-11-06 and carries the NEW sticker; `HHhero` became the tenth on 2026-11-02. Since 1.12.0 the cards sit in two groups,
-Education and Tools, with Colonel Kernel in both and The Murderboard on its own wide card
-below them. `ionhomie` became the ninth on 2026-10-20; `ml2dl` became the eighth on 2026-09-25 and
+the eleventh on 2026-11-06 and carries the NEW sticker; `HHhero` became the tenth on 2026-11-02. Since 1.16.0 the sites sit in three groups,
+Education, Tools, and Review and AI, with Colonel Kernel in both Education and Tools; Before You
+Send, It Looked Right and The Murderboard (its wide card) make up Review and AI. `ionhomie` became the ninth on 2026-10-20; `ml2dl` became the eighth on 2026-09-25 and
 `gaba_excites` the seventh on 2026-09-23. `draughtsman` became the sixth
 on 2026-09-04, when its GitHub Pages certificate finally issued; before that its card pointed
 at the repository.
@@ -23,6 +23,10 @@ a short paraphrase of the card, or of the site's own meta description. hummerbat
 repository is private). repro-neuro-endo (`hpg.tonydefazio.com`, the reproductive neuroendocrine
 axis) joined in 1.16.0 with its own favicon, and RepTimer's icon was recopied that day: the site had
 replaced its red barbell with a blue weight plate, and the inline copy does not follow on its own.
+In the same release Tony moved beta_max, hummerbat, repro-neuro-endo and homunculus into Education
+and Bloodhound into Review and AI, leaving Overlook and RepTimer under "More sites". Icons and List
+now open with one note that they list sites without cards, and that the page's shared claims are
+checked for the carded sites only.
 
 **Since 1.15.0 every link to another site opens in a new tab** (`target="_blank"
 rel="noopener"`), at Tony's request, so tonydefazio.com stays open behind it. Same-site links
