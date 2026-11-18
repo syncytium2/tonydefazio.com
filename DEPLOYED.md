@@ -596,6 +596,25 @@ Verified after, by `curl` with a cache-busting query: all six files byte-identic
 `<script`, the JSON-LD block; masthead 1.11.2; 0 matches for `beacon.min.js`. The figure drift
 check run against the served page: the three known rows only.
 
+## 1.16.0 — 2026-11-18 — repro-neuro-endo, a new RepTimer icon, and a Review and AI group
+
+Version ID `65e20346-0152-4118-aefb-390198501320`, deployed from the `hpg` worktree through
+`tools/predeploy.py` (1.16.0 against a live 1.15.0). One asset uploaded: `/index.html`. Tony
+asked for each change and said deploy.
+
+repro-neuro-endo (`hpg.tonydefazio.com`) joins Icons and List with its own favicon. RepTimer's
+inline icon is recopied from its live favicon, now a blue weight plate. The sites sit in three
+groups in every view: Education, Tools, and Review and AI (Before You Send, It Looked Right,
+Bloodhound, The Murderboard). beta_max, hummerbat, repro-neuro-endo and homunculus move into
+Education; Overlook and RepTimer stay under "More sites". The note that the shared claims cover
+carded sites only now opens the Icons and List views.
+
+Verified after, by `curl` with a cache-busting query: all six files byte-identical to `site/`
+(`/` for the page, `/thanks` for `thanks.html`); `www` byte-identical; twelve `class="card`; one
+`<script`, the JSON-LD block; Version 1.16.0; 0 matches for `beacon.min.js`; 74 `target="_blank"
+rel="noopener"`; hpg linked twice; "Review and AI" in all three views; the seven uncarded
+subdomains all 200.
+
 ## 1.15.0 — 2026-11-06 — hummerbat, and other sites open in a new tab
 
 Version ID `4a313218-3a05-44a1-a35e-e3f3b6c42903`, deployed from the `hummerbat` worktree through
