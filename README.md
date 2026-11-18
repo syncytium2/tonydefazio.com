@@ -20,7 +20,9 @@ inline into the stylesheet on 2026-11-06 (they will not follow a site that chang
 the seven sites without a favicon get a monogram in their card's hue. Each list description is
 a short paraphrase of the card, or of the site's own meta description. hummerbat joined "More sites" in
 1.15.0, the day it went live (monogram in ruby `#A8325E`, for the ruby-throated hummingbird; its
-repository is private).
+repository is private). repro-neuro-endo (`hpg.tonydefazio.com`, the reproductive neuroendocrine
+axis) joined in 1.16.0 with its own favicon, and RepTimer's icon was recopied that day: the site had
+replaced its red barbell with a blue weight plate, and the inline copy does not follow on its own.
 
 **Since 1.15.0 every link to another site opens in a new tab** (`target="_blank"
 rel="noopener"`), at Tony's request, so tonydefazio.com stays open behind it. Same-site links
